@@ -7,7 +7,8 @@ The `webapp/` directory contains a Railway-ready Django application for explorin
 The portal keeps two concepts separate:
 
 - `followup_score` is the manuscript's uncalibrated study review-priority score. It is not an impact probability.
-- `intake_score` measures whether a community submission is complete and reviewable. It does not reproduce the terrain/geophysical pipeline.
+- New submissions receive `followup_score` from the same numerical GEBCO/topography and geological-independence method when the required scientific files are mounted.
+- `intake_score` separately measures whether a community submission is complete and reviewable.
 
 Baseline-passing community records are labelled **unreviewed**. Only moderators can promote them into the review catalogue. Confirmation still requires accepted geological evidence.
 
@@ -20,6 +21,8 @@ pip install -r webapp/requirements.txt
 cd webapp
 DEBUG=true python manage.py migrate
 DEBUG=true python manage.py createsuperuser
+GEBCO_GRID_PATH=/path/to/GEBCO_2026_sub_ice.nc \
+GEOLOGY_INDEX_PATH=/path/to/global_gprv.kml \
 DEBUG=true python manage.py runserver
 ```
 
@@ -36,7 +39,7 @@ Registered users can compare study vectors against remote raster context without
 | Elevation/bathymetry | GEBCO latest grid | Restricted WMS proxy |
 | Bathymetric source quality | GEBCO Type Identifier grid | Restricted WMS proxy |
 | Magnetic anomaly | NOAA NCEI EMAG2v3 | Allowlisted ArcGIS tile proxy |
-| Bouguer and isostatic gravity | WGM2012 via EarthByte/GPlates | Click-to-query proxy plus native globe link |
+| Bouguer and isostatic gravity | WGM2012 via EarthByte/GPlates | Click-to-query proxy plus native geographic tiles in the Cesium globe |
 
 The proxy accepts only named providers and validated tile/WMS parameters. It does not accept arbitrary URLs and has no server-side raster cache. Provider attribution remains visible on the map. Remote layers are contextual screening evidence, not impact confirmation.
 
@@ -53,6 +56,15 @@ The proxy accepts only named providers and validated tile/WMS parameters. It doe
 9. In the web service's Public Networking settings, add `astro.nobulart.com`. Add both the CNAME and TXT records Railway provides to the `nobulart.com` DNS zone; Railway will issue TLS after verification.
 10. Keep the configured health check at `/health/`. It verifies both Django and the database and accepts Railway's `healthcheck.railway.app` hostname.
 
+### Exact follow-up scoring data
+
+The visual GEBCO WMS is not a numerical scoring input. To calculate the manuscript score immediately in production, attach a Railway persistent volume at `/data` and place these read-only files on it:
+
+- `/data/GEBCO_2026_sub_ice.nc` — the GEBCO 2026 sub-ice numerical grid;
+- `/data/global_gprv.kml` — the geological-province index used by the study.
+
+The application opens only the candidate-sized GEBCO window and never copies the grid into PostgreSQL. If either file is absent, submission still succeeds, but the record is explicitly marked `source_unavailable` for a later retry; no map-image surrogate is used. The large GEBCO grid should remain on a volume or future range-readable scientific data service, not in Git or the Docker image.
+
 Optional variables:
 
 | Variable | Default | Purpose |
@@ -62,6 +74,9 @@ Optional variables:
 | `DEBUG` | `false` | Development diagnostics; keep false in production |
 | `ASTROBLEME_DATA_ROOT` | `/app` | Root containing the GeoJSON study outputs |
 | `RAILWAY_PUBLIC_DOMAIN` | supplied by Railway | Automatically added to allowed hosts and trusted HTTPS origins |
+| `GEBCO_GRID_PATH` | `/data/GEBCO_2026_sub_ice.nc` | Numerical terrain grid required for exact follow-up scoring |
+| `GEOLOGY_INDEX_PATH` | `/data/global_gprv.kml` | Geological-province index required for exact follow-up scoring |
+| `CESIUM_ION_TOKEN` | empty | Optional Cesium World Terrain; WGM2012 gravity and the ellipsoid globe work without it |
 
 Required variables are `SECRET_KEY` and `DATABASE_URL`. `PORT` and `RAILWAY_PUBLIC_DOMAIN` are supplied by Railway.
 

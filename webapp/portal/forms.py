@@ -27,7 +27,7 @@ class CandidateForm(forms.ModelForm):
 
     class Meta:
         model = CandidateSubmission
-        exclude = ("created_by", "geometry", "intake_score", "baseline_passed", "baseline_checks", "status", "moderator_notes", "moderated_by", "moderated_at")
+        exclude = ("created_by", "geometry", "intake_score", "followup_score", "followup_status", "followup_metrics", "followup_method_version", "baseline_passed", "baseline_checks", "status", "moderator_notes", "moderated_by", "moderated_at")
         widgets = {
             "description": forms.Textarea(attrs={"rows": 4}),
             "endogenic_alternative": forms.Textarea(attrs={"rows": 3}),

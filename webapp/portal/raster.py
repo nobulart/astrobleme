@@ -41,6 +41,22 @@ TILE_SOURCES = {
         "source_url": "https://nasa-gibs.github.io/gibs-api-docs/",
         "dated": True,
     },
+    "gravity-bouguer": {
+        "label": "WGM2012 Bouguer gravity",
+        "kind": "geophysics-geographic-tiles",
+        "url": "https://portal.gplates.org/get_tile/?name=WGM2012_Bouguer_ponc&z={z}&x={x}&y={y}&fmt=png",
+        "max_zoom": 6,
+        "attribution": "BGI and EarthByte/GPlates",
+        "source_url": "https://www.earthbyte.org/interactive-virtual-gravity-globe-based-on-bgis-global-gravity-grids-by-bonvalot-et-al-2012/",
+    },
+    "gravity-isostatic": {
+        "label": "WGM2012 isostatic gravity",
+        "kind": "geophysics-geographic-tiles",
+        "url": "https://portal.gplates.org/get_tile/?name=WGM2012_Isostatic_ponc&z={z}&x={x}&y={y}&fmt=png",
+        "max_zoom": 6,
+        "attribution": "BGI and EarthByte/GPlates",
+        "source_url": "https://www.earthbyte.org/interactive-virtual-gravity-globe-based-on-bgis-global-gravity-grids-by-bonvalot-et-al-2012/",
+    },
 }
 
 WMS_SOURCES = {

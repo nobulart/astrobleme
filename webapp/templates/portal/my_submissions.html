@@ -7,8 +7,9 @@
   <div class="submission-grid">
     {% for item in submissions %}
     <article class="submission-card">
-      <div class="score">{{ item.intake_score|floatformat:2 }}</div>
-      <div><h2>{{ item.title }}</h2><p>{{ item.get_status_display }}</p><small>{{ item.created_at|date:"j M Y, H:i" }} · {{ item.latitude|floatformat:3 }}, {{ item.longitude|floatformat:3 }} · {{ item.diameter_km|floatformat:1 }} km</small></div>
+      <div class="score">{% if item.followup_score != None %}{{ item.followup_score|floatformat:3 }}{% else %}—{% endif %}</div>
+      <div><h2>{{ item.title }}</h2><p>{{ item.get_status_display }}</p><small>Follow-up: {{ item.get_followup_status_display }} · Intake completeness: {{ item.intake_score|floatformat:2 }}</small><br><small>{{ item.created_at|date:"j M Y, H:i" }} · updated {{ item.updated_at|date:"j M Y, H:i" }} · {{ item.latitude|floatformat:3 }}, {{ item.longitude|floatformat:3 }} · {{ item.diameter_km|floatformat:1 }} km</small>{% if item.is_editable_by_owner %}<p><a class="button secondary candidate-edit" href="{% url 'edit_candidate' item.id %}">Edit pending candidate</a></p>{% else %}<small>Editing is locked after scientific review begins.</small>{% endif %}</div>
+      {% if item.followup_metrics.reason %}<p>{{ item.followup_metrics.reason }}</p>{% endif %}
       {% if not item.baseline_passed %}<details><summary>Why it needs revision</summary><pre>{{ item.baseline_checks }}</pre></details>{% endif %}
     </article>
     {% empty %}<p>You have not submitted a candidate yet.</p>{% endfor %}

@@ -10,19 +10,20 @@
     <div class="notice"><strong>Interpretation guardrail</strong><br>Scores prioritize follow-up. They are not impact probabilities, and circular morphology is not diagnostic.</div>
     <label class="search-label" for="map-search">Find a candidate or structure</label>
     <input id="map-search" type="search" placeholder="e.g. arc_0373 or Vredefort">
-    <h2>Map layers</h2>
+    <details class="control-section" open><summary>Map layers</summary>
     <div id="layer-list" class="layer-list">
       {% for slug, layer in layers.items %}
-      <label><input type="checkbox" data-layer="{{ slug }}" {% if slug == 'study-candidates' %}checked{% endif %}> <span>{{ layer.1 }}</span><small data-count="{{ slug }}">not loaded</small></label>
+      <label><input type="checkbox" data-layer="{{ slug }}" {% if slug == 'study-candidates' %}checked{% endif %}> <span>{{ layer.1 }}</span><small data-count="{{ slug }}">not loaded</small><a class="layer-download" href="{% url 'layer_geojson' slug %}?download=1" title="Download GeoJSON">↓</a></label>
       {% endfor %}
       {% if user.is_authenticated %}
-      <label><input type="checkbox" data-layer="my-candidates" checked> <span>My candidate library</span><small data-count="my-candidates">not loaded</small></label>
-      <label><input type="checkbox" data-layer="other-candidates"> <span>Other reviewers' candidates</span><small data-count="other-candidates">not loaded</small></label>
+      <label><input type="checkbox" data-layer="my-candidates" checked> <span>My candidate library</span><small data-count="my-candidates">not loaded</small><a class="layer-download" href="{% url 'my_candidates_geojson' %}?download=1" title="Download GeoJSON">↓</a></label>
+      <label><input type="checkbox" data-layer="other-candidates"> <span>Other reviewers' candidates</span><small data-count="other-candidates">not loaded</small><a class="layer-download" href="{% url 'other_candidates_geojson' %}?download=1" title="Download GeoJSON">↓</a></label>
       {% else %}
       <label><input type="checkbox" data-layer="community"> <span>Community candidates</span><small data-count="community">not loaded</small></label>
       {% endif %}
-    </div>
-    <h2>Remote Earth data</h2>
+    </div></details>
+    <details class="control-section" open><summary>Scientific styling</summary><div class="style-grid"><label>Colour rings by<select id="score-field"><option value="followup_score">Follow-up score</option><option value="structure_followup_score">Structure follow-up score</option><option value="gravity_consensus_percentile">Gravity percentile</option><option value="magnetic_ring_score_stratified_percentile">Magnetic percentile</option><option value="data_quality">Data quality</option><option value="intake_score">Intake completeness</option><option value="diameter_km">Diameter</option></select></label><label>Palette<select id="map-palette"><option value="turbo">Turbo</option><option value="viridis">Viridis</option><option value="plasma">Plasma</option><option value="inferno">Inferno</option><option value="magma">Magma</option><option value="cividis">Cividis</option><option value="rdbu">RdBu</option></select></label></div><div id="score-legend" class="score-legend"><span>no numeric values loaded</span></div><small>Colour encodes the selected number. Dashed outlines encode provisional review state.</small></details>
+    <details class="control-section" open><summary>Remote Earth data</summary>
     {% if user.is_authenticated %}
     <div class="remote-tools">
       <fieldset>
@@ -43,7 +44,8 @@
       <div id="remote-source" class="remote-source">Remote rasters are streamed through an allowlisted proxy and are not stored on the server.</div>
       <section class="candidate-finder" aria-labelledby="candidate-finder-title">
         <h2 id="candidate-finder-title">Identify a candidate</h2>
-        <p>Activate marking, click the map, adjust the estimated diameter, then review the pre-populated submission.</p>
+        <p>Mark a centre and radius, two opposite rim points, or a point with a typed diameter.</p>
+        <label>Drawing method<select id="drawing-method"><option value="center-radius">Drag centre → rim</option><option value="rim-to-rim">Click opposite rim points</option><option value="point-diameter">Click centre + type diameter</option></select></label>
         <button id="candidate-marker" class="tool-button" type="button">Mark a candidate on the map</button>
         <div id="candidate-draft" class="candidate-draft" hidden>
           <div><span>Centre</span><strong id="candidate-centre">—</strong></div>
@@ -52,17 +54,19 @@
           <button id="clear-candidate" class="text-button" type="button">Clear marker</button>
         </div>
       </section>
+      <a class="button secondary" href="{% url 'globe' %}">Open 3D gravity globe</a>
       <button id="reset-map" class="text-button reset-map" type="button">Reset map to defaults</button>
       <form id="map-preference-token" hidden>{% csrf_token %}</form>
     </div>
     {% else %}
     <div class="remote-locked">Registered reviewers can compare live aerial, satellite, elevation, source-quality, magnetic and gravity data. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a>.</div>
-    {% endif %}
+    {% endif %}</details>
     <div class="panel-actions">
       {% if not user.is_authenticated %}<a class="button" href="{% url 'login' %}?next={% url 'home' %}">Log in to identify a candidate</a>{% endif %}
-      <a class="button secondary" href="/static/portal/method.html">How ranking works</a>
+      <a class="button secondary" href="{% url 'help' %}">Help, method and review guide</a>
     </div>
     <p class="source-note">Study layer grain: one original arcuate geometry. Structure fields are repeated across member arcs; use the consolidated structure rank for review decisions.</p>
+    <p class="coffee-link"><a href="https://buymeacoffee.com/nobulart" target="_blank" rel="noopener">Buy me a coffee</a></p>
   </aside>
   <section class="map-region">
     <div id="map" aria-label="Interactive global candidate map"></div>

@@ -4,14 +4,16 @@ from pathlib import Path
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
-from django.db import connection
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db import connection, transaction
 from django.http import FileResponse, Http404, JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
 from django.views.decorators.http import require_GET, require_POST
 
 from .forms import CandidateForm, RegistrationForm
-from .models import CandidateSubmission, UserMapPreference
+from .followup import circle_geometry, score_candidate
+from .models import CandidateReview, CandidateSubmission, UserMapPreference
 from .scoring import evaluate_submission
 
 LAYERS = {
@@ -31,10 +33,16 @@ DEFAULT_MAP_PREFERENCES = {
     "rasterOpacity": 68,
     "satelliteDate": "",
     "candidateDraft": None,
+    "scoreField": "followup_score",
+    "palette": "turbo",
+    "drawingMethod": "center-radius",
 }
 PREFERENCE_LAYERS = {*LAYERS, "my-candidates", "other-candidates", "community"}
 PREFERENCE_BASEMAPS = {"street", "aerial", "satellite"}
 PREFERENCE_RASTERS = {"gebco-elevation", "gebco-tid", "magnetic"}
+PREFERENCE_SCORE_FIELDS = {"followup_score", "structure_followup_score", "gravity_consensus_percentile", "magnetic_ring_score_stratified_percentile", "data_quality", "intake_score", "diameter_km"}
+PREFERENCE_PALETTES = {"turbo", "viridis", "plasma", "inferno", "magma", "cividis", "rdbu"}
+PREFERENCE_DRAWING_METHODS = {"center-radius", "rim-to-rim", "point-diameter"}
 PUBLIC_CANDIDATE_STATUSES = [
     CandidateSubmission.Status.BASELINE_PASSED,
     CandidateSubmission.Status.UNDER_REVIEW,
@@ -81,13 +89,7 @@ def submit_candidate(request):
     if request.method == "POST" and form.is_valid():
         candidate = form.save(commit=False)
         candidate.created_by = request.user
-        candidate.geometry = form.cleaned_data["geometry_text"]
-        score, passed, checks = evaluate_submission(form.cleaned_data | {"geometry": candidate.geometry})
-        candidate.intake_score = score
-        candidate.baseline_passed = passed
-        candidate.baseline_checks = checks
-        candidate.status = CandidateSubmission.Status.BASELINE_PASSED if passed else CandidateSubmission.Status.BASELINE_FAILED
-        candidate.save()
+        passed = _evaluate_and_save(candidate, form)
         preference = UserMapPreference.objects.filter(user=request.user).first()
         if preference and preference.settings.get("candidateDraft"):
             preference.settings = {**preference.settings, "candidateDraft": None}
@@ -98,6 +100,51 @@ def submit_candidate(request):
             messages.warning(request, "Submission saved, but it needs revision before entering the public review queue.")
         return redirect("my_submissions")
     return render(request, "portal/submit.html", {"form": form})
+
+
+@login_required
+def edit_candidate(request, candidate_id):
+    candidate = get_object_or_404(CandidateSubmission, pk=candidate_id, created_by=request.user)
+    if not candidate.is_editable_by_owner:
+        messages.warning(request, "This candidate is locked because scientific review has started or a decision has been recorded.")
+        return redirect("my_submissions")
+    initial = {"geometry_text": json.dumps(candidate.geometry) if candidate.geometry else ""}
+    form = CandidateForm(request.POST or None, instance=candidate, initial=initial)
+    if request.method == "POST" and form.is_valid():
+        candidate = form.save(commit=False)
+        passed = _evaluate_and_save(candidate, form)
+        if passed:
+            messages.success(request, "Candidate updated, rescored, and retained in the unreviewed queue.")
+        else:
+            messages.warning(request, "Candidate updated and rescored, but it still needs revision before public review.")
+        return redirect("my_submissions")
+    return render(request, "portal/submit.html", {"form": form, "editing": True, "candidate": candidate})
+
+
+def _evaluate_and_save(candidate, form):
+    candidate.geometry = form.cleaned_data["geometry_text"] or circle_geometry(candidate.longitude, candidate.latitude, candidate.diameter_km)
+    score, passed, checks = evaluate_submission(form.cleaned_data | {"geometry": candidate.geometry})
+    candidate.intake_score = score
+    candidate.baseline_passed = passed
+    candidate.baseline_checks = checks
+    candidate.status = CandidateSubmission.Status.BASELINE_PASSED if passed else CandidateSubmission.Status.BASELINE_FAILED
+    candidate.followup_score = None
+    candidate.followup_method_version = ""
+    try:
+        result = score_candidate(candidate)
+        candidate.followup_score = result["score"]
+        candidate.followup_metrics = result["metrics"]
+        candidate.followup_method_version = result["method_version"]
+        candidate.followup_status = CandidateSubmission.FollowupStatus.SCORED
+        candidate.geometry = result["geometry"]
+    except FileNotFoundError:
+        candidate.followup_status = CandidateSubmission.FollowupStatus.SOURCE_UNAVAILABLE
+        candidate.followup_metrics = {"reason": "Required numerical study sources are not mounted on this deployment."}
+    except Exception:
+        candidate.followup_status = CandidateSubmission.FollowupStatus.FAILED
+        candidate.followup_metrics = {"reason": "The scientific scorer could not complete; a reviewer can retry it."}
+    candidate.save()
+    return passed
 
 
 @login_required
@@ -113,29 +160,32 @@ def layer_geojson(request, slug):
     path = (settings.PROJECT_ROOT / relative).resolve()
     if settings.PROJECT_ROOT.resolve() not in path.parents or not path.exists():
         raise Http404
-    return FileResponse(path.open("rb"), content_type="application/geo+json")
+    response = FileResponse(path.open("rb"), content_type="application/geo+json")
+    if request.GET.get("download") == "1":
+        response["Content-Disposition"] = f'attachment; filename="{slug}.geojson"'
+    return response
 
 
 @require_GET
 def community_geojson(request):
     queryset = CandidateSubmission.objects.filter(status__in=PUBLIC_CANDIDATE_STATUSES).select_related("created_by")
-    return _candidate_collection(queryset)
+    return _candidate_collection(queryset, request.GET.get("download") == "1")
 
 
 @login_required
 @require_GET
 def my_candidates_geojson(request):
-    return _candidate_collection(CandidateSubmission.objects.filter(created_by=request.user).select_related("created_by"))
+    return _candidate_collection(CandidateSubmission.objects.filter(created_by=request.user).select_related("created_by"), request.GET.get("download") == "1")
 
 
 @login_required
 @require_GET
 def other_candidates_geojson(request):
     queryset = CandidateSubmission.objects.filter(status__in=PUBLIC_CANDIDATE_STATUSES).exclude(created_by=request.user).select_related("created_by")
-    return _candidate_collection(queryset)
+    return _candidate_collection(queryset, request.GET.get("download") == "1")
 
 
-def _candidate_collection(queryset):
+def _candidate_collection(queryset, download=False):
     features = []
     for candidate in queryset:
         geometry = candidate.geometry or {"type": "Point", "coordinates": [candidate.longitude, candidate.latitude]}
@@ -149,6 +199,10 @@ def _candidate_collection(queryset):
                 "latitude": candidate.latitude,
                 "diameter_km": candidate.diameter_km,
                 "intake_score": candidate.intake_score,
+                "followup_score": candidate.followup_score,
+                "followup_status": candidate.followup_status,
+                "data_quality": candidate.followup_metrics.get("data_quality"),
+                "review_status": candidate.status,
                 "score_interpretation": "submission completeness and reviewability; not impact probability",
                 "status": candidate.get_status_display(),
                 "source_title": candidate.source_title,
@@ -157,7 +211,45 @@ def _candidate_collection(queryset):
                 "created_at": candidate.created_at.isoformat(),
             },
         })
-    return JsonResponse({"type": "FeatureCollection", "features": features})
+    response = JsonResponse({"type": "FeatureCollection", "features": features})
+    response["Content-Disposition"] = f'{"attachment" if download else "inline"}; filename="candidates.geojson"'
+    return response
+
+
+def help_page(request):
+    return render(request, "portal/help.html")
+
+
+@login_required
+def globe(request):
+    return render(request, "portal/globe.html", {"cesium_ion_token": settings.CESIUM_ION_TOKEN})
+
+
+@user_passes_test(lambda user: user.is_staff)
+def review_queue(request):
+    submissions = CandidateSubmission.objects.exclude(status=CandidateSubmission.Status.BASELINE_FAILED).select_related("created_by", "moderated_by").prefetch_related("reviews")
+    return render(request, "portal/review_queue.html", {"submissions": submissions, "status_choices": CandidateSubmission.Status.choices})
+
+
+@user_passes_test(lambda user: user.is_staff)
+@require_POST
+def review_candidate(request, candidate_id):
+    allowed = {value for value, _ in CandidateSubmission.Status.choices}
+    target = request.POST.get("status")
+    if target not in allowed:
+        messages.error(request, "Choose a valid review status.")
+        return redirect("review_queue")
+    with transaction.atomic():
+        candidate = get_object_or_404(CandidateSubmission.objects.select_for_update(), pk=candidate_id)
+        previous = candidate.status
+        candidate.status = target
+        candidate.moderator_notes = request.POST.get("note", "").strip()
+        candidate.moderated_by = request.user
+        candidate.moderated_at = timezone.now()
+        candidate.save()
+        CandidateReview.objects.create(candidate=candidate, reviewer=request.user, from_status=previous, to_status=target, note=candidate.moderator_notes)
+    messages.success(request, f"Review status updated for {candidate.title}.")
+    return redirect("review_queue")
 
 
 @login_required
@@ -194,6 +286,11 @@ def _clean_map_preferences(payload):
     if basemap not in PREFERENCE_BASEMAPS:
         basemap = "street"
     satellite_date = str(payload.get("satelliteDate", ""))[:10]
+    score_field = payload.get("scoreField", DEFAULT_MAP_PREFERENCES["scoreField"])
+    palette = payload.get("palette", DEFAULT_MAP_PREFERENCES["palette"])
+    drawing_method = payload.get("drawingMethod", DEFAULT_MAP_PREFERENCES["drawingMethod"])
+    if score_field not in PREFERENCE_SCORE_FIELDS or palette not in PREFERENCE_PALETTES or drawing_method not in PREFERENCE_DRAWING_METHODS:
+        raise ValueError
     draft = payload.get("candidateDraft")
     clean_draft = None
     if draft:
@@ -216,6 +313,9 @@ def _clean_map_preferences(payload):
         "rasterOpacity": opacity,
         "satelliteDate": satellite_date,
         "candidateDraft": clean_draft,
+        "scoreField": score_field,
+        "palette": palette,
+        "drawingMethod": drawing_method,
     }
 
 
