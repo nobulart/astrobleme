@@ -92,7 +92,7 @@ Processed outputs and smaller subsets are included in this repository.
 
 If you use this code or data, please cite:
 
-> Craig B., et al. (2026). Astroblemes: A systematic search for terrestrial impact structures using arcuate geometries. *Journal Name* (in press).
+> Stone, C. (2026). Astroblemes: A systematic search for terrestrial impact structures using arcuate geometries. *Journal Name* (in press).
 
 Code repository: https://github.com/nobulart/astrobleme
 
