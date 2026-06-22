@@ -41,7 +41,16 @@ class CandidateSubmission(models.Model):
 
     class Meta:
         ordering = ["-intake_score", "-created_at"]
-        indexes = [models.Index(fields=["status", "intake_score"])]
+        indexes = [models.Index(fields=["status", "intake_score"], name="portal_cand_status_4ed21e_idx")]
 
     def __str__(self):
         return f"{self.title} ({self.status})"
+
+
+class UserMapPreference(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="map_preference")
+    settings = models.JSONField(default=dict)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Map preferences for {self.user.username}"

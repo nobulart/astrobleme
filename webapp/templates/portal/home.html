@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% block head %}<link rel="stylesheet" href="{% static 'portal/interactive-map.css' %}">{% endblock %}
 {% block content %}
 <main class="atlas-shell">
   <aside class="atlas-panel">
@@ -14,7 +15,12 @@
       {% for slug, layer in layers.items %}
       <label><input type="checkbox" data-layer="{{ slug }}" {% if slug == 'study-candidates' %}checked{% endif %}> <span>{{ layer.1 }}</span><small data-count="{{ slug }}">not loaded</small></label>
       {% endfor %}
-      <label><input type="checkbox" data-layer="community" checked> <span>Community candidates</span><small data-count="community">not loaded</small></label>
+      {% if user.is_authenticated %}
+      <label><input type="checkbox" data-layer="my-candidates" checked> <span>My candidate library</span><small data-count="my-candidates">not loaded</small></label>
+      <label><input type="checkbox" data-layer="other-candidates"> <span>Other reviewers' candidates</span><small data-count="other-candidates">not loaded</small></label>
+      {% else %}
+      <label><input type="checkbox" data-layer="community"> <span>Community candidates</span><small data-count="community">not loaded</small></label>
+      {% endif %}
     </div>
     <h2>Remote Earth data</h2>
     {% if user.is_authenticated %}
@@ -35,12 +41,25 @@
       <label class="opacity-control"><span>Overlay opacity</span><input id="raster-opacity" type="range" min="10" max="100" value="68"></label>
       <button id="gravity-inspector" class="tool-button" type="button">Inspect WGM2012 gravity at a point</button>
       <div id="remote-source" class="remote-source">Remote rasters are streamed through an allowlisted proxy and are not stored on the server.</div>
+      <section class="candidate-finder" aria-labelledby="candidate-finder-title">
+        <h2 id="candidate-finder-title">Identify a candidate</h2>
+        <p>Activate marking, click the map, adjust the estimated diameter, then review the pre-populated submission.</p>
+        <button id="candidate-marker" class="tool-button" type="button">Mark a candidate on the map</button>
+        <div id="candidate-draft" class="candidate-draft" hidden>
+          <div><span>Centre</span><strong id="candidate-centre">—</strong></div>
+          <label for="candidate-diameter"><span>Estimated diameter (km)</span><input id="candidate-diameter" type="number" min="0.1" max="10000" step="1" value="100"></label>
+          <button id="review-candidate" class="button" type="button">Review candidate submission</button>
+          <button id="clear-candidate" class="text-button" type="button">Clear marker</button>
+        </div>
+      </section>
+      <button id="reset-map" class="text-button reset-map" type="button">Reset map to defaults</button>
+      <form id="map-preference-token" hidden>{% csrf_token %}</form>
     </div>
     {% else %}
     <div class="remote-locked">Registered reviewers can compare live aerial, satellite, elevation, source-quality, magnetic and gravity data. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a>.</div>
     {% endif %}
     <div class="panel-actions">
-      <a class="button" href="{% url 'submit_candidate' %}">Identify a candidate</a>
+      {% if not user.is_authenticated %}<a class="button" href="{% url 'login' %}?next={% url 'home' %}">Log in to identify a candidate</a>{% endif %}
       <a class="button secondary" href="/static/portal/method.html">How ranking works</a>
     </div>
     <p class="source-note">Study layer grain: one original arcuate geometry. Structure fields are repeated across member arcs; use the consolidated structure rank for review decisions.</p>
@@ -55,8 +74,12 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
 <script>window.ASTROBLEME_LAYER_URLS = {
 {% for slug, layer in layers.items %}"{{ slug }}": "{% url 'layer_geojson' slug %}",{% endfor %}
-"community": "{% url 'community_geojson' %}"
+"community": "{% url 'community_geojson' %}"{% if user.is_authenticated %},
+"my-candidates": "{% url 'my_candidates_geojson' %}",
+"other-candidates": "{% url 'other_candidates_geojson' %}"{% endif %}
 };</script>
 <script>window.ASTROBLEME_RASTER_ACCESS = {{ user.is_authenticated|yesno:"true,false" }};</script>
+{{ map_preferences|json_script:"map-preferences" }}
+<script>window.ASTROBLEME_PREFERENCE_URL = "{% if user.is_authenticated %}{% url 'map_preferences' %}{% endif %}";</script>
 <script src="{% static 'portal/map.js' %}"></script>
 {% endblock %}

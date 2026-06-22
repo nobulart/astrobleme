@@ -1,10 +1,12 @@
+import json
+
 from django.contrib.auth.models import User
 from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.http import HttpResponse
 from unittest.mock import Mock, patch
 
-from .models import CandidateSubmission
+from .models import CandidateSubmission, UserMapPreference
 from .scoring import evaluate_submission
 
 
@@ -64,6 +66,19 @@ class PortalViewTests(TestCase):
         response = self.client.get(reverse("submit_candidate"))
         self.assertEqual(response.status_code, 302)
 
+    def test_map_click_query_prefills_submission_review(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("submit_candidate"), {
+            "latitude": "-28.125", "longitude": "24.75", "diameter_km": "140",
+            "title": "Candidate near -28.13, 24.75", "source_title": "Esri World Imagery",
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'value="-28.125"')
+        self.assertContains(response, 'value="24.75"')
+        self.assertContains(response, 'value="140.0"')
+        self.assertContains(response, "Candidate near -28.13, 24.75")
+        self.assertContains(response, "Esri World Imagery")
+
     def test_community_api_excludes_failed_records(self):
         CandidateSubmission.objects.create(
             created_by=self.user, title="Private failed item", description="x", longitude=1, latitude=1,
@@ -72,16 +87,58 @@ class PortalViewTests(TestCase):
         )
         self.assertEqual(self.client.get(reverse("community_geojson")).json()["features"], [])
 
+    def test_candidate_library_scopes_own_and_other_users(self):
+        other = User.objects.create_user("other", "other@example.org", "long-test-password")
+        own = CandidateSubmission.objects.create(
+            created_by=self.user, title="Own private draft", description="x", longitude=1, latitude=1,
+            diameter_km=20, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.BASELINE_FAILED,
+        )
+        public_other = CandidateSubmission.objects.create(
+            created_by=other, title="Other public candidate", description="x", longitude=2, latitude=2,
+            diameter_km=30, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.BASELINE_PASSED,
+        )
+        CandidateSubmission.objects.create(
+            created_by=other, title="Other private draft", description="x", longitude=3, latitude=3,
+            diameter_km=40, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.BASELINE_FAILED,
+        )
+        self.client.force_login(self.user)
+        mine = self.client.get(reverse("my_candidates_geojson")).json()["features"]
+        others = self.client.get(reverse("other_candidates_geojson")).json()["features"]
+        self.assertEqual([feature["id"] for feature in mine], [str(own.id)])
+        self.assertEqual([feature["id"] for feature in others], [str(public_other.id)])
+
+    def test_map_preferences_are_saved_and_reset(self):
+        self.client.force_login(self.user)
+        payload = {
+            "center": [-25.2, 28.1], "zoom": 7,
+            "layers": ["my-candidates", "other-candidates"], "basemap": "aerial",
+            "rasters": ["magnetic"], "rasterOpacity": 54, "satelliteDate": "2026-06-20",
+            "candidateDraft": {"latitude": -25.1, "longitude": 28.2, "diameterKm": 80},
+        }
+        saved = self.client.post(reverse("map_preferences"), json.dumps(payload), content_type="application/json")
+        self.assertEqual(saved.status_code, 200)
+        self.assertEqual(UserMapPreference.objects.get(user=self.user).settings["basemap"], "aerial")
+        home = self.client.get(reverse("home"))
+        self.assertContains(home, '"diameterKm": 80.0')
+        reset = self.client.post(reverse("map_preferences"), json.dumps({"reset": True}), content_type="application/json")
+        self.assertEqual(reset.status_code, 200)
+        self.assertFalse(UserMapPreference.objects.filter(user=self.user).exists())
+
     @override_settings(PROJECT_ROOT="/path/that/does/not/exist")
     def test_authenticated_submission_is_scored_and_published(self):
         from .scoring import study_centres
         study_centres.cache_clear()
         self.client.force_login(self.user)
+        UserMapPreference.objects.create(user=self.user, settings={"candidateDraft": {"latitude": 10, "longitude": 10, "diameterKm": 65}})
         response = self.client.post(reverse("submit_candidate"), VALID)
         self.assertRedirects(response, reverse("my_submissions"))
         item = CandidateSubmission.objects.get(title=VALID["title"])
         self.assertTrue(item.baseline_passed)
         self.assertEqual(item.status, CandidateSubmission.Status.BASELINE_PASSED)
+        self.assertIsNone(UserMapPreference.objects.get(user=self.user).settings["candidateDraft"])
         public = self.client.get(reverse("community_geojson")).json()
         self.assertEqual(len(public["features"]), 1)
 
@@ -101,6 +158,9 @@ class RasterProxyTests(TestCase):
         self.assertContains(response, "Esri aerial imagery")
         self.assertContains(response, "GEBCO source identifier")
         self.assertContains(response, "Inspect WGM2012 gravity")
+        self.assertContains(response, "Mark a candidate on the map")
+        self.assertContains(response, "My candidate library")
+        self.assertContains(response, "Other reviewers' candidates")
 
     def test_metadata_exposes_no_upstream_proxy_urls(self):
         self.client.force_login(self.user)
