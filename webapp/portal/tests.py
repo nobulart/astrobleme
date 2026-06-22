@@ -55,6 +55,11 @@ class PortalViewTests(TestCase):
         self.assertContains(home, "Registered reviewers can compare live aerial")
         self.assertEqual(self.client.get(reverse("health")).json(), {"status": "ok", "database": "ok"})
 
+    @override_settings(DEBUG=False, SECURE_SSL_REDIRECT=True)
+    def test_health_is_not_redirected_to_https(self):
+        response = self.client.get(reverse("health"))
+        self.assertEqual(response.status_code, 200)
+
     def test_submission_requires_login(self):
         response = self.client.get(reverse("submit_candidate"))
         self.assertEqual(response.status_code, 302)
