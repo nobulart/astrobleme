@@ -1,5 +1,6 @@
 # Python cache and bytecode
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.so
@@ -8,13 +9,15 @@ __pycache__/
 env/
 venv/
 ENV/
+.venv-app/
 
-# IDE files
+# IDE and operating-system files
 .DS_Store
 .idea/
 .vscode/
+.pytest_cache/
 
-# Generated output files (analysis results)
+# Generated output files
 analysis_results.json
 fig_*.pdf
 fig_*.png
@@ -22,15 +25,17 @@ table_*.tex
 outputs/
 output/
 geophysical_output/structure_output/
-
-# Large PDF outputs from manuscript compilation
+tmp/
 *.aux
 *.fdb_latexmk
 *.fls
 *.log
 *.out
 
-# Geospatial data (original large source files - use smaller processed versions)
+# Large source GeoJSONs; deploy only the curated application inputs.
 arcuate_geometries.geojson
-african_impact_structures.geojson
 astroblemes.geojson
+
+# Local application runtime files
+webapp/db.sqlite3
+webapp/staticfiles/

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<main class="atlas-shell">
+  <aside class="atlas-panel">
+    <p class="eyebrow">Exploratory screening catalogue</p>
+    <h1>Review the evidence, not just the circles.</h1>
+    <p class="lede">Explore the study catalogue alongside repaired impact records, African review structures, endogenic controls, mapped active faults, and community submissions.</p>
+    <div class="notice"><strong>Interpretation guardrail</strong><br>Scores prioritize follow-up. They are not impact probabilities, and circular morphology is not diagnostic.</div>
+    <label class="search-label" for="map-search">Find a candidate or structure</label>
+    <input id="map-search" type="search" placeholder="e.g. arc_0373 or Vredefort">
+    <h2>Map layers</h2>
+    <div id="layer-list" class="layer-list">
+      {% for slug, layer in layers.items %}
+      <label><input type="checkbox" data-layer="{{ slug }}" {% if slug == 'study-candidates' %}checked{% endif %}> <span>{{ layer.1 }}</span><small data-count="{{ slug }}">not loaded</small></label>
+      {% endfor %}
+      <label><input type="checkbox" data-layer="community" checked> <span>Community candidates</span><small data-count="community">not loaded</small></label>
+    </div>
+    <h2>Remote Earth data</h2>
+    {% if user.is_authenticated %}
+    <div class="remote-tools">
+      <fieldset>
+        <legend>Basemap</legend>
+        <label><input type="radio" name="basemap" data-basemap="street" checked> Street map</label>
+        <label><input type="radio" name="basemap" data-basemap="aerial"> Esri aerial imagery</label>
+        <label><input type="radio" name="basemap" data-basemap="satellite"> NASA MODIS satellite</label>
+      </fieldset>
+      <label class="date-control"><span>Satellite date</span><input id="satellite-date" type="date" min="2000-02-24"></label>
+      <fieldset>
+        <legend>Study context overlays</legend>
+        <label><input type="checkbox" data-raster="gebco-elevation"> GEBCO elevation</label>
+        <label><input type="checkbox" data-raster="gebco-tid"> GEBCO source identifier</label>
+        <label><input type="checkbox" data-raster="magnetic"> NOAA EMAG2 magnetics</label>
+      </fieldset>
+      <label class="opacity-control"><span>Overlay opacity</span><input id="raster-opacity" type="range" min="10" max="100" value="68"></label>
+      <button id="gravity-inspector" class="tool-button" type="button">Inspect WGM2012 gravity at a point</button>
+      <div id="remote-source" class="remote-source">Remote rasters are streamed through an allowlisted proxy and are not stored on the server.</div>
+    </div>
+    {% else %}
+    <div class="remote-locked">Registered reviewers can compare live aerial, satellite, elevation, source-quality, magnetic and gravity data. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a>.</div>
+    {% endif %}
+    <div class="panel-actions">
+      <a class="button" href="{% url 'submit_candidate' %}">Identify a candidate</a>
+      <a class="button secondary" href="/static/portal/method.html">How ranking works</a>
+    </div>
+    <p class="source-note">Study layer grain: one original arcuate geometry. Structure fields are repeated across member arcs; use the consolidated structure rank for review decisions.</p>
+  </aside>
+  <section class="map-region">
+    <div id="map" aria-label="Interactive global candidate map"></div>
+    <div id="map-status" class="map-status">Loading study candidates…</div>
+  </section>
+</main>
+{% endblock %}
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+<script>window.ASTROBLEME_LAYER_URLS = {
+{% for slug, layer in layers.items %}"{{ slug }}": "{% url 'layer_geojson' slug %}",{% endfor %}
+"community": "{% url 'community_geojson' %}"
+};</script>
+<script>window.ASTROBLEME_RASTER_ACCESS = {{ user.is_authenticated|yesno:"true,false" }};</script>
+<script src="{% static 'portal/map.js' %}"></script>
+{% endblock %}

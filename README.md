@@ -4,39 +4,14 @@
 
 This repository contains code and data supporting the manuscript "Astroblemes: A systematic search for terrestrial impact structures using arcuate geometries". The study identifies potential impact structures by detecting arcuate patterns in terrain morphology that could indicate ring structures from meteorite impacts.
 
-## Key Findings (Plain Language Summary)
+## Key findings (plain-language summary)
 
-### What We Found
-- We analyzed **1,318 arcuate geometries** (curved terrain features) across Africa and adjacent regions
-- Compared them to the **Earth Impact Database** (confirmed impact sites) and global astrobleme catalogues
-- Discovered statistical associations between arcuate patterns and confirmed impact structures
-
-### Key Figures from the Study
-
-**Figure 1: Size Distribution**
-- Shows how impact structures of different sizes are distributed across our candidate list
-- Uses survival curves to compare arcuate geometries with confirmed and proposed impact sites
-- Reveals that larger structures (>500km) show distinctive patterns
-
-**Figure 2: Geographic Distribution Map**
-- Maps the locations of all three catalogues side-by-side
-- Red dots: Other astrobleme entries (1,439 total)
-- Blue circles: EID-matched confirmed impacts
-- Open teal circles: Confirmed African structures (57 sites)
-
-**Figure 3: Spatial Null Tests**
-- Tests whether the association between arcs and impacts could be due to chance
-- Compares observed spatial patterns against random rotations of the Earth's surface
-- Result: Strong statistical significance (p < 0.001) - not by coincidence
-
-**Table 1: Size Distribution Bins**
-| Diameter Range | Count | Percentage |
-|----------------|-------|------------|
-| 0-100 km | 234 | 17.8% |
-| 100-250 km | 389 | 29.6% |
-| 250-500 km | 352 | 26.8% |
-| 500-1000 km | 149 | 11.3% |
-| >1000 km | 194 | 14.7% |
+- The study analyses **1,318 visually identified arcuate geometries**, conservatively consolidated to **1,292 structure-level units**. These are screening geometries, not confirmed craters or shock boundaries.
+- The repaired analytical astrobleme catalogue contains **249 unique records**; **82** carry a historical local Earth Impact Database match flag. The flag has not been reconciled against a live authoritative catalogue.
+- EID-matched centres are closer to arc centres than longitude-rotation nulls, but not closer than proposed catalogue entries under confidence-label permutation. This supports spatial association under one null, not geological causation.
+- A fitted diameter multiplier of **9.10** gives a non-significant permutation result (**p = 0.145**), so the current data do not establish a universal ring-to-crater scaling law.
+- Circular gravity evidence is enriched over matched rotations, while magnetic evidence is not. These are non-diagnostic screening signals: the volcanic Anton Dohrn negative control remains highly ranked.
+- The gravity-first extension retains **25 candidates** for review and identifies **26 nested arcuate families**. All require candidate-specific geological testing and accepted material evidence for confirmation.
 
 ## Reproducibility
 
@@ -101,3 +76,7 @@ Code repository: https://github.com/nobulart/astrobleme
 ## License
 
 This work is licensed under a Creative Commons Attribution 4.0 International License.
+
+## Interactive review application
+
+A Railway-ready Django atlas is included under `webapp/`. It provides interactive study layers, registered-user candidate intake, transparent baseline scoring, moderator-controlled promotion, and proxied access to aerial, NASA satellite, GEBCO elevation/TID, NOAA EMAG2 and WGM2012 gravity context. See [DEPLOYMENT.md](DEPLOYMENT.md) for local and Railway deployment instructions for `astro.nobulart.com`.
