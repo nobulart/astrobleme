@@ -15,10 +15,12 @@
     <a class="brand" href="{% url 'home' %}"><span class="brand-mark">◉</span> Astrobleme Review Atlas</a>
     <nav>
       <a href="{% url 'home' %}">Atlas</a>
+      <a href="{% url 'help' %}">Help</a>
       {% if user.is_authenticated %}
         <a href="{% url 'submit_candidate' %}">Add candidate</a>
         <a href="{% url 'my_submissions' %}">My submissions</a>
-        {% if user.is_staff %}<a href="/admin/">Moderate</a>{% endif %}
+        <a href="{% url 'globe' %}">3D globe</a>
+        {% if user.is_staff %}<a href="{% url 'review_queue' %}">Review queue</a><a href="/admin/">Admin</a>{% endif %}
         <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="link-button">Log out</button></form>
       {% else %}
         <a href="{% url 'login' %}">Log in</a>

@@ -6,7 +6,8 @@ from django.urls import reverse
 from django.http import HttpResponse
 from unittest.mock import Mock, patch
 
-from .models import CandidateSubmission, UserMapPreference
+from .followup import circle_geometry
+from .models import CandidateReview, CandidateSubmission, UserMapPreference
 from .scoring import evaluate_submission
 
 
@@ -28,7 +29,13 @@ VALID = {
 
 
 class IntakeScoringTests(TestCase):
-    @override_settings(PROJECT_ROOT="/path/that/does/not/exist")
+    def test_circle_geometry_is_closed_and_dense(self):
+        geometry = circle_geometry(20, -30, 100)
+        self.assertEqual(geometry["type"], "LineString")
+        self.assertEqual(len(geometry["coordinates"]), 73)
+        self.assertEqual(geometry["coordinates"][0], geometry["coordinates"][-1])
+
+    @override_settings(PROJECT_ROOT="/path/that/does/not/exist", GEBCO_GRID_PATH="/missing/gebco.nc", GEOLOGY_INDEX_PATH="/missing/geology.kml")
     def test_complete_submission_passes(self):
         from .scoring import study_centres
         study_centres.cache_clear()
@@ -127,7 +134,7 @@ class PortalViewTests(TestCase):
         self.assertEqual(reset.status_code, 200)
         self.assertFalse(UserMapPreference.objects.filter(user=self.user).exists())
 
-    @override_settings(PROJECT_ROOT="/path/that/does/not/exist")
+    @override_settings(PROJECT_ROOT="/path/that/does/not/exist", GEBCO_GRID_PATH="/missing/gebco.nc", GEOLOGY_INDEX_PATH="/missing/geology.kml")
     def test_authenticated_submission_is_scored_and_published(self):
         from .scoring import study_centres
         study_centres.cache_clear()
@@ -138,9 +145,70 @@ class PortalViewTests(TestCase):
         item = CandidateSubmission.objects.get(title=VALID["title"])
         self.assertTrue(item.baseline_passed)
         self.assertEqual(item.status, CandidateSubmission.Status.BASELINE_PASSED)
+        self.assertEqual(item.followup_status, CandidateSubmission.FollowupStatus.SOURCE_UNAVAILABLE)
+        self.assertEqual(item.geometry["type"], "LineString")
         self.assertIsNone(UserMapPreference.objects.get(user=self.user).settings["candidateDraft"])
         public = self.client.get(reverse("community_geojson")).json()
         self.assertEqual(len(public["features"]), 1)
+
+    def test_help_and_authenticated_globe_are_available(self):
+        self.assertContains(self.client.get(reverse("help")), "data quality ×")
+        self.assertEqual(self.client.get(reverse("globe")).status_code, 302)
+        self.client.force_login(self.user)
+        self.assertContains(self.client.get(reverse("globe")), "WGM2012 Bouguer gravity")
+
+    def test_staff_review_is_audited(self):
+        staff = User.objects.create_user("staff", "staff@example.org", "long-test-password", is_staff=True)
+        item = CandidateSubmission.objects.create(created_by=self.user, title="Review me", description="x", longitude=1, latitude=1, diameter_km=20, source_title="x", observed_feature="x", endogenic_alternative="x", status=CandidateSubmission.Status.BASELINE_PASSED)
+        self.client.force_login(staff)
+        response = self.client.post(reverse("review_candidate", args=[item.id]), {"status": CandidateSubmission.Status.UNDER_REVIEW, "note": "Worth checking"})
+        self.assertRedirects(response, reverse("review_queue"))
+        item.refresh_from_db()
+        self.assertEqual(item.status, CandidateSubmission.Status.UNDER_REVIEW)
+        self.assertEqual(CandidateReview.objects.get(candidate=item).note, "Worth checking")
+
+    def test_geojson_download_sets_attachment_header(self):
+        response = self.client.get(reverse("layer_geojson", args=["negative-controls"]), {"download": "1"})
+        self.assertIn("attachment", response["Content-Disposition"])
+
+    @override_settings(PROJECT_ROOT="/path/that/does/not/exist", GEBCO_GRID_PATH="/missing/gebco.nc", GEOLOGY_INDEX_PATH="/missing/geology.kml")
+    def test_owner_can_edit_and_rescore_pending_candidate(self):
+        item = CandidateSubmission.objects.create(
+            created_by=self.user, title="Pending draft", description="x", longitude=1, latitude=1,
+            diameter_km=20, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.BASELINE_FAILED,
+        )
+        self.client.force_login(self.user)
+        page = self.client.get(reverse("edit_candidate", args=[item.id]))
+        self.assertContains(page, "Re-evaluate and save changes")
+        response = self.client.post(reverse("edit_candidate", args=[item.id]), VALID | {"title": "Improved pending candidate"})
+        self.assertRedirects(response, reverse("my_submissions"))
+        item.refresh_from_db()
+        self.assertEqual(item.title, "Improved pending candidate")
+        self.assertTrue(item.baseline_passed)
+        self.assertEqual(item.status, CandidateSubmission.Status.BASELINE_PASSED)
+        self.assertEqual(item.followup_status, CandidateSubmission.FollowupStatus.SOURCE_UNAVAILABLE)
+
+    def test_other_users_cannot_edit_candidate(self):
+        other = User.objects.create_user("candidate_owner", "owner@example.org", "long-test-password")
+        item = CandidateSubmission.objects.create(
+            created_by=other, title="Not yours", description="x", longitude=1, latitude=1,
+            diameter_km=20, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.BASELINE_PASSED,
+        )
+        self.client.force_login(self.user)
+        self.assertEqual(self.client.get(reverse("edit_candidate", args=[item.id])).status_code, 404)
+
+    def test_candidate_is_locked_after_review_starts(self):
+        item = CandidateSubmission.objects.create(
+            created_by=self.user, title="Locked candidate", description="x", longitude=1, latitude=1,
+            diameter_km=20, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.UNDER_REVIEW,
+        )
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("edit_candidate", args=[item.id]))
+        self.assertRedirects(response, reverse("my_submissions"))
+        self.assertEqual(CandidateSubmission.objects.get(pk=item.id).title, "Locked candidate")
 
 
 class RasterProxyTests(TestCase):
@@ -166,6 +234,7 @@ class RasterProxyTests(TestCase):
         self.client.force_login(self.user)
         payload = self.client.get(reverse("raster_metadata")).json()
         self.assertIn("magnetic", payload["tiles"])
+        self.assertIn("gravity-bouguer", payload["tiles"])
         self.assertNotIn("url", payload["tiles"]["magnetic"])
         self.assertIn("no server-side raster cache", payload["proxy_policy"])
 
@@ -178,6 +247,14 @@ class RasterProxyTests(TestCase):
         upstream = fetch_image.call_args.args[0]
         self.assertTrue(upstream.startswith("https://tiles.arcgis.com/"))
         self.assertNotIn("http://", upstream)
+
+    @patch("portal.raster._fetch_image")
+    def test_gravity_tiles_use_allowlisted_gplates_endpoint(self, fetch_image):
+        fetch_image.return_value = HttpResponse(b"png", content_type="image/png")
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("raster_tile", args=["gravity-bouguer", 2, 1, 1]))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("portal.gplates.org/get_tile/", fetch_image.call_args.args[0])
 
     @patch("portal.raster._fetch_image")
     def test_wms_overrides_user_layers_and_rejects_large_images(self, fetch_image):

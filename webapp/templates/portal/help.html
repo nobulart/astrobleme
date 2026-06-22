@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Help and method · Astrobleme Review Atlas{% endblock %}
+{% block content %}
+<main class="content-page prose-page">
+  <p class="eyebrow">Integrated guide</p><h1>Using the review atlas</h1>
+  <p>The atlas is an exploratory screening and peer-review tool. Its rankings prioritize follow-up; they are neither impact probabilities nor confirmations of impact origin.</p>
+  <h2>Follow-up score</h2>
+  <p>New candidates use the same no-imagery method as the manuscript: <code>data quality × (0.78 × topography score + 0.22 × geology independence)</code>. The topography score combines radial alignment (0.24), annular peak percentile (0.22), angular continuity (0.18), radius match (0.14), centre match (0.12), and annular relief (0.10).</p>
+  <p>Exact calculation requires the numerical GEBCO 2026 grid and the study geological-province index. If either is not mounted, the candidate remains safely stored and visibly marked “scientific source data unavailable”; no visual-tile surrogate is substituted.</p>
+  <h2>Candidate workflow</h2>
+  <ol><li>Log in and choose a drawing method on the Atlas.</li><li>Mark a centre and radius, or two opposite rim points.</li><li>Review the pre-populated form, document the source and endogenic alternatives, then submit.</li><li>Your candidate appears in “My candidate library”; qualifying submissions may be shown in the optional community layer.</li><li>You may edit and automatically rescore your own candidate while it is awaiting review. Editing locks once scientific review begins or a decision is recorded.</li></ol>
+  <h2>Review and accounts</h2>
+  <p>Registration creates a normal reviewer account. Staff and superuser privileges are assigned only in Django Admin under Users. Staff use the Review queue to move submissions through baseline passed, under review, accepted, rejected, or needs revision. Every change made in the queue or bulk admin actions creates an immutable review-history entry recording reviewer, transition, note, and time.</p>
+  <h2>Gravity and 3D data</h2>
+  <p>The 2D map offers point samples because WGM2012’s published tiles use a geographic tiling scheme that cannot be placed correctly in Leaflet’s Web Mercator map without reprojection. The 3D evidence globe displays the native Bouguer and isostatic grids correctly. Cesium World Terrain is enabled when a deployment supplies <code>CESIUM_ION_TOKEN</code>; the token is optional.</p>
+  <h2>Sources and publication</h2>
+  <p><a href="https://github.com/nobulart/astrobleme" target="_blank" rel="noopener">Source repository ↗</a> · <a href="https://www.academia.edu/169033486" target="_blank" rel="noopener">Published draft ↗</a></p>
+</main>
+{% endblock %}

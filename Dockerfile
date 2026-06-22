@@ -9,6 +9,7 @@ WORKDIR /app
 COPY webapp/requirements.txt /app/webapp/requirements.txt
 RUN pip install --no-cache-dir -r /app/webapp/requirements.txt
 COPY webapp /app/webapp
+COPY arc_ranker /app/arc_ranker
 COPY study_results_geojson /app/study_results_geojson
 COPY catalog_repair/astroblemes_analysis.geojson /app/catalog_repair/astroblemes_analysis.geojson
 COPY african_impact_structures.geojson /app/african_impact_structures.geojson

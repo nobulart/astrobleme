@@ -4,3 +4,8 @@ gunicorn==23.0.0
 psycopg[binary]==3.2.9
 whitenoise==6.9.0
 requests==2.32.5
+numpy==2.3.1
+scipy==1.16.0
+h5py==3.14.0
+shapely==2.1.1
+pyproj==3.7.1
