@@ -1,0 +1,1486 @@
+{{Short description|None}}
+{{Unreliable sources|date=January 2023}}
+{{GeoGroup}}
+This list includes potential but unconfirmed structures that are not listed on the [[Earth Impact Database]] list of confirmed impact structures. For confirmed impact structures, see [[List of impact structures on Earth]].
+
+== List of confirmed and possible impact structures ==
+The following tables list geological features on Earth that are possible impact events, but for which there is currently no confirming scientific evidence in the peer-reviewed literature. In order for a structure to be [[List of impact craters on Earth|confirmed]] as an impact crater, it must meet a stringent set of well-established criteria. Some proposed impact structures are likely to eventually be confirmed, whereas others are likely to be shown to have been misidentified (see below). Recent extensive surveys have been done for Australian (2005),<ref name=Haines>{{cite journal |doi=10.1080/08120090500170351  |url=https://www.researchgate.net/publication/236737663|title=Impact cratering and distal ejecta: The Australian record|year=2005|last1=Haines|first1=P. W.|journal=Australian Journal of Earth Sciences|volume=52|issue=4–5|pages=481–507|bibcode=2005AuJES..52..481H|s2cid=128705406}}</ref> African (2014),<ref name=Africa>{{Cite journal | doi=10.1016/j.jafrearsci.2014.01.008| title=Impact structures in Africa: A review| year=2014| last1=Reimold| first1=Wolf Uwe| last2=Koeberl| first2=Christian| journal=Journal of African Earth Sciences| volume=93| pages=57–175| pmid=27065753| pmc=4802546| bibcode=2014JAfES..93...57R}}</ref> and South American (2015)<ref>{{cite book |last1=Acevedo |first1=R. |last2=Rocca |first2=M. C. |last3=Ponce |first3=J. |last4=Stinco |first4=S. |title=Impact Craters in South America |date=2015 |publisher=Springer |series=SpringerBriefs in Earth Sciences |isbn=978-3-319-13092-7}}</ref> craters, as well as those in the Arab world (2016).<ref>{{cite book |first=M. C. |last=Chabou |year=2016 |chapter-url=https://www.researchgate.net/publication/304035970 |chapter=An updated inventory of meteorite impact structures in the Arab world |title=1st ArabGU International Conference, Feb 2016, Algeria}}</ref> A book review by A. Crósta and U. Reimold disputes some of the evidence presented for several of the South American structures.<ref>{{Cite journal |doi = 10.1111/maps.12632|title = Impact Craters in South America, by Acevedo R. D., Rocca M. C. L., Ponce J. F., and Stinco S. G. Heidelberg: Springer, 2015. 104 p. SpringerBriefs in Earth Sciences: South America and the Southern Hemisphere. {{text|ISBN}} 978-3-319-13092-7|year = 2016|last1 = Crósta|first1 = Alvaro P.|last2 = Reimold|first2 = Wolf Uwe|journal = Meteoritics & Planetary Science|volume = 51|issue = 5|pages = 996–999|doi-access = free}}</ref>
+
+{| class="wikitable sortable"
+! Name
+! Location
+!Country
+! Diameter (km)
+! data-sort-type=number| Age ([[megaannum|Ma]])
+!Confirmed
+! class="unsortable" | Notes
+! class=unsortable | Image
+! Coordinates
+|-
+| [[38th parallel structures|38th Parallel structures]] 
+| [[Missouri]], etc.
+|United States
+| {{sort|9.5|2-17}}
+| {{sort|320|320 ± 10}}
+|2/7 confirmed
+| align="center" | <ref>{{cite journal |last1=Rampino |first1=M.R |last2=Volk |first2=T. |year=1996 |title=Multiple impact event in the Paleozoic: Collision with a string of comets or asteroids? |url=https://pubs.giss.nasa.gov/docs/1996/1996_Rampino_ra05200y.pdf |journal=[[Geophysical Research Letters]] |volume=23 |issue=1 |pages=49–52 |doi=10.1029/95GL03605 |bibcode=1996GeoRL..23...49R |access-date=2019-04-06}}</ref>
+| [[File:38th parallel structures loc.svg|center|150px]]
+| align=right | {{coord|37.5|N|88.3|W|name=Hicks Dome}}<br />{{coord|37.8|N|90.2|W|name=Avon crater}}<br />{{coord|37.8|N|91.4|W|name=Crooked Creek crater}}<br />{{coord|37.9|N|92.7|W|name=Decaturville crater}}<br />{{coord|37.7|N|92.4|W|name=Hazelgreen crater}}<br />{{coord|38.0|N|93.6|W|name=Weaubleau-Osceola structure}}<br />{{coord|37.7|N|95.7|W|name=Rose Dome}}
+|-
+| [[Ak-Bura]] ([[Murghab, Tajikistan|Murgab]])
+| [[Murghab, Tajikistan|Tajikistan]]
+|[[Murghab, Tajikistan|Tajikistan]]
+| 0.080
+| {{sort|0.0003|0.0003<br />(1700 AD)}}
+|
+| align="center" | <ref name="tsun" /><ref>[http://labmpg.sscc.ru/a265.html Murgab]</ref><ref>{{Cite web |url=http://www.gettyimages.ca/detail/photo/meteorite-crater-site-of-ak-bura-in-the-ak-high-res-stock-photography/148574519 |title=Meteorite crater site of Ak-Bura |access-date=2016-05-12 |archive-date=2016-06-05 |archive-url=https://web.archive.org/web/20160605100000/http://www.gettyimages.ca/detail/photo/meteorite-crater-site-of-ak-bura-in-the-ak-high-res-stock-photography/148574519 }}</ref><ref>Bacharev, A (1952), ''The Murgab meteorite crater''. Astron. Tsirk., No 122, pp. 8–10</ref>
+|
+| align="right" | {{coord|38|5|38.5|N|74|16|58|E|name=Ak-Bura}}
+|-
+| [[Al Madafi]]
+| [[Tabuk Province|Tabuk]]
+|[[Saudi Arabia]]
+| 6
+| {{sort|36|6-66}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a318.html Al Madafi]</ref><ref name="garvin">{{cite journal |last1=Garvin |first1=James B. |last2=Blodget |first2=Herbert W. |title=Suspected Impact Crater Near Al Madafi, Saudi Arabia |journal=Meteoritics |date=1986 |volume=21 |page=366 |bibcode=1986Metic..21..366G}}</ref><ref name="weller">Roger Weller. [http://skywalker.cochise.edu/wellerr/earth-craters/Al-Madafi.htm Al Madafi crater] {{Webarchive|url=https://web.archive.org/web/20160917000752/http://skywalker.cochise.edu/wellerr/earth-craters/Al-Madafi.htm |date=2016-09-17 }}</ref>
+|
+| align="right" | {{coord|28.67|N|37.18|E|name=Al Madafi}}
+|-
+| [[Alamo bolide impact]]
+| [[Nevada]]
+|United States
+| {{sort|100|100 ± 40}}
+| 367
+|
+| align="center" | <ref name="WarmeOthers1996a">{{cite journal|last1=Warme |first1=J.E. |last2=Sandberg |first2=C.A. |year=1996 |title=Alamo megabreccia: record of a Late Devonian impact in southern Nevada |journal=GSA Today |url= https://www.geosociety.org/gsatoday/archive/6/1/pdf/i1052-5173-6-1-sci.pdf |volume=6 |issue=1|pages=1–7|bibcode=1996GSAT....6....1W }}</ref><ref name="MorrowOthers2009a">{{cite journal|last1=Morrow|first1=JR|last2=Sandberg|first2=CA|last3=Malkowski|first3=K|last4=Joachimski|first4=MM|year=2009|title=Carbon isotope chemostratigraphy and precise dating of middle Frasnian (lower Upper Devonian) Alamo Breccia, Nevada, USA|journal=Palaeogeography, Palaeoclimatology, Palaeoecology|volume=282|issue=1–4|pages=105–118|doi=10.1016/j.palaeo.2009.08.016|bibcode=2009PPP...282..105M}}</ref> {{refn|group=note|name=EIDunconfirmed|Shown as "proven" by Mikheeva (2017),<ref name="Mikheeva">Mikheeva, 2017.{{full citation needed|date=August 2022|reason=Is this the same as Mikheeva (2019)?}}</ref>{{unreliable source?|date=January 2022}} not "confirmed" by EID (2018).<ref name=EIDNameList>[http://www.passc.net/EarthImpactDatabase/New%20website_05-2018/Namesort.html List of confirmed impact craters by name] - [[Earth Impact Database]]</ref>}}
+|
+| align="right" | {{coord|37.31|N|116.18|W|name=Alamo}}
+|-
+| [[Anéfis structure|Anéfis]]
+| [[Kidal Region|Kidal]]
+|[[Mali]]
+| 3.9
+| {{sort|23|23?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a637.html Anefis]</ref><ref name="tsun" /><ref name="rossi" /><ref>Roger Weller [http://skywalker.cochise.edu/wellerr/earth-craters/Anefis.htm Anefis crater] {{Webarchive|url=https://web.archive.org/web/20160917005250/http://skywalker.cochise.edu/wellerr/earth-craters/Anefis.htm |date=2016-09-17 }}</ref>
+|
+| align="right" | {{coord|18.072|N|0.048|W|name=Anefis}}
+|-
+| [[Arganaty]]
+| [[Almaty Region]]
+|[[Kazakhstan]]
+| 300
+| 250
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a442.html Arganaty]</ref><ref>{{cite journal |last1=Zeilik |first1=B. S. |title=The Arganaty cosmogenic crater in southern Kazakhstan and the ring structures associated with it |journal=Akademiia Nauk SSSR, Doklady |date=1987 |volume=297 |issue=4 |pages=925–928 |bibcode=1987DoSSR.297..925Z}}</ref><ref>{{cite journal | last1 = Barash | first1 = M. | year = 2012 | title = Mass Extinction of Ocean Organisms at the Paleozoic–Mesozoic Boundary: Effects and Causes | url = https://www.researchgate.net/publication/233961301 | journal = Oceanology | volume = 52 | issue = 2| pages = 238–248 | doi = 10.1134/s000143701201002x | bibcode = 2012Ocgy...52..238B | s2cid = 129822484 }}</ref>{{refn|group=note|name=EIDunconfirmed}}
+|
+| align="right" | {{coord|46.5|N|79.8|E|name=Arganaty}}
+|-
+| [[Arlit structure|Arlit]]
+| [[Niger]]
+|[[Niger]]
+| 10
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a951.html Unnamed ("Arlit")]</ref><ref>David Rajmon (2010). [http://impacts.rajmon.cz/ Impact Field Studies Group]</ref><ref>Marc Fokker (2008). [http://www.astroforum.nl/archive/index.php/t-111424.html Astroforum Netherlands] {{Webarchive|url=https://web.archive.org/web/20150402041154/http://www.astroforum.nl/archive/index.php/t-111424.html |date=2015-04-02 }}</ref>
+|
+| align="right" | {{Coord|21.353|N|9.145|E|name=Arlit}}
+|-
+| [[Azuara impact structure|Azuara]]
+| [[Aragon]]
+|[[Spain]]
+| {{sort|37.5|35-40}}
+| {{sort|35|30-40}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a.html Azuara]</ref>
+| [[File:Azuara-impact-structure-Map.jpg|center|150px]]
+| align="right" | {{coord|41|07|N|0|13|W||name=Azuara}}
+|-
+| [[Bajada del Diablo craters|Bajada del Diablo]]
+| [[Argentina]]
+|[[Argentina]]
+| 40
+| {{sort|0.45|0.45 ± 0.3}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a882.html Bajada del Diablo]</ref><ref>R. D. Acevedo, J. Rabassa, M. J. Orgeira, et al. (2010) [http://www.lpi.usra.edu/meetings/metsoc2010/pdf/5103.pdf Bajada Del Diablo Impact Crater Strewn-Field, Patagonia, Argentina: The Largest Crater Field In The World?] 73rd Annual Meteoritical Society Meeting</ref><ref>{{Cite journal |doi = 10.1016/j.geomorph.2012.04.020|title = The Bajada del Diablo astrobleme-strewn field, central Patagonia Argentina: Extending the exploration to surrounding areas|year = 2012|last1 = Acevedo|first1 = R.D.|last2 = Rabassa|first2 = J.|last3 = Ponce|first3 = J.F.|last4 = Martínez|first4 = O.|last5 = Orgeira|first5 = M.J.|last6 = Prezzi|first6 = C.|last7 = Corbella|first7 = H.|last8 = González-Guillot|first8 = M.|last9 = Rocca|first9 = M.|last10 = Subías|first10 = I.|last11 = Vásquez|first11 = C.|journal = Geomorphology|volume = 169–170|pages = 151–164|bibcode = 2012Geomo.169..151A}}</ref>
+|
+| align="right" | {{coord|42|49|S|67|28|W|name=Bajada del Diablo}}
+|-
+| [[Bajo Hondo structure|Bajo Hondo]]
+| [[Argentina]]
+|[[Argentina]]
+| 3.9
+| {{sort|9|<10}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a848.html Bajo Hondo]</ref><ref>M. C. Rocca (2005). [http://www.lpi.usra.edu/meetings/metsoc2005/pdf/5002.pdf BAJO HONDO, CHUBUT, PATAGONIA, ARGENTINA: A NEW METEORITE IMPACT CRATER IN BASALT?], 68th Annual Meteoritical Society Meeting</ref>
+|
+| align="right" | {{coord|-42.295454|-67.924133|name=Bajo Hondo}}
+|-
+| [[Bangui magnetic anomaly]]
+| [[Bangui]]
+|[[Central African Republic]]
+| {{sort|700|600-800?}}
+| {{sort|543|[[Precambrian|>542]]}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a421.html Bangui]</ref><ref name="Africa" /><ref>{{cite journal | last1 = Girdler | first1 = R. | last2 = Taylor | first2 = P. | last3 = Frawley | first3 = J. | year = 1992 | title = A possible impact origin for the Bangui magnetic anomaly (Central Africa) | journal = Tectonophysics | volume = 212 | issue = 1| pages = 45–58 | bibcode = 1992Tectp.212...45G | doi = 10.1016/0040-1951(92)90139-w }}</ref>
+| [[File:Bangui anomaly.JPG|center|150px]]
+| align="right" | {{coord|6|N|18.3|E||name=Bangui}}
+|-
+| [[Bateke Plateau]]
+| [[Gabon]]
+|[[Gabon]]
+| 7.1
+| {{sort|2.6|<2.6}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a463.html Bateke]</ref><ref>S. Master, G.R.J. Cooper and K. Klajnik (2013). [http://www.earthdoc.org/publication/publicationdetails/?publication=72954 The Bateke Plateau Structure – A New Possible 7 Km Diameter Quaternary Meteorite Impact Structure In Gabon: A Remote Sensing Study], 13th SAGA Biennial Conference & Exhibition</ref>
+|
+| align="right" | {{coord|0|38|45|S|14|27|29|E|name=Bateke}}
+|-
+| [[Bedout]]
+| [[Australia]] (offshore)
+|Australia
+| 250
+| 250
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a21.html Bedout]</ref><ref>{{Cite journal |doi = 10.1126/science.1093925|title = Bedout: A Possible End-Permian Impact Crater Offshore of Northwestern Australia|year = 2004|last1 = Becker|first1 = L.|last2 = Poreda|first2 = R. J.|last3 = Basu|first3 = A. R.|last4 = Pope|first4 = K. O.|last5 = Harrison|first5 = T. M.|last6 = Nicholson|first6 = C.|last7 = Iasky|first7 = R.|journal = Science|volume = 304|issue = 5676|pages = 1469–1476|pmid = 15143216|bibcode = 2004Sci...304.1469B|s2cid = 17927307}}</ref><ref name="Haines" />
+|
+| align="right" | {{coord|18|S|119|E||name=Bedout}}
+|-
+| [[Bee Bluff]]
+| [[Texas]]
+|United States
+| 2.4
+| {{sort|40|40?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a25.html Bee Bluff]</ref><ref>R. A. Graham (2005) [http://www.lpi.usra.edu/meetings/lpsc2005/pdf/1086.pdf Reinvestigation of the Bee Bluff Structure South of Uvalde, Texas, 'The Uvalde Crater']. Lunar and Planetary Science XXXVI (2005)</ref><ref>[http://www.somerikko.net/impacts/database.php?id=14 Bee Bluff]</ref>{{refn|group=note|name=EIDunconfirmed}}
+|
+| align="right" | {{coord|29.03|N|99.85|W|name=Bee Bluff}}
+|-
+| [[Björkö structure|Björkö]]
+| [[Björkö, Ekerö]]
+|[[Sweden]]
+| 10
+| 1200
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a419.html Björkö]</ref><ref>H. Henkel, A. Bäckström, B. Bergman, O. Stephansson, and M. Lindström (2005). [http://www.geothermal-energy.org/pdf/IGAstandard/WGC/2005/0667.pdf Geothermal Energy from Impact Craters? The Björkö Study], Proceedings World Geothermal Congress 2005</ref>
+|
+| align="right" | {{coord|59.30|N|17.60|E|name=Björkö}}
+|-
+| [[Bloody Creek crater|Bloody Creek]]
+| [[Nova Scotia]]
+|Canada
+| 40
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1154.html Bloody Creek]</ref>
+|
+| align="right" | {{coord|44|45|N|65|14|W|name=Bloody Creek}}
+|-
+| Bohemian
+| [[Czech Republic]]
+|[[Czech Republic]]
+| {{sort|280|260-300}}
+| {{sort|700|>700?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a119.html Bohemia]</ref><ref name="tsun" /><ref>{{cite journal |last1=Papagiannis |first1=Michael D. |title=Photographs from geostationary satellites indicate the possible existence of a huge 300 KM impact crater in the Bohemian region of Czechoslovakia |journal=Meteoritics |date=1989 |volume=24 |page=313 |bibcode=1989Metic..24R.313P}}</ref><ref>{{cite book |last1=Rajlich |first1=P. |chapter=Bohemian Circular Structure, Czechoslovakia: Search for the Impact Evidence |title=Abstracts of Papers Presented to the International Conference on Large Meteorite Impacts and Planetary Evolution. Held August 31 – September 2, 1992, in Sudbury, Ontario, Canada |journal=Large Meteorite Impacts and Planetary Evolution |date=1992 |volume=790 |publisher=Lunar and Planetary Institute |page=57 |bibcode=1992LPICo.790...57R |id=LPI Contribution 790}}</ref>
+|
+| align="right" | {{coord|50.0|N|14.7|E|name=Bohemian}}
+|-
+| [[Bow City crater|Bow City]]
+| [[Alberta]]
+|Canada
+| 8
+| 70
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1916.html Bow City]</ref>
+|
+| align="right" | {{coord|50|25|N|112|16|W|name=Bow City}}
+|-
+| [[Bowers crater|Bowers]]
+| [[Southern Ocean|Antarctic Ocean]] ([[Ross Sea]])
+|
+| 100
+| {{sort|4|3-5}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a871.html Bowers]</ref><ref name="Ross123">{{cite web|title=Once again about Kainozoic meteorite structures in the Ross Sea, Antarctica|author=L. P. Hrjanina (Khryanina), 2006.|url=http://www.lpi.usra.edu/meetings/LPSC98/pdf/1152.pdf}}</ref><ref>{{cite web|title=Evidence for a Possible Late Pliocene Impact in the Ross Sea, Antarctica |author1=Gerard-Little, P. |author2=Abbott, D. |author3=Breger, D. |author4=Burckle, L |date=2006|url=http://www.ldeo.columbia.edu/~dallas/abbott_publications/Gerard-Little_et_al_2006_Abstract_Ross.html}}</ref><ref name="bbc2006">Paul Rincon (2006). [https://news.bbc.co.uk/2/hi/science/nature/4816794.stm Space impact clue in Antarctica], BBC News</ref>
+|
+| align="right" | {{coord|71.2|S|176|E||name=Bowers}}
+|-
+| [[St. Helena Parish, Louisiana#Brushy Creek Crater|Brushy Creek Feature]]
+| [[Louisiana]]
+|United States
+| 2.0
+| {{sort|0.0205|0.011–0.030}}
+|
+| align="center" | <ref>Heinrich, P.V. (2003) [http://www.searchanddiscovery.net/documents/2003/heinrich/index.htm Possible Meteorite Impact Crater in St. Helena Parish, Louisiana] Search and Discovery Article. no. 50006. American Association of Petroleum Geologist, Tulsa, Oklahoma. Retrieved March 27, 2011.</ref><ref name="King2007a">King, D.T., Jr., and Petruny, L.W.. 2007. ''Impact structures and craters of the U.S. Gulf coastal states.'' ''Gulf Coast Association of Geological Societies Transactions.'' v. 57, p. 409-425.</ref><ref name="MatherneOther2020a">Matherne, C., Karunatillake, S., Hood, D.R., Duxbury, J., Herr, A., Heinrich, P., Horn, M., Webb, A. and Sivils, A., 2020. ''Planar Deformation Features Found Within a Possible Impact Structure, the Brushy Creek Feature, St. Helena Parish, LA.'' ''Lunar and Planetary Science Conference'' No. 2326, p. 2361.</ref><ref>{{Cite web |last=Herr |first=Andrew |title=Investigating the Brushy Creek Impact Crater |url=https://www.hou.usra.edu/meetings/lpsc2021/pdf/2737.pdf |website=Houston lunar and planetary science conference}}</ref>
+|
+| align="right" | {{coord|30.76|-90.73|name=Brushy Creek Feature}}
+|-
+| [[Bukit Bunuh]]
+| [[Perak]]
+| Malaysia
+| 5–6
+| 1.34–1.84
+|
+| align="center" | <ref name="Quek15">{{cite journal |last1=Quek |first1=Long Xiang |last2=Ghani |first2=A. A |last3=Badruldin |first3=Muhammad Hafifi |last4=Mokhtar |first4=Saidin |last5=Harith |first5=Zuhar Zahir |last6=Roselee |first6=M. Hatta |title=Platinum Group Elements in Proximal Impactites of the Bukit Bunuh Impact Structure, Malaysia |journal=Current Science |year=2015 |volume=109 |issue=12 |page=2303 |doi=10.18520/v109/i12/2303-2308|doi-broken-date=1 July 2025 }}</ref><ref name="Jinmin17">{{cite journal |last1=Jinmin |first1=Mark |last2=Saad |first2=Rosli |last3=Nordiana |first3=M.M. |last4=Mokhtar |first4=Saidin |title=Trilogy possible meteorite impact crater at Bukit Bunuh, Malaysia using 2-D electrical resistivity imaging |journal=AIP Conference Proceedings |year=2017 |volume=1861 |issue=1 |page=030012 |doi=10.1063/1.4990899 |bibcode=2017AIPC.1861c0012J |url=https://www.researchgate.net/publication/318402069}}</ref>
+
+|
+| align="right" | {{coord|5.075|N|100.975|E|name=Bukit Bunuh}}
+|-
+| [[Burckle crater|Burckle]]
+| [[Indian Ocean]]
+|
+| {{sort|30|30?}}
+| {{sort|0.005|3000 BC}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a364.html Burckle]</ref><ref name="Abbott, Dallas H. 2006">Abbott, Dallas H., Martos, Suzanne, Elkinton, Hannah, Bryant, Edward F., Gusiakov, Viacheslav, and Breger, Dee (2006). Impact craters as sources of megatsunami generated chevron dunes. 2006 Philadelphia Annual Meeting (22–25 October 2006)</ref><ref>Masse W. B., Bryant E., Gusiakov V., Abbott D., Rambolamanana G., Raza H., Courty M.A. (2006). Holocene Indian ocean cosmic impacts – the megatsunami chevron evidence from southern Madagascar. AGU, San Francisco</ref>
+|
+| align="right" | {{coord|30.86|S|61.36|E|name=Burckle}}
+|-
+| [[Santa Catalina Island, California|Catalina]] structures<br />(Navy, Catalina, Emery Knoll)
+| [[Pacific Ocean]] (NE)
+|
+| {{sort|32|12, 32, 37}}
+| {{sort|17|16-18}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a91.html Catalina]</ref><ref>{{cite journal | last1 = Legg | first1 = Mark R. | last2 = Nicholson | first2 = Craig | last3 = Goldfinger | first3 = Chris | last4 = Milstein | first4 = Randall | last5 = Kamerling | first5 = Marc | year = 2004 | title = Large enigmatic crater structures offshore southern California | journal = Geophys. J. Int. | volume = 159 | issue = 2| pages = 803–815 | doi = 10.1111/j.1365-246x.2004.02424.x | bibcode = 2004GeoJI.159..803L | doi-access = free }}</ref><ref>{{cite journal | last1 = Brandsma Dan | first1 = Lund Steve P. | last2 = Henyey Thomas | first2 = L. | year = 1989 | title = Paleomagnetism of Late Quaternary marine sediments from Santa Catalina basin, California continental borderland . | journal = J. Geophys. Res. B | volume = 94 | issue = 1| pages = 547–564 | doi = 10.1029/JB094iB01p00547 | bibcode = 1989JGR....94..547B }}</ref>
+|
+| align="right" | {{coord|32.91|N|118.09|W|name=Catalina}}
+|-
+| [[Cerro do Jarau crater|Cerro do Jarau]]
+| [[Paraná Basin|Paraná]]
+|Brazil
+| 10
+| 117
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a626.html Jarau]</ref><ref name="braz1" /><ref name="braz2" />
+|
+| align="right" | {{coord|30|12|S|56|32|W|name=Cerro}}
+|-
+| [[Charity Shoal crater|Charity Shoal]]
+| [[Ontario]]
+|Canada
+| 1.2
+| {{sort|469|<470}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1142.html Charity Shoal]</ref><ref name="HolcombeOthers2001a">{{cite journal | doi=10.1016/S0380-1330(01)70664-8 | title=Small Rimmed Depression in Lake Ontario: An Impact Crater? | year=2001 | last1=Holcombe | first1=Troy L. | last2=Warren | first2=John S. | last3=Reid | first3=David F. | last4=Virden | first4=William T. | last5=Divins | first5=David L. | journal=Journal of Great Lakes Research | volume=27 | issue=4 | pages=510–517 | bibcode=2001JGLR...27..510H }}</ref><ref name="HolcombeOthers2013a">{{cite journal | doi=10.1007/s00367-013-0322-6 | title=Geological structure of Charity Shoal crater, Lake Ontario, revealed by multibeam bathymetry | year=2013 | last1=Holcombe | first1=Troy L. | last2=Youngblut | first2=Scott | last3=Slowey | first3=Niall | journal=Geo-Marine Letters | volume=33 | issue=4 | pages=245–252 | bibcode=2013GML....33..245H | s2cid=129846298 }}</ref><ref name="Suttak2013a">Suttak, P.A., 2013, ''High-resolution lake-based magnetic mapping and modeling of basement structures, with examples from Küçükçekmece Lagoon, Turkey and Charity Shoal, Lake Ontario.'' unpublished MS thesis, School of Geography and Earth Sciences, McMaster University, Hamilton, Ontario. 113 pp.</ref>
+| [[File:NOAA_map_of_Charity_Shoal_in_Lake_Ontario.jpg|center|150px]]
+| align="right" | {{Coord|44|2|15|N|76|29|37|W|name=Charity Shoal}}
+|-
+| [[Corossol crater|Corossol]]
+| Quebec
+|Canada
+| 4
+| {{sort|469|<470}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1423.html Corossol]</ref><ref name="HigginsOthers2013">Higgins, M.D., P. Lajeunesse, G. St-Onge, R. Sanfacon, and M. Duchesne, 2013, [http://www.hou.usra.edu/meetings/metsoc2013/pdf/5190.pdf ''Impact Breccia Clast from the Corossol Crater, Canada.''] 76th Annual Meteoritical Society Meeting. Meteoritics and Planetary Science Supplement. id.5190.</ref><ref name="LajeunesseOthers2013a">{{cite journal | doi=10.1111/maps.12224 | title=The Corossol structure: A possible impact crater on the seafloor of the northwestern Gulf of St. Lawrence, Eastern Canada | year=2013 | last1=Lajeunesse | first1=Patrick | last2=St-Onge | first2=Guillaume | last3=Locat | first3=Jacques | last4=Duchesne | first4=Mathieu J. | last5=Higgins | first5=Michael D. | last6=Sanfaçon | first6=Richard | last7=Ortiz | first7=Joseph | journal=Meteoritics & Planetary Science | volume=48 | issue=12 | pages=2542–2558 | bibcode=2013M&PS...48.2542L | s2cid=140639070 }}</ref><ref name="LajeunesseOthers2016a">Lajeunesse, P., Duchesne, M.J., St-Onge, G., Locat, J., Higgins, M., Sanfaçon, R. and Ortiz, J., 2016. ''The Corossol Structure: a glaciated crater of possible impact origin in the northwestern Gulf of St Lawrence, eastern Canada.'' In Dowdeswell, J. A., Canals, M., Jakobsson, M., Todd, B. J., Dowdeswell, E. K. & Hogan, K. A. (eds) 2016. ''Atlas of Submarine Glacial Landforms: Modern, Quaternary and Ancient.'' Geological Society, London, Memoirs, 46(1), pp.127–128.</ref>
+|
+| align="right" | {{coord|50|03|N|66|23|W|name=Corossol}}
+|-
+| [[Darwin Crater]]
+| [[Tasmania]]
+|Australia
+| 1.2
+| 0.816
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a58.html Darwin]</ref>{{refn|group=note|name=EIDunconfirmed}}
+| [[File:Darwin Crater Landsat.jpg|center|150px]]
+| align="right" | {{coord|42|19|S|145|40|E|name=Darwin crater}}
+|-
+| [[Decorah crater|Decorah]]
+| [[Iowa]]
+|United States
+| 5.6
+| 470
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1934.html Decorah]</ref><ref name="BriggsOthers2018a">{{cite journal | last1 = Briggs | first1 = D.E. | last2 = Liu | first2 = H.P. | last3 = McKay | first3 = R.M. | last4 = Witzke | first4 = B.J. | year = 2018 | title = The Winneshiek biota: exceptionally well-preserved fossils in a Middle Ordovician impact crater | journal = Journal of the Geological Society | volume = 175 | issue = 6| pages = 865–874 | doi = 10.1144/jgs2018-101 | bibcode = 2018JGSoc.175..865B | s2cid = 85450625 | doi-access = free }}</ref><ref name="FrenchOthers2018a">French, B.M., McKay, R.M., Liu, H.P., Briggs, D.E. and Witzke, B.J., 2018. [https://repository.si.edu/handle/10088/55394 "The Decorah structure, northeastern Iowa: geology and evidence for formation by meteorite impact."] ''Geological Society of America Bulletin'', 130(11–12), pp. 2062–2086.</ref>
+| [[File:USGS Decorah crater.jpg|center|150px]]
+| align="right" | {{coord|43|18|50|N|91|46|20|W|name=Decorah}}
+|-
+| [[Deniliquin multiple-ring feature|Deniliquin]]
+| [[New South Wales]]
+|Australia
+| 520
+| 400–500
+| No
+| 
+| 
+| align="right" | {{coord|35|32|0|S|144|58|0|E|name=Deniliquin}}
+|-
+| [[Diamantina River ring feature]]
+| [[Queensland]]
+|Australia
+| 120
+| 300
+|
+| align="center" | <ref>{{cite web|url=http://www.ga.gov.au/news-events/news/latest-news/potential-asteroid-impact-identified-in-western-queensland|title=Potential asteroid impact identified in western Queensland|publisher=Geoscience Australia|access-date=26 June 2016|date=2015-03-17}}</ref><ref name="Gliksonetal2016">{{cite journal |last1=Glikson |first1=A. |last2=Korsch |first2=R.J. |last3=Milligan |first3=P. |year=2016 |title=The Diamantina River ring feature, Winton region, western Queensland |url=https://www.researchgate.net/publication/309018227 |journal=[[Australian Journal of Earth Sciences]] |volume=63 |issue=5 |pages=1–11 |doi=10.1080/08120099.2016.1220978 |bibcode=2016AuJES..63..653G |s2cid=132501378 |access-date=2019-04-06}}</ref>
+| [[File:UpperDiamantinaCrustalAnomaly.png|center|150px]]
+| align="right" | {{coord|22|09|S|141|54|E|name=Winton crustal anomaly}}
+|-
+| [[Dumas magnetic anomaly]]
+| [[Saskatchewan]]
+|Canada
+| 3.2
+| {{sort|70|70 ± 5}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a583.html Dumas]</ref><ref name="dumas">Gubins, A. & Strangway, D. (1978). [http://www.lpi.usra.edu/meetings/lpsc1978/pdf/1152.pdf "Magnetic Fields Associated with a Probable Late Cretaceous Astrobleme at Dumas, Saskatchewan"], ''Lunar and Planetary Science'' IX, pp. 433–435</ref>
+|
+| align="right" | {{coord|49.92|N|102.12|W|name=Dumas}}
+|-
+| [[Duolun crater|Duolun]]
+| [[Inner Mongolia]]
+|China
+| {{sort|120|120 ± 50}}
+| {{sort|129|129 ± 3}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a65.html Duolun]</ref><ref>{{Cite journal|title=Geologic feature of the Duolun impact crater|journal=Lunar and Planetary Science Conference|volume=20|page=1219|author=Wu Siben |bibcode=1989LPI....20.1219W|year=1989}}</ref>
+|
+| align="right" | {{coord|42|3|N|116|15|E||name=Duolun}}
+|-
+| [[El-Baz crater|El-Baz]]
+| [[Egypt]]
+|[[Egypt]]
+| 4
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a614.html El-Baz]</ref><ref name="master">S. Master & W. Reimold (2000). [http://www.lpi.usra.edu/meetings/impact2000/pdf/3099.pdf The impact cratering record of Africa: An updated inventory of proven, probable, possible, and discredited impact structures on the African continent], Catastrophic Events Conference 2000.</ref><ref>{{cite journal | last1 = El-Baz | first1 = F | author-link = Farouk El-Baz | year = 1981 | title =  Circular Feature Among Dunes of the Great Sand Sea, Egypt| journal = Science | volume = 213 | issue = 4506| pages = 439–440 | doi = 10.1126/science.213.4506.439 | pmid = 17760189 | bibcode = 1981Sci...213..439E }}</ref>
+|
+| align="right" | {{coord|24|12|N|26|24|E|name=El-Baz}}
+|-
+| [[Eltanin impact|Eltanin]]
+| [[Pacific Ocean]] (SE)
+|
+| {{sort|35|35?}}
+| 2.5
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a218.html Eltanin]</ref><ref>Shuvalov V.V. (2006). Numerical modeling of the Eltanin impact: determination of projectile size and tsunami amplitude. 40 ESLAB Symposium: 1 International Conference on Impact Cratering in the Solar System, Noordwijk, 8–12 May 2006, Noordwijk: ESA, pp. 201-202</ref><ref>{{cite journal | doi=10.1016/j.epsl.2014.10.050 | title=The Eltanin impact and its tsunami along the coast of South America: Insights for potential deposits | year=2015 | last1=Weiss | first1=Robert | last2=Lynett | first2=Patrick | last3=Wünnemann | first3=Kai | journal=Earth and Planetary Science Letters | volume=409 | pages=175–181 | bibcode=2015E&PSL.409..175W }}</ref>{{refn|group=note|name=EIDunconfirmed}}
+|
+| align="right" | {{coord|57|47|S|90|47|W|name=Eltanin}}
+|-
+| [[Faya Basin]]
+| [[Chad]]
+|[[Chad]]
+| 2
+| {{sort|385|385 ± 15}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a453.html Faya Basin]</ref><ref>M. Schmieder and E. Buchner (2010). [http://www.lpi.usra.edu/meetings/nordlingen2010/pdf/7012.pdf The Faya Basin (Chad) revisited – structural insights from central peak morphology and potential Martian analogs], Nördlingen Ries Crater Workshop (2010).</ref>
+|
+| align="right" | {{coord|18|10|N|19|34|E|name=Faya}}
+|-
+| [[Falkland Plateau anomaly]]
+| [[Atlantic Ocean]]<br /> (near [[Falkland Islands]])
+|
+| {{sort|275|250-300}}
+| 250
+|
+| align="center" |<ref name="RoccaOther2015a">Rocca, Maximiliano C. L.; Presser, Jaime Leonardo Báez; (2015) [https://www.researchgate.net/publication/283123311_A_POSSIBLE_NEW_VERY_LARGE_IMPACT_STRUCTURE_IN_Falkland_ISLANDS "A possible new very large impact structure in Falkland Islands"], ''Historia Natural'', Tercera Series, Volumen 5(2)</ref><ref name="RoccaOther2017a">{{cite journal |title=Geophysical evidence for a large impact structure on the Falkland Plateau |journal=Terra Nova |volume=29 |issue=4 |pages=233–37 |last1=Rocca |first1=Maximiliano C. L. |last2=Rampino |first2=Michael R. |last3=Presser |first3=Jaime Leonardo Báez |year=2017 |doi=10.1111/ter.12269 |bibcode=2017TeNov..29..233R |s2cid=134484465 }}</ref><ref name="ReimoldOther2017a">{{cite journal |title= Comment on "Geophysical evidence for a large impact structure on the Falkland (Malvinas) Plateau" |journal=Terra Nova |volume=29 |issue=6 |pages=409–410 |last1=Reimold |first1=W.U. |last2=Crósta |first2=A.P. |last3=Koeberl |first3=C. |last4=Hauser |first4=N. |year=2017 |doi=10.1111/ter.12284 |bibcode=2017TeNov..29..233R |s2cid=134482395 }}</ref><ref name="McCarthyOther2017a">{{cite journal |title= Comment on "Geophysical evidence for a large impact structure on the Falkland (Malvinas) Plateau" |journal=Terra Nova |volume=29 |issue=6 |pages=411–415 |last1=McCarthy |first1=D. |last2=Aldiss |first2=Michael D. |last3=Arsenikos |first3=S. |last4=Stone |first4=P. |last5=Richards |first5=P. |year=2017 |doi=10.1111/ter.12285 |bibcode=2017TeNov..29..233R |s2cid=133781924 |url=http://nora.nerc.ac.uk/id/eprint/525290/1/McCarthy%20et%20al%20Terra_Nova%202017.pdf }}</ref><ref>{{cite book|last1=Acevedo|first1=R. D.|last2=Rocca|first2=M. C. L.|last3=Ponce|first3=J.|first4=S. G.|last4=Stinco|title=Impact Craters in South America|url=https://books.google.com/books?id=W226CAAAQBAJ|year=2015|publisher=Springer|isbn=978-3-319-13093-4|page=23}}</ref>
+|
+| align="right" | {{coord|51|S|62|W||name=Malvinas}}
+|-
+| Fried Egg structure
+| [[Atlantic Ocean]] (near [[Azores]])
+|
+| 6
+| 17
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1171.html Fried Egg]</ref><ref>Amos, J (2009) [https://news.bbc.co.uk/2/hi/science/nature/8400264.stm 'Fried Egg' may be impact crater] BBC News.</ref>
+|
+| align="right" | {{coord|36|N|27|W|name=Fried Egg }}
+|-
+| [[Garet El Lefet]]
+| [[Libya]]
+|[[Libya]]
+| 3
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a569.html Garet El Lefet]</ref><ref>Roger Weller. [http://skywalker.cochise.edu/wellerr/earth-craters/Garet.htm Garet El Lefet crater] {{Webarchive|url=https://web.archive.org/web/20160917000351/http://skywalker.cochise.edu/wellerr/earth-craters/Garet.htm |date=2016-09-17 }}</ref><ref name="classen">{{Cite journal |doi = 10.1111/j.1945-5100.1977.tb00332.x|title = Catalogue of 230 Certain, Probable, Possible, and Doubtful Impact Structures|year = 1977|last1 = Classen|first1 = J.|journal = Meteoritics|volume = 12|issue = 1|pages = 61–78|bibcode = 1977Metic..12...61C}}</ref>
+|
+| align="right" | {{coord|25.0|N|16.5|E|name="Garet El Lefet"}}
+|-
+| Gatun
+| [[Panama]]
+|[[Panama]]
+| 3
+| 20
+|
+| align="center" | <ref name="Tornabene2001a">Tornabene, L.L., 2001 ''The Gatun Structure: [https://scholarcommons.usf.edu/etd/1531/ ''A geological assessment of a newly recognized impact structure near Lake Gatun in the Republic de Panama.''] Master of Science thesis. University of South Florida, Tampa, Florida, USA.''</ref><ref name="Heckadon-Moreno1991a">[[Stanley Heckadon Moreno|Heckadon-Moreno, S]], 2013. [https://repository.si.edu/handle/10088/22608 ''Livio Tornabene y el meteorito de Gatun.''] ''Epocas.'' 28 (11):10–11.</ref><ref name="Leblanc">LeBlanc, J., 2021. [https://www.researchgate.net/publication/349777810_Stratigraphic_Lexicon_The_Onshore_Cenozoic_Sedimentary_Formations_of_The_Republic_of_Panama ''Stratigraphic Lexicon: The Onshore Cenozoic Sedimentary Formations of The Republic of Panama.''] ''Biosis: Biological Systems,'' 2(1), pp.1-173.</ref>
+|
+| align="right" | {{coord|09|05|58|N|79|47|22|W|name=Gatun structure}}
+|-
+| [[General San Martín structure|General San Martín]]
+| [[Argentina]]
+|[[Argentina]]
+| 11
+| 1.2
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a343.html General San Martín]</ref><ref name="harris" /><ref>R. D. Acevedo, M. Rocca, J. Rabassa and J. F. Ponce [http://www.lpi.usra.edu/meetings/metsoc2011/pdf/5022.pdf Meteorite Impact Craters In South America: A Brief Review]. 74th Annual Meteoritical Society Meeting (2011)</ref>
+|
+| align="right" | {{coord|38|0|S|63|18|W|name=General San Martin}}
+|-
+| [[Carnarvon Basin#Impact crater|Gnargoo]]
+| [[Western Australia]]
+|Australia
+| 75
+| {{sort|299|<300}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a462.html Gnargoo]</ref><ref>{{Cite journal |doi = 10.1080/08120090500170377|title = Gnargoo: A possible 75 km-diameter post-Early Permian – pre-Cretaceous buried impact structure, Carnarvon Basin, Western Australia|year = 2005|last1 = Iasky|first1 = R. P.|last2 = Glikson|first2 = A. Y.|journal = Australian Journal of Earth Sciences|volume = 52|issue = 4–5|pages = 575–586|bibcode = 2005AuJES..52..575I|s2cid = 128814897}}</ref>
+|
+| align="right" | {{coord|24|48|24|S|115|13|29|E|name=Gnargoo}}
+|-
+| Guarda Structure 
+| [[Guarda (Assembly of the Republic constituency)|Guarda]]
+|[[Portugal]]
+| 30
+| 200
+|
+| align="center" | <ref name="Monteiro1991a">{{cite journal|last=Monteiro|first=J. F.|title=The Guarda Circular Structure: A Possible Complex Impact Crater|journal=Abstracts of the Lunar and Planetary Science Conference |year=1991|volume=22|pages=915–916|bibcode=1991LPI....22..915M}}</ref><ref name="VanZalinge2012a">{{cite thesis|last=Van Zalinge|first=M. E.|title=The Guarda structure, NE-Portugal: a meteorite impact crater or not? |publisher=Utrecht University, Utrecht |year=2012|page=83}}</ref><ref name="VanZalingeothers2012a">{{cite journal|last1=Van Zalinge|first1=M. E.|last2=Hamers|first2=M. F.|last3=Drury|first3=M. R.|title=The Guarda structure (Portugal): impact structure or not? Microstructural studies of quartz, zircon and monazite|journal=Meteoritics and Planetary Science Supplement|year=2012|volume=75|pages=5045–5046}}</ref>
+|
+| align="right" | {{coord|40|38|N|07|06|W|name=Guarda}}
+|-
+| [[Hartney anomaly]]
+| [[Manitoba]]
+|Canada
+| 8
+| {{sort|120|120 ± 20}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a404.html Hartney]</ref><ref name="dumas" /><ref>{{cite journal |first=C. |last=Anderson |year=1980 |title=A Seismic Reflection Study of a Probable Astrobleme near Hartney, Manitoba |journal=Canadian Journal of Exploration Geophysics |volume=16 |page=7 |url=http://csegjournal.com/assets/pdfs/archives/1980_12/1980_Anderson_C_manitoba_astrobleme.pdf|archive-url=https://web.archive.org/web/20160806060129/http://csegjournal.com/assets/pdfs/archives/1980_12/1980_Anderson_C_manitoba_astrobleme.pdf|url-status=usurped|archive-date=August 6, 2016}}</ref>
+|
+| align="right" | {{coord|49.4|N|100.67|W|name=Hartney }}
+|-
+| [[Hico structure|Hico]]
+| [[Texas]]
+|United States
+| 9
+| {{sort|59|<60}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a445.html Hico]</ref><ref>J. Glidewell (2009). [http://www.lpi.usra.edu/meetings/lpsc2009/pdf/2563.pdf SEISMIC DATA THROUGH THE HICO STRUCTURE: A POSSIBLE IMPACT FEATURE IN NORTHCENTRAL TEXAS], 40th Lunar and Planetary Science Conference</ref><ref>Wiberg Leanne (1982). The Hico Structure: a possible impact structure in north-central Texas, USA. Lunar and Planet. Sci. 13: Abstr. Pap. 13th Lunar and Planet. Sci. Conf., Houston, Tex., March 15–19, Pt 2., Houston, Tex., pp. 863–864</ref>
+|
+| align="right" | {{coord|32.01|N|98.03|W|name=Hico}}
+|-
+| [[Hotchkiss crater|Hotchkiss]]
+| [[Alberta]]
+|Canada
+| 4
+| {{sort|220|220 ± 100}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a479.html Hotchkiss]</ref><ref>M. Mazur and R. Stewart (1998). [https://www.crewes.org/ForOurSponsors/ResearchReports/1998/1998-35.pdf Interpreting the Hotchkiss structure: A possible meteorite impact feature in northwestern Alberta], Consortium for Research in Elastic Wave Exploration Seismology ([https://www.crewes.org/ CREWES]).</ref>
+|
+| align="right" | {{coord|57.539|N|118.878|W|name=Hotchkiss}}
+|-
+| [[Howell structure|Howell]]
+| [[Tennessee]]
+|United States
+| 2.5
+| {{sort|380|380 ± 10}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a56.html Howell]</ref><ref>B. Deane, P. Lee, K. Milam, J. Evenick, and R.Zawislak (2004). [http://www.lpi.usra.edu/meetings/lpsc2004/pdf/1692.pdf THE HOWELL STRUCTURE, LINCOLN COUNTY, TENNESSEE: A REVIEW OF PAST AND CURRENT RESEARCH], Lunar and Planetary Science XXXV</ref><ref>Milam, K. A., Henderson, T., Deane, B. (2014). [https://gsa.confex.com/gsa/2014AM/webprogram/Paper249629.html An Assessment Of Shock Metamorphism In Breccias From The Howell Structure, Lincoln County, Tennessee, US], Abstracts of the 2014 GSA Annual Meeting, Geological Society of America</ref>
+|
+| align="right" | {{coord|35.23|N|86.61|W|name=Howell}}
+|-
+| [[Ibn-Batutah]]
+| [[Libya]]
+|[[Libya]]
+| 2.5
+| {{sort|120|120 ± 20}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1123.html Ibn-Batutah]</ref><ref>{{Cite journal |doi = 10.1016/j.geomorph.2008.07.005|title = Ibn-Batutah: A possible simple impact structure in southeastern Libya, a remote sensing study|year = 2009|last1 = Ghoneim|first1 = Eman M.|journal = Geomorphology|volume = 103|issue = 3|pages = 341–350|bibcode = 2009Geomo.103..341G}}</ref>
+|
+| align="right" | {{coord|21|34|10|N|20|50|15|E|name=Ibn-Batutah}}
+|-
+| [[Ilumetsa crater|Ilumetsa]]
+| [[Põlva County]]
+|[[Estonia]]
+| 0.08
+| {{sort|0.0066|0.0066<br />(<4600 BC)}}
+|
+| align="center" | <ref>{{Cite journal |last1=Osinski |first1=Gordon R. |last2=Grieve |first2=Richard A. F. |last3=Ferrière |first3=Ludovic |last4=Losiak |first4=Ania |last5=Pickersgill |first5=Annemarie |last6=Cavosie |first6=Aaron J. |last7=Hibbard |first7=Shannon M. |last8=Hill |first8=Patrick |last9=Bermudez |first9=Juan Jaimes |last10=Marion |first10=Cassandra L. |last11=Newman |first11=Jennifer D. |date=2022-07-21 |title=Impact Earth: A review of the terrestrial impact record |journal=Earth-Science Reviews |volume=232 |language=en |article-number=104112 |doi=10.1016/j.earscirev.2022.104112 |bibcode=2022ESRv..23204112O |s2cid=250965097 |issn=0012-8252|doi-access=free }}</ref><ref>{{Cite journal |last1=Losiak |first1=A. |last2=Jõeleht |first2=A. |last3=Plado |first3=J. |last4=Szyszka |first4=M. |last5=Kirsimäe |first5=K. |last6=Wild |first6=E. M. |last7=Steier |first7=P. |last8=Belcher |first8=C. M. |last9=Jazwa |first9=A. M. |last10=Helde |first10=R. |date=February 2020 |title=Determining the age and possibility for an extraterrestrial impact formation mechanism of the Ilumetsa structures (Estonia) |journal=Meteoritics & Planetary Science |language=en |volume=55 |issue=2 |pages=274–293 |doi=10.1111/maps.13431 |bibcode=2020M&PS...55..274L |s2cid=213799334 |issn=1086-9379|doi-access=free }}</ref>
+| [[File:Ilumetsa crater, Estonia.jpg|150px]]
+| align="right" | {{Coord|57|57|N|27|24|E|}}
+|-
+| [[Ishim impact structure|Ishim]]
+| [[Akmola Region|Akmola region]]
+|[[Kazakhstan]]
+| 300
+| {{sort|445|430-460}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a80.html Ishim]</ref><ref name="dachille" /><ref name="zeylik1" />{{refn|group=note|name=EIDunconfirmed}}
+|
+| align="right" | {{coord|52|0|N|69|0|E|name=Ishim Akmola}}
+|-
+| [[Iturralde crater|Iturralde]]
+| [[Bolivia]]
+|[[Bolivia]]
+| 8.0
+| {{sort|0.0205|0.011–0.030}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a79.html Iturralde]</ref>
+| [[File:Iturralde Crater PIA03359 cropped.jpg|center|150px]]
+| align="right" | {{coord|12|35|S|67|40|W|name=Iturralde}}
+|-
+| [[Jackpine Creek magnetic anomaly]]
+| [[British Columbia]]
+|Canada
+| 25
+| {{sort|120|120 ± 20}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a465.html Jackpine Creek]</ref><ref name="jackpine">S. Goussev, R. Charters, J. Peirce and W. Glenn (2002). [http://cseg.ca/assets/files/resources/abstracts/2002/Goussev_S_Jackpine_Creek_Magnetic_Anomaly_A_Case_M&G-1.pdf Jackpine Creek Magnetic Anomaly: A Case of the HRAM Prospect Scale Interpretation] {{Webarchive|url=https://web.archive.org/web/20160611165455/http://cseg.ca/assets/files/resources/abstracts/2002/Goussev_S_Jackpine_Creek_Magnetic_Anomaly_A_Case_M%26G-1.pdf |date=2016-06-11 }}. CSEG: The Canadian Society of Exploration Geophysicists</ref>
+|
+| align="right" | {{coord|55.6|N|120.1|W|name=Jackpine}}
+|-
+| [[Jalapasquillo]]
+| [[Puebla]]
+|Mexico
+| 1.2
+| {{sort|10|<10}}
+|
+| align="center" | <ref>[http://adsabs.harvard.edu/full/1974RMxAA...1...81M Jalapasquillo]</ref><ref>{{Cite journal |title = Possible Meteorite Crater in Mexico|year = 1974|last1 = Maupome|first1 = L.|journal = Revista Mexicana de Astronomía y Astrofísica|volume = 1|pages = 81–|bibcode = 1974RMxAA...1...81M}}</ref>
+|
+| align="right" | {{coord|19.2231|N|97.429|W|name=Jalapasquillo}}
+|-
+| [[Jebel Hadid]]
+| [[Libya]]
+|[[Libya]]
+| 4.7
+| {{sort|66|<66}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a986.html Jebel Hadid]</ref><ref>{{Cite journal |doi = 10.1016/j.marpetgeo.2008.04.003|title = The Jebel Hadid structure (Al Kufrah Basin, SE Libya) – A possible impact structure and potential hydrocarbon trap?|year = 2009|last1 = Schmieder|first1 = Martin|last2 = Buchner|first2 = Elmar|last3 = Le Heron|first3 = Daniel Paul|journal = Marine and Petroleum Geology|volume = 26|issue = 3|pages = 310–318| bibcode=2009MarPG..26..310S }}</ref>
+|
+| align="right" | {{coord|20|52|12|N|22|42|18|E|name=Jebel Hadid}}
+|-
+| [[Jeptha Knob]]
+| [[Kentucky]]
+|United States
+| 4.3
+| 425
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a62.html Jeptha Knob]</ref>{{refn|group=note|name=EIDunconfirmed}}
+|
+| align="right" | {{coord|38|11|N|85|07|W|name=Jeptha Knob}}
+|-
+| [[Johnsonville crater|Johnsonville]]
+| [[South Carolina]]
+|United States
+| 11
+| {{sort|300|300?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1020.html Snows Island]</ref><ref name="tsun" /><ref>{{Cite journal | doi=10.1029/2003GL017051| title=An impact crater in northeast South Carolina inferred from potential field data| year=2003| last1=Talwani| first1=Pradeep| last2=Wildermuth| first2=Eric| last3=Parkinson| first3=Chris D.| journal=Geophysical Research Letters| volume=30| issue=7| page=1366| bibcode=2003GeoRL..30.1366T| doi-access=free}}</ref>{{refn|group=note|name=EIDunconfirmed}}
+|
+| align="right" | {{coord|33|49|N|79|22|W|name=Snows Island}}
+|-
+| [[Jwaneng South]]
+| [[Botswana]]
+|[[Botswana]]
+| 1.3
+| {{sort|66|<66}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1529.html Jwaneng South]</ref><ref>Sharad Master, Brad Pitts and Marek Wendorff (2009). [http://earthdoc.eage.org/publication/publicationdetails/?publication=51449 Jwaneng South Structure, Botswana: a New 1.3 km Diameter Buried Cenozoic Impact Crater Discovered by Airship-mounted Gravity Gradometer] {{Webarchive|url=https://web.archive.org/web/20160629192235/http://earthdoc.eage.org/publication/publicationdetails/?publication=51449 |date=2016-06-29 }}, 11th SAGA Biennial Technical Meeting and Exhibition</ref>
+|
+| align="right" | {{coord|24|42|S|24|46|E|name=Jwaneng South}}
+|-
+| [[Kebira crater|Kebira]]
+| [[Gilf Kebir]]
+|[[Egypt]]
+| 31
+| 100
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a648.html Kebira]</ref><ref>{{cite journal | last1 = Reimold | first1 = W.U. | last2 = Ch | first2 = Koeberl | year = 2014 | title = Impact structures in Africa: A review| journal = J. Afr. Earth Sci. | volume = 93 | pages = 57–175 | doi = 10.1016/j.jafrearsci.2014.01.008 | pmid = 27065753 | pmc = 4802546 | bibcode = 2014JAfES..93...57R }}</ref>
+| [[File:Kebira Crater.jpg|center|150px]]
+| align="right" | {{Coord|24|40|N|24|58|E|name=Kebira}}
+|-
+| [[Kilmichael structure|Kilmichael]]
+| [[Mississippi]]
+|United States
+| 13
+| 45
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a563.html Kilmichael]</ref><ref>M.S. Huber, D.T. King, Jr., L.W. Petruny, and C. Koeberl (2013). [http://www.lpi.usra.edu/meetings/lpsc2013/pdf/2250.pdf REVISITING KILMICHAEL (MISSISSIPPI), A POSSIBLE IMPACT STRUCTURE], 44th Lunar and Planetary Science Conference</ref><ref>Robertson P.B., Butler M.D. (1982). New evidence for the impact origin of Kilmichael Mississippi. Lunar and Planet. Sci. 13: Abstr. Pap. 13th Lunar and Planet. Sci. Conf., Houston, Tex., March 15–19, 1982. Pt 2, Houston, Tex., pp. 653–654</ref><ref>King D.T. Petruny Jr. and L.W. (2002). [https://www.lpi.usra.edu/meetings/metsoc2002/pdf/5286.pdf COSMIC IMPACT IN THE COASTAL PLAIN OF MISSISSIPPI? THE RIDDLE THE OF THE KILMICHAEL STRUCTURE] 65th Annual Meteoritical Society Meeting</ref>
+|
+| align="right" | {{Coord|33.5|N|89.55|W|name=Kilmichael}}
+|-
+| [[Krk structure|Krk]]
+| [[Croatia]]
+|[[Croatia]]
+| 12
+| 40
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a710.html Krk]</ref><ref>T. Marjanac, A. Tomša, Lj. Marjanac, M. Calogovic & S. Fazinic (2015). [http://www.hou.usra.edu/meetings/gap2015/pdf/1086.pdf Krk impact structure ejecta breccia and melt rocks on the islands of Krk and Rab, Croatian Adriatic: A clue on the impact target lithology], Bridging the Gap III (2015)</ref>
+|
+| align="right" | {{Coord|45.06|N|14.62|E|name=Krk}}
+|-
+| [[Kurai Basin]]
+| [[Altai Region]]
+|Russia
+| 20
+| {{sort|199|<200}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a514.html Kurai Basin]</ref><ref>S. A. Vishnevsky (2007). [http://www.lpi.usra.edu/meetings/lpsc2007/pdf/1044.pdf The Kurai Basin, Altai mountains (Russia): First evidences of impact origin], Lunar and Planetary Science XXXVIII (2007)</ref>
+|
+| align="right" | {{Coord|50|12|N|87|54|E|name=Kurai }}
+|-
+| [[La Dulce crater|La Dulce]]
+| [[Argentina]]
+|[[Argentina]]
+| 2.8 
+| {{sort|0.445|0.445?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a913.html La Dulce]</ref><ref name="harris">Harris, R. S.; Schultz, P. H.; Zárate, M. A. (2007) [http://www.lpi.usra.edu/meetings/lpsc2007/pdf/2243.pdf La Dulce Crater: Evidence For A 2.8 Km Impact Structure In The Eastern Pampas Of Argentina], 38th Lunar and Planetary Science Conference</ref>
+|
+| align="right" | {{coord|38.21|S|59.21|W|name=La Dulce}}
+|-
+| [[Labynkyr ring|Labynkyr]]
+| [[Russia]]
+|Russia
+| 67
+| {{sort|150|150?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a110.html Labynkyr]</ref><ref name="tsun" /><ref>{{Cite journal |bibcode = 1974Metic...9..329D|title = Impact structures from ERTS imagery|last1 = Dietz|first1 = Robert S.|last2 = McHone|first2 = John|journal = Meteoritics|year = 1974|volume = 9|page = 329}}</ref><ref>Roger Weller. [http://skywalker.cochise.edu/wellerr/earth-craters/Labynkyr.htm Labynkyr ring] {{Webarchive|url=https://web.archive.org/web/20160917022902/http://skywalker.cochise.edu/wellerr/earth-craters/Labynkyr.htm |date=2016-09-17 }}</ref>{{refn|group=note|name=EIDunconfirmed}}
+|
+| align="right" | {{coord|62.325|N|143.090|E|name=Labynkyr}}
+|-
+| [[Iro Lake|Lac Iro]]
+| [[Moyen-Chari (region)|Moyen-Chari]]
+|[[Chad]]
+| 13
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a3.html Lac Iro]</ref><ref name="Africa" /><ref>James B. Garvin (1986). [http://www.lpi.usra.edu/meetings/lpsc1986/pdf/1128.pdf POSSIBLE IMPACT STRUCTURES IN CENTRAL AFRICA]</ref>
+| [[File:Lake Iro.jpg|center|150px]]
+| align="right" | {{coord|10|10|N|19|40|E|name=Iro Lake}}
+|-
+| [[Lairg Gravity Low]]
+| [[Scotland]]
+|[[United Kingdom]]
+| 40
+| 1200
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a2637.html Lairg]</ref>
+|
+| align="right" | {{Coord|58|1|12|N|4|24|0|W}} 
+|-
+| [[Lake Cheko]]
+| [[Siberia]]
+|Russia
+| 50
+| {{sort|0.0001|0.0001<br />([[Tunguska event|1908 AD]])}}
+|
+| align="center" | <ref>{{in lang|ru}} [http://labmpg.sscc.ru/a1005.html Lake Cheko]</ref>
+|
+| align="right" | {{coord|60.964|N|101.86|E|name=Cheko}}
+|-
+| [[Lake Tai]] (Tai Hu)
+| [[Jiangsu]]
+|China
+| {{sort|70|70 ± 5}}
+| {{sort|365|365 ± 5}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a420.html Tai Hu]</ref><ref>Roger Weller. [http://skywalker.cochise.edu/wellerr/earth-craters/Tai-Hu.htm Tai Hu crater] {{Webarchive|url=https://web.archive.org/web/20160916211111/http://skywalker.cochise.edu/wellerr/earth-craters/Tai-Hu.htm |date=2016-09-16 }}</ref><ref>{{cite journal |first1=K. |last1=Wang |year=1992 |bibcode=1992lmip.conf...77W |title=A late Devonian impact event and its association with a possible extinction event on Eastern Gondwana |journal=Lunar and Planetary Inst., International Conference on Large Meteorite Impacts and Planetary Evolution |last2=Geldsetzer |first2=H. H. J. |page=77}}</ref>
+|
+| align="right" | {{coord|31|14|N|120|8|E||name=Tai}}
+|-
+| [[Loch Leven (Kinross)|Loch Leven]]
+| [[Scotland]]
+|[[United Kingdom]]
+| {{sort|18|18x8}}
+| 290
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a898.html Loch Leven]</ref><ref>B. J. Hamill (2003). [http://www.lpi.usra.edu/meetings/largeimpacts2003/pdf/4041.pdf The Loch Leven Crater: Anatomy Of A Low-Angle Oblique Impact Structure], Large Meteorite Impacts</ref>
+|
+| align="right" | {{coord|56|12|N|3|23|W|name=Loch Leven}}
+|-
+| [[Lorne Basin]]
+| [[New South Wales]]
+|Australia
+| 30
+| {{sort|250|250 ± 2}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a435.html Lorne]</ref><ref>{{Cite journal | doi=10.1080/08120099808728423| title=Lorne Basin, New South Wales: Evidence for a possible impact origin?| year=1998| last1=Tonkin| first1=P. C.| journal=Australian Journal of Earth Sciences| volume=45| issue=5| pages=669–671| bibcode=1998AuJES..45..669T}}</ref>
+|
+| align="right" | {{coord|31.60|S|152.62|E|name=Lorne}}
+|-
+| [[Lycksele structure|Lycksele]] 2
+| [[Sweden]]
+|[[Sweden]]
+| 130
+| {{sort|1500|1500 ± 300}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1603.html Lycksele 2]</ref><ref>D. Nisca, H. Thunehed, L.J. Pesonen, S-Å. Elming (1997). [http://www.lpi.usra.edu/meetings/impacts97/pdf/6007.pdf The Lycksele structure, a huge ring formation in northern Sweden: result of an impact?], Large Meteorite Impacts and Planetary Evolution</ref><ref>{{Cite journal | doi=10.1007/BF00117542| title=The impact cratering record of Fennoscandia| year=1996| last1=Pesonen| first1=L. J.| journal=Earth, Moon, and Planets| volume=72| issue=1–3| pages=377–393| bibcode=1996EM&P...72..377P| hdl=2060/19930000983| s2cid=125579093| hdl-access=free}}</ref>
+|
+| align="right" | {{coord|64.92|N|18.78|E|name=Lycksele}}
+|-
+| [[Madagascar structure 3|Madagascar 3]]
+| [[Madagascar]]
+|[[Madagascar]]
+| 12
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a333.html Madagascar 3]</ref><ref>Roger Weller. [http://skywalker.cochise.edu/wellerr/earth-craters/Madagascar3.htm Madagascar structure] {{Webarchive|url=https://web.archive.org/web/20160916231624/http://skywalker.cochise.edu/wellerr/earth-craters/Madagascar3.htm |date=2016-09-16 }}</ref>
+|
+| align="right" | {{Coord|18.839|S|46.221|E|name=Madagascar}}
+|-
+| [[Magyarmecske anomaly]]
+| [[Hungary]]
+|[[Hungary]]
+| 7
+| 299
+|
+| align="center" | <ref name="BodoskyOthers2006a">{{cite journal|last1=Bodosky |first1=T. |last2=Kis|first2=M.|last3=Kummer|first3=I.|last4=Don|first4=G.|title=The telluric conductivity anomaly at Magyarmecske: is it aburied impact crater? |url=http://sci.esa.int/science-e/www/object/doc.cfm?fobjectid=40243|journal=40th ESLAB–First International Conference on Impact Cratering in the Solar System–Proceedigs CD. Noordwijks, the Netherlands|volume= |pages=221–223|date=2006}}</ref><ref name="BodoskyOthers2007a">{{cite journal|last1=Bodosky|first1=T.|last2=Don|first2=G.|last3=Kis|first3=MI.|last4=Kummer|first4=I.|title=Is the Magyarmecske telluric conductivity anomaly a buried impact structure? |url= https://www.researchgate.net/publication/250010202|journal=Central European Geology |volume= 50 |issue=3 |pages=199–223 |date=2007 |doi=10.1556/CEuGeol.50.2007.3.2|bibcode=2007CEJGl..50..199B }}</ref>
+|
+| align="right" | {{coord|45.95|N|17.97|E|name=Magyarmecske }}
+|-
+| [[Mahuika crater|Mahuika]]
+| [[New Zealand]] (offshore)
+|[[New Zealand]]
+| {{sort|20|20?}}
+| {{sort|0.0006|0.0006<br />(1400 AD)}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a362.html Mahuika]</ref><ref>Abbott, D.H., A. Matzen, E.A. Bryant, and S.F. Pekar (2003). Did a bolide impact cause catastrophic tsunamis in Australia and New Zealand?. Geological Society of America Abstracts with Programs, 35:168</ref><ref name="Abbott, Dallas H. 2006" />
+|
+| align="right" | {{coord|48.3|S|166.4|E|name=Mahuika}}
+|-
+| [[Maniitsoq structure|Maniitsoq]]
+| [[Greenland]]
+|[[Greenland]]
+| 100
+| 3000
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1366.html Maniitsoq]</ref><ref>{{cite journal | doi = 10.1016/j.epsl.2012.04.026 | title = Searching for giant, ancient impact structures on Earth: The Mesoarchaean Maniitsoq structure, West Greenland | year = 2012 | last1 = Garde | first1 = Adam A. | last2 = McDonald | first2 = Iain | last3 = Dyck | first3 = Brendan | last4 = Keulen | first4 = Nynke | journal = Earth and Planetary Science Letters | volume = 337–338 | pages = 197–210| bibcode = 2012E&PSL.337..197G }}</ref><ref>{{Cite journal |first1= Anders |last1 = Scherst |first2= Adam A. |last2 = Garde |date= 30 July 2013 |title= Complete hydrothermal re-equilibration of zircon in the Maniitsoq structure, West Greenland: A 3001 Ma minimum age of impact? |journal= Meteoritics & Planetary Science |volume= 48 |issue= 8 |pages= 1472–1498 |doi= 10.1111/maps.12169 |bibcode= 2013M&PS...48.1472S|s2cid = 140675056 |doi-access= free }}</ref>
+|
+| align="right" | {{coord|65|15|N|51|50|W|name=Maniitsoq}}
+|-
+| [[Mejaouda]] (El Mrayer)
+| [[Mauritania]]
+|[[Mauritania]]
+| 3
+| {{sort|540|<542?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a501.html Mejaouda]</ref><ref name="tsun" /><ref name="classen" /><ref name="rossi" /><ref>Roger Weller. [http://skywalker.cochise.edu/wellerr/earth-craters/Mejaouda.htm Mejaouda crater] {{Webarchive|url=https://web.archive.org/web/20160917001315/http://skywalker.cochise.edu/wellerr/earth-craters/Mejaouda.htm |date=2016-09-17 }}</ref>
+|
+| align="right" | {{coord|22.722|N|7.312|W|name=Mejaouda}}
+|-
+| [[Merewether crater|Merewether]]
+| [[Newfoundland]]
+|Canada
+| 0.192
+| {{sort|0.0009|0.0009<br />(1100 AD)}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a123.html Merewether crater]</ref><ref>J. B. Garvin and J. J. Frawley (2008). [http://www.lpi.usra.edu/meetings/lpsc2008/pdf/1811.pdf Geometric Properties Of The Merewether Structure, Newfoundland, Canada].Lunar and Planetary Science XXXIX (2008)</ref>{{refn|group=note|name=EIDunconfirmed}}
+|
+| align="right" | {{coord|58.04|N|64.05|W|name=Merewether}}
+|-
+| [[Meseta de la Barda Negra]]
+| [[Argentina]]
+|[[Argentina]]
+| 1.5
+| {{sort|4|4 ± 1}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a652.html Meseta de la Barda Negra]</ref><ref>A.C. Ocampo, A.C. Garrido, J. Rabassa, M.C. Rocca, J.C. Echaurren, and E. Mazzoni (2005). [http://www.lpi.usra.edu/meetings/metsoc2005/pdf/5005.pdf A Possible Impact Crater In Basalt At Meseta De La Barda Negra, Neuquen, Argentina], 68th Annual Meteoritical Society Meeting</ref>
+|
+| align="right" | {{coord|39|10|S|69|53|W|name=Barda Negra}}
+|-
+| Middle-Urals Ring
+| [[Russia]]
+|Russia
+| {{sort|475|400–550}}
+| {{sort|542|[[Precambrian|>542]]}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1022.html Middle Urals]</ref><ref>G. Burba (1991). [http://www.lpi.usra.edu/meetings/lpsc1991/pdf/1076.pdf Middle-Urals Ring structure, USSR: Definition, description, possible planetary analogues], Lunar and Planetary Science conference XXII.</ref><ref>G. Burba (2003).  [https://www.planetary.brown.edu/planetary/international/Micro_38_Abs/ms011.pdf The geologic evolution of the Ural Mountains: A supposed exposure to a giant impact] {{Webarchive|url=https://web.archive.org/web/20210831000715/http://www.planetary.brown.edu/planetary/international/Micro_38_Abs/ms011.pdf |date=2021-08-31 }}. Microsymposium 38, MS011</ref>
+|
+| align="right" | {{coord|56|N|56|E||name=Urals Ring}}
+|-
+| [[Lake Mistassini|Mistassini-Otish]]
+| Quebec
+|Canada
+| 600
+| 2200
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1144.html Mistassini]</ref><ref>S. Genest and F. Robert [https://www.hou.usra.edu/meetings/metsoc2017/pdf/6047.pdf The Mistassini-Otish impact structure, Northern Quebec, Canada: an update – 1987]</ref>
+|
+| align="right" | {{coord|50.57|N|73.42|W|name=Mistassini lake}}
+|-
+| [[Mount Ashmore dome]]
+| [[Indian Ocean]] (in [[Timor Sea]])
+|
+| {{sort|50|>50}}
+| 35
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1115.html Mount Ashmore]</ref><ref>{{cite journal | last1 = Glikson | first1 = A. | last2 = Jablonski | first2 = D. | last3 = Westlake | first3 = S. | year = 2010 | title = Origin of the Mt Ashmore structural dome, west Bonaparte Basin, Timor Sea | journal = Australian Journal of Earth Sciences | volume = 57 | issue = 4 | doi = 10.1080/08120099.2010.481327 | pages = 411–430 | bibcode = 2010AuJES..57..411G | s2cid = 129839418 }}</ref><ref name="timor">[http://sciencewise.anu.edu.au/articles/big%20impact Examining a new asteroid crater found in the Timor Sea] {{Webarchive|url=https://web.archive.org/web/20160629122042/http://sciencewise.anu.edu.au/articles/big%20impact |date=2016-06-29 }}. ScienceWise 2010, Australian National Uni</ref>
+|
+| align="right" | {{coord|12.55|S|123.2|E|display=inline}}
+|-
+| [[Mousso]]
+| [[Borkou-Ennedi-Tibesti (region)|Borkou-Ennedi-Tibesti]]
+|[[Chad]]
+| 3.8
+| {{sort|540|<542}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a454.html Mousso]</ref><ref>{{cite journal | doi=10.1016/j.jafrearsci.2007.06.003 | title=Mousso structure: A deeply eroded, medium-sized, complex impact crater in northern Chad? | year=2007 | last1=Buchner | first1=Elmar | last2=Schmieder | first2=Martin | journal=Journal of African Earth Sciences | volume=49 | issue=3 | pages=71–78 | bibcode=2007JAfES..49...71B }}</ref>
+|
+| align="right" | {{coord|17|58|N|19|53|E|name=Mousso}}
+|-
+| [[Mt. Oikeyama]]
+| [[Japan]]
+|[[Japan]]
+| 90
+| {{sort|0.03|0.030?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a239.html Oikeyama]</ref><ref>{{citation|doi=10.1111/j.1945-5100.2009.01003.x|title=Micro ''Raman'' spectroscopy of anomalous planar microstructures in quartz from Mt. Oikeyama: Discovery of a probable impact crater in Japan|journal=Meteoritics and Planetary Science |volume=45|issue=1|page=32|year=2010|last1=Sakamoto|first1=Masao|last2=Gucsik|first2=Arnold |last3=Nishido|first3=Hirotsugu|last4=Ninagawa|first4=Kiyotaka|last5=Okumura|first5=Tasuku |last6=Toyoda|first6=Shin|bibcode=2010M&PS...45...32S|doi-access=free}}</ref>
+|
+| align="right" | {{coord|35.405|N|138.013|E|name=Oikeyama}}
+|-
+| [[Mulkarra]]
+| [[South Australia]]
+|Australia
+| 17
+| 105
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a241.html Mulkarra]</ref><ref>J. B. Plescia (1999). [http://www.lpi.usra.edu/meetings/LPSC99/pdf/1889.pdf Mulkarra Impact Structure, South Australia: A Complex Impact Structure], Lunar and Planetary Science XXX</ref>
+|
+| align="right" | {{coord|27.85|S|138.92|E|name=Mulkarra}}
+|-
+| [[Nastapoka arc|Nastapoka (Hudson Bay) arc]]
+| Quebec
+|Canada
+| 450
+| {{sort|1800|1800?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a134.html Nastapoka]</ref><ref name="tsun">[http://tsun.sscc.ru/nh/impact.php Expert Database on Earth Impact Structures (EDEIS)], Accessed May 2016</ref><ref>Dietz R.S., McHone J.F. (1990). Chesterfield structure (Hudson Bay): possible astrobleme. Lunar and Planet. Sci.: Abstr. Pap. 21st Lunar and Planet. Sci. Conf., March 12–16.  Vol. 21, Houston (Tex.), p. 286</ref><ref>Brookfield Michael (2006). The great arc of eastern Hudson Bay, Canada: part of a multi-ringed impact basin. 40 ESLAB Symposium: 1 International Conference on Impact Cratering in the Solar System, Noordwijk, 8–12 May 2006, Noordwijk: ESA, p. 35</ref>
+| [[File:Arc_Nastapoka.png|center|150px]]
+| align="right" | {{coord|57|00|N|78|50|W||name=Hudson Bay}}
+|-
+| [[Nadir crater|Nadir]]
+| Atlantic Ocean (Guinea Plateau, West Africa)
+|
+| ≥8.5
+| 66 ± 0.8
+|
+| align="center" | <ref name=""Nicholson"">{{cite journal|first=Uisdean |last= Nicholson |display-authors=|doi=10.1126/sciadv.abn3096 |title=The Nadir Crater offshore West Africa: A candidate Cretaceous-Paleogene impact structure|journal=Science Advances |volume=8 |issue=33 |article-number=eabn3096 |year=2022 |pmid= 35977017 |pmc= 9385158 |bibcode= 2022SciA....8N3096N }}</ref>
+|
+| align="right" | {{coord|9.4|N|17.1|W|name=Nadir}}
+|-
+| [[Miralga impact structure|North Pole Crater]]
+| [[Pilbara craton|Pilbara Craton]], [[Western Australia]]
+| [[Australia]]
+| 100
+| 3,470
+|
+| align="center" | <ref name="Kirkland2025">{{cite journal|last1=Kirkland |first1=C.L. |last2=Johnson |first2=T.E. |last3=Kaempf |first3=J. |last4=Ribeiro |first4=B.V. |last5=Zametzer |first5=A. |last6=Hugh Smithies |first6=R. |last7=McDonald |first7=B. |title=A Paleoarchaean impact crater in the Pilbara Craton, Western Australia |journal=[[Nature Communications]] |volume=16 |article-number=2224 (2025) |date=6 March 2025 |issue=1 |doi=10.1038/s41467-025-57558-3 |doi-access=free |pmid=40050265 |pmc=11885519 |bibcode=2025NatCo..16.2224K }}</ref><ref>de Kruijff, P. (6 March 2025). [https://www.abc.net.au/news/science/2025-03-06/oldest-known-crater-pilbara-geology-3-47-billion-years-old/105019606 Earth's oldest-known crater discovered in outback WA is 3.47 billion years old, study finds] ''[[ABC News (Australia)|ABC News]]''. Retrieved 6 March 2025.</ref>
+|
+| align="right" | {{coord|21|02|54|S|119|23|35|E|name=North Pole}}
+|-
+| [[Ouro Ndia]]
+| [[Mali]]
+|[[Mali]]
+| 3
+| {{sort|2.6|<2.6}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a244.html Ouro Ndia]</ref><ref name="tsun" /><ref name="rossi">A. Rossi (2002). [http://www.lpi.usra.edu/meetings/lpsc2002/pdf/1309.pdf Seven Possible New Impact Structures In Western Africa Detected On Aster Imagery], Lunar and Planetary Science XXXIII</ref>
+|
+| align="right" | {{coord|14|59.8|N|4|30.0|W||name=Ouro Ndia}}
+|-
+| [[Pantasma]]
+| [[Nicaragua]]
+|[[Nicaragua]]
+| 10
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a946.html Pantasma]</ref>
+|
+| align="right" | {{coord|13.37|-85.95|name=Pantasma}}
+|-
+| [[Panther Mountain (New York)#Geography|Panther Mountain]]
+| [[New York (state)|New York]]
+|United States
+| 10
+| 375
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a403.html Panther Mountain]</ref><ref>{{cite journal | last1 = Isachsen | first1 = Y.W. | year = 1988 | title = Metallic spherules and a microtektite support the interpretation of a buried impact crater beneath Panther Mountain in the central Catskill Mountains, New York | journal = Meteoritics & Planetary Science | volume = 33 | issue = 4| page = 74 |bibcode=1998M&PSA..33R..74I}}</ref><ref>Isachsen Y.W., Wright S.F., Revetta F.A., Dineen R.J. (1992). The Panther mountain circular structure, a possible buried meteorite crater. Pap. Present. Int. Conf. Large Meteorite Impacts and Planet. Evol., Sudbury, Aug. 31 – Sept. 2, 1992, Houston (Tex.), p. 40</ref>
+| [[File:Panther rosette stream pattern.gif|center|150px]]
+| align="right" | {{coord|42|03|N|74|24|W|name=Panther Mountain}}
+|-
+| [[Peerless structure|Peerless]]
+| [[Montana]]
+|United States
+| 6
+| {{sort|470|470 ± 10}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a631.html Peerless]</ref><ref>J.M. Comstock and J.R. Morrow (2000). [http://www.lpi.usra.edu/meetings/lpsc2000/pdf/1297.pdf PEERLESS STRUCTURE SOUTHWESTERN DANIELS COUNTY, MONTANA: A PROBABLE MIDORDOVICIAN IMPACT EVENT], Lunar and Planetary Science XXXI</ref>
+|
+| align="right" | {{coord|48.8|N|105.8|W|name=Peerless }}
+|-
+| [[Piratininga crater|Piratininga]]
+| [[Paraná Basin|Paraná]]
+|Brazil
+| 12
+| 117
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a348.html Piratininga]</ref><ref name="braz1" /><ref>Hachiro J. (2000). Four impact cratering on the Parana sedimentary Basin (South America). The 31st International Geological Congress, Rio de Janeiro, Aug. 6–17, 2000. Rio de Janeiro: Geol. Surv. Braz., p.  6424</ref>
+|
+| align="right" | {{coord|22|28|S|49|09|W|name=Piratininga}}
+|-
+| [[Praia Grande crater|Praia Grande]]
+| [[Santos Basin]], offshore
+|Brazil
+| 20
+| 84
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a674.html Praia Grande]</ref><ref name="braz1">A. Crósta, R. Romano (2004). [http://www.lpi.usra.edu/meetings/lpsc2004/pdf/1546.pdf Brazilian Impact Craters: A Review], 35th Lunar and Planetary Science Conference</ref><ref name="braz2">A. Crósta, M. Vasconcelos (2013). [http://www.lpi.usra.edu/meetings/lpsc2013/pdf/1318.pdf Update On The Current Knowledge Of The Brazilian Impact Craters], 44th Lunar and Planetary Science Conference</ref>
+|
+| align="right" | {{coord|25|39|S|45|37|W|name=prai grande}}
+|-
+| [[Ramgarh crater|Ramgarh]]
+| [[Rajasthan]]
+|India
+| 3
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a152.html Ramgarh]</ref><ref>Nayak V.K. (1997). The circular structure at Ramgarh, India: an astrobleme(?). LPI Contrib., No. 922, p. 31</ref><ref>{{cite journal | last1 = Master | first1 = S. | last2 = Pandit | first2 = M.K. | year = 1999 | title = New evidence for an impact origin of the Ramgarh structure, Rajasthan, India .  | journal = Meteoritics & Planetary Science | volume = 34 | issue = 4| page = 79 | bibcode = 1999M&PSA..34R..79M }}</ref>{{refn|group=note|name=EIDunconfirmed}}
+| [[File:Ramgarh Crater.JPG|center|150px]]
+| align="right" | {{coord|25|20|16|N|76|37|29|E|name=Ramgarh}}
+|-
+|[[Rochechouart impact structure]]
+|[[Rochechouart]]
+|France
+|23
+|206.9
+|
+|
+|
+|{{coord|45|49|27|N|0|46|54|E|region:FR_type:landmark|name=Rochechouart}}
+|-
+| [[Ross crater|Ross]]
+| [[Southern Ocean|Antarctic Ocean]] ([[Ross Sea]])
+|
+| {{sort|600|600?}}
+| {{sort|37|<38}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a415.html Ross]</ref><ref name="Ross123" /><ref>Berg J.H. (1991). Crustal xenoliths from Cape McCormick crater, Northern Victoria Land . 6th Int. Symp. Antarct. Earth Eci., Ranran-machi, 9–13 Sept., 1991, Abstr. - [Tokyo], p. 49</ref>
+|
+| align="right" | {{coord|77.5|S|178.5|E||name=Ross}}
+|-
+| [[Rubielos de la Cérida impact structure|Rubielos de la Cérida]]
+| [[Spain]]
+|[[Spain]]
+| {{sort|80|80x40}}
+| {{sort|35|30-40}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a171.html Rubielos de la Cérida]</ref><ref>Bohor B.F., Foord E.E., Modreski P.J. (1985). Extraterrestrially-derived magnesioferrite at the K-T boundary, Caravaca, Spain. Lunar and Planet. Sci. Vol. 16: Abstr. Pap. 16th Conf., March 11–15, 1985. Pt 1, Houston, Tex., pp. 77–78</ref><ref>{{cite journal | bibcode=1996LPI....27..725L | title=The Azuara and Rubielos Structures, Spain: Twin Impact Craters or Alpine Thrust Systems? TEM Investigations on Deformed Quartz Disprove Shock Origin | last1=Langenhorst | first1=F. | last2=Deutsch | first2=A. | journal=Lunar and Planetary Science Conference | year=1996 | volume=27 | page=725 }}</ref>{{refn|group=note|name=EIDunconfirmed}}
+| [[File:Rubielos de la Cérida impact structure-karte topo.jpg|center|150px]]
+| align="right" | {{coord|40.783|N|1.25|W|name=Rubielos}}
+|-
+| [[Sakhalinka]]
+| [[Pacific Ocean]] (NW)
+|
+| 12
+| 70
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a328.html Sakhalinka]</ref><ref>B. Levin, E. Gretskaya, G. Nemchenko (2006). [https://www.deepdyve.com/lp/springer-journals/a-new-astrobleme-in-the-pacific-ocean-6IlR6PaZTP A new astrobleme in the Pacific Ocean], Doklady Earth Sciences, 2006, Vol. 411, No. 8, pp. 1336–1338.</ref><ref>Bostwick Jennifer A., Kyte Frank T. (1993). Impact mineralogy and chemistry of the cretaceous-tertiary boundary at DSDP site 576. Lunar and Planet. Sci. Vol. 24. Abstr. Pap. 24th Lunar and Planet. Sci. Conf., March 15–19, 1993. Pt 1., Houston (Tex.), p. 157</ref><ref>{{cite journal | doi=10.1016/0012-821X(95)00051-D | title=Magnesioferrite spinel in Cretaceous/Tertiary boundary sediments of the Pacific basin: Remnants of hot, early ejecta from the Chicxulub impact? | year=1995 | last1=Kyte | first1=Frank T. | last2=Bostwick | first2=Jennifer A. | journal=Earth and Planetary Science Letters | volume=132 | issue=1–4 | pages=113–127 | bibcode=1995E&PSL.132..113K }}</ref><ref>Kyte Frank T. (1996). A piece of the KT bolide?. Lunar and Planet. Sci. Vol. 27. Abstr. Pap. 27th Lunar and Planet. Sci. Conf., March 18–22, 1996. Pt 2, Houston (Tex.), p. 717</ref>
+|
+| align="right" | {{coord|30|15|N|170|03|E|name=Sakhalinka}}
+|-
+| [[São Miguel do Tapuio]]
+| [[Piauí]]
+|Brazil
+| 22
+| 120
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a384.html São Miguel do Tapuio]</ref><ref name="tsun" /><ref name="braz2" /><ref>W. D. MacDonald, A. P. Crosta, J. Francolin (2006) [http://www.lpi.usra.edu/meetings/metsoc2006/pdf/5156.pdf Structural Dome At São Miguel do Tapuio, Piaui, Brazil], 69th Annual Meteoritical Society Meeting</ref><ref>Castelo Branco R.M.G. (2000). Some evidences on northeast Brazilian impact structures (astroblemes). The 31st International Geological Congress, Rio de Janeiro, Aug. 6–17, 2000, Rio de Janeiro: Geol. Surv. Braz., p. 4479</ref><ref>Castelo Branco R.M.G., Lopes de Castro D. (2004). [https://www.lpi.usra.edu/meetings/metsoc2004/pdf/5229.pdf Geological, geophysical and imaging data of Sao Miguel do Tapuio (SMT) astrobleme, Brazil]. 67th Annual Meteoritical Society Meeting</ref>
+|
+| align="right" | {{Coord|5|37.6|S|41|23.3|W|name=Sao Miguel Do Tapuio}}
+|-
+| [[Shanghewan]]
+| [[Jilin]]
+|China
+| 30
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a211.html Shanghewan]</ref><ref>{{Cite journal |bibcode = 1991LPICo.766...56D|title = Astroblemes Recently Confirmed with Shatter Cones|last1 = Dietz|first1 = R. S.|last2 = McHone|first2 = J. F.|journal = 54th Annual Meeting of the Meteoritical Society|year = 1991|volume = 54|page = 56}}</ref><ref>{{Cite journal |bibcode = 1988LPI....19.1296W|title = The Shanghewan Impact Crater, China|last1 = Wu|first1 = S.|journal = Lunar and Planetary Science Conference|year = 1988|volume = 19|page = 1296}}</ref>
+|
+| align="right" | {{coord|44|29|N|126|11|E|name=Shangewan}}
+|-
+| [[Shiva crater|Shiva]]
+| [[Indian Ocean]]
+|
+| 500
+| 66
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a633.html Shiva]</ref>
+|
+| align="right" | {{coord|18|40|N|70|14|E|name=Shiva}}
+|-
+| [[Shiyli dome|Shiyli]]
+| [[Kazakhstan]]
+|[[Kazakhstan]]
+| 5.5
+| {{sort|46|46 ± 7}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a253.html Shiyli]</ref><ref>S. A. Vishnevsky (2007). [http://www.lpi.usra.edu/meetings/gap2007/pdf/8013.pdf Shiyli Dome, Kazakhstan: Origin Of Central Uplift By Elastic Response], Workshop on Impact Cratering II</ref>{{refn|group=note|name=EIDunconfirmed}}
+|
+| align="right" | {{coord|49|10|N|57|51|E|name=Shiyli}}
+|-
+| [[Silverpit crater|Silverpit]]
+| [[Atlantic Ocean]] ([[North Sea]])
+|
+| 20
+| {{sort|60|60 ± 15}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a168.html Silverpit]</ref><ref>{{cite journal |vauthors=Stewart SA, Allen PJ |title=A 20-km-diameter multi-ringed impact structure in the North Sea|journal=[[Nature (journal)|Nature]] | volume=418 | issue=6897 | year=2002 | pages=520–523 | pmid=12152076|doi=10.1038/nature00914|bibcode = 2002Natur.418..520S |s2cid=4381323}}</ref><ref>Collins G.S., Turtle E.P., Melosh H.J. (2003). Numerical simulations of silverpit crater collapse: a comparison of Tekton and SALES . LPI Contrib., No. 1155, p. 18</ref><ref>Stratford R. (2004). Bombarded Britain: A Search for British Impact Structures // Imperial College Press, London</ref><ref>Collins G., Pain C. C., Wilson C. (2006) MODELLING IMPACT CRATER COLLAPSE IN THREE DIMENSIONS</ref><ref>Conway Z.K., Haszeldine S., Rider M. (2006). Determining the origin of the Silverpit crater, UK southern North Sea: can you prove the existence of a meteorite crater without geochemical or mineralogical data?. 40 ESLAB Symposium: 1 International Conference on Impact Cratering in the Solar System, Noordwijk, 8–12 May 2006, Noordwijk: ESA, P. 53</ref><ref>Cartwright J., Davies R., Stewart S., Wall M. (2006) BURIAL OF THE SILVERPIT METEORITE CRATER</ref>
+| [[File:Silverpit northwest perspective.jpg|center|150px]]
+| align="right" | {{coord|54|14|N|1|51|E|name=Silverpit}}
+|-
+| [[Sirente crater|Sirente]]
+| [[Abruzzo]]
+|[[Italy]]
+| 10
+| {{sort|0.0017|0.0017<br />(320 ± 90 AD)}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a768.html Sirente]</ref><ref>{{cite journal | last1 = Speranza | first1 = F. | last2 = Nicolosi | first2 = I. | last3 = Ricchetti | first3 = N. | last4 = Etiope | first4 = G. | last5 = Rochette | first5 = P. | last6 = Sagnotti | first6 = L. | last7 = De Ritis | first7 = R. | last8 = Chiappani | first8 = M. | year = 2009 | title = The "Sirente crater field", Italy | journal = J. Geophys. Res. B | volume = 114 | issue = 3| page = B03103/1 | doi = 10.1029/2008JB005759 }}</ref>
+|
+| align="right" | {{coord|42|10|38|N|13|35|45|E|name=Sirente}}
+|-
+| [[Sithylemenkat Lake]]
+| [[Alaska]]
+|United States
+| 12
+| {{sort|0.033|0.033?}}
+|
+| align="center" | <ref name="Mikheeva 2019a">Mikheeva, A.V., 2019. [http://labmpg.sscc.ru/a19.html ''Sithylemenkat Lake (Sythylemenkat) USA, Alaska''], [http://labmpg.sscc.ru/index1.html ''The Complete Catalog of the Earth's Impact structures''], ICM&MG SB RAS</ref><ref name="Cannon1979a">{{cite journal | last1 = Cannon | first1 = P.J. | year = 1977 | title = Meteorite impact crater discovered in central Alaska with Landsat imagery | journal = Science | volume = 196 | issue = 4296| pages = 1322–1324 | doi = 10.1126/science.196.4296.1322 | pmid = 17831748 | bibcode = 1977Sci...196.1322C | s2cid = 40015482 }}</ref><ref name="PattonOthers1978a">Patton Jr, W.W., Miller, T.P. and Cannon, P.J., 1978. [https://web.archive.org/web/20190218155857/http://pdfs.semanticscholar.org/0d54/81e4c28e2d613e53d6178c28bbac7633af38.pdf ''Meteorite impact crater in central Alaska''. ''Science''], 201(4352), pp. 279–279.</ref><ref name="PotterOthers2005a">Rajmon, D., 2012. [http://www.datapages.com/gis-map-publishing-program/gis-open-files/geothematic/david-rajmon-global-impact-crater-gis-project ''David Rajmon Global Impact Crater GIS Project''] AAPG Datapages, Tulsa Oklahoma: American Association of Petroleum Geologists.</ref>
+|
+| align="right" | {{coord|66|07|34|N|151|23|20|W|name=Sithylemenkat}}
+|-
+| [[Smerdyacheye Lake]]
+| [[Moscow Oblast]]
+|Russia
+| 20
+| {{sort|0.02|0.01–0.03?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a174.html Smerdyacheye]</ref><ref>L. L. Kashkarov, D. D. Badjukov, A. I. Ivliev, G. V. Kalinina, and M. A. Nazarov, Vernadsky (2005). [http://www.lpi.usra.edu/meetings/lpsc2005/pdf/1822.pdf The Smerdyacheye Lake: New Evidence For Impact Origin And Formation Age], Lunar and Planetary Science XXXVI</ref>
+| [[File:Озеро Смердячье.jpg|150px]]
+| align="right" | {{coord|55.735|N|39.823|E|name=Smerdyacheye }}
+|-
+| Sudan 1 ([[Red Sea Hills]])
+| [[Sudan]]
+|[[Sudan]]
+| 6
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a234.html Red Sea Hills]</ref><ref>G. Di Achille (2005). [http://www.lpi.usra.edu/meetings/lpsc2005/pdf/1606.pdf A New Candidate Impact Site In Northeastern Sudan Detected From Remote Sensing], Lunar and Planetary Science XXXVI</ref><ref>Chabou M.Ch. (2016). [https://www.researchgate.net/publication/304035970_AN_UPDATED_INVENTORY_OF_METEORITE_IMPACT_STRUCTURES_IN_THE_ARAB_WORLD AN UPDATED INVENTORY OF METEORITE IMPACT STRUCTURES IN THE ARAB WORLD] // Conference: First ArabGU International Conference (AIC-1). February 17–18, 2016. At: FSTGAT-USTHB, Algiers, ALGERIA.</ref>
+|
+| align="right" | {{Coord|17|57.1|N|37|56.1|E|name=Red Sea}}
+|-
+| [[Sudan 2 (Bayuda)]]
+| [[Sudan]]
+|[[Sudan]]
+| 10
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1496.html Bayuda]</ref><ref>A. Sparavigna (2010) [https://arxiv.org/abs/1008.0500 Crater-Like Landform in Bayuda Desert (A Processing of Satellite Images)]</ref><ref>{{cite arXiv | eprint=1008.3976 | author1=Amelia Carolina Sparavigna | title=Craters and ring complexes of the North-East Sudanese country | year=2010 | class=physics.geo-ph }}</ref>
+|{{Location map+|Sudan|float=center|width=150|alt=A map of Sudan showing three craters|caption=|places=
+{{Location map~|Sudan|lat=20.032|long=30.229|position=left|label=<div style="position: relative; top: 0.4em;">Mahas</div>}}
+{{Location map~|Sudan|lat=18.058|long=33.503|position=left|label=<div style="position: relative; top: 0.4em;">Bayuda</div>}}
+{{Location map~|Sudan|lat=17.952|long=37.93|position=left|label=<div style="position: relative; top: 1.4em; left: 1.0em;">Red Sea Hills</div>}}
+}}
+| align="right" | {{Coord|18|03.5|N|33|30.2|E|name=Bayuda}}
+|-
+| [[Sudan 3 (Mahas)]]
+| [[Sudan]]
+|[[Sudan]]
+| 2.8
+| ?
+|
+| align="center" | {{citation needed|date=April 2019}}
+|
+| align="right" | {{Coord|20|01.9|N|30|13.7|E|name=Mahas}}
+|-
+| [[Lake Svetloyar|Svetloyar Lake]]
+| [[Nizhny Novgorod Oblast|Nizhy Novgorod]]
+|Russia
+| 40
+| {{sort|0.0026|0.0026<br />(600 BC)}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a166.html Svetloyar Lake]</ref><ref>V. Feldman, A. Kiselev (2008). [http://www.lpi.usra.edu/meetings/lpsc2008/pdf/1198.pdf Shock-melted impactites at the Svetloyar meteorite crater Volga area, Russia], Lunar and Planetary Science XXXIX</ref>{{refn|group=note|name=EIDunconfirmed}}
+| [[File:7-е чудо Поволжья.jpg|150px]]
+| align="right" | {{coord|56.819|N|45.093|E|name=Svetloyar}}
+|-
+| [[Takamatsu crater|Takamatsu]]
+| [[Shikoku]]
+|Japan
+| {{sort|6|4-8}}
+| 15
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a238.html Takamatsu]</ref><ref>Y. Miura (2007) [http://www.lpi.usra.edu/meetings/lpsc2007/pdf/1188.pdf Analyses Of Surface And Underground Data Of Takamatsu Crater In Japan]. Lunar and Planetary Science XXXVIII</ref><ref>{{Cite journal |bibcode = 1995LPI....26..987M|title = Takamatsu Crater Structure: Preliminary Report of Impact Crater in Active Orogenic Region|last1 = Miura|first1 = Y.|last2 = Okamoto|first2 = M.|last3 = Fukuchi|first3 = T.|last4 = Sato|first4 = H.|last5 = Kono|first5 = Y.|last6 = Furumoto|first6 = M.|journal = Lunar and Planetary Science Conference|year = 1995|volume = 26|page = 987}}</ref><ref>Miura Y. (2002). Shocked quartz materials found in Japan. 18 General Meeting of the International Mineralogical Association "Mineralogy for the New Millennium", Edingurgh, 1–6 Sept., 2002, Edinburgh: IMA, p.105</ref><ref>Miura Y., Hirota A. (2002). Impact-related glasses in Japan. Bull. liaison Soc. fr. mineral. et cristallogr., Vol. 14, No. 1, pp. 18–19</ref>
+|
+| align="right" | {{coord|34.3|N|134.05|E|name=Takamatsu}}
+
+|-
+| [[Tarek structure|Tarek]]
+| [[Gilf Kebir]]
+|Egypt
+| 2.1
+| {{sort|112|112?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a646.html Tarek]</ref><ref name="tsun" /><ref>{{cite journal |doi=10.1016/j.jafrearsci.2006.05.006 |url=https://www.researchgate.net/publication/223583325|title=An extended field of crater-shaped structures in the Gilf Kebir region, Egypt: Observations and hypotheses about their origin |year=2006 |last1=Paillou |first1=Philippe |last2=Reynard |first2=Bruno |last3=Malézieux |first3=Jean-Marie |last4=Dejax |first4=Jean |last5=Heggy |first5=Essam |last6=Rochette |first6=Pierre |last7=Reimold |first7=Wolf Uwe |last8=Michel |first8=Patrick |last9=Baratoux |first9=David |last10=Razin |first10=Philippe |last11=Colin |first11=Jean-Paul |journal=Journal of African Earth Sciences |volume=46 |issue=3 |pages=281–299 |bibcode=2006JAfES..46..281P }}</ref><ref>Roger Weller. [http://skywalker.cochise.edu/wellerr/earth-craters/Tarek.htm Tarek crater] {{Webarchive|url=https://web.archive.org/web/20160916234213/http://skywalker.cochise.edu/wellerr/earth-craters/Tarek.htm |date=2016-09-16 }}</ref>
+|
+| align="right" | {{coord|24.601|N|27.205|E|name=Tarek}}
+|-
+| Tatarsky North
+| [[Pacific Ocean]] (NW)
+|
+| 14
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1113.html Tatarsky North]</ref><ref name="Tatarsky">B. W. Levin, S. A. Vishnevsky, and N. A. Palchik (2010). [http://www.lpi.usra.edu/meetings/lpsc2010/pdf/1189.pdf Underwater depressions on the bottom of the Tatarsky Strait, the Sea of Japan (western coast of the Sakhalin Island, Russia): possible marine impact craters], 41st Lunar and Planetary Science Conference</ref>
+|
+| align="right" | {{coord|49|57|35|N|141|23|40|E|name=Tatarsky1}}
+|-
+| Tatarsky South
+| [[Pacific Ocean]] (NW)
+|
+| 20
+| ?
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1112.html Tatarsky South]</ref><ref name="Tatarsky" />
+|
+| align="right" | {{coord|48|17|38|N|141|23|40|E|name=Tatarsky2}}
+|-
+| Tefé River
+| [[Amazonas State (Brazil)|Amazonas]]
+|[[Brazil]]
+| 15
+| {{sort|65|65 ± 20}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1682.html Tefé]</ref><ref name="braz2" /><ref>J. de Menezes, C. de Souza, F. Fortes, and C. Filho (1999). [http://earthdoc.eage.org/publication/publicationdetails/?publication=47638 Geophysical Evidence Of A Possible Impact Structure At The K-T Boundary Of The Solimões Basin, Brazil] {{Webarchive|url=https://web.archive.org/web/20160808004712/http://earthdoc.eage.org/publication/publicationdetails/?publication=47638 |date=2016-08-08 }}, 6th International Congress of the Brazilian Geophysical Society</ref>
+|
+| align="right" | {{coord|4|57|S|66|03|W|name=Tefé }}
+|-
+| [[Temimichat Crater|Temimichat]]
+| [[Tiris Zemmour Region|Tiris Zemmour]]
+|Mauritania
+| 0.7
+| {{sort|2|2?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a184.html Temimichat]</ref><ref name="tsun" /><ref>Roger Weller. [http://skywalker.cochise.edu/wellerr/earth-craters/Temimichet.htm Temimichat crater] {{Webarchive|url=https://web.archive.org/web/20160916234929/http://skywalker.cochise.edu/wellerr/earth-craters/Temimichet.htm |date=2016-09-16 }}</ref>
+|
+| align="right" | {{Coord|24|15|N|9|39|W|name=Temimichat}}
+|-
+| [[Tsenkher]]
+| [[Mongolia]]
+|Mongolia
+| 3.6
+| 5
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a235.html Tsenkher]</ref><ref>G. Komatsu et al. (2015)[http://www.hou.usra.edu/meetings/lpsc2015/pdf/1338.pdf The Tsenkher structure, Gobi-Altai, Mongolia: A probable impact crater with well-preserved rampart ejecta]. 46th Lunar and Planetary Science Conference (2015)</ref><ref>Khosbayar P., Ariunbileg Kh. (2000). Impact structure in Mongolia . The 31st International Geological Congress, Rio de Janeiro, Aug. 6–17, 2000, Rio de Janeiro: Geol. Surv. Braz, p. 6429</ref>
+|
+| align="right" | {{coord|43|38|41|N|98|22|09|E|name=Tsenkher}}
+|-
+| [[Toms Canyon impact crater|Toms Canyon]]
+| [[New Jersey]]
+|United States
+| 22
+| 35
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a359.html Toms Canyon]</ref><ref>Glass B.P. (1987). Coesite associated with North American tektite debris in DSDP site 612 on the continental slope off NEW Jersey . Lunar and Planet. Sci. Houston (Tex.), s.a..  Vol. 18: 18th Conf., Houston Tex., March 16–20, 1987: Abstr. Pap., pp. 328–329</ref><ref>{{cite journal | doi=10.1016/S0025-3227(97)00113-8 | title=The Toms Canyon structure, New Jersey outer continental shelf: A possible late Eocene impact crater | year=1998 | last1=Poag | first1=C.Wylie | last2=Poppe | first2=Lawrence J. | journal=Marine Geology | volume=145 | issue=1–2 | pages=23–60 | bibcode=1998MGeol.145...23P }}</ref><ref>{{cite journal | doi=10.2110/jsr.2011.42 | title=Glauconite Composition and Morphology, Shocked Quartz, and the Origin of the Cretaceous(?) Main Fossiliferous Layer (MFL) in Southern New Jersey, U.S.A. | date=2011 | last1=Obasi | first1=C. C. | last2=Terry | first2=D. O. | last3=Myer | first3=G. H. | last4=Grandstaff | first4=D. E. | journal=Journal of Sedimentary Research | volume=81 | issue=7 | pages=479–494 | bibcode=2011JSedR..81..479O }}</ref>
+|
+| align="right" | {{coord|39|08|N|72|51|W|name=Toms Canyon}}
+|-
+| [[Velingara|Velingara crater]]
+| [[Senegal]]
+|Senegal
+| 48
+| {{sort|31.5|23-40}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a613.html Vélingara]</ref><ref>S. Wade, M. Barbieri, J. Lichtenegger (2001) [http://www.esa.int/esapub/bulletin/bullet106/bul106_13.pdf The Velingara Circular Structure] ESA Bulletin June 2001</ref>
+| [[File:Vélingara ring-structur in senegal.png|center|150px]]
+| align="right" | {{coord|13|02|N|14|08|W|name=Vélingara}}
+|-
+| [[Versailles cryptoexplosion|Versailles]]
+| [[Kentucky]]
+|United States
+| 1.5
+| {{sort|400|<400}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a496.html Versailles]</ref><ref>{{Cite journal |bibcode = 1991Metic..26...47H|title = A Shallow Seismic Refraction Study of the Versailles Cryptoexplosion Structure, Central Kentucky|last1 = Harris|first1 = James B.|last2 = Jones|first2 = Daniel R.|last3 = Street|first3 = R. L.|journal = Meteoritics|year = 1991|volume = 26|issue = 1|page = 47|doi = 10.1111/j.1945-5100.1991.tb01014.x}}</ref>
+|
+| align="right" | {{coord|38.09|N|84.67|W|name=Versailles}}
+|-
+| [[Vichada Structure|Vichada]]
+| [[Vichada Department|Vichada]]
+|Colombia
+| 50
+| {{sort|30|30?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a755.html Vichada]</ref><ref name="tsun" />
+| [[File:Vichada Structure Skylab G40B091120000.jpg|center|150px]]
+| align="right" | {{coord|4|30|N|69|15|W|name=Vichada}}
+|-
+| [[Victoria Island structure|Victoria Island]]
+| [[California]]
+|United States
+| 5.5
+| {{sort|43|37-49}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a924.html Victoria Island]</ref>
+|
+| align="right" | {{coord|37.89|-121.53|name=Victoria Island structure}}
+|-
+| [[East Warburton Basin|Warburton East]]
+| [[South Australia]]
+|Australia
+| 200
+| {{sort|330|300-360}}
+|
+| align="center" | <ref name="GliksonOthers2015a" /><ref name="GliksonOthers2018a" /><ref name="glickson1" />
+|
+| align="right" | {{coord|28|S|140.5|E||name=Warbuton}}
+|-
+| [[Warburton West]]
+| [[South Australia]]
+|Australia
+| 200
+| {{sort|330|300-360}}
+|
+| align="center" | <ref name="GliksonOthers2015a">{{cite journal | doi=10.1016/j.tecto.2014.12.010 | title=Geophysical anomalies and quartz deformation of the Warburton West structure, central Australia | year=2015 | last1=Glikson | first1=A.Y. | last2=Meixner | first2=A.J. | last3=Radke | first3=B. | last4=Uysal | first4=I.T. | last5=Saygin | first5=E. | last6=Vickers | first6=J. | last7=Mernagh | first7=T.P. | journal=Tectonophysics | volume=643 | pages=55–72 }}</ref><ref name="GliksonOthers2018a">Glikson, A.Y. and Pirajno, F., 2018. ''The World's Largest Late to Post-Archaean Asteroid Impact Structures''. In ''Asteroids Impacts, Crustal Evolution and Related Mineral Systems with Special Reference to Australia'' (pp. 61-78). Springer, Cham.,</ref><ref name="Glikson2018a">{{cite journal | doi=10.1016/j.tecto.2017.11.003 | title=Structure and origin of Australian ring and dome features with reference to the search for asteroid impact events | year=2018 | last1=Glikson | first1=Andrew | journal=Tectonophysics | volume=722 | pages=175–196 | bibcode=2018Tectp.722..175G | hdl=1885/139145 | hdl-access=free }}</ref>
+|
+|
+|-
+| [[Weaubleau structure|Weaubleau (Weaubleau-Osceola)]]
+| [[Missouri]]
+|United States
+| 19
+| {{sort|330|330 ± 10}}
+|
+| align="center" | <ref name="DulinOthers2008a">Dulin S. and Elmore R. D. 2008. ''Paleomagnetism of the Weaubleau structure, southwestern Missouri.'' In ''The sedimentary record of meteorite impacts.'' (pp. 55-64). ''Geological Society of America Special Paper'' No. 437.</ref><ref name="EvansOthers2003a">Evans, K.R., Mickus, K.L., Rovey II, C.W. and Davis, G.H., 2003. [http://www.missourigeologists.org/Meeting2003/RI-75(2003AMGguidebook).pdf#page=7 ''Field Trip I: The Weaubleau-Osceola Structure: Evidence of a Mississippian Meteorite Impact in Southwestern Missouri.''] [http://www.missourigeologists.org/FieldtripsandGuidebooks.htm Association of Missouri Geologists Field Trip Guidebook.] 50th Annual Meeting Springfield, Missouri September 26–27, 2003, Missouri Department of Natural Resources, Rollo, MIssouri.</ref><ref name="Beauford2015a">Beauford, R.E., 2015. [https://scholarworks.uark.edu/etd/1039/ ''Physical records of impacts in the early and modern solar system.''] PhD thesis, University of Arkansas, Fayetteville, Arkansas, 174 p.</ref>
+| [[File:Weaubleau Structure shaded relief.jpg|center|150px]]
+| align="right" | {{coord|38.0|N|93.6|W|name=Weaubleau}}
+|-
+| Wembo-Nyama Ring Structure
+| [[Eastern Kasai]]
+|DR Congo
+| {{sort|41|36-46}}
+| {{sort|60|60?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a879.html Wembo-Nyama]</ref><ref>{{cite journal |url=http://www.lpi.usra.edu/meetings/lpsc2010/pdf/1601.pdf |journal=Lunar and Planetary Science |volume=XLI |issue=1533 |page=1601 |date=2010 |title=The Ring Structure of Wembo-Nyama (Eastern Kasai, R.D. Congo): A Possible Impact Crater in Central Africa |author=G. Monegato |author2=M. Massironi |author3=E. Martellato |name-list-style=amp |bibcode=2010LPI....41.1601M }}</ref><ref>{{cite news| url=https://news.bbc.co.uk/2/hi/science/nature/8526093.stm | work=BBC News | title=Ring may be giant 'impact crater' | date=2010-03-10 | access-date=2010-05-08}}</ref>
+|
+| align="right" | {{Coord|3|37|52|S|24|31|07|E|name=Wembo-Nyama ring structure}}
+|-
+| [[Wilkes Land crater|Wilkes Land 2]]
+| [[Antarctica]]
+|
+| 480
+| {{sort|375|250-500}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a1054.html Wilkes Land 2]</ref> 
+| [[File:Antarctica Map Wilkes L Crater.png|center|150px]]
+| align="right" | {{Coord|70|S|140|E|name=Wilkes}}
+|-
+| [[Woodbury astrobleme|Woodbury]]
+| [[Georgia (U.S. state)|Georgia]]
+|United States
+| 7
+| {{sort|500|500 ± 100}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a870.html Woodbury]</ref><ref>E. F. Albin and R. S. Harris (2016). [http://www.hou.usra.edu/meetings/lpsc2016/pdf/1398.pdf WOODBURY ASTROBLEME: FURTHER EVIDENCE FOR A LATE PROTEROZOIC IMPACT STRUCTURE IN WEST-CENTRAL GEORGIA, US], 47th Lunar and Planetary Science Conference</ref><ref>{{Cite journal |last1=Halford |first1=Natalie |last2=Barineau |first2=Clinton |year=2019 |title=The Search for Impact Features in Proposed Target Rocks of the "Woodbury" Structure in the Pine Mountain Belt of Southwestern Georgia |url=https://gsa.confex.com/gsa/2019SE/webprogram/Paper327565.html |journal=Geological Society of America Abstracts with Programs |volume=51 |issue=3 |article-number=327565 |doi=10.1130/abs/2019SE-327565|bibcode=2019GSAA...5127565H |s2cid=195549826 |url-access=subscription }}</ref><ref>{{Cite journal |last1=Miller |first1=Jeremy |last2=Barineau |first2=Clinton |year=2016 |title=A Case of Mistaken Identity: The "Woodbury" Structure of South Central Georgia |url=https://gsa.confex.com/gsa/2016AM/webprogram/Paper285522.html |journal=Geological Society of America Abstracts with Programs |volume=48 |issue=7 |doi=10.1130/abs/2016AM-285522|url-access=subscription }}</ref>
+|
+| align="right" | {{Coord|32.92|N|84.55|W|name=Woodbury}}
+|-
+| [[Yallalie]]
+| [[Western Australia]]
+|Australia
+| 12
+| {{sort|99|99?}}
+|
+| align="center" | <ref>[http://labmpg.sscc.ru/a221.html Yallalie]</ref><ref name="tsun" /><ref>{{cite journal | last1 = Dentith | first1 = M. | last2 = Bevan | first2 = A. | last3 = Backhouse | first3 = J. | last4 = Featherstone | first4 = W. | last5 = Koeberl | first5 = C. | year = 1999 | title = Yallalie: a Buried Structure of Possible Impact Origin in the Perth Basin, Western Australia | url = http://espace.library.curtin.edu.au/R/?func=dbin-jump-full&object_id=146448&local_base=GEN01-ERA02 | journal = Geological Magazine | volume = 136 | issue = 6| pages = 619–632 | doi = 10.1017/s0016756899003386 | bibcode = 1999GeoM..136..619D | hdl = 20.500.11937/10289 | s2cid = 38389086 | hdl-access = free }}</ref><ref>Grant, B. [http://members.iinet.net.au/~gboxer/4_Yallalie.html The Yallalie Impact Structure].</ref><ref>{{cite journal | doi=10.1016/S0031-0182(00)00244-3 | title=An Upper Pliocene lacustrine environmental record from south-Western Australia — preliminary results | year=2001 | last1=Dodson | first1=J.R. | last2=Ramrath | first2=A. | journal=Palaeogeography, Palaeoclimatology, Palaeoecology | volume=167 | issue=3–4 | pages=309–320 | bibcode=2001PPP...167..309D }}</ref><ref>{{cite journal | doi=10.1016/j.gloplacha.2004.01.013 | title=Palynological evidence for aridity events and vegetation change during the Middle Pliocene, a warm period in Southwestern Australia | year=2004 | last1=Dodson | first1=J. | last2=MacPhail | first2=M. K. | journal=Global and Planetary Change | volume=41 | issue=3–4 | pages=285–307 | bibcode=2004GPC....41..285D }}</ref>{{refn|group=note|name=EIDunconfirmed}}
+|
+| align="right" | {{coord|30|26|40|S|115|46|16|E|name=Yallalie}}
+|-
+| [[Zerelia West]]
+| [[Magnesia (regional unit)|Magnesia]]
+|Greece
+| 20
+| {{sort|0.007|0.0070<br />(5000 BC)}}
+|
+| align="center" | <ref name="ZereliaRu">[http://labmpg.sscc.ru/a1360.html Zerelia East & West]</ref><ref name="zerelia" />
+| rowspan="2" |
+| align="right" | {{coord|39|09|48|N|22|42|32|E|name=Zerelia West}}
+|-
+| [[Zerelia East]]
+| [[Magnesia (regional unit)|Magnesia]]
+|Greece
+| 10
+| {{sort|0.007|0.0070<br />(5000 BC)}}
+|
+| align="center" | <ref name="ZereliaRu" /><ref name="zerelia">{{cite journal | bibcode = 2013SolED...5.1511D | title=The enigmatic Zerelia twin-lakes (Thessaly, Central Greece): two potential meteorite impact Craters | journal=Solid Earth Discussions | volume=5 | issue=2 | pages=1511–1573 | date=2013 | doi=10.5194/sed-5-1511-2013| last1=Dietrich | first1=V. J | last2=Lagios | first2=E | last3=Reusser | first3=E | last4=Sakkas | first4=V | last5=Gartzos | first5=E | last6=Kyriakopoulos | first6=K | s2cid=56034694 | doi-access=free }}</ref>
+| align="right" | {{coord|39|09|43|N|22|42|51|E|name=Zerelia East}}
+|-
+|}
+
+== Overview ==
+Russia's [[Lake Cheko]] is thought by one research group to be the result of the famous [[Tunguska event]], although sediments in the lake have been dated back more than 5,000 years. There is highly speculative conjecture about the supposed [[Sirente crater|Sirente impact]] (c. 320 ± 90 AD) having caused the Roman emperor [[Constantine the Great|Constantine]]'s vision at [[Milvian Bridge]].<ref name="BBC-Whitehouse, D">{{cite web
+  | last = Whitehouse 
+  | first = David
+  | title = Space impact 'saved Christianity'
+  | work = BBC News
+  | publisher = [[British Broadcasting Corporation]]
+  | date = 2003-06-23
+  | url = https://news.bbc.co.uk/2/hi/science/nature/3013146.stm
+  | access-date = 2009-09-10 }}</ref>{{better source needed|date=April 2019}}
+
+The [[Burckle crater]] and [[Umm al Binni lake|Umm al Binni structure]] are proposed to be behind the floods that affected [[Sumer]]ian civilization.<ref>Sandra Blakeslee (2006). [https://www.nytimes.com/2006/11/14/science/14WAVE.html Ancient Crash, Epic Wave]</ref><ref name=Master2002>Master, S. (2002) Umm al Binni lake, a possible Holocene impact structure in the marshes of southern Iraq. In: Leroy, S. and Stewart, I.S. (Eds.), Environmental Catastrophes and Recovery in the Holocene, Abstracts Volume, Brunel University, UK, 29 August – 2 September 2002, pp.&nbsp;56–57</ref> The Kachchh impact may have been witnessed by the [[Indus Valley Civilization|Harappan]] civilization and mentioned as a fireball in [[Sanskrit]] texts.<ref name="Kachchh">R. V. Karanth, P. Thakker, and M. Gadhavi 2006. [http://www.iisc.ernet.in/~currsci/oct102006/877.pdf A preliminary report on the possible impact crater of Kachchh] {{Webarchive|url=https://web.archive.org/web/20160701150024/http://www.iisc.ernet.in/~currsci/oct102006/877.pdf |date=2016-07-01 }}, Current Science, vol. 91, no. 7, October 2006</ref>
+
+Shortly after the Hiawatha Crater was discovered, researchers suggested that the impact could have occurred as late as ~12,800 years ago, leading some to associate it with the controversial [[Younger Dryas impact hypothesis]] (YDIH).<ref name="InitialStudy">{{cite journal|first=Kurt H. |last=Kjær |display-authors=|doi=10.1126/sciadv.aar8173|pmid=30443592 |pmc=6235527 |title=A large impact crater beneath Hiawatha Glacier in northwest Greenland|journal=Science Advances |volume=4 |issue=11 |article-number=eaar8173 |date=November 2018 |bibcode=2018SciA....4.8173K }}</ref> James Kennett, a leading advocate of the [[YDIH]] said, "I'd unequivocally predict that this crater is the same age as the Younger Dryas."<ref name="Voosen2">{{Cite web |last=Voosen |first=Paul |name-list-style=vanc |date=14 November 2018 |title=Massive crater under Greenland's ice points to climate-altering impact in the time of humans |url=https://www.science.org/content/article/massive-crater-under-greenland-s-ice-points-climate-altering-impact-time-humans |url-status=live |archive-url=https://web.archive.org/web/20190113194450/https://www.sciencemag.org/news/2018/11/massive-crater-under-greenland-s-ice-points-climate-altering-impact-time-humans |archive-date=13 January 2019 |access-date=13 January 2019 |website=Sciencemag.org |publisher=[[Science (journal)|Science]]}}</ref>
+
+These claims were criticised by other scholars. According to impact physicist [[Mark Boslough]] writing for ''[[Skeptical Inquirer]]'' the first reports of the impact released by science journalist Paul Voosen focused on this being a young crater which according to Boslough "set the tone for virtually all the media reporting to follow". Boslough argued, based on evidence and statistical probability, that once the crater has been drilled and researched "it will turn out to be much older." He complained that this important discovery "was tainted by connections to a widely discredited hypothesis and speculations that did not make it through peer review".<ref name="Voosen2"/><ref>{{Cite journal |last=Boslough |first=Mark |author-link=Mark Boslough |name-list-style=vanc |date=March 2019<!-- March/April 2019 --> |title=Crater Discovery Story Flawed by Premature Link to Speculative Impact Hypothesis |journal=[[Skeptical Inquirer]] |volume=43 |issue=2 |pages=6–7}}</ref> The [[YDIH]] has since been refuted comprehensively by a team of earth scientists and impact experts.<ref>{{Cite journal |last1=Holliday |first1=Vance T. |last2=Daulton |first2=Tyrone L. |last3=Bartlein |first3=Patrick J. |last4=Boslough |first4=Mark B. |last5=Breslawski |first5=Ryan P. |last6=Fisher |first6=Abigail E. |last7=Jorgeson |first7=Ian A. |last8=Scott |first8=Andrew C. |last9=Koeberl |first9=Christian |last10=Marlon |first10=Jennifer |last11=Severinghaus |first11=Jeffrey |last12=Petaev |first12=Michail I. |last13=Claeys |first13=Philippe |date=2023-07-26 |title=Comprehensive refutation of the Younger Dryas Impact Hypothesis (YDIH) |journal=Earth-Science Reviews |volume=247 |language=en |article-number=104502 |doi=10.1016/j.earscirev.2023.104502|s2cid=260218223 |doi-access=free |bibcode=2023ESRv..24704502H }}</ref>
+
+A 2022 study using [[argon–argon dating|Argon–Argon dating]] of shocked [[Zircon|zircon crystals]] in [[Impactite|impact melt rocks]] found [[Outwash plain|outwash]] less than 10&nbsp;km downstream of the glacier pushed the estimate back to around 57.99 ± 0.54 million years ago, during the late [[Paleocene]].<ref>{{cite web |last1=Copenhagen |first1=University of |title=Giant impact crater in Greenland occurred a few million years after dinosaurs went extinct |url=https://phys.org/news/2022-03-giant-impact-crater-greenland-million.html |website=phys.org |archive-url= https://web.archive.org/web/20220310020001/https://phys.org/news/2022-03-giant-impact-crater-greenland-million.html |archive-date=10 March 2022 |language=en |date=9 March 2022 |url-status=live}}</ref><ref name="KennyOthers2022">{{cite journal |last1=Kenny |first1=Gavin G. |last2=Hyde |first2=William R. |last3=Storey |first3=Michael |last4=Garde |first4=Adam A. |last5=Whitehouse |first5=Martin J. |last6=Beck |first6=Pierre |last7=Johansson |first7=Leif |last8=Søndergaard |first8=Anne Sofie |last9=Bjørk |first9=Anders A. |last10=MacGregor |first10=Joseph A. |last11=Khan |first11=Shfaqat A. |last12=Mouginot |first12=Jérémie |last13=Johnson |first13=Brandon C. |last14=Silber |first14=Elizabeth A. |last15=Wielandt |first15=Daniel K. P. |last16=Kjær |first16=Kurt H. |last17=Larsen |first17=Nicolaj K. |title=A Late Paleocene age for Greenland's Hiawatha impact structure |journal=Science Advances |date=11 March 2022 |volume=8 |issue=10 |article-number=eabm2434 |doi=10.1126/sciadv.abm2434|pmid=35263140|pmc=8906741 |bibcode=2022SciA....8M2434K }}</ref> Confirmation would require drilling almost {{cvt|1|km|ft|spell=in}} through the ice sheet above the crater to obtain a sample of dateable, solidified impact melt from the crater.
+
+The age of the [[Bloody Creek crater]]<ref name="StevensOthers2008">{{cite journal |last1=Stevens |first1=G |first2=I |last2=Spooner |first3=J |last3=Morrow |first4=P |last4=Pufahl |first5=R |last5=Raeside |first6=RAF |last6=Grieve |first7=CR |last7=Stanley |first8=SM |last8=Barr |first9=D |last9=McMullin |year=2008 |title=Physical evidence of a late-glacial (Younger Dryas?) impact event in southwestern Nova Scotia |journal=Atlantic Geology |volume=44 |page=42}}</ref> is uncertain.
+
+As the trend in the Earth Impact Database for about 26 confirmed craters younger than a million years old shows that almost all are less than {{cvt|2|km|spell=in||||}} in diameter (except the {{cvt|3|km|spell=in||||}} Agoudal and {{cvt|4|km|spell=in||||}} [[Rio Cuarto craters|Rio Cuarto]]), the suggestion that two large craters, [[Mahuika crater|Mahuika]] ({{cvt|20|km|||||}}) and [[Burckle crater|Burckle]] ({{cvt|30|km|||||}}), formed only within the last few millennia has been met with skepticism.<ref>{{Cite journal|author=Goff, James|year=2010|title=Analysis of the Mahuika comet impact tsunami hypothesis|journal=[[Marine Geology (journal)|Marine Geology]]|volume=271|issue=3/4 |pages=292–296|doi=10.1016/j.margeo.2010.02.020|display-authors=etal|bibcode=2010MGeol.271..292G}}</ref><ref>{{cite journal |doi=10.1130/G25246A.1 |url=http://faculty.washington.edu/jbourgeo/BourgeoisWeiss2009final.pdf |title='Chevrons' are not mega-tsunami deposits – A sedimentologic assessment|year=2009|last1=Bourgeois|first1=Joanne|last2=Weiss|first2=Robert|journal=Geology|volume=37|issue=5|pages=403–406|bibcode=2009Geo....37..403B}}</ref><ref>{{cite journal|doi=10.1130/GSAT01801GW.1|title=Impacts, mega-tsunami, and other extraordinary claims|year=2008|last1=Pinter|first1=Nicholas|last2=Ishman|first2=Scott E.|journal=GSA Today|volume=18|issue=1 |page=37|doi-access=free|bibcode=2008GSAT...18a..37P }}</ref> However, the source of the young (less than a million years old) and enormous [[Australasian strewnfield]] (c. 790 [[kiloannum|ka]]) is suggested to be a crater about {{cvt|100|km|||||}} across somewhere in Indochina,<ref name=povenmire>Povenmire H., Liu W. and Xianlin I. (1999) [http://www.lpi.usra.edu/meetings/LPSC99/pdf/1072.pdf "Australasian tektites found in Guangxi Province, China"], 30th Annual Lunar and Planetary Science Conference, Houston, March 1999.</ref><ref name=glass1994>{{Cite journal |doi = 10.1029/94JE01866|title = Geographic variation in Australasian microtektite concentrations: Implications concerning the location and size of the source crater|year = 1994|last1 = Glass|first1 = B. P.|last2 = Pizzuto|first2 = J. E.|journal = Journal of Geophysical Research|volume = 99|issue = E9|page = 19075|bibcode = 1994JGR....9919075G}}</ref> with Hartung and Koeberl (1994) proposing the elongated {{cvt|100|x|35|km|||}} [[Tonlé Sap|Tonlé Sap lake]] in [[Cambodia]] (visible in the map at the side) as a suspect structure.<ref name=hartung>{{Cite journal | doi=10.1111/j.1945-5100.1994.tb00606.x| title=In search of the Australasian tektite source crater: The Tonle Sap hypothesis| year=1994| last1=Hartung| first1=Jack| last2=Koeberl| first2=Christian| journal=Meteoritics| volume=29| issue=3| pages=411–416| bibcode=1994Metic..29..411H}}</ref>
+
+The [[Decorah crater]] has been conjectured as being part of the [[Ordovician meteor event]].<ref name=Vastag>{{cite news|last=Vastag|first=Brian|title=Crater found in Iowa points to asteroid break-up 470 million years ago|url=https://www.washingtonpost.com/national/health-science/crater-found-in-iowa-points-to-asteroid-break-up-470-million-years-ago/2013/02/18/545131f8-76d5-11e2-aa12-e6cf1d31106b_story.html?wprss=rss_national|access-date=19 February 2013|newspaper=[[Washington Post]]|date=18 February 2013}}</ref>{{better source needed|date=April 2019}}
+
+Several twin impacts have been proposed, such as the [[Rubielos de la Cérida impact structure|Rubielos de la Cérida]] and [[Azuara impact structure|Azuara]] (30–40 Ma),<ref>{{cite journal |last1=Ernstson |first1=K. |last2=Claudin |first2=F. |last3=Schüssler |first3=U. |last4=Hradil |first4=K. |year=2002 |url=http://www.impact-structures.com/pdfall.pdf |title=The mid-Tertiary Azuara and Rubielos de la Cérida paired impact structures (Spain)|journal=Treb. Mus. Geol. Barcelona |volume=11 |pages=5–65}}</ref> Cerro Jarau and Piratininga (c. 117 Ma),<ref name=braz1/> and [[East Warburton Basin|Warburton East and West]] (300–360 Ma).<ref name=war>[http://www.cbc.ca/news/technology/world-s-largest-asteroid-impact-zone-found-in-australia-1.3006800 World's largest asteroid impact zone found in Australia]: Meteorite broke in two, leaving two craters each 200 km across. Mar 24, 2015</ref> However, adjacent craters may not necessarily have formed at the same time, as demonstrated by the case of the confirmed [[Clearwater Lakes|Clearwater East and West]] lakes.
+
+Some confirmed impacts like [[Sudbury Basin|Sudbury]] or [[Chicxulub crater|Chicxulub]] are also sources of [[magnetic anomalies]]<ref>[http://geogratis.gc.ca/api/en/nrcan-rncan/ess-sst/b6c521eb-5155-522a-96cc-b8c9e5ed4b65.html Magnetic anomaly map, Sudbury, Ontario and Quebec]. Natural Resources Canada</ref> and/or [[gravity anomalies]]. The magnetic anomalies [[Bangui magnetic anomaly|Bangui]] and Jackpine Creek,<ref name=jackpine/> the gravity anomalies [[Wilkes Land crater]] and Falkland Islands,<ref name=Malvinas>{{cite journal |first1=M. |last1=Rocca |first2=J. |last2=Presser |year=2015 |url=https://www.researchgate.net/publication/283123311 |title=A possible new very large impact structure in Malvinas Islands |journal=Historia Natural, Tercera Series |volume=5 |issue=2}}</ref> and others have been considered as being of impact origin. Bangui apparently has been discredited,<ref name=master/><ref>L. Antoine, W. Reimold, and A. Tessema (1999) [http://www.lpi.usra.edu/meetings/metsoc99/pdf/5087.pdf The Bangui Magnetic Anomaly Revisited], 62nd Annual Meteoritical Society Meeting</ref> but appears again in a 2014 table of unconfirmed structures in Africa by Reimold and Koeberl.<ref name=Africa/>
+
+Several anomalies in [[Williston Basin]] were identified by Swatzky in the 1970s as [[astrobleme]]s including [[Viewfield crater|Viewfield]], [[Red Wing crater|Red Wing Creek]], [[Eagle Butte crater|Eagle Butte]], [[Dumas magnetic anomaly|Dumas]], and [[Hartney anomaly|Hartney]], of which only the last two are unconfirmed.<ref name=dumas/>
+
+The [[Eltanin impact]] has been confirmed (via an [[iridium anomaly]] and meteoritic material from ocean cores) but, as it fell into the [[Pacific Ocean]], apparently no crater was formed. The age of [[Silverpit crater|Silverpit]] and the confirmed [[Boltysh crater]] (65.17 ± 0.64 Ma), as well as their [[latitude]], has led to the speculative hypothesis that there may have been several impacts during the KT boundary.<ref>Howard Falcon-Lang (2010). [https://www.bbc.co.uk/news/science-environment-11112417 Double space strike 'caused dinosaur extinction'], BBC News</ref><ref>{{cite journal | last1 = Jolley | first1 = D. | last2 = Gilmour | first2 = I. | last3 = Gurov | first3 = E. | last4 = Kelley | first4 = S. | last5 = Watson | first5 = J. | year = 2010 | title = Two large meteorite impacts at the Cretaceous-Paleogene boundary | journal = Geology | volume = 38 | issue = 9| pages = 835–838 | doi = 10.1130/G31034.1 | bibcode = 2010Geo....38..835J | s2cid = 120172960 | url = http://oro.open.ac.uk/22382/1/Jolley_et_al_2010.pdf }}</ref> Of the five [[ocean]]s in descending order by area, namely the [[Pacific Ocean|Pacific]], [[Atlantic Ocean|Atlantic]], [[Indian Ocean|Indian]], [[Southern Ocean|Antarctic]], and [[Arctic Ocean|Arctic]], only the smallest (the Arctic) does not yet have a proposed unconfirmed impact crater.
+
+Craters larger than {{convert|100|km|mi}} in the [[Phanerozoic]] (after 541 Ma) are notable for their size as well as for the possible coeval events associated with them especially the major [[extinction event]]s.
+
+For example, the Ishim impact structure<ref name=dachille/> is conjectured to be bounded by the late [[Ordovician]]-early [[Silurian]] (c. 445 ± 5 Ma),<ref name=zeylik1/> the two [[East Warburton Basin|Warburton basins]] have been linked to the [[Late Devonian extinction]] (c. 360 Ma),<ref name=glickson1/> both [[Bedout]] and the [[Wilkes Land crater]] have been associated with the severe [[Permian–Triassic extinction event]] (c. 252 Ma),<ref name="Becker2006"/><ref name="big bang"/> [[Manicouagan impact structure|Manicouagan]] (c. 215 Ma) was once thought to be connected to the [[Triassic–Jurassic extinction event]] (c. 201 Ma)<ref name=Hodych/> but more recent dating has made it unlikely, while the consensus is the [[Chicxulub impact]] caused the one for [[Cretaceous–Paleogene extinction event|Cretaceous–Paleogene]] (c. 66 Ma).
+
+However, other extinction theories employ coeval periods of [[Flood basalt#List of flood basalts|massive volcanism]] such as the [[Siberian Traps]] (Permian-Triassic) and [[Deccan Traps]] (Cretaceous-Paleogene).
+
+== Undiscovered but inferred ==
+[[File:Australasian strewnfield.jpg|thumb|250px|alt=An approximate map of the strewnfield.|Australasian [[strewnfield]]. Shaded areas represent [[tektite]] finds.]]
+There is geological evidence for impact events having taken place on Earth on certain specific occasions, which should have formed craters, but for which no impact craters have been found. In some cases this is because of erosion and Earth's crust having been recycled through plate tectonics, in others likely because exploration of the Earth's surface is incomplete, or because no actual crater was formed because the impacting object exploded as a cosmic air burst. Typically the ages are already known and the diameters can be estimated.
+
+{| class="wikitable sortable"
+! Parent crater of
+! Expected crater diameter
+! Age
+! Notes
+|-
+| [[Pica glass]]
+| Unknown
+| 12 [[Year#SI prefix multipliers|ka]]
+| align=center | <ref>{{cite journal |last1=Schultz |first1=P. H. |last2=Harris |first2=R. S. |last3=Perroud |first3=S. |last4=Blanco |first4=N.|last5=Tomlinson |first5=S.|title=Widespread glasses generated by cometary fireballs during the late Pleistocene in the Atacama Desert, Chile |journal=Geology |volume=50 |page=205 |date=2022 |issue=2 |doi=10.1130/G49426.1 |bibcode=2022Geo....50..205S |s2cid=242062030 |doi-access=free }}</ref>
+|-
+| [[Libyan desert glass]]
+| Unknown
+| 29 [[Year#SI prefix multipliers|Ma]]
+| align=center | <ref name="CavosieOthers2019a">{{cite journal|last1=Cavosie|first1=A.J.
+|last2=Koeberl|first2=C.|title=Overestimation of threat from 100 Mt–class airbursts? High-pressure evidence from zircon in Libyan Desert Glass|journal=Geology|volume=47|issue=7|pages=609–612|date=2019|doi=10.1130/G45974.1
+|bibcode=2019Geo....47..609C
+|s2cid=155125330
+}}</ref><ref name="KoeberlOthers2019a">{{cite journal|last1=Koeberl|first1=C. 
+|last2=Ferrière|first2=L.|title=Libyan Desert Glass area in western Egypt: Shocked quartz in bedrock points to a possible deeply eroded impact structure in the region|journal=Meteoritics & Planetary Science|volume=54|issue=10|pages=2398–2408|date=2019|doi=10.1111/maps.13250 
+|bibcode=2019M&PS...54.2398K 
+|s2cid=134219301 
+|doi-access=free}}</ref><ref name="SighinolfiOthers2020a">{{cite journal|last1=Sighinolfi|first1=G.P.|last2=Lugli|first2=F.|last3=Piccione|first3=F.
+|last4=Michele|first4=V.D. |last5=Cipriani|first5=A.|title=Terrestrial target and melting site of Libyan Desert Glass: New evidence from trace elements and Sr isotopes|journal=Meteoritics & Planetary Science|volume=55|issue=8|pages=1865–1883|date=2020|doi=10.1111/maps.13550 |bibcode=2020M&PS...55.1865S |hdl=11380/1227258 |s2cid=225333357 |hdl-access=free}}</ref><ref name="SvestovOthers2020a">{{cite journal|last1=Sestov|first1=V.|last2=Shuvalov|first2= V.|last3=Kosarev|first3=I.|title=Formation of Libyan Desert Glass: Numerical simulations of melting of silica due to radiation from near-surface airbursts|journal=Meteoritics & Planetary Science|volume=55|issue=4|pages=895–910|date=2020|doi=10.1111/maps.13470 |bibcode=2020M&PS...55..895S |s2cid=216264770 }}</ref>
+|-
+| [[Dakhla Oasis|Dakhleh]] glass
+| 0.4&nbsp;km
+| 150 [[Year#SI prefix multipliers|ka]]
+| align=center | <ref>{{cite journal |last1=Haldemann |first1=A. F. C. |last2=Kleindienst |first2=M. R. |last3=Churcher |first3=C. S. |last4=Smith |first4=J. R. |last5=Schwarcz |first5=H. P. |last6=Markham |first6=K. |last7=Osinski |first7=G. |title=Mapping Impact Modified Sediments: Subtle Remote-Sensing Signatures of the Dakhleh Oasis Catastrophic Event, Western Desert, Egypt |journal=Bulletin of the American Astronomical Society |volume=37 |page=648 |date=August 2005 |bibcode=2005DPS....37.1703H }}</ref><ref>G. Osinski, A. Haldemann, et al. (2007). [http://www.lpi.usra.edu/meetings/lpsc2007/pdf/1346.pdf Impact Glass At The Dakhleh Oasis, Egypt: Evidence For A Cratering Event Or Large Aerial Burst?], Lunar and Planetary Science XXXVIII</ref>
+|-
+| [[Argentinian impact glasses]]
+| Unknown 
+| 6, 114, and 445 [[Year#SI prefix multipliers|ka]];<br />5.3 and 9.2 [[Year#SI prefix multipliers|Ma]]
+| align=center | <ref>{{cite journal |url=https://www.researchgate.net/publication/11367157 |doi=10.1126/science.1068345|title=A Possible Tektite Strewn Field in the Argentinian Pampa |year=2002|last1=Bland|first1=P. A.|last2=De Souza Filho|first2=C. R.|last3=Jull|first3=A. J. |last4=Kelley|first4=S. P.|last5=Hough|first5=R. M.|last6=Artemieva|first6=N. A.|author6-link=Natalia Artemieva|last7=Pierazzo|first7=E. |last8=Coniglio|first8=J.|last9=Pinotti|first9=L.|last10=Evers|first10=V. |last11=Kearsley|first11=A. T. |journal=Science|volume=296|issue=5570|pages=1109–1111|pmid=12004127|bibcode=2002Sci...296.1109B |s2cid=41279356}}</ref><ref name="SchultzOthers2004a">{{Cite journal|last1=Schulz|first1=P.H.|last2=Zárate|first2=M.|last3=Hames|first3=B.|last4=Koeberl|first4=C.|last5=Bunch|first5=T.|last6=Storzer|first6=D.|last7=Renne|first7=P.|last8= Wittke|first8=J.
+|title=The Quaternary impact record from the Pampas, Argentina|journal=Earth and Planetary Science Letters|volume=219|issue=3–4|pages=221–238|doi= 10.1016/S0012-821X(04)00010-X|year=2004|bibcode=2004E&PSL.219..221S }}</ref><ref name="SchultzOthers2006a">{{Cite journal |last1=Schulz |first1=P.H. |last2=Zárate |first2=M. |last3=Hames |first3=B. |last4=Harris |first4=R.S. |last5=Bunch |first5=T. |last6=Koeberl |first6=C. |last7=Renne |first7=P. |last8=Wittke |first8=J. |year=2006 |title=The record of Miocene impacts in the Argentine Pampas |url=https://ri.conicet.gov.ar/handle/11336/81867 |journal=Meteoritics & Planetary Science |volume=41 |issue=5 |pages=749–771|doi=10.1111/j.1945-5100.2006.tb00990.x |bibcode=2006M&PS...41..749S |hdl=11336/81867 |s2cid=7590495 |hdl-access=free }}</ref>
+|-
+| [[Australasian Strewn Field|Australasian tektites]]
+| 32–114&nbsp;km 
+| 780 ka
+| align=center | <ref name=glass1994/>
+|-
+| [[Central American tektites]]
+| 14&nbsp;km 
+| 820 ka
+| align=center | <ref name="PovenmireOthers2012a">{{Cite journal|last1=Povenmire|first1=H.|last2=Burrer|first2=B.|last3=Cornec|first3=J.H.|last4=Harris|first4=R.S.|title=The New Central American Tektite Strewn Field Update|url=http://www.lpi.usra.edu/meetings/lpsc2012/pdf/1260.pdf|journal=43rd Lunar and Planetary Science Conference, Houston, Texas. Abstract No. 1260|volume= |issue= |pages= |doi= |year=2012}}</ref><ref name="SchwarzOthers2016a">{{Cite journal|last1=Schwarz|first1=W.H.|last2=Trieloff|first2=M.|last3=Bollinger|first3=K.|last4= Gantert|first4=N.|last5=Fernandes|first5=V.A.|last6=Meyer|first6=H.P.|last7=Povenmire|first7=H.|last8=Jessberger|first8=E.K.|last9=Guglielmino|first9=M.|last10=Koeberl|first10=C.|title=Coeval ages of Australasian, Central American and Western Canadian tektites reveal multiple impacts 790 ka ago|journal=Geochimica et Cosmochimica Acta|volume=178|issue= |pages=307–319|doi= 10.1016/j.gca.2015.12.037|year=2016|bibcode=2016GeCoA.178..307S }}</ref><ref name="KoeberlOthers2022a">{{Cite journal|last1=Koeberl|first1=C.|last2=Glass|first2=B.P.|last3=Schulz|first3=T.|last4=Wegner|first4=W.|last5=Giuli|first5=G.|last6=Cicconi|first6=M.R.|last7=Trapananti|first7=A.|last8= Stabile|first8=P.|last9=Cestelli-Guidi|first9=M.|last10=Park|first10=J.|last11=Herzog|first11=G.F.|title=Tektite glasses from Belize, Central America: Petrography, geochemistry, and search for a possible meteoritic component|journal=Geochimica et Cosmochimica Acta|volume=325|issue= |pages=232–257|doi= 10.1016/j.gca.2022.02.021|year=2022|bibcode=2022GeCoA.325..232K |s2cid=247063391 |doi-access=free|hdl=11581/470415|hdl-access=free}}</ref>
+|-
+| [[Skye ejecta deposits]]
+| Unknown
+| 60 [[Year#SI prefix multipliers|Ma]]
+| align=center | <ref>{{Cite journal|last1=Drake|first1=Simon M.|last2=Beard|first2=Andrew D.|last3=Jones |first3=Adrian P.|last4=Brown|first4=David J.|last5=Fortes|first5=A. Dominic|last6=Millar|first6=Ian L. |last7=Carter|first7=Andrew|last8=Baca|first8=Jergus|last9=Downes|first9=Hilary|title=Discovery of a meteoritic ejecta layer containing unmelted impactor fragments at the base of Paleocene lavas, Isle of Skye, Scotland|journal=Geology|volume=46|issue=2|page=171|doi=10.1130/g39452.1|year=2017|doi-access=free |bibcode=2018Geo....46..171D}}</ref>
+|-
+| [[Stac Fada Member]]
+| 40&nbsp;km 
+| 1.2 [[Year#SI prefix multipliers|Ga]]
+| align=center | <ref name="Simms">{{cite journal|last1=Simms|first1=Michael J.|title=The Stac Fada impact ejecta deposit and the Lairg Gravity Low: evidence for a buried Precambrian impact crater in Scotland? |journal=Proceedings of the Geologists' Association|date=December 2015|volume=126|issue=6|pages=742–761|doi=10.1016/j.pgeola.2015.08.010|bibcode=2015PrGA..126..742S |url=https://www.researchgate.net/publication/282570971|access-date=5 April 2017}}</ref><ref name="KennyOthers2019a">{{cite journal|last1=Kenny|first1=G.G.|last2=O'Sullivan|first2=G.J.|last3=Alexander|first3=S.|last4=Simms|first4=M.J.|last5=Chew|first5=D.M.|last6=Kamber|first6=B.S.|title=On the track of a Scottish impact structure: a detrital zircon and apatite provenance study of the Stac Fada Member and wider Stoer Group, NW Scotland|journal=Geological Magazine|volume=156|issue=11|pages=1863–1876|date=2019|doi= 10.1017/S0016756819000220|bibcode=2019GeoM..156.1863K |s2cid=150192833 |url=https://eprints.qut.edu.au/197844/8/on_the_track_of_a_scottish_impact_structure_a_detrital_zircon_and_apatite_provenance_study_of_the_stac_fada_member_and_wider_stoer_group_nw_scotland.pdf }}</ref><ref name="OsinskiOthers2020a">{{cite journal|last1=Osinski|first1=G.R.|last2=Ferrière|first2=L.|last3=Hill|first3=P.J.A.|last4=Pave|first4=A.R.|last5=Preston|first5=L.J.|last6=Singleton|first6=A.|last7=Pickersgill|first7=A.E.|title=The Mesoproterozoic Stac Fada Member, NW Scotland: an impact origin confirmed but refined|journal=Journal of the Geological Society|volume=178|issue=9|page=no. jgs2020-056|date=2014|doi= }}</ref>
+|-
+| [[Kaapvaal craton#Barberton greenstone belt|Barberton Greenstone Belt spherules]]
+| 500&nbsp;km
+| 3.2 Ga
+| align=center | <ref name="SleepOthers2004a">{{cite journal|last1=Sleep |first1=N.H. |last2=Lowe |first2=D.R. |title=Physics of crustal fracturing and chert dike formation triggered by asteroid impact, ~3.26 Ga, Barberton greenstone belt, South Africa |journal= Geochemistry, Geophysics, Geosystems |volume=159 |pages=1045–1070 |date=2004 |issue=4}}</ref><ref name="LoweOthers2014a">{{cite journal|last1=Lowe |first1=D.R. |last2= Byerly |first2=G.R. |last3=Kyte |first3=F.T. |title=Recently discovered 3.42–3.23 Ga impact layers, Barberton Belt, South Africa: 3.8 Ga detrital zircons, Archean impact history, and tectonic implications |journal=Geology |volume=42 |pages=747–750  |date=2014 |issue=9|doi=10.1130/G35743.1 |bibcode=2014Geo....42..747L }}</ref>
+|-
+| [[North Pole Crater|Marble Bar impact spherules]]
+| "hundreds of kilometers"
+| 3.4 Ga
+| align=center | <ref name="GliksonOther2016a">{{cite journal|last1=Glikson |first1=A. |last2=Hickman |first2=A. |last3=Evans |first3=N.J. |last4=Kirkland |first4=C.L. |last5=Park |first5=J.W. |last6=Rapp |first6=RS. |last7=Romanon |first7=S. |title=A new ~3.46 Ga asteroid impact ejecta unit at Marble Bar, Pilbara Craton, Western Australia: A petrological, microprobe and laser ablation ICPMS study |journal=Precambrian Research |volume=279 |pages=103–122 |date=2016 |doi=10.1016/j.precamres.2016.04.003|bibcode=2016PreR..279..103G }}</ref>
+|-
+|[[Kaveri Crater]]
+|120&nbsp;km
+|800 to 550 Ma
+|align=center|<ref>{{Cite journal |last1=Subrahmanya |first1=K. R. |last2=Prakash Narasimha |first2=K. N. |date=October 2017 |title=Kaveri crater – An impact structure in the Precambrian terrain of southern India |url=http://link.springer.com/10.1007/s12594-017-0733-5 |journal=Journal of the Geological Society of India |language=en |volume=90 |issue=4 |pages=387–395 |doi=10.1007/s12594-017-0733-5 |bibcode=2017JGSI...90..387S |issn=0016-7622 |s2cid=134717819|url-access=subscription }}</ref>
+|}
+
+== Mistaken identity ==
+Some geological processes can result in circular or near-circular features that may be mistaken for impact craters. Some examples are [[calderas]], [[maar]]s, [[sinkholes]], [[glacial cirque]]s, [[intrusive rock|igneous intrusions]], [[ring dike]]s, [[salt domes]], [[dome (geology)|geologic domes]], [[ventifacts]], [[tuff ring]]s, [[forest ring]]s, and others. Conversely, an impact crater may originally be thought as one of these geological features, like [[Meteor Crater]] (as a [[maar]]) or [[Upheaval Dome]] (as a salt dome).
+
+The presence of [[shock metamorphism]] and [[shatter cones]] are important criteria in favor of an impact interpretation, though massive landslides (such as the [[Sturzstrom|Köfels landslide]] of 7800 BC which was once thought to be impact-related) may produce shock-like fused rocks called "frictionite".<ref>{{Cite journal |author=Weidinger JT, Korup O |year=2008 |title=Frictionite as evidence for a large Late Quaternary rockslide near Kanchenjunga, Sikkim Himalayas, India – Implications for extreme events in mountain relief destruction |journal=Geomorphology |volume=103 |number=1 |pages=57–65 |doi=10.1016/j.geomorph.2007.10.021|bibcode=2009Geomo.103...57W }}</ref>
+<gallery mode="packed" heights="120" style="text-align:left">
+File:Crater lake oregon.jpg|[[Crater Lake]], Oregon (a ''[[caldera]]'')
+File:Maare.jpg|Three ''[[maar]]s'' in Germany
+File:Great Blue Hole.jpg|[[Great Blue Hole]], Belize (a ''[[sinkhole]]'')
+File:2013-09-09 12 34 02 View of the Verdi Lake from Verdi Peaks.jpg|[[Verdi Lake (Nevada)|Verdi Lake]] (a ''[[glacial cirque]]'')
+File:Kondyor-view.jpg|[[Kondyor Massif]] or Konder (an ''[[intrusive rock|igneous intrusion]]'')<ref>Mika McKinnon (2015). [http://space.gizmodo.com/this-is-not-a-crater-so-what-is-it-1677228983 This Is Not A Crater, So What Is It?] at space.gizmodo.com</ref>
+File:Melville Island salt diapir.png|''[[Salt domes]]'' on [[Melville Island (Northwest Territories and Nunavut)|Melville Island]]
+File:ASTER Richat.jpg|The [[Richat Structure|Richat structure]] (a ''[[dome (geology)|geologic dome)]]''<ref>{{cite journal | last1 = Dietz | first1 = R.S. | last2 = Fudali | first2 = R. | last3 = Cassidy | first3 = W. | year = 1969 | title = Richat and Semsiyat Domes (Mauritania): Not Astroblemes | url = http://gsabulletin.gsapubs.org/content/80/7/1367.short | journal = Geological Society of America | volume = 80 | issue = 7| pages = 1367–1372 | doi = 10.1130/0016-7606(1969)80[1367:rasdmn]2.0.co;2 | bibcode = 1969GSAB...80.1367D }}</ref>
+File:Arkenu craters.jpg|The [[Arkenu structures]] (a pair of ''[[ring dike]]s)''
+File:ISS-47 Brukkaros Mountain, Namibia.jpg|[[Brukkaros Mountain]] (a ''[[tuff ring]])''
+File:Boreal Forest Ring.jpg|A ''[[forest ring]]'' in [[Ontario]]
+</gallery>
+
+== See also ==
+* [[Earth Impact Database]]
+* [[Gliese 710]] – example of gravitational perturbations (in mega-year scale) of the Solar System
+* [[Impact Field Studies Group]]
+* [[Impact crater]]s
+* [[Impact event]]s
+* [[List of impact craters on Earth]]
+* [[Meteor air burst]]
+* [[Tollmann's bolide hypothesis]]
+* ''[[Traces of Catastrophe]]'', 1998 book from [[Lunar and Planetary Institute]] – comprehensive reference on impact crater science
+
+== Notes and references ==
+=== Notes ===
+{{reflist|group=note}}
+
+=== References ===
+{{reflist|30em|refs=
+<ref name=dachille>{{Cite journal|title=Frequency of the formation of large terrestrial impact craters|journal=Meteoritics|volume=11|page=270|author=Frank Dachille (1976).|bibcode=1976Metic..11..270D|year=1976}}</ref>
+<ref name=zeylik1>Zeylik B. S.; Seytmuratova E. Yu, 1974: A meteorite-impact structure in central Kazakhstan and its magmatic-ore controlling role. Doklady Akademii Nauk SSSR: 1, pp. 167–170</ref>
+<ref name=glickson1>Stephen Luntz (2013). [http://www.australasianscience.com.au/article/issue-may-2013/huge-asteroid-impact-identified.html Huge Asteroid Impact Identified]. Australasian Science</ref>
+<ref name="Becker2006">Becker L., Shukolyukov A., Macassic C., Lugmair G. & Poreda R. 2006. Extraterrestrial Chromium at the Graphite Peak P/Tr boundary and in the Bedout Impact Melt Breccia. Lunar and Planetary Science XXXVII (2006), abstract # 2321.[http://www.lpi.usra.edu/meetings/lpsc2006/pdf/2321.pdf PDF]</ref>
+<ref name="big bang">{{cite web |last=Gorder |first=Pam Frost |date=June 1, 2006 |title=Big Bang in Antarctica&nbsp;– Killer Crater Found Under Ice |publisher=Ohio State University Research News |url=http://researchnews.osu.edu/archive/erthboom.htm |archive-url=https://web.archive.org/web/20160306140004/http://researchnews.osu.edu/archive/erthboom.htm |archive-date=March 6, 2016 }}</ref>
+<ref name=Hodych>{{cite journal|first=J.P.|last=Hodych|author2=G.R.Dunning|title=Did the Manicouagan impact trigger end-of-Triassic mass extinction?|journal=Geology|volume=20|issue=1|date=1992|pages=51.54|doi=10.1130/0091-7613(1992)020<0051:DTMITE>2.3.CO;2|bibcode = 1992Geo....20...51H }}</ref>
+}}
+
+=== Bibliography ===
+* {{citation |last=Mikheeva |first=Anna |year=2019 |title=The Complete Catalog of the Earth's Impact structures |url=https://labmpg.sscc.ru/impact/index1.html |publisher=Institute of Computational Mathematics and Mathematical Geophysics SB RAS |page=1 |access-date=2025-10-28}}
+
+== External links ==
+* [https://www.unb.ca/passc/ImpactDatabase/ Earth Impact Database] – List of confirmed earth impact sites at the Planetary and Space Science Centre, [[University of New Brunswick]]
+* [https://www.datapages.com/gis-map-publishing-program/gis-open-files/geothematic/david-rajmon-global-impact-crater-gis-project David Rajmon Global Impact Crater GIS Project] (formerly either [https://web.archive.org/web/20140319132901/http://impacts.rajmon.cz/ Impact Databas] or [https://www.researchgate.net/profile/David-Rajmon/publication/252892732_Suspected_Earth_Impact_Sites/links/5639dea808ae4624b76051fe/Suspected-Earth-Impact-Sites.pdfhttps://www.researchgate.net/profile/David-Rajmon/publication/252892732_Suspected_Earth_Impact_Sites/links/5639dea808ae4624b76051fe/Suspected-Earth-Impact-Sites.pdf Suspected Earth Impact Sites list]) maintained by David Rajmon for [https://web.archive.org/web/20140816123552/http://web.eps.utk.edu/~faculty/ifsg.htm Impact Field Studies Group], US
+
+{{Impact cratering on Earth}}
+
+{{DEFAULTSORT:Impact craters, possible, Earth}}
+[[Category:Lists of impact craters on Earth|+]]
+[[Category:Lists of coordinates]]
+[[Category:Possible impact craters on Earth|*]]

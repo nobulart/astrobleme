@@ -1,0 +1,184 @@
+{
+  "decision": "Quarantine affected global catalogue analyses, reconstruct catalogue provenance, rerun dependent outputs, retain terrain ranking as exploratory screening.",
+  "authoritative_sources": [
+    "/Users/craig/ECDO/papers/astrobleme/astroblemes.geojson",
+    "/Users/craig/ECDO/papers/astrobleme/ranking_output/arc_ranking.csv",
+    "/Users/craig/ECDO/papers/astrobleme/analysis.py",
+    "/Users/craig/ECDO/papers/astrobleme/astrobleme.tex"
+  ],
+  "catalogue_audit": {
+    "entries": 253,
+    "local_eid_matches": 84,
+    "diameter_mismatches": 40,
+    "diameter_mismatch_indices": [
+      21,
+      22,
+      30,
+      34,
+      35,
+      39,
+      41,
+      44,
+      55,
+      57,
+      58,
+      59,
+      64,
+      67,
+      70,
+      71,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      94,
+      99,
+      100,
+      101,
+      104,
+      131,
+      140,
+      145,
+      146,
+      151,
+      153,
+      154,
+      173,
+      174,
+      175,
+      187,
+      191,
+      199
+    ],
+    "colon_combined_identities": 68,
+    "colon_identity_indices": [
+      2,
+      4,
+      5,
+      12,
+      13,
+      14,
+      18,
+      20,
+      24,
+      25,
+      28,
+      31,
+      33,
+      37,
+      45,
+      46,
+      47,
+      49,
+      50,
+      51,
+      54,
+      61,
+      62,
+      63,
+      66,
+      69,
+      72,
+      74,
+      79,
+      86,
+      87,
+      102,
+      108,
+      112,
+      116,
+      117,
+      124,
+      141,
+      142,
+      143,
+      148,
+      150,
+      152,
+      155,
+      156,
+      163,
+      165,
+      166,
+      167,
+      168,
+      170,
+      171,
+      172,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      190,
+      192,
+      197,
+      203,
+      206,
+      207
+    ]
+  },
+  "sensitivity": {
+    "seed": 20260620,
+    "replicates": 1999,
+    "current": {
+      "scale": 5.529903402266161,
+      "ks": 0.16232223934935552,
+      "p": 0.0005
+    },
+    "raw_substitution": {
+      "scale": 9.961068592764898,
+      "ks": 0.05261895193939792,
+      "p": 0.1085
+    },
+    "interpretation": "Sensitivity only: numeric diameter_raw substitutes for disagreeing diameter_km values; identity and source reconstruction remain required."
+  },
+  "ranking_stages": [
+    {
+      "stage": "All visually selected arcs",
+      "count": 1318
+    },
+    {
+      "stage": "Score \u2265 0.70",
+      "count": 233
+    },
+    {
+      "stage": "Score \u2265 0.75",
+      "count": 82
+    },
+    {
+      "stage": "Score \u2265 0.80",
+      "count": 19
+    }
+  ],
+  "chart_map": [
+    {
+      "section": "Catalogue defect",
+      "family": "Comparison & Ranking",
+      "type": "Horizontal bars",
+      "asset": "charts/catalogue_integrity.png"
+    },
+    {
+      "section": "Sensitivity",
+      "family": "Uncertainty & Benchmark",
+      "type": "Faceted dot comparison",
+      "asset": "charts/size_sensitivity.png"
+    },
+    {
+      "section": "Surviving ranking",
+      "family": "Decomposition & Progression",
+      "type": "Stage bars",
+      "asset": "charts/ranking_funnel.png"
+    }
+  ],
+  "omissions": {
+    "final corrected catalogue analysis": "Blocked by missing original acquisition/provenance reconstruction.",
+    "geological confirmation": "Not supported by current morphology, imagery or broad-boundary data."
+  }
+}

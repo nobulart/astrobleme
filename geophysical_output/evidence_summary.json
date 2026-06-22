@@ -1,0 +1,92 @@
+{
+  "candidate_count": 1318,
+  "elapsed_seconds": 51.19214701652527,
+  "score_policy": "Evidence channels are retained separately; the existing followup_score is not modified.",
+  "source_fingerprints": [
+    {
+      "path": "/Users/craig/ECDO/GIS/gebco_2026_tid/GEBCO_2026_TID.nc",
+      "bytes": 3733523740,
+      "mtime_ns": 1776782648000000000,
+      "sha256_first_mib": "c1337e64c7532b0b38d0fbf3293101f80adebf0841db1fa93bf4029388111c87"
+    },
+    {
+      "path": "/Users/craig/ECDO/GIS/WGM2012/WGM2012_Bouguer_ponc_2min.grd",
+      "bytes": 233410500,
+      "mtime_ns": 1782037043132256457,
+      "sha256_first_mib": "a7f494426c721b0dac09e6c8d1e3c58c7c159944976362a8d5fb4b508e197fab"
+    },
+    {
+      "path": "/Users/craig/ECDO/GIS/WGM2012/WGM2012_Disturbance_ponc_2min.grd",
+      "bytes": 233410452,
+      "mtime_ns": 1782037417485435538,
+      "sha256_first_mib": "80b1e466ec10fd034cc5a4c3e0ba5ca969f04eb44f77df8e21d9613f346c212d"
+    },
+    {
+      "path": "/Users/craig/ECDO/GIS/WGM2012/WGM2012_Freeair_ponc_2min.grd",
+      "bytes": 233410292,
+      "mtime_ns": 1782037184473258978,
+      "sha256_first_mib": "65c4a676e2e4dca412beb9935b83a22323131da05a6230ce3a2d81f0de73f5ef"
+    },
+    {
+      "path": "/Users/craig/ECDO/GIS/WGM2012/WGM2012_Isostatic_ponc_2min.grd",
+      "bytes": 233410324,
+      "mtime_ns": 1782037294268196485,
+      "sha256_first_mib": "d0c2570cb9bbbfee3c28b9fb8eaecdac1c4144498cd23d5a21d093c410a7585a"
+    },
+    {
+      "path": "/Users/craig/ECDO/GIS/globsed/1.1/data/0-data/GlobSed/GlobSed_package3/GlobSed-v3.nc",
+      "bytes": 11285524,
+      "mtime_ns": 1556780088000000000,
+      "sha256_first_mib": "4de6d58d102e244a2d6992c7a53eaa2b0c3df7055daba4f8c1fb5f8bfb105dac"
+    },
+    {
+      "path": "/Users/craig/ECDO/GIS/CRUST/CRUST1.0-rho.r0.1.nc",
+      "bytes": 6749164,
+      "mtime_ns": 1782040082850229897,
+      "sha256_first_mib": "5143c5f9b3f2f3e4e71caacb32db0df42818ca6355e0a5aa776d7179b2d14936"
+    },
+    {
+      "path": "/Users/craig/ECDO/GIS/CRUST/CRUST1.0-vp.r0.1.nc",
+      "bytes": 6749156,
+      "mtime_ns": 1782040051311354841,
+      "sha256_first_mib": "b4aa1ba7d8c0a9347afe7b87f48c12ae583c5123c44fdbe074292ea9c040af6e"
+    },
+    {
+      "path": "/Users/craig/ECDO/GIS/CRUST/CRUST1.0-vs.r0.1.nc",
+      "bytes": 6749156,
+      "mtime_ns": 1782040071842972499,
+      "sha256_first_mib": "ae3fba49fb46981ff0d033a4d2d4bde4525fc01d791a8b6aa3b4237144fd4fbf"
+    },
+    {
+      "path": "geophysical_cache/emag2/emag2_anomaly.npy",
+      "bytes": 233280128,
+      "mtime_ns": 1782044720418624277,
+      "sha256_first_mib": "440b748301731fd57372a407cb43d1bca2297fd7ae11a497b05b7e2fc3c0a3d5"
+    },
+    {
+      "path": "geophysical_cache/emag2/emag2_cache.json",
+      "bytes": 426,
+      "mtime_ns": 1782044720420603898,
+      "sha256_first_mib": "05d2a9bcb7e9ceb9ac44ee6f2a5468a5ce7e14c77843ad442456edf5fece7def"
+    },
+    {
+      "path": "geophysical_cache/emag2/emag2_lat.npy",
+      "bytes": 43328,
+      "mtime_ns": 1782044720420424315,
+      "sha256_first_mib": "7eba23e835907eec63944b7125acdcd2080097964ec1ac7c3344770698128966"
+    },
+    {
+      "path": "geophysical_cache/emag2/emag2_lon.npy",
+      "bytes": 86528,
+      "mtime_ns": 1782044720418933401,
+      "sha256_first_mib": "c9b9657cd14f1415781d3e7b57bb08f4e71eee98317521f662f1df947fae2999"
+    }
+  ],
+  "metric_notes": {
+    "tid_artifact_risk": "Heuristic source-transition alignment, not a calibrated artefact probability.",
+    "gravity_*_ring_score": "Resolution-weighted circular-anisotropy evidence, not an impact probability.",
+    "magnetic_ring_score": "Resolution-weighted EMAG2 v3 column-6 anomaly evidence upward-continued to 4 km altitude; not an impact probability.",
+    "sediment_ring_score": "Contextual circular sediment pattern; causation is unspecified.",
+    "crust1_*": "Nearest 1-degree contextual cell; not candidate-scale evidence."
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "candidate_count": 50,
+  "score_quantiles": {
+    "0": 0.10623543688138225,
+    "0.25": 0.5225258353315547,
+    "0.5": 0.5709978985320278,
+    "0.75": 0.6589930930140915,
+    "0.9": 0.7115309287550046,
+    "0.95": 0.7430041347823109,
+    "0.99": 0.781786586251495,
+    "1": 0.8024859147939911
+  },
+  "top_20": [
+    {
+      "rank": 1,
+      "candidate_id": "arc_0037",
+      "name": "#013",
+      "followup_score": 0.8024859147939911,
+      "diameter_km": 76.83006933609774,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 2,
+      "candidate_id": "arc_0027",
+      "name": "#023",
+      "followup_score": 0.760242387156244,
+      "diameter_km": 20.065761548649743,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 3,
+      "candidate_id": "arc_0002",
+      "name": "Pilanesberg",
+      "followup_score": 0.7543420420129167,
+      "diameter_km": 26.075430113525837,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 4,
+      "candidate_id": "arc_0016",
+      "name": "#034",
+      "followup_score": 0.7291466926115705,
+      "diameter_km": 137.8150903867814,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 5,
+      "candidate_id": "arc_0044",
+      "name": "#006",
+      "followup_score": 0.7171630840381249,
+      "diameter_km": 83.55101088037873,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 6,
+      "candidate_id": "arc_0013",
+      "name": "#037",
+      "followup_score": 0.7109051337235467,
+      "diameter_km": 52.44257964529836,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 7,
+      "candidate_id": "arc_0034",
+      "name": "#016",
+      "followup_score": 0.703768197610133,
+      "diameter_km": 154.33037311092679,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 8,
+      "candidate_id": "arc_0015",
+      "name": "#035",
+      "followup_score": 0.6997104198038395,
+      "diameter_km": 24.204154897284567,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 9,
+      "candidate_id": "arc_0041",
+      "name": "#009",
+      "followup_score": 0.6992489159983091,
+      "diameter_km": 810.3602570756966,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 10,
+      "candidate_id": "arc_0036",
+      "name": "#014",
+      "followup_score": 0.6936386558669921,
+      "diameter_km": 109.91532726788759,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 11,
+      "candidate_id": "arc_0035",
+      "name": "#015",
+      "followup_score": 0.6691078655412426,
+      "diameter_km": 161.7069489701354,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 12,
+      "candidate_id": "arc_0022",
+      "name": "#028",
+      "followup_score": 0.6637753011073696,
+      "diameter_km": 171.71903920810132,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 13,
+      "candidate_id": "arc_0031",
+      "name": "#019",
+      "followup_score": 0.6630411965767498,
+      "diameter_km": 18.40684704400258,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 14,
+      "candidate_id": "arc_0038",
+      "name": "#012",
+      "followup_score": 0.6468487823261165,
+      "diameter_km": 63.81292454035295,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 15,
+      "candidate_id": "arc_0025",
+      "name": "#025",
+      "followup_score": 0.646275900406179,
+      "diameter_km": 34.576274389999114,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 16,
+      "candidate_id": "arc_0042",
+      "name": "#008",
+      "followup_score": 0.6458597210899664,
+      "diameter_km": 757.6160794056824,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 17,
+      "candidate_id": "arc_0005",
+      "name": "#045",
+      "followup_score": 0.6290284265579257,
+      "diameter_km": 284.04840415145713,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 18,
+      "candidate_id": "arc_0045",
+      "name": "#005",
+      "followup_score": 0.626514990778704,
+      "diameter_km": 1624.8852576400366,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 19,
+      "candidate_id": "arc_0007",
+      "name": "#043",
+      "followup_score": 0.6231927110739084,
+      "diameter_km": 143.4195796110822,
+      "data_quality": 1.0
+    },
+    {
+      "rank": 20,
+      "candidate_id": "arc_0043",
+      "name": "#007",
+      "followup_score": 0.6130922135252611,
+      "diameter_km": 17.972992432249526,
+      "data_quality": 0.9794311684048467
+    }
+  ],
+  "interpretation": "Follow-up priority only; not a probability of impact."
+}

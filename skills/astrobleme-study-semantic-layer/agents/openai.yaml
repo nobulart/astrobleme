@@ -1,0 +1,4 @@
+interface:
+  display_name: "Astrobleme Study Semantic Layer"
+  short_description: "Use the study’s canonical metrics and evidence"
+  default_prompt: "Use $astrobleme-study-semantic-layer to review the current candidate-ranking results and their evidentiary limits."

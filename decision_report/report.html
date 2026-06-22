@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Astrobleme study: decision report</title><style>
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;margin:0;background:#faf8f5;color:#171411}main{max-width:980px;margin:0 auto;padding:42px 22px 72px}
+header,section{margin-bottom:38px}h1,h2{line-height:1.16;margin:0 0 14px}h1{font-size:2.25rem}h2{font-size:1.45rem}p,li{line-height:1.62}a{color:#2e4780}
+.summary{padding:22px 24px;background:#f1ece4;border:1px solid #ddd1c2;border-radius:18px}.summary ul{margin:0;padding-left:22px}.summary li+li{margin-top:10px}
+.alert{padding:18px 20px;background:#ffedde;border-left:5px solid #cc6f47;border-radius:8px}figure{margin:22px 0}figure img{width:100%;height:auto;border-radius:10px;background:white}
+figcaption,.small{color:#5f5750;font-size:.9rem}table{border-collapse:collapse;width:100%;background:white}th,td{padding:11px 10px;border-bottom:1px solid #e6e0d8;text-align:left;vertical-align:top}th{background:#f3efe9}
+.ok,.caution,.stop{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:650;font-size:.82rem;white-space:nowrap}.ok{background:#d8ecbd}.caution{background:#fff4c2}.stop{background:#ffedde}
+code{background:#eee8e0;padding:.1rem .3rem;border-radius:4px}
+</style></head><body><main data-report-audience="product stakeholders">
+<header data-contract-section="title"><h1>Astrobleme study: decision report</h1><p class="small">Catalogue integrity, surviving evidence and the fastest path to a defensible manuscript · June 20, 2026</p></header>
+
+<section class="summary" data-contract-section="executive-summary"><h2>Executive Summary</h2><ul>
+<li><strong>Pause the manuscript’s global size-distribution conclusions.</strong> Forty of 253 catalogue entries have numeric diameter fields that disagree; 39 are exact tenfold inflations. The defect affects 36 of 84 locally EID-matched entries.</li>
+<li><strong>The current headline inference reverses under a simple sensitivity repair.</strong> Substituting numeric raw diameters changes the fitted multiplier from 5.53 to 9.96, the minimized KS statistic from 0.162 to 0.053, and the permutation p-value from 0.0005 to 0.1085. This sensitivity is not a final corrected analysis, but it proves the existing claim is unstable.</li>
+<li><strong>Preserve the GEBCO ranking as an exploratory screening result.</strong> Its calculations do not use the defective global diameter field. It yields 82 candidates above 0.75 and 19 above 0.80, but its scores remain uncalibrated and known volcanic structures rank highly.</li>
+<li><strong>Focus first on catalogue reconstruction and automated integrity tests.</strong> Then rerun every dependent analysis, update the manuscript, and only afterward invest in imagery, geophysical enrichment and candidate field prioritisation.</li>
+</ul></section>
+
+<section data-contract-section="key-findings"><h2>The catalogue defect reaches the core comparison</h2>
+<p>The issue is systematic rather than a handful of outliers: 40 entries (15.8%) have conflicting numeric diameter fields, including 36 locally EID-matched records. Separately, 68 display identities (26.9%) are colon-combined; 16 fall inside the EID-labelled subset. Some are legitimate aliases, while others expose unresolved name-to-coordinate associations. Both fields must be reconstructed from provenance rather than patched by appearance alone.</p>
+<figure><img src="charts/catalogue_integrity.png" alt="Catalogue integrity audit counts"><figcaption>Direct audit of the local global catalogue. The total and EID subset provide the relevant denominators.</figcaption></figure>
+<div class="alert"><strong>Decision:</strong> quarantine global diameter, identity and EID-derived outputs. Preserve the source file unchanged as evidence; create a repaired, provenance-tracked version and compare it row by row.</div>
+</section>
+
+<section><h2>A minimal repair changes the scientific answer</h2>
+<p>The current manuscript reports that a fitted multiplier of 5.53 does not reconcile the distributions. A controlled sensitivity run using the numeric raw diameter wherever it conflicts instead produces a multiplier of 9.96 and no significant shape difference at the same 1,999-permutation resolution (p=0.1085). An exact-tenfold-only repair gives nearly the same result (scale 9.85, KS 0.053, p=0.104). The analysis therefore cannot currently reject a near-tenfold relation.</p>
+<figure><img src="charts/size_sensitivity.png" alt="Before and sensitivity-repaired size comparison metrics"><figcaption>Sensitivity analysis only; raw substitution is not a substitute for authoritative row reconstruction.</figcaption></figure>
+<p><strong>Implication:</strong> the abstract, results, discussion and conclusion must not retain the current 5.53/KS/p-value narrative. The power-law tail estimates are also affected and need complete regeneration.</p>
+</section>
+
+<section><h2>Some work survives, but its claims must stay narrow</h2>
+<p>The independent terrain-ranking pipeline remains useful for prioritising visual review because it derives from the 1,318 arcuate geometries, GEBCO elevation and broad geological-province boundaries. It does not validate impact origin, and score thresholds are workflow bands rather than probabilities.</p>
+<figure><img src="charts/ranking_funnel.png" alt="Operational score bands for the terrain ranking"><figcaption>The 82 candidates above 0.75 are the practical first-pass queue after deduplication and endogenic-control screening.</figcaption></figure>
+<table><thead><tr><th>Evidence block</th><th>Decision</th><th>Reason</th></tr></thead><tbody><tr><td>Inventory counts and grains</td><td><span class='ok'>Retain</span></td><td>Raw counts and African deduplication are reproducible.</td></tr>
+<tr><td>GEBCO candidate ranking</td><td><span class='caution'>Retain as screening</span></td><td>Independent of global diameter fields; provisional and uncalibrated.</td></tr>
+<tr><td>Spatial null framework</td><td><span class='caution'>Retain method; rerun</span></td><td>Distances do not use diameter, but catalogue identities and EID labels need audit.</td></tr>
+<tr><td>Global size distributions</td><td><span class='stop'>Withdraw pending repair</span></td><td>40 diameter mismatches materially change fitted scale and KS inference.</td></tr>
+<tr><td>Impact interpretation</td><td><span class='stop'>Not established</span></td><td>Morphology and broad geology cannot verify impact origin.</td></tr></tbody></table>
+</section>
+
+<section><h2>The main drivers are provenance, selection and non-unique morphology</h2><ul>
+<li><strong>Import logic dominates the size result.</strong> The sensitivity shift is much larger than any reasonable interpretive nuance.</li>
+<li><strong>Catalogue construction affects the spatial result.</strong> Centre distances are independent of diameter, but unresolved identities and local EID labels mean the nulls should be rerun after row reconstruction.</li>
+<li><strong>Visual selection builds circularity into the source data.</strong> Most arcs are near-perfect circles by construction, so morphology cannot serve as independent confirmation.</li>
+<li><strong>Endogenic structures are strong competitors.</strong> Circular volcanic seamounts rank highly; Anton Dohrn is an explicit negative control supported by the <a href="https://jncc.gov.uk/our-work/anton-dohrn-seamount-mpa/">JNCC</a> and regional volcanic-centre context from the <a href="https://webapps.bgs.ac.uk/memoirs/docs/B06844.html">British Geological Survey</a>.</li>
+</ul></section>
+
+<section data-contract-section="recommended-next-steps"><h2>Recommended Next Steps</h2><ol>
+<li><strong>Freeze affected claims immediately.</strong> Mark size-distribution, fitted-scale, tail-exponent and EID-subset spatial conclusions as pending data repair.</li>
+<li><strong>Reconstruct the 253-row catalogue from provenance.</strong> Resolve name, coordinate, diameter, source and EID status with persistent row identifiers. Do not overwrite the current file.</li>
+<li><strong>Add integrity tests before rerunning.</strong> Test numeric raw/parsed diameter agreement, plausible diameter bounds, unique identity mapping, coordinate-title joins, duplicate structures and status provenance.</li>
+<li><strong>Rerun all dependent outputs.</strong> Regenerate `analysis_results.json`, tables, figures and every numerical statement in the manuscript. Report before/after diffs.</li>
+<li><strong>Then calibrate the terrain ranking.</strong> Consolidate overlapping candidates, run matched spatial/radius nulls, create confirmed-impact and endogenic control sets, and add imagery plus independent geophysics.</li>
+</ol></section>
+
+<section data-contract-section="further-questions"><h2>Further Questions</h2><ul>
+<li>Where is the original catalogue-construction script or acquisition snapshot that produced the global GeoJSON?</li>
+<li>Which dated authoritative source should control EID membership and structure diameter?</li>
+<li>Should the manuscript retain the size-scaling hypothesis as an open test if a corrected rerun remains non-significant?</li>
+<li>Which geological controls and geophysical datasets should define advancement beyond morphology-only screening?</li>
+</ul></section>
+
+<section data-contract-section="caveats-and-assumptions"><h2>Caveats and Assumptions</h2><div class="alert"><p>The repaired scenario substitutes numeric raw values only to measure sensitivity. It does not resolve incorrect raw values, aliases, coordinate provenance or catalogue status. The spatial null code and terrain ranking were not altered in this report. Geological confirmation still requires accepted shock-metamorphic, meteoritic or geochemical evidence; neither circularity nor a high follow-up score is diagnostic.</p></div></section>
+</main></body></html>

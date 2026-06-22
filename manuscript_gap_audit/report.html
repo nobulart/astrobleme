@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manuscript gap audit — arcuate geometries study</title>
+  <style>
+    :root { --ink:#18212f; --muted:#687386; --line:#d9e0e8; --paper:#fff; --wash:#f4f7fa; --navy:#244a73; --gold:#b77816; --green:#28735a; --red:#9c3d36; }
+    * { box-sizing:border-box; }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin:0; background:var(--wash); color:var(--ink); }
+    main { max-width:1080px; margin:0 auto; padding:44px 24px 72px; }
+    header, section { margin-bottom:34px; }
+    h1 { font-size:2.35rem; letter-spacing:-.035em; line-height:1.08; margin:0 0 12px; }
+    h2 { font-size:1.48rem; line-height:1.2; margin:0 0 14px; }
+    h3 { font-size:1.08rem; margin:24px 0 8px; }
+    p, li { line-height:1.62; }
+    .dek { color:var(--muted); font-size:1.08rem; max-width:820px; }
+    .meta { color:var(--muted); font-size:.9rem; }
+    .card { background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px 24px; box-shadow:0 4px 18px rgba(15,23,42,.04); }
+    .verdict { border-left:5px solid var(--green); }
+    .callout { border-left:5px solid var(--gold); }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:18px 0; }
+    .metric { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:16px; }
+    .metric strong { display:block; font-size:1.55rem; color:var(--navy); }
+    .metric span { color:var(--muted); font-size:.9rem; }
+    table { width:100%; border-collapse:collapse; background:var(--paper); border:1px solid var(--line); }
+    th, td { text-align:left; vertical-align:top; padding:11px 12px; border-bottom:1px solid var(--line); line-height:1.45; }
+    th { background:#eaf0f6; color:#26384c; font-size:.88rem; }
+    td { font-size:.91rem; }
+    .p1 { color:var(--red); font-weight:700; } .p2 { color:var(--gold); font-weight:700; } .p3 { color:var(--navy); font-weight:700; }
+    figure { margin:24px 0; background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:14px; }
+    figure img { width:100%; display:block; border-radius:8px; }
+    figcaption { color:var(--muted); font-size:.88rem; line-height:1.45; padding:10px 4px 2px; }
+    code { background:#edf1f5; padding:.1em .35em; border-radius:4px; }
+    a { color:var(--navy); }
+    .sources li { margin-bottom:7px; }
+    @media (max-width:760px) { .grid { grid-template-columns:1fr; } h1 { font-size:1.9rem; } table { display:block; overflow-x:auto; } }
+    @media print { body { background:#fff; } main { max-width:none; padding:22px; } .card, figure, table { box-shadow:none; break-inside:avoid; } }
+  </style>
+</head>
+<body>
+<main data-report-audience="technical">
+  <header data-contract-section="title">
+    <h1>Manuscript gap audit</h1>
+    <p class="dek">Cross-reference of the current manuscript against the completed morphology ranking, catalogue repair, spatial and geophysical nulls, structure consolidation, active-fault control, generated study GeoJSON, and the local impact literature corpus.</p>
+    <p class="meta">Prepared and implemented 21 June 2026 · revised manuscript: <code>astrobleme.tex</code> (25-page build)</p>
+  </header>
+
+  <section data-contract-section="technical-summary" class="card verdict">
+    <h2>Technical summary</h2>
+    <p><strong>The manuscript’s main inference is now appropriately conservative and well supported.</strong> It clearly separates candidate screening from impact confirmation, keeps the size-scaling hypothesis open after the corrected non-significant rerun, and treats gravity as a follow-up signal rather than proof. The principal opportunity is to expose several completed results that materially constrain interpretation but are currently absent or only implicit: the severe sub-10-km resolution penalty, the score’s dependence on its own topographic-circularity inputs, the manual GEBCO observation process, the fact that imagery was not included in the completed ranking, and uneven coverage or inferential status across geophysical layers. [1–7]</p>
+    <p>Recommended scope: one short “ranking calibration and observation process” subsection, one compact layer-coverage table, one literature-grounded gravity paragraph, and a more balanced worked-example appendix. These additions would strengthen transparency without changing the paper’s headline conclusions.</p>
+  </section>
+
+  <section data-contract-section="key-findings">
+    <h2>Five additions would materially improve the paper</h2>
+    <table>
+      <thead><tr><th>Priority</th><th>Opportunity</th><th>Evidence now available</th><th>Best insertion</th></tr></thead>
+      <tbody>
+        <tr><td class="p1">P1</td><td><strong>Report ranking calibration by scale.</strong></td><td>For candidates below 10 km (n=48), median follow-up score is 0.128 and median data-quality weight 0.215; the median candidate spans only about 15 native GEBCO pixels. Scores are broadly stable from 10–1000 km, then decline again for ≥1000-km cases. [2]</td><td>New Results subsection immediately before geophysical enrichment; discuss the ≥1000-km class as a separate scale regime.</td></tr>
+        <tr><td class="p1">P1</td><td><strong>Make the observation process explicit.</strong></td><td>The 1,318 arcs were manually captured over many weeks from visual inspection of GEBCO, while the same GEBCO field supplies the morphology measurements. Most records are near-perfect sampled circles. The ranking therefore measures concordance with a manually preselected, geometrically regular inventory—not independent discovery performance. [1,2]</td><td>Dataset paragraph and Limitations. Name interpreter selection, survey effort, and spatial autocorrelation as unmodelled components.</td></tr>
+        <tr><td class="p1">P1</td><td><strong>State that imagery was not part of the completed score.</strong></td><td>The generated Sentinel-2 file is a request manifest; <code>imagery_included=false</code> in the review metadata. No aerial/optical pixel metric contributed to the reported morphology or cross-layer ranking. [2,8]</td><td>End of bathymetric/geophysical Methods. This prevents readers from inferring multisensor validation that did not occur.</td></tr>
+        <tr><td class="p1">P1</td><td><strong>Separate “available”, “screened”, and “formally tested” layers.</strong></td><td>Bouguer, free-air, disturbance, isostatic and magnetic scores exist for 1,256 candidates; sediment coverage exists for only 523; CRUST1.0 is contextual. The final null table tests Bouguer, free-air, magnetic and TID—not every enriched column. [3,4]</td><td>Compact Methods/Results table listing resolution, valid n, role, and whether a global null was reported.</td></tr>
+        <tr><td class="p2">P2</td><td><strong>Balance the worked examples.</strong></td><td>The current appendix examples are high morphology but Tier C because gravity support is weak. Add at least one Tier A screening case and Anton Dohrn (<code>arc_0370</code>) as a known volcanic negative control; retain the Tier C examples to show why morphology alone is insufficient. [3,5]</td><td>Appendix figure set and a short comparison table.</td></tr>
+      </tbody>
+    </table>
+
+    <figure>
+      <img src="../results_review/charts/score_by_diameter.png" alt="Boxplots showing follow-up score by candidate diameter">
+      <figcaption><strong>Underused completed result.</strong> The ranking is not comparable below 10 km: resolution and quality gating suppress these records. This should be stated as a measurement limitation, not interpreted as geological absence. [2]</figcaption>
+    </figure>
+
+    <figure>
+      <img src="../results_review/charts/score_drivers.png" alt="Bar chart of correlations between component measures and follow-up score">
+      <figcaption><strong>Interpretive clarification.</strong> The score is principally a topographic-circularity ranking. The strong associations are partly mechanical because the plotted fields are inputs to the composite; they are not independent validation. [2]</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>What is already strong—and should not be diluted</h2>
+    <div class="grid">
+      <div class="metric"><strong>9.10</strong><span>fitted size multiplier; corrected permutation p=0.145</span></div>
+      <div class="metric"><strong>p=0.0001</strong><span>Bouguer and free-air gravity enrichment in both global designs</span></div>
+      <div class="metric"><strong>1,292</strong><span>conservative structure-level units from 1,318 arc records</span></div>
+    </div>
+    <p>The paper correctly avoids converting any of these into impact confirmation. It also already includes the strongest safeguards: French’s detection/verification distinction; repaired catalogue provenance; two spatial nulls; explicit non-diagnostic treatment of circular geophysics; the active-fault negative result; the Anton Dohrn warning; and a preservation-aware follow-up funnel. [1,3–7] Expansion should sharpen those distinctions rather than add speculative impact language.</p>
+  </section>
+
+  <section>
+    <h2>Literature cross-check: the gravity result needs analogues, not stronger rhetoric</h2>
+    <table>
+      <thead><tr><th>Case</th><th>Lesson for this study</th><th>Suggested manuscript use</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Bangui anomaly</strong></td><td>A very large circular/elliptical magnetic and gravity association motivated an impact model, yet later regional reprocessing linked it to a broader Bangui–Atlantic trend and left the genetic link equivocal. [9,10]</td><td>Use as the closest African precedent for why compelling geophysical geometry justifies modelling and field tests, not impact classification.</td></tr>
+        <tr><td><strong>Richat dome</strong></td><td>Exceptional bull’s-eye morphology was historically proposed as impact-related, but field relationships, igneous features, karst-collapse breccia and lack of accepted shock evidence support an endogenic/erosional interpretation. [10]</td><td>Add as a morphology-first negative analogue alongside Anton Dohrn.</td></tr>
+        <tr><td><strong>Sirente</strong></td><td>Candidate-specific electrical-resistivity forward modelling can test predicted shallow structure and distinguish alternatives, while remaining “consistent with” rather than confirmatory. [11]</td><td>Supports the proposed move from global ring scores to candidate-specific forward models with discriminating predictions.</td></tr>
+        <tr><td><strong>Lake Cheko</strong></td><td>Target properties and post-event processes can change expected morphology and scaling; geophysical compatibility remained contested without a diagnostic “smoking gun.” [12]</td><td>Use sparingly to illustrate model non-uniqueness and why fitted geometry does not settle origin.</td></tr>
+      </tbody>
+    </table>
+    <div class="card callout">
+      <p><strong>Suggested gravity paragraph, in substance:</strong> circular gravity anomalies are physically plausible consequences of impact-related density redistribution, but Bangui demonstrates that even striking geophysical rings can merge into regional tectono-magmatic structure on reanalysis. Richat and Anton Dohrn provide complementary endogenic controls. The statistically enriched global signal should therefore motivate candidate-centred residual-field separation, wavelength/amplitude modelling, and blinded comparison with confirmed impacts and matched endogenic structures.</p>
+    </div>
+  </section>
+
+  <section data-contract-section="scope-data-and-metric-definitions">
+    <h2>Additional clarifications worth making</h2>
+    <table>
+      <thead><tr><th>Priority</th><th>Clarification</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td class="p2">P2</td><td>State that the component–score correlations are descriptive decomposition, not predictor importance.</td><td>The highest correlations are expected because those components define the score.</td></tr>
+        <tr><td class="p2">P2</td><td>Describe Tier A/B as operational review rules and report their domain composition (A: 13 land, 13 ocean; B: 5 ocean, 1 mixed, no land).</td><td>The Tier B composition may reflect thresholds, scale and data availability; it should not be read as geological prevalence.</td></tr>
+        <tr><td class="p2">P2</td><td>Warn that per-candidate null p-values are quantized at 0.05; 172 Bouguer and 200 free-air candidates sit at that floor.</td><td>They cannot support candidate-level discovery claims or false-discovery-rate control.</td></tr>
+        <tr><td class="p3">P3</td><td>Add a data-availability statement for the 1,318-feature enriched study GeoJSON and its schema, including blank manual-capture fields.</td><td>This turns the paper’s proposed review workflow into a reusable handoff artifact. [13]</td></tr>
+        <tr><td class="p3">P3</td><td>Label the pre-repair decision report as superseded for catalogue counts and scale results.</td><td>Prevents accidental reuse of quarantined figures or the former 5.53 multiplier. [14]</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section data-contract-section="methodology">
+    <h2>Methodology of this audit</h2>
+    <p>The audit compared every substantive manuscript section with machine-readable summaries and row-level outputs from the ranking, catalogue-repair rerun, geophysical enrichment/nulls, structure consolidation, active-fault tests and enriched GeoJSON. Quantitative checks were recomputed or read from final outputs at candidate and structure grain. The literature review was restricted to the local corpus and prioritized primary papers plus the Reimold–Koeberl African synthesis. Earlier reports were treated as provenance only where later repair or reruns superseded their findings.</p>
+  </section>
+
+  <section data-contract-section="limitations-uncertainty-and-robustness-checks">
+    <h2>Limitations and robustness</h2>
+    <ul>
+      <li>This is a manuscript-coverage audit, not a new causal analysis. Priority labels reflect editorial and inferential importance.</li>
+      <li>The score-by-diameter and score-driver plots summarize the 1,318 arc records; structure-level inferential tests use 1,292 consolidated units where specified.</li>
+      <li>Layer-valid counts differ because of domain coverage, resolution and missingness. They must not be silently treated as one complete-case cohort.</li>
+      <li>The local literature corpus is strong for impact-recognition criteria and African candidates but is not a systematic global review of gravity signatures.</li>
+      <li>The priority changes and expanded ranking examples were subsequently implemented and verified in the rendered 25-page PDF.</li>
+    </ul>
+  </section>
+
+  <section data-contract-section="recommended-next-steps">
+    <h2>Recommended next steps</h2>
+    <ol>
+      <li><strong>Implement the four P1 manuscript changes</strong>: calibration/scale subsection, manual-observation and no-imagery disclosure, geophysical coverage/role table, and gravity analogue paragraph.</li>
+      <li><strong>Rework the appendix examples</strong> into a four-case contrast: Tier A candidate, Anton Dohrn negative control, and two high-morphology Tier C cases.</li>
+      <li><strong>Add one supplementary calibration figure</strong> using the existing score-by-diameter plot; move score-driver decomposition to supplementary material if space is tight.</li>
+      <li><strong>For the next analytical phase</strong>, define a blinded labelled control set and pre-register candidate-specific gravity models before examining individual identities.</li>
+    </ol>
+  </section>
+
+  <section data-contract-section="further-questions">
+    <h2>Further questions</h2>
+    <p>Before submission, the most consequential unresolved choice is whether the paper presents the morphology ranking as a reproducible prioritization tool or primarily as an audit of a manually generated hypothesis set. Both are defensible, but the first requires stronger external validation with labelled endogenic controls and withheld impact examples. The current evidence most strongly supports the second framing.</p>
+  </section>
+
+  <section class="sources">
+    <h2>Sources reviewed</h2>
+    <ol>
+      <li><code>astrobleme.tex</code>, current manuscript.</li>
+      <li><code>results_review/source_notes.json</code> and ranking-review figures.</li>
+      <li><code>geophysical_output/evidence_summary.json</code> and <code>arc_ranking_enriched.csv</code>.</li>
+      <li><code>geophysical_output/nulls/*</code>, final null summaries and candidate diagnostics.</li>
+      <li><code>structure_output/summary.json</code>, structure ranking and fault nulls.</li>
+      <li><code>catalog_repair/catalogue_repair_summary.json</code> and repaired rerun.</li>
+      <li>French, B.M. (1998), <em>Traces of Catastrophe</em>.</li>
+      <li><code>ranking_output/sentinel2_stac_requests.json</code>.</li>
+      <li>Girdler, Taylor &amp; Frawley (1992), “A possible impact origin for the Bangui magnetic anomaly,” <em>Tectonophysics</em> 212:45–58.</li>
+      <li>Reimold &amp; Koeberl (2014), “Impact structures in Africa: A review,” <em>Journal of African Earth Sciences</em> 93:57–175.</li>
+      <li>Torrese (2022), “Subsurface structure of the proposed Sirente meteorite crater,” <em>Acta Geodaetica et Geophysica</em> 57:563–587.</li>
+      <li>Gasperini et al. (2008), “Lake Cheko and the Tunguska Event: impact or non-impact?”, <em>Terra Nova</em> 20:169–172.</li>
+      <li><code>study_results_geojson/arcuate_geometries_study_results.geojson</code> and schema.</li>
+      <li><code>decision_report/source_notes.json</code>, retained only to identify superseded pre-repair findings.</li>
+    </ol>
+  </section>
+</main>
+</body>
+</html>

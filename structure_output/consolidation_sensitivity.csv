@@ -1,0 +1,4 @@
+setting,centre_fraction,radius_ratio_low,radius_ratio_high,structure_count,multi_pick_structures,candidates_consolidated
+strict,0.15,0.8,1.25,1309,9,9
+default,0.25,0.67,1.5,1292,25,26
+lenient,0.35,0.5,2.0,1279,37,39
