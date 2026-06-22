@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}My submissions · Astrobleme Review Atlas{% endblock %}
+{% block content %}
+<main class="content-page">
+  <p class="eyebrow">Candidate intake</p>
+  <h1>My submissions</h1>
+  <div class="submission-grid">
+    {% for item in submissions %}
+    <article class="submission-card">
+      <div class="score">{{ item.intake_score|floatformat:2 }}</div>
+      <div><h2>{{ item.title }}</h2><p>{{ item.get_status_display }}</p><small>{{ item.created_at|date:"j M Y, H:i" }} · {{ item.latitude|floatformat:3 }}, {{ item.longitude|floatformat:3 }} · {{ item.diameter_km|floatformat:1 }} km</small></div>
+      {% if not item.baseline_passed %}<details><summary>Why it needs revision</summary><pre>{{ item.baseline_checks }}</pre></details>{% endif %}
+    </article>
+    {% empty %}<p>You have not submitted a candidate yet.</p>{% endfor %}
+  </div>
+  <a class="button" href="{% url 'submit_candidate' %}">Add another candidate</a>
+</main>
+{% endblock %}

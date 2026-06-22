@@ -1,0 +1,1687 @@
+{{Short description|None}}
+{{Self-contradictory|article|about=the sizes of craters|date=January 2018}}
+{{Earth_Impact_Database_world_map.svg|495px}}
+{{GeoGroup}}
+
+This list of [[impact structure]]s (including impact craters) on [[Earth]] contains the majority of the 194+ confirmed impact structures given in the [[Earth Impact Database]] as of 2024.<ref name="EID">{{cite web |title=Earth Impact Database |url=https://impact.uwo.ca/map/ |access-date=2016-04-30 |publisher=[[University of New Brunswick]]}}</ref>
+
+Alphabetical lists for different continents can be found under [[#Impact structures by continent|Impact structures by continent]] below.
+
+Unconfirmed structures can be found at [[List of possible impact structures on Earth]].
+
+==Confirmed impact structures listed by size and age==
+These features were caused by the collision of [[meteor]]s (consisting of large fragments of [[asteroid]]s) or [[comets]] (consisting of ice, dust particles and rocky fragments) with the Earth. For eroded or buried craters, the stated diameter typically refers to the best available estimate of the original [[rim (craters)|rim]] diameter, and may not correspond to present surface features. Time units are either in [[Year#SI prefix multipliers|ka]] (thousands) or [[Year#SI prefix multipliers|Ma]] (millions) of years.
+
+===10 ka or less===
+Less than ten thousand years old, and with a diameter of {{cvt|100|m||}} or more. The EID lists fewer than ten such craters, and the largest in the last 100,000 years (100 ka) is the {{cvt|4.5|km||}} [[Rio Cuarto craters|Rio Cuarto crater]] in [[Argentina]].<ref name=bland>Bland, Phil A.; de Souza Filho, C. R.; Timothy Jull, A. J.; Kelley, Simon P.; Hough, Robert Michael; [[Natalia Artemieva|Artemieva, N. A.]]; Pierazzo, E.; Coniglio, J.; Pinotti, Lucio; Evers, V.; Kearsley, Anton; (2002); [https://www.researchgate.net/publication/11367157_A_possible_tektite_strewn_field_in_the_Argentinian_Pampa_Science "A possible tektite strewn field in the Argentinian Pampa"], ''Science'', volume 296, issue 5570, pp. 1109–12</ref> However, there is some uncertainty regarding its origins<ref name="rio">{{cite Earth Impact DB |name=Rio Cuarto |linkname=riocuarto |access-date=2009-08-19 }}</ref> and age, with some sources giving it as < 10 [[kiloannum|ka]]<ref name="bland" /><ref name="schultz">Schultz, Peter H.; Lianza, Ruben E. (1992) "Recent grazing impacts on the Earth recorded in the Rio Cuarto crater field, Argentina", Nature 355, pp. 234–37 (16 January 1992)</ref> while the EID gives a broader < 100 ka.<ref name="rio" />
+
+The [[Kaali crater|Kaali impacts]] ({{circa|1500 BC}}) during the [[Nordic Bronze Age]] may have influenced [[Estonian mythology#Mythical motifs in folklore|Estonian and Finnish mythology]],<ref>{{cite web |url=http://www.folklore.ee/folklore/vol23/echoes.pdf |title=Echoes of Ancient Cataclysms in the Baltic Sea |access-date=2008-10-26 |last1=Haas |first1=Ain |first2=Andres |last2=Peekna |first3=Robert E. |last3=Walker |publisher=Electronic Journal of Folklore }}</ref> the [[Campo del Cielo]] ({{circa|2500 BC}}) could be in the legends of some [[Indigenous peoples in Argentina|Native Argentine]] tribes,<ref>{{cite web |title=Meteorites of Campo del Cielo: Impact on the indian culture |first1=Giménez |last1=Benítez |last2=López |first2=Alejandro M. |last3=Mammana |first3=Luis A. |url=http://www.fcaglp.unlp.edu.ar/~sixto/arqueo/w-6-ing.htm }}</ref><ref name="Bobrowsky">{{cite book |first1=Peter T. |last1=Bobrowsky |first2=Hans |last2=Rickman |url=https://books.google.com/books?id=Gpwgm022ltMC&pg=PA31 |pages=30–31 |title=Comet/asteroid impacts and human society: an interdisciplinary approach |publisher=Springer |year=2007 |isbn=978-3-540-32709-7 }}</ref> while [[Henbury crater|Henbury]] ({{circa|2700 BC}}) has figured in [[Aboriginal Australians|Australian Aboriginal]] oral traditions.<ref>{{cite web |title=Aboriginal oral traditions of Australian impact craters |first1=Duane W. |last1=Hamacher |first2=John |last2=Goldsmith |url=http://www.narit.or.th/en/files/2013JAHHvol16/2013JAHH...16..295H.pdf |access-date=2016-04-09 |archive-date=2018-08-20 |archive-url=https://web.archive.org/web/20180820103004/http://www.narit.or.th/en/files/2013JAHHvol16/2013JAHH...16..295H.pdf }}</ref>
+
+[[File:Macha craters overview map.jpg|thumb|[[Macha crater]] field map]]
+[[Image:Kaali main crater on 2005-08-10.3.jpg|thumb|One of the [[Kaali crater]]s]]
+
+{| class="wikitable sortable"
+!Name
+!Location
+!Country
+!Diameter<br />(km)
+!Age<br />(ka)
+!Date
+!Coordinates
+|-
+|[[Jinlin Crater|Jinlin]]
+|Guangdong Province
+|China
+|{{0|00}}0.9
+|{{0|< 0}}<10
+|{{sort|--1800|}}
+|style="text-align:right"|{{coord|23|18|N|111|48|E|}}
+|-
+|[[Wabar crater|Wabar]]
+|Rub' al Khali desert
+|Saudi Arabia
+|{{0|00}}0.1
+|{{0|< 0}}0.2
+|{{sort|--1800|~1800 AD}}
+|style="text-align:right"|{{coord|21|30|N|50|28|E|}}
+|-
+|[[Dalgaranga crater|Dalgaranga]] 
+|Western Australia
+|Australia
+|0.024
+|less than 3?
+|
+|
+|-
+|[[Whitecourt crater|Whitecourt]]
+|Alberta
+|Canada
+|{{0|00}}0.04
+|{{0|< 0}}1.1
+|{{align|right|{{sort|--900|900 AD}}}}
+|style="text-align:right"|{{Coord|54|00|N|115|36|W|}}
+|-
+|[[Kaali crater|Kaali]]
+|Saaremaa
+|Estonia
+|{{0|00}}0.1
+|{{0|< 0}}3.5
+|{{0}}{{sort|-1500|1500 BC}}
+|style="text-align:right"|{{coord|58|24|N|22|40|E|}}
+|-
+|[[Campo del Cielo]]
+|Chaco
+|Argentina
+|{{0|00}}0.1<ref name="Bobrowsky" />
+|{{0|< 0}}4.5
+|{{0}}{{sort|-2500|2500 BC}}
+|style="text-align:right"|{{coord|27|38|S|61|42|W|}}
+|-
+|[[Henbury crater|Henbury]]
+|Northern Territory
+|Australia
+|{{0|00}}0.2
+|{{0|< 0}}4.7
+|{{0}}{{sort|-2700|2700 BC}}
+|style="text-align:right"|{{coord|24|34|S|133|8|E|}}
+|-
+|[[Morasko Meteorite Nature Reserve|Morasko]]
+|Poznań
+|Poland
+|{{0|00}}0.1
+|{{0|< 0}}5.0<ref>{{cite web |title=Luminescence dating of the Morasko (Poland), Kaali, Ilumetsa, and Tsõõrikmäe (Estonia) meteorite craters |first1=Wojciech |last1=Stankowski |first2=Anto |last2=Raukas  | author-link2 = Anto Raukas|first3=Andrzej |last3=Bluszcz |first4=Stanisław |last4=Fedorowicz |url=http://www.geochronometria.pl/pdf/geo_28/Geo28_04.pdf }}</ref>
+|{{0}}{{sort|-3000|3000 BC}}
+|style="text-align:right"|{{coord|52|29|N|16|54|E|}}
+|-
+|[[Boxhole crater|Boxhole]]
+|Northern Territory
+|Australia
+|{{0|00}}0.2
+|{{0|< 0}}5.4
+|{{0}}{{sort|-3400|3400 BC}}
+|style="text-align:right"|{{Coord|22|37|S|135|12|E|}}
+|-
+|[[Macha crater|Macha]]
+|Sakha Republic
+|Russia
+|{{0|00}}0.3
+|{{0|< 0}}7.3
+|{{0}}{{sort|-5300|5300 BC}}
+|style="text-align:right"|{{coord|60|6|N|117|35|E|}}
+|-
+|[[Luna crater|Luna]]
+|Gujarat
+|India
+|1.5–1.8
+|less than 6.9
+|< 5000 BC
+|
+|}
+
+The EID gives a size of about {{cvt|50|m||}} for Campo del Cielo, but other sources quote {{cvt|100|m||}}.<ref name="Bobrowsky" />
+
+===10 ka to 1 Ma===
+From between 10 thousand years and one million years ago, and with a diameter of less than {{cvt|1|km|spell=in|}}:
+{| class="wikitable sortable"
+!Name
+!Location
+!Country
+!Diameter<br />(km)
+!Age<br />(ka)
+!Coordinates
+|-
+|[[Wolfe Creek Crater|Wolfe Creek]]
+| rowspan="2" |Western Australia
+| rowspan="2" |Australia
+|0.9
+|{{Sort|119|< 120}}
+|style="text-align:right"|{{Coord|19|10|18|S|127|47|44|E|}}
+|-
+|[[Hickman crater|Hickman]]
+|0.26
+|10–100
+|
+|-
+|[[Kalkkop crater|Kalkkop]] 
+|Eastern Cape
+|South Africa
+|0.64
+|~250
+|
+|-
+|[[Jeokjung-Chogye Basin]]
+|[[South Gyeongsang Province|Gyeongsangnam]]
+|South Korea
+|8
+|30–63
+|style="text-align:right"|{{Coord|35|32|40|N|128|15|53|E|}}
+|-
+|[[Monturaqui crater|Monturaqui]]
+|[[Atacama Desert]]
+|Chile
+|0.455
+|{{Sort|.640|640&nbsp;±&nbsp;140}}
+|{{Coord|23|55|40|S|68|15|41|W}}
+|-
+|[[Pantasma]]
+|Jinotega
+|Nicaragua
+|14
+|804
+|
+|-
+|[[Amguid crater|Amguid]]
+|[[Tamanrasset Province|Tamanrasset]]
+|Algeria
+|0.45
+|10–100
+|
+|-
+|[[Aorounga crater|Aorounga Central]]
+|[[Borkou (region of Chad)|Borkou]]
+|[[Chad]]
+|16
+|Possibly 500
+|
+|}
+
+From between ten thousand years and one million years ago, and with a diameter of {{cvt|1|km|spell=in|}} or more. The largest in the last one million years is the {{convert|14|km|adj=on|}} [[Zhamanshin crater]] in [[Kazakhstan]] and has been described as being capable of producing a [[nuclear winter|nuclear-like winter]].<ref>[https://www.unb.ca/passc/ImpactDatabase/essay.html Essay "Impact Cratering on Earth"], based on: {{cite journal | last1 = Grieve | first1 = Richard A. F. | year = 1990 | title = Impact cratering on the Earth | journal = Scientific American | volume = 262 | issue = 4| pages = 66–73 | doi = 10.1038/scientificamerican0490-66 | bibcode = 1990SciAm.262d..66G }}</ref>
+
+The source of the enormous [[Australasian strewnfield]] (c. 780 [[kiloannum|ka]]) is a currently undiscovered crater probably located in Southeast Asia.<ref name="povenmire">Povenmire, Harold; Liu, W.; Xianlin, Luo (1999) [http://www.lpi.usra.edu/meetings/LPSC99/pdf/1072.pdf "Australasian tektites found in Guangxi Province, China"], in Proceedings of the 30th Annual Lunar and Planetary Science Conference, Houston, March 1999</ref><ref name="glass1994">Glass, Billy P.; Pizzuto, James E. (1994) [http://adsabs.harvard.edu/abs/1994JGR....9919075G "Geographic variation in Australasian microtektite concentrations: Implications concerning the location and size of the source crater"], ''Journal of Geophysical Research'', vol. 99, no. E9, 19075–81, September 1994</ref>
+[[Image:Meteor Crater - Arizona.jpg|thumb|right|[[Meteor Crater]], {{cvt|1.2|km||}}]]
+[[Image:Tenoumer.jpg|thumb|right|[[Tenoumer crater]], {{cvt|1.9|km||}}]]
+
+{| class="wikitable sortable"
+!Name
+!Location
+!Country
+!Diameter<br />(km)
+!Age<br />(ka)
+!Coordinates
+|-
+|[[Yilan crater|Yilan]]
+|[[Heilongjiang]]
+|China
+|1.85
+|{{sort|.049|49}}
+|style="text-align:right"|{{coord|46|23|4|N|129|19|39|E}}
+|-
+|[[Meteor Crater|Meteor/Barringer]]
+|Arizona
+|United States
+|1.2
+|{{sort|.049|49}}
+|style="text-align:right"|{{coord|35|1|39|N|111|1|22|W|}}
+|-
+|[[Xiuyan crater|Xiuyan]]
+|[[Xiuyan]]
+|China
+|1.8
+|{{sort|.050|50}}
+|style="text-align:right"|{{coord|40|21|42|N|123|27|47|E|}}
+|-
+|[[Lonar crater lake|Lonar]]
+|[[Maharashtra]]
+|[[India]]
+|1.8
+|{{sort|.576|576&nbsp;±&nbsp;47}}
+|style="text-align:right"|{{coord|19|58|37|N|76|30|32|E|}}
+|-
+|[[Agoudal crater|Agoudal]]<ref>{{cite Earth Impact DB |name=Agoudal |access-date=2016-08-18 }}</ref>
+|[[Atlas Mountains]]
+|Morocco
+|3.0
+|{{sort|.105|105}}
+|style="text-align:right"|{{coord|31|59|N|5|30|W|}}
+|-
+|[[Tswaing crater|Tswaing]]
+|Pretoria Saltpan
+|South Africa
+|1.1
+|{{sort|.220|220}}
+|style="text-align:right"|{{coord|25|24|32|S|28|4|58|E|}}
+|-
+|[[Zhamanshin crater|Zhamanshin]]
+|Kazakhstan
+|Kazakhstan
+|14.0
+|{{sort|.900|900&nbsp;±&nbsp;100}}
+|style="text-align:right"|{{coord|48|24|0|N|60|58|0|E|}}
+|}
+
+===1 Ma to 10 Ma===
+[[File:Elgygytgyn.jpg|thumb|right|[[Elgygytgyn Lake|Elgygytgyn]], {{cvt|18|km||}}]]
+[[File:Bosumtwi Worldwind SW.jpg|thumb|right|[[Lake Bosumtwi|Bosumtwi]], {{cvt|10|km||}}]]
+From between 1 and 10 million years ago. The large but apparently craterless [[Eltanin impact]] (2.5 Ma) into the [[Pacific Ocean]] has been suggested as contributing to the glaciations and cooling during the Pliocene.<ref>{{cite web |url=http://phys.org/news/2012-09-pacific-ocean-meteor-trigger-ice.html |title=Did a Pacific Ocean meteor trigger the Ice Age? |last=University of New South Wales |date=19 September 2012 |access-date=8 October 2012 }}</ref>
+
+{| class="wikitable sortable"
+!Name
+!Location
+!Country
+!Diameter<br />(km)
+!Age<br />(Million years)  
+!Coordinates
+|-
+|[[Tenoumer crater|Tenoumer]]
+|Sahara Desert
+|Mauritania
+|1.9
+|{{0|.0}}{{sort|0.0157|1.6 ± 0.1}}
+|style="text-align:right"|{{coord|22|55|2|N|10|24|28|W|}}
+|-
+|[[Lake Bosumtwi|Bosumtwi]]
+|Ashanti
+|Ghana
+|10
+|{{0|00;0}}{{sort|.0011|1.1}}
+|style="text-align:right"|{{coord|6|30|N|1|25|W|}}
+|-
+|[[Pingualuit crater|New Quebec/Pingualuit]] 
+|Quebec
+|Canada
+|3.4
+|{{0|.0}}1.4 ± 0.1
+|style="text-align:right"|{{coord|61|16|39|N|73|39|36|W|}}
+|-
+|[[El'gygytgyn]]
+|Chukotka Autonomous Okrug
+|Russia
+|18
+|{{0|00;0}}{{sort|.0035|3.5}}
+|style="text-align:right"|{{coord|67|30|N|172|00|E|}}
+|-
+|[[Bigach crater|Bigach]]
+|Kazakhstan
+|Kazakhstan
+|8
+|{{0|00;00}}{{sort|.0050|5}}
+|style="text-align:right"|{{coord|48|34|N|82|1|E|}}
+|-
+|[[Karla crater|Karla]]
+|Tatarstan
+|Russia
+|10
+|{{0|00;00}}{{sort|.0050|5}}
+|style="text-align:right"|{{coord|54|55|N|48|2|E|}}
+|-
+|[[Alhama de Almería]]
+|[[Almería]]
+|Spain
+|22
+|{{0|00;00}}8
+|style="text-align:right"|{{coord|36|58|N| 2|32|W|name=Kara-Kul}}
+|-
+|[[Roter Kamm crater|Roter Kamm]]
+|Karas
+|Namibia
+|2.4
+|{{0|.0}}3.8 ± 0.3
+|style="text-align:right"|{{coord|27|45|55|S|16|17|21|E|}}
+|-
+|[[Talemzane crater|Talemzane]]
+|Djelfa
+|Algeria
+|1.6
+|{{0|00.0}}< 3
+|style="text-align:right"|{{coord|33|18|55|N|4|02|04|E}}
+|-
+|[[Tsenkher crater|Tsenkher]]
+|Gobi-Altai
+|Mongolia
+|3.7
+|{{0|.0}}4.9 ± 0.9
+|style="text-align:right"|{{coord|47|26|31|N|101|46|15|E}}
+|-
+|[[Aouelloul crater|Aouelloul]] 
+|Adrar
+|Mauritania
+|0.39
+|3.1 ± 0.3
+|
+|}
+
+==={{anchor|Largest craters}}10 Ma or more===
+Most recorded impact craters are over 10 million years old, or have widely uncertain ages. The [[Chicxulub crater|Chicxulub impact]] has been widely considered the most likely cause for the [[Cretaceous–Paleogene extinction event|Cretaceous–Paleogene mass extinction]], and the [[Manicouagan Reservoir|Manicouagan impact]] has been less definitively linked to the [[Triassic land vertebrate faunachrons#Adamanian-Revueltian turnover|Adamanian-Revueltian turnover]] and a possible marine extinction event.<ref>{{Cite journal |last1=Kligman |first1=Ben T. |last2=Marsh |first2=Adam D. |last3=Nesbitt |first3=Sterling J. |last4=Parker |first4=William G. |last5=Stocker |first5=Michelle R. |date=2020-03-26 |title=New trilophosaurid species demonstrates a decline in allokotosaur diversity across the Adamanian-Revueltian boundary in the Late Triassic of western North America |journal=Palaeodiversity |volume=13 |issue=1 |pages=25 |doi=10.18476/pale.v13.a3 |s2cid=216308379 |issn=1867-6294|doi-access=free }}</ref><ref>{{Cite journal |last1=Onoue |first1=Tetsuji |last2=Sato |first2=Honami |last3=Yamashita |first3=Daisuke |last4=Ikehara |first4=Minoru |last5=Yasukawa |first5=Kazutaka |last6=Fujinaga |first6=Koichiro |last7=Kato |first7=Yasuhiro |last8=Matsuoka |first8=Atsushi |date=8 July 2016 |title=Bolide impact triggered the Late Triassic extinction event in equatorial Panthalassa |journal=[[Scientific Reports]] |volume=6 |article-number=29609 |bibcode=2016NatSR...629609O |doi=10.1038/srep29609 |issn=2045-2322 |pmc=4937377 |pmid=27387863}}</ref> Some scholars have linked other impacts like the [[Popigai impact structure|Popigai impact]] in Russia and the [[Chesapeake Bay impact crater|Chesapeake Bay impact]] to later extinction events, though the causal relationship has been questioned.<ref>{{Cite journal |last=Rampino |first=Michael R. |date=February 2020 |title=Relationship between impact-crater size and severity of related extinction episodes |url=https://linkinghub.elsevier.com/retrieve/pii/S0012825219303939 |journal=Earth-Science Reviews |language=en |volume=201 |article-number=102990 |doi=10.1016/j.earscirev.2019.102990|bibcode=2020ESRv..20102990R |url-access=subscription }}</ref>
+[[File:Sudbury Wanapitei WorldWind.jpg|thumb|right|[[Sudbury Basin]], {{cvt|130|km||}}]]
+[[File:Yucatan chix crater.jpg|thumb|right|[[Chicxulub crater]], {{cvt|150|km||}}]]
+[[File:Popigai crater russia.jpg|thumb|right|[[Popigai impact structure]], {{cvt|100|km||}}]]
+[[File:STS009 Manicouagan.jpg|thumb|right|[[Manicouagan impact structure]], {{cvt|100|km||}}]]
+[[File:Acraman.jpg|thumb|right|[[Acraman crater]], {{cvt|85|to|90|km}}]]
+[[File:Charlevoix Meteorite Crater.jpg|thumb|right|[[Charlevoix impact structure]], {{cvt|54|km||}}]]
+[[File:Nördlinger Ries Relief Map, SRTM-1.jpg|thumb|right|[[Nördlinger Ries]], {{cvt|24|km||}}]]
+
+{| class="wikitable sortable"
+!Name
+!Location
+!Country
+!Diameter  (km)
+!Age  (million years)
+!Coordinates
+|-
+|[[Vredefort impact structure|Vredefort]]
+|[[Free State (province)|Free State]]
+|South Africa
+|{{sort|.01600|160}}
+|{{sort|.20230|2023 ± 4}}
+|style="text-align:right"|{{coord|27|0|S|27|30|E||name=Vredefort}}
+|-
+|[[Chicxulub crater|Chicxulub]]
+|[[Yucatán]]
+|Mexico
+|{{sort|.01500|150}}
+|{{sort|.00660|66.051 ± 0.031}}
+|style="text-align:right"|{{coord|21|20|N|89|30|W|name=Chicxulub}}
+|-
+|[[Sudbury Basin|Sudbury]]
+|[[Ontario]]
+|Canada
+|{{sort|.01300|130}}
+|{{sort|.18490|1849}}
+|style="text-align:right"|{{coord|46|36|N|81|11|W|name=Sudbury}}
+|-
+|[[Popigai impact structure|Popigai]]
+|[[Siberia]]
+|Russia
+|{{sort|.01000|100}}
+|{{sort|.00357|35.7 ± 0.2}}
+|style="text-align:right"|{{coord|71|39|N|111|11|E|name=Popigai}}
+|-
+|[[Manicouagan Reservoir|Manicouagan]]
+|[[Quebec]]
+|Canada
+|{{sort|.01000|100}}
+|{{sort|.02156|215.56 ± 0.05}}
+|style="text-align:right"|{{coord|51|23|N|68|42|W|name=Manicouagan}}
+|-
+|[[Acraman impact structure|Acraman]]
+|[[South Australia]]
+|Australia
+|{{sort|.00900|90}}
+|{{sort|.05800|580}}
+|style="text-align:right"|{{coord|32|1|S|135|27|E|name=Acraman}}
+|-
+|[[Morokweng impact structure|Morokweng]]
+|[[Kalahari Desert]]
+|South Africa
+|{{sort|.00700|70}}
+|{{sort|.01461|146.06 ± 0.16}}
+|style="text-align:right"|{{coord|26|28|S|23|32|E|name=Morokweng}}
+|-
+|[[Kara crater|Kara]]
+|[[Nenetsia]]
+|Russia
+|{{sort|.00650|65}}
+|{{sort|.00753|75.34 ± 0.66}}
+|style="text-align:right"|{{coord|69|6|N|64|9|E|name=Kara}}
+|-
+|[[Beaverhead impact structure|Beaverhead]]
+|[[Idaho]] and [[Montana]]
+|United States
+|{{sort|.00600|60}}
+|{{sort|.06000|600}}
+|style="text-align:right"|{{coord|44|15|N|114|0|W|name=Beaverhead}}
+|-
+|[[Tookoonooka impact structure|Tookoonooka]]
+|[[Queensland]]
+|Australia
+|66
+|121.8–123.8
+|style="text-align:right"|{{coord|27|7|S|142|50|E|name=Tookoonooka}}
+|-
+|[[Charlevoix impact structure|Charlevoix]]
+|[[Quebec]]
+|Canada
+|{{sort|.00540|54}}
+|{{sort|.03420|342}}
+|style="text-align:right"|{{coord|47|32|N|70|18|W|name=Charlevoix}}
+|-
+|[[Siljan Ring]]
+|[[Dalarna]]
+|Sweden
+|65–75
+|380.9 ± 4.6
+|style="text-align:right"|{{coord|61|2|N|14|52|E|name=Siljan}}
+|-
+|[[Karakul (Tajikistan)|Karakul]]
+|[[Pamir Mountains]]
+|Tajikistan
+|{{sort|.00520|52}}
+|less than 60
+|style="text-align:right"|{{coord|39|1|N|73|27|E|name=Kara-Kul}}
+|-
+|[[Montagnais crater|Montagnais]]
+|[[Nova Scotia]]
+|Canada
+|{{sort|.00450|45}}
+|{{sort|.00505|50.5}}
+|style="text-align:right"|{{coord|42|53|N|64|13|W|name=Montagnais}}
+|-
+|[[Araguainha crater|Araguainha]]
+|Central [[Brazil]]
+|Brazil
+|{{sort|.00400|40}}
+|{{sort|.02444|244.4}}
+|style="text-align:right"|{{coord|16|47|S|52|59|W|name=Araguainha}}
+|-
+|[[Chesapeake Bay impact crater|Chesapeake Bay]]
+|[[Virginia]]
+|United States
+|{{sort|.00400|40}}
+|{{sort|.00349|34.86 ± 0.23}}
+|style="text-align:right"|{{coord|37|17|N|76|1|W|name=Chesapeake Bay}}
+|-
+|[[Mjølnir crater|Mjølnir]]
+|[[Barents Sea]]
+|Norway
+|{{sort|.00400|40}}
+|{{sort|.01420|142}}
+|style="text-align:right"|{{coord|73|48|N|29|40|E|name=Mjølnir}}
+|-
+|[[Puchezh-Katunki crater|Puchezh-Katunki]]
+|[[Nizhny Novgorod Oblast]]
+|Russia
+|{{sort|.00400|40}}
+|{{sort|.01959|195.9 ± 1.0}}
+|style="text-align:right"|{{coord|56|58|N|43|43|E|name=Puchezh-Katunki}}
+|-
+|[[Saint Martin impact structure|Saint Martin]]
+|[[Manitoba]]
+|Canada
+|{{sort|.00400|40}}
+|{{sort|.02278|227.8 ± 1.1}}
+|style="text-align:right"|{{coord|51|47|N|98|32|W|name=Saint Martin}}
+|-
+|[[Woodleigh impact structure|Woodleigh]]
+|[[Western Australia]]
+|Australia
+|{{sort|.00400|40}}
+|{{sort|.03640|364}}
+|style="text-align:right"|{{coord|26|3|S|114|40|E|name=Woodleigh}}
+|-
+|[[Carswell impact structure|Carswell]]
+|[[Saskatchewan]]
+|Canada
+|{{sort|.00390|39}}
+|{{sort|.01150|115}}
+|style="text-align:right"|{{coord|58|27|N|109|30|W|name=Carswell}}
+|-
+|[[Clearwater Lakes|Clearwater West]]
+|[[Quebec]]
+|Canada
+|{{sort|.00360|36}}
+|{{sort|.02900|290}}
+|style="text-align:right"|{{coord|56|13|N|74|30|W|name=Clearwater West}}
+|-
+|[[Manson impact structure|Manson]]
+|[[Iowa]]
+|United States
+|{{sort|.00350|35}}
+|{{sort|.00740|74}}
+|style="text-align:right"|{{coord|42|35|N|94|33|W|name=Manson}}
+|-
+|[[Hiawatha impact structure|Hiawatha]]
+|[[Greenland]]
+|Denmark
+|{{sort|.00310|31}}
+|{{sort|.00580|57.99 ± 0.54}}
+|style="text-align:right"|{{coord|78|50|N|67|18|W}}
+|-
+|[[Slate Islands (Ontario)|Slate Islands]]
+|[[Ontario]]
+|Canada
+|{{sort|.00300|30}}
+|{{sort|.04500|450}}
+|style="text-align:right"|{{coord|48|40|N|87|0|W|name=Slate Islands}}
+|-
+|[[Yarrabubba impact structure|Yarrabubba]]
+|[[Western Australia]]
+|Australia
+|{{sort|.00300|30}}
+|{{sort|.22290|2229}}
+|style="text-align:right"|{{coord|27|10|S|118|50|E|name=Yarrabubba}}
+|-
+|[[Keurusselkä]]
+|[[Western Finland]]
+|Finland
+|{{sort|.00300|30}}
+|{{sort|.14000|1400–1500}}
+|style="text-align:right"|{{coord|62|8|N|24|36|E|name=Keurusselkä}}
+|-
+|[[Shoemaker impact structure|Shoemaker]]
+|[[Western Australia]]
+|Australia
+|{{sort|.00300|30}}
+|{{sort|.16300|1630?}}
+|style="text-align:right"|{{coord|25|52|S|120|53|E|name=Shoemaker}}
+|-
+|[[Mistastin crater|Mistastin]]
+|[[Newfoundland and Labrador]]
+|Canada
+|{{sort|.00280|28}}
+|{{sort|.00364|36.4}}
+|style="text-align:right"|{{coord|55|53|N|63|18|W|name=Mistastin}}
+|-
+|[[Clearwater Lakes|Clearwater East]]
+|[[Quebec]]
+|Canada
+|{{sort|.00260|26}}
+|{{sort|.04650|465}}
+|style="text-align:right"|{{coord|56|4|N|74|6|W|name=Clearwater East}}
+|-
+|[[Kamensk crater|Kamensk]]
+|[[Southern Federal District]]
+|Russia
+|{{sort|.00250|25}}
+|{{sort|.00490|49}}
+|style="text-align:right"|{{coord|48|21|N|40|30|E|name=Kamensk}}
+|-
+|[[Steen River impact structure|Steen River]]
+|[[Alberta]]
+|Canada
+|{{sort|.00250|25}}
+|{{sort|.00910|91}}
+|style="text-align:right"|{{coord|59|30|N|117|38|W|name=Steen River}}
+|-
+|[[Strangways crater|Strangways]]
+|[[Northern Territory]]
+|Australia
+|{{sort|.00250|25}}
+|{{sort|.06460|646}}
+|style="text-align:right"|{{coord|15|12|S|133|35|E|name=Strangways}}
+|-
+|[[Tunnunik impact structure|Tunnunik]]
+|[[Northwest Territories]]
+|Canada
+|{{sort|.00250|25}}
+|{{sort|.04400|430–450}}
+|style="text-align:right"|{{coord|72|28|N|113|58|W|name=Tunuunik}}
+|-
+|[[Boltysh crater|Boltysh]]
+|[[Kirovohrad Oblast]]
+|Ukraine
+|{{sort|.00240|24}}
+|{{sort|.00652|65.17}}
+|style="text-align:right"|{{coord|48|54|N|32|15|E|name=Boltysh}}
+|-
+|[[Nördlinger Ries]]
+|[[Bavaria]], [[Baden-Württemberg]]
+|Germany
+|{{sort|.00240|24}}
+|{{sort|.00148|14.808 ± 0.038}}
+|style="text-align:right"|{{coord|48|53|N|10|34|E|name=Nördlinger Ries}}
+|-
+|[[Presqu'île crater|Presqu'île]]
+|[[Quebec]]
+|Canada
+|{{sort|.00240|24}}
+|{{sort|.05000|less than 500}}
+|style="text-align:right"|{{coord|49|43|N|74|48|W|name=Presqu'ile}}
+|-
+|[[Haughton impact crater|Haughton]]
+|[[Nunavut]]
+|Canada
+|{{sort|.00230|23}}
+|{{sort|.00390|39}}
+|style="text-align:right"| {{coord|75|23|N|89|40|W|name=Haughton}}
+|-
+|[[Lake Lappajärvi|Lappajärvi]]
+|[[Western Finland]]
+|Finland
+|{{sort|.00230|23}}
+|{{sort|.00778|77.85 ± 0.78}}
+|style="text-align:right"| {{coord|63|12|N|23|42|E|name=Lappajärvi}}
+|-
+|[[Rochechouart impact structure|Rochechouart]]
+|[[France]]
+|France
+|{{sort|.00230|23}}
+|{{sort|.02010|206.92 ± 0.32}}<ref>{{Cite journal |last1=Cohen |first1=Benjamin E. |last2=Mark |first2=Darren F. |last3=Lee |first3=Martin R. |last4=Simpson |first4=Sarah L. |date=2017-08-01 |title=A new high-precision <sup>40</sup>Ar/<sup>39</sup>Ar age for the Rochechouart impact structure: At least 5 Ma older than the Triassic–Jurassic boundary |journal=Meteoritics & Planetary Science |language=en |volume=52 |issue=8 |pages=1600–11 |doi=10.1111/maps.12880 |issn=1945-5100 |bibcode=2017M&PS...52.1600C |doi-access=free |hdl=10023/10787 |hdl-access=free }}</ref>
+|style="text-align:right"| {{coord|45|49|N|0|47|E|name=Rochechouart}}
+|-
+|[[Cerro do Jarau crater|Cerro do Jarau]]
+|[[Rio Grande do Sul]]
+|Brazil
+|13.5
+|less than 135
+|{{coord|30|11|S|56|31|W|name=Rochechouart}}
+|-
+|[[Cleanskin crater|Cleanskin]]
+|Northern Territory
+|Australia
+|15
+|{{sort|.09600|520–1400}}
+|{{coord|18|10|S|137|56|E|name=Rochechouart}}
+|-
+|[[Amelia Creek crater|Amelia Creek]]
+|[[Northern Territory]]
+|Australia
+|{{sort|.00200|20}}
+|{{sort|.06000|600–1640}}
+|{{coord|20|55|S|134|50|E|name=Amelia Creek}}
+|-
+|[[Avak crater|Avak]]
+|Alaska
+|United States
+|10
+|90-94
+|
+|-
+|[[Ames crater|Ames]]
+|Oklahoma
+|United States
+|16
+|{{sort|.04680|458–478}}
+|{{coord|36|14|N|98|11|W|name=Rochechouart}}
+|-
+|[[Beyenchime-Salaatin crater|Beyenchime-Salaatin]]
+|Sakha
+|Russia
+|8
+|Likely less than 66
+|
+|-
+|[[BP Impact Structure|BP]]
+|[[Cyrenaica]]
+|Libya
+|3.2
+|less than 120
+|{{coord|25|19|N|24|18|E|name=Rochechouart}}
+|-
+|[[Brent crater|Brent]]
+|Ontario
+|Canada
+|3.4
+|{{sort|.04532|453.2 ± 6.0}}<ref>{{Cite journal |last1=McGregor |first1=Maree |last2=Dence |first2=Michael R. |last3=McFarlane |first3=Christopher R. M. |last4=Spray |first4=John G. |date=July 2020 |title=U–Pb geochronology of apatite and zircon from the Brent impact structure, Canada: a Late Ordovician Sandbian–Katian boundary event associated with L-Chondrite parent body disruption |url=https://link.springer.com/10.1007/s00410-020-01699-9 |journal=Contributions to Mineralogy and Petrology |language=en |volume=175 |issue=7 |page=63 |doi=10.1007/s00410-020-01699-9 |bibcode=2020CoMP..175...63M |issn=0010-7999|url-access=subscription }}</ref>
+|{{coord|46|4|N|78|28|W|name=Rochechouart}}
+|-
+|[[Calvin crater|Calvin]]
+|Michigan
+|United States
+|8.5
+|{{sort|.04510|444–458}}
+|{{coord|41|49|N|85|56|W|name=Rochechouart}}
+|-
+|[[Chiyli crater|Chiyli]] 
+|[[Aktobe Region|Aktobe]]
+|Kazakhstan
+|5.5
+|{{sort|.00485|41–56}}
+|{{coord|49|10|N|57|50|E|name=Rochechouart}}
+|-
+|[[Chukcha crater|Chukcha]] 
+|[[Taymyr Peninsula|Taymyr]]
+|Russia
+|6
+|less than 70
+|{{coord|75|38|N|98|35|E|name=Rochechouart}}
+|-
+|[[Cloud Creek crater|Cloud Creek]]
+|Wyoming
+|United States
+|7
+|{{sort|.01965|166–227}}
+|{{coord|43|4|N|106|45|W|name=Rochechouart}}
+|-
+|[[Colônia crater|Colonia]]
+|[[São Paulo (state)|São Paulo]]
+|Brazil
+|3.6
+|{{sort|.00205|5–36}}
+|{{coord|23|52|S|46|42|W|name=Rochechouart}}
+|-
+|[[Connolly Basin crater|Connolly Basin]]
+|Western Australia
+|Australia
+|9
+|{{sort|.00295|23–36}}
+|{{coord|23|32|S|124|45|E|name=Rochechouart}}
+|-
+|[[Couture crater|Couture]]
+|Quebec
+|Canada
+|8
+|{{sort|.04290|429 ± 25}}
+|{{coord|60|7|N|75|18|W|name=Rochechouart}}
+|-
+|[[Crooked Creek crater|Crooked Creek]]
+| rowspan="2" |Missouri
+| rowspan="2" |United States
+|7
+|{{sort|.04040|323–485}}
+|
+|-
+|[[Decaturville crater|Decaturville]]
+|6
+|less than 323
+|
+|-
+|[[Decorah crater|Decorah]]
+|Iowa
+|United States
+|5.6
+|{{sort|.04655|464–467}}
+|
+|-
+|[[Deep Bay crater|Deep Bay]]
+|Saskatchewan
+|Canada
+|13
+|{{sort|.00985|95–102}}
+|
+|-
+|[[Dellen]]
+|Gavleborgs
+|Sweden
+|19
+|{{sort|.01408|140.82 ± 0.51}}
+|
+|-
+|[[Des Plaines crater|Des Plaines]]
+|Illinois
+|United States
+|8
+|less than 299
+|
+|-
+|[[Dhala impact structure|Dhala]]
+|Madhya Pradesh
+|India
+|11
+|{{sort|.21000|1700–2500}}
+|
+|-
+|[[Dobele crater|Dobele]]
+|Dobele
+|Latvia
+|4.5
+|{{sort|.03055|252–359}}
+|
+|-
+|Douglas
+|Wyoming
+|United States
+|16
+|{{sort|.02800|~280}}
+|
+|-
+|[[Eagle Butte crater|Eagle Butte]]
+|Alberta
+|Canada
+|8
+|less than 65
+|
+|-
+|[[Elbow crater|Elbow]]
+|Saskatchewan
+|Canada
+|3.8
+|{{sort|.02970|201–393}}
+|
+|-
+|[[Flaxman crater|Flaxman]]
+|South Australia
+|Australia
+|10
+|34–541
+|
+|-
+|[[Flynn Creek crater|Flynn Creek]]
+|Tennessee
+|United States
+|3.8
+|~382
+|
+|-
+|[[Foelsche crater|Foelsche]]
+|[[Northern Territory]]
+|Australia
+|6
+|520–1496
+|
+|-
+|[[Gardnos crater|Gardnos]]
+|Buskerud
+|Norway
+|5
+|546 ± 5
+|
+|-
+|[[Glasford crater|Glasford]]
+|Illinois
+|United States
+|4
+|453–457
+|
+|-
+|[[Glikson crater|Glikson]]
+|Western Australia
+|Australia
+|19
+|less than 513
+|
+|-
+|[[Glover Bluff crater|Glover Bluff]]
+|Wisconsin
+|United States
+|8
+|less than 485
+|
+|-
+|[[Goat Paddock crater|Goat Paddock]]
+|Western Australia
+|Australia
+|5
+|48–56
+|
+|-
+|[[Gosses Bluff impact structure|Gosses Bluff]]
+|[[Northern Territory]]
+|Australia
+|{{sort|.00220|32}}
+|165–383
+|style="text-align:right"|{{coord|23|49|S|132|18|E|name=Gosses Bluff}}
+|-
+|[[Gow crater|Gow]]
+|Saskatchewan
+|Canada
+|4
+|196.8 ± 9.9
+|
+|-
+|[[Goyder crater|Goyder]]
+|[[Northern Territory]]
+|Australia
+|7
+|150–1325
+|
+|-
+|[[Granby crater|Granby]]
+|[[Ostergotland]]
+|Sweden
+|3
+|478–468
+|
+|-
+|[[Gweni-Fada crater|Gweni-Fada]]
+|Ennedi
+|Chad
+|22
+|less than 383
+|
+|-
+|[[Holleford crater|Holleford]]
+|Ontario
+|Canada
+|2.35
+|450–650
+|
+|-
+|[[Hummeln structure|Hummeln]]
+|Småland 
+|Sweden
+|1.2
+|~465
+|
+|-
+|[[Île Rouleau crater|Ile Rouleau]]
+|Quebec
+|Canada
+|4
+|less than 300
+|
+|-
+|[[Ilkurlka crater|Ilkurlka]]
+|Western Australia
+|Australia
+|12
+|"Middle Cambrian"
+|
+|-
+|[[Ilyinets crater|Ilyinets]]
+|Vinnytsia
+|Ukraine
+|4.5
+|445 ± 10
+|
+|-
+|[[Iso-Naakkima]]
+|Mikkeli
+|Finland
+|3
+|900–1200
+|
+|-
+|[[Jake Seller Draw]]
+|Wyoming
+|United States
+|4.3
+|280
+|
+|-
+|[[Jänisjärvi]]
+|Karelia
+|Russia
+|14
+|687 ± 5
+|
+|-
+|[[Jabel Waqf as Suwwan crater|Jabel Waqf as Suwwan]]
+|Ma'an
+|Jordan
+|5.5
+|2.6–30
+|
+|-
+|[[Kaluga crater|Kaluga]]
+|Kaluga
+|Russia
+|15
+|383–394
+|
+|-
+|[[Kamensk crater|Kamenetsk]]
+|Mykolaiv
+|Ukraine
+|1.2
+|11.63–2100
+|
+|-
+|[[Kärdla crater|Kardla]]
+|Hiiu
+|Estonia
+|4
+|~455
+|
+|-
+|[[Karikkoselkä]]
+|Central Finland
+|Finland
+|2.1–2.4
+|230–260
+|
+|-
+|[[Kelly West crater|Kelly West]]
+|[[Northern Territory]]
+|Australia
+|6.6
+|500–1640
+|
+|-
+|[[Kentland crater|Kentland]]
+|Indiana
+|United States
+|7
+|less than 97
+|
+|-
+|[[Kgagodi crater|Kgagodi]]
+|[[Central District (Botswana)|Central District]]
+|Botswana
+|3.4
+|less than 180
+|
+|-
+|[[Kursk crater|Kursk]]
+|Kursk
+|Russia
+|5.5
+|163–359
+|
+|-
+|[[La Moinerie crater|La Moinerie]]
+|Quebec
+|Canada
+|8
+|453 ± 5
+|
+|-
+|[[Lake Raeside crater|Lake Raeside]]
+|Western Australia
+|Australia
+|11
+|34–250
+|
+|-
+|[[Lawn Hill crater|Lawn Hill]]
+|Queensland
+|Australia
+|16.8
+|476 ± 8
+|
+|-
+|[[Liverpool crater|Liverpool]]
+|[[Northern Territory]]
+|Australia
+|1.6
+|541–1870
+|
+|-
+|[[Lockne crater|Lockne]]
+|Jämtland
+|Sweden
+|13.5 
+|~455
+|
+|-
+|[[Logancha crater|Logancha]]
+|[[Siberia]]
+|Russia
+|{{sort|.00200|20}}
+|{{sort|.00400|40}}
+| style="text-align:right" |{{coord|65|31|N|95|56|E|name=Logancha}}
+|-
+|[[Logoisk crater|Logoisk]]
+|Minsk
+|Belarus
+|17
+|30 ± 0.5
+|
+|-
+|[[Luizi crater|Luizi]]
+|[[Katanga Province|Katanga]]
+|Dem. Rep. of the Congo
+|15
+|less than 573
+|
+|-
+|[[Lumparn]]
+|Southwest Finland
+|Finland
+|10
+|less than 458
+|
+|-
+|[[Malingen crater|Malingen]]
+|Jämtland
+|Sweden
+|0.7
+|~455
+|
+|-
+|[[Maple Creek crater|Maple Creek]]
+|Saskatchewan
+|Canada
+|5.75
+|less than 72
+|
+|-
+|[[Marquez crater|Marquez]]
+|Texas
+|United States
+|12.7
+|58.3 ± 3.1
+|
+|-
+|[[Matt Wilson (crater)|Matt Wilson]]
+|[[Northern Territory]]
+|Australia
+|7.5 
+|less than 1344
+|
+|-
+|[[Middlesboro crater|Middlesboro]]
+|Kentucky
+|United States
+|5.5 
+|less than 299
+|
+|-
+|[[Mien (lake)|Mien]]
+|Kronoberg
+|Sweden
+|7
+|120 ± 1
+|
+|-
+|[[Mishina Gora crater|Mishina Gora]]
+|Pskov
+|Russia
+|2.5
+|less than 360
+|
+|-
+|[[Mizarai crater|Mizarai]]
+|Alytus
+|Lithuania
+|5
+|480–520
+|
+|-
+|[[Mount Toondina crater|Mount Toondina]]
+|South Australia
+|Australia
+|4
+|less than 125
+|
+|-
+|[[Neugrund crater|Neugrund]]
+|Harju
+|Estonia
+|20
+|530–540
+|
+|-
+|[[Newporte crater|Newporte]]
+|North Dakota
+|United States
+|3.2
+|480–500
+|
+|-
+|[[Nicholson crater|Nicholson]]
+|Northwest Territories
+|Canada
+|12.5
+|387 ± 5
+|
+|-
+|[[Nova Colinas crater|Nova Colinas]]
+|Maranhao
+|Brazil
+|7
+|Unknown
+|
+|-
+|[[Oasis Impact Structure|Oasis]]
+|Kufra
+|Libya
+|18
+|less than 120
+|
+|-
+|[[Obolon' crater|Obolon']]
+|[[Poltava Oblast]]
+|Ukraine
+|{{sort|.00200|20}}
+|{{sort|.01690|169}}
+| style="text-align:right" |{{coord|49|35|N|32|55|E|name=Obolon'}}
+|-
+|[[Ora Banda, Western Australia|Ora Banda]]
+|Western Australia
+|Australia
+|5
+|100
+|
+|-
+|[[Ouarkziz crater|Ouarkziz]]
+|[[Tindouf Province|Tindouf]]
+|Algeria
+|3
+|65–345
+|
+|-
+|[[Paasselkä]]
+|Mikkeli
+|Finland
+|10
+|231.0 ± 2.2
+|
+|-
+|[[Pilot crater|Pilot]]
+|Northwest Territories
+|Canada
+|~6
+|450 ± 2
+|
+|-
+|[[Presqu'île crater|Presqu'île]]
+|Quebec
+|Canada
+|15
+|less than 2729
+|
+|-
+|[[Ragozinka crater|Ragozinka]]
+|[[Sverdlovsk Oblast|Sverdlovsk]]
+|Russia
+|9
+|56–59
+|
+|-
+|[[Ramgarh crater|Ramgarh]]
+|[[Rajasthan]]
+|India
+|10
+|165–750
+|
+|-
+|[[Red Wing crater|Red Wing]]
+|North Dakota
+|United States
+|9
+|167–250
+|
+|-
+|[[Riachão Ring|Riachão]]
+|Maranhao
+|Brazil
+|4
+|less than 299
+|
+|-
+|[[Ritland crater|Ritland]]
+|Rogaland
+|Norway
+|2.7
+|500–541
+|
+|-
+|[[Rock Elm Disturbance|Rock Elm]]
+|Wisconsin
+|United States
+|6.5
+|458–485
+|
+|-
+|[[Rotmistrivka crater|Rotmistrovka]]
+|Cherkasy
+|Ukraine
+|2.7
+|94–145
+|
+|-
+|[[Sääksjärvi]]
+|Western Finland
+|Finland
+|5
+|602 ± 17
+|
+|-
+|[[Saarijärvi crater|Saarijärvi]]
+|Oulu
+|Finland
+|2
+|less than 600
+|
+|-
+|[[Santa Fe impact structure|Santa Fe]]
+|New Mexico
+|United States
+|13
+|350–1200
+|
+|-
+|[[Santa Marta crater|Santa Marta]]
+|Piaui
+|Brazil
+|10
+|less than 100
+|
+|-
+|[[Saqqar crater|Saqqar]]
+|Jawf
+|Saudi Arabia
+|34
+|70–410
+|
+|-
+|[[Serpent Mound crater|Serpent Mound]]
+|Ohio
+|United States
+|8
+|less than 359
+|
+|-
+|[[Serra da Cangalha]]
+|Tocantins
+|Brazil
+|13.7
+|less than 250
+|
+|-
+|[[Shunak crater|Shunak]]
+|Karaganda
+|Kazakhstan
+|2.8
+|7–17
+|
+|-
+|[[Sierra Madera crater|Sierra Madera]]
+|Texas
+|United States
+|20
+|less than 113
+|
+|-
+|[[Söderfjärden]]
+|Ostrobothnia
+|Finland
+|6.5
+|640
+|
+|-
+|[[Spider crater|Spider]]
+|Western Australia
+|Australia
+|13
+|580–900
+|
+|-
+|[[Steinheim crater|Steinheim]]
+|Baden-Württemberg
+|Germany
+|3.8
+|~14.8
+|
+|-
+|[[Suavjärvi]]
+|Karelia
+|Russia
+|16
+|2200–2700
+|
+|-
+|[[Summasjärvi]]
+|Western Finland
+|Finland
+|2.6
+|less than 1880
+|
+|-
+|[[Suvasvesi|Suvasvesi North]]
+| rowspan="2" |Northern Savonia
+| rowspan="2" |Finland
+|3.5
+|~85
+|
+|-
+|[[Suvasvesi|Suvasvesi South]]
+|3.8
+|710–1880
+|
+|-
+|[[Tabun-Khara-Obo crater|Tabun-Khara-Obo]]
+|Dornogovi
+|Mongolia
+|1.3
+|130–170
+|
+|-
+|[[Tookoonooka impact structure#Talundilly impact structure|Talundilly]]
+|Queensland
+|Australia
+|84
+|~125
+|
+|-
+|[[Ternovka crater|Ternovka]]
+|Dnipropetrovsk
+|Ukraine
+|15
+|280 ± 10
+|
+|-
+|[[Tin Bider crater|Tin Bider]]
+|Tamanrasset
+|Algeria
+|6
+|less than 66
+|
+|-
+|[[Tvaren]]
+|Södermanland
+|Sweden
+|3.1
+|456–458
+|
+|-
+|[[Upheaval Dome]]
+|Utah
+|United States
+|5.2
+|less than 183
+|
+|-
+|[[Vargeão Dome|Vargeao Dome]]
+|Santa Catarina
+|Brazil
+|12.4
+|123 ± 1.4
+|
+|-
+|[[Vepriai crater|Vepriai]]
+|Vilnius
+|Lithuania
+|7.5
+|155–165
+|
+|-
+|[[Viewfield crater|Viewfield]]
+|Saskatchewan
+|Canada
+|2.4
+|170–210
+|
+|-
+|[[Vista Alegre crater|Vista Alegre]]
+|Paraná
+|Brazil
+|9.5
+|111–134
+|
+|-
+|[[Lake Wanapitei|Wanapitei]]
+|Ontario
+|Canada
+|7.5
+|37.7 ± 1.2
+|
+|-
+|[[Wells Creek crater|Wells Creek]]
+|Tennessee
+|United States
+|13.7
+|100–323
+|
+|-
+|[[West Hawk crater|West Hawk]]
+|[[Manitoba]]
+|Canada
+|3.6
+|351 ± 20
+|
+|-
+|[[Wetumpka crater|Wetumpka]]
+|Alabama
+|United States
+|6.25
+|~83.5
+|
+|-
+|[[Yallalie crater|Yallalie]]
+|Western Australia
+|Australia
+|12
+|83.6–89.8
+|
+|-
+|[[Zapadnaya crater|Zapadnaya]]
+|Zhytomyr
+|Ukraine
+|3.2
+|165 ± 5
+|
+|-
+|[[Zeleny Gai crater|Zeleny Gai]]
+|Kirovograd
+|Ukraine
+|3.5
+|60–100
+|
+|-
+|[[Miralga impact structure|Miralga]]
+|[[Eastern Pilbara craton|Eastern Pilbara Craton]]
+|[[Western Australia]]
+|~16
+|~2700–400
+|21°02'54.0"S 119°23'35.0"E
+|-
+|}
+
+== Inferred impact events ==
+Some impact events are only known from events like layers of spherules or [[tektite]]s generated by the impact recorded in contemporary rocks, and their impact structures may no longer exist.
+{| class="wikitable sortable"
+!Name
+!Location
+!Country
+!Diameter  (km)
+!Age  (million years)
+!Coordinates
+|-
+|[[Eltanin impact]]
+|Southern Ocean
+|[[Bellingshausen Sea]] southwest of Chile (layer of unmelted and melted meteoritic debris found in deep sea cores)
+|none
+|2.5<ref name="Goff2012">{{cite journal|last=Goff|first=James|author2=Catherine Chagué-Goff |author3=Michael Archer |author4=Dale Dominey-Howes |author5=Chris Turney |author-link5 = Chris Turney|date=3 September 2012|title=The Eltanin asteroid impact: possible South Pacific palaeomegatsunami footprint and potential implications for the Pliocene-Pleistocene transition|journal=Journal of Quaternary Science|volume=27|issue=7|page=660|publisher=Wiley|issn=0267-8179|doi=10.1002/jqs.2571|bibcode = 2012JQS....27..660G |s2cid=131415717 }}</ref>
+|{{coord|57|47|S|90|47|W|}}
+|-
+|[[Australasian strewnfield]]
+|Unknown (likely Southeast Asia)
+|Unknown
+|Unknown, possibly ~15<ref>{{Cite journal |last1=Sieh |first1=Kerry |last2=Herrin |first2=Jason |last3=Jicha |first3=Brian |last4=Schonwalder Angel |first4=Dayana |last5=Moore |first5=James D. P. |last6=Banerjee |first6=Paramesh |last7=Wiwegwin |first7=Weerachat |last8=Sihavong |first8=Vanpheng |last9=Singer |first9=Brad |last10=Chualaowanich |first10=Tawachai |last11=Charusiri |first11=Punya |date=2020-01-21 |title=Australasian impact crater buried under the Bolaven volcanic field, Southern Laos |journal=Proceedings of the National Academy of Sciences |language=en |volume=117 |issue=3 |pages=1346–1353 |doi=10.1073/pnas.1904368116 |doi-access=free |issn=0027-8424 |pmc=6983392 |pmid=31889003|bibcode=2020PNAS..117.1346S }}</ref>
+|0.788<ref name="JourdanOthers2019a">{{Cite journal |last1=Jourdan |first1=F. |last2=Nomade |first2=S. |last3=Wingate |first3=M.T. |last4=Eroglu |first4=E. |last5=Deino |first5=A. |date=2019 |title=Ultraprecise age and formation temperature of the Australasian tektites constrained by 40Ar/39Ar analyses |url=https://onlinelibrary.wiley.com/doi/full/10.1111/maps.13305 |journal=Geological Society of America Bulletin |language=en |volume=54 |issue=10 |pages=2573–2591 |doi=10.1111/maps.13305 |bibcode= |issn=1086-9379}}</ref>
+| rowspan="19" |N/A
+|-
+|[[Nuussuaq spherule bed|Nuussuaq (Disko) spherule bed]]
+|Unknown
+|Unknown (spherule bed found in [[Nuussuaq Peninsula]], Western Greenland)
+|Unknown 
+|~61-62<ref name="JonesOthers2005a">{{cite book |last1=Jones |first1=A.P. |last2=Kearsley |first2=A.T. |last3=Friend |first3=C.R.L. |last4=Robin |first4=E. |last5=Beard |first5=A. |last6= Tamura |first6=A. |last7=Trickett |first7=S. |last8=Claeys |first8=P. |title= Large Meteorite Impacts III |url=https://www.researchgate.net/publication/241091064 |publisher=Geological Society of America |location=Boulder, Colorado |page=281-298 |date=2005 |chapter=Are there signs of a large Palaeocene impact, preserved around Disko bay, Greenland- Nuussuaq spherule beds origin by impact instead of volcanic eruption? |isbn=978-0-81372-384-6}}</ref>
+|-
+|[[Qidong spherule bed]]
+|Unknown
+|Unknown (spherule bed found near Qidong, [[Hunan, China]])
+|Unknown 
+|~374<ref name="Galss2013a"/>
+|-
+|[[Senzeilles microtektite bed|Senzeilles (Hony) microtektite bed]]
+|Unknown
+|Unknown (microtektite bed found in Belgium)
+|Unknown 
+|~376<ref name="Galss2013a">{{cite book |title=Distal Impact Ejecta Layers: A Record of Large Impacts in Sedimentary Deposits |publisher=Springer-Verlag |editor-last1=Glass |editor-first1=B.P. |editor-last2=Simonson |editor-first2=B.M. |year=2013 |location= Berlin Heidelberg, Germany |page=716 |isbn= 978-3-540-88261-9 | edition=1st }}</ref><ref name="ClaeysOthers1996a">{{cite book |last1=Claey |first1=P. |last2=Kyte |first2=A. |last3=Herbosch |first3=A. |last4=Casier |first4=J.G.|title= The Cretaceous-Tertiary Event and Other Catastrophes in Earth History |url=https://www.researchgate.net/publication/258028295 |publisher=Geological Society of America |location=Boulder, Colorado |page=491-504 |date=1996 |chapter= Geochemistry of the Frasnian-Famennian boundary in Belgium: Mass extinction, anoxic oceans and microtektite layer, but not much iridium |isbn=978-0-81372-307-5 }}</ref>
+|-
+|[[Osmussaar breccia]]
+|eastern [[Gulf of Finland]] region
+|Unknown (breccia layer found in [[Estonia]])
+|Unknown
+|~466<ref name="AlwmarkOthers2019a">{{Cite journal |last1=Alwmark |first1=C. |last2=Schmitz |first2=B. |last3=Kirsimäe |first3=K. |date=2010 |title=The mid-Ordovician Osmussaar breccia in Estonia linked to the disruption of the L-chondrite parent body in the asteroid belt |url=https://pubs.geoscienceworld.org/gsa/gsabulletin/article-abstract/122/7-8/1039/125541/The-mid-Ordovician-Osmussaar-breccia-in-Estonia |journal=Geological Society of America Bulletin |language=en |volume=122 |issue=7–8 |pages=1039–1046 |doi=10.1130/B30040.1 |bibcode= 2010GSAB..122.1039A|issn= 0016-7606|url-access=subscription }}</ref>
+|-
+|[[Vakkejokk Breccia]]
+|Northern Scandinavia 
+|Likely northern Sweden (proximal ejecta layer found in the North-Swedish Caledonides)
+|Around 4–5
+|~520<ref>{{Cite journal |last1=Alwmark |first1=Carl |last2=Ormö |first2=Jens |last3=Nielsen |first3=Arne T. |date=March 2019 |title=Shocked quartz grains in the early Cambrian Vakkejokk Breccia, Sweden—Evidence of a marine impact |url=https://onlinelibrary.wiley.com/doi/10.1111/maps.13230 |journal=Meteoritics & Planetary Science |language=en |volume=54 |issue=3 |pages=609–620 |doi=10.1111/maps.13230 |bibcode=2019M&PS...54..609A |issn=1086-9379}}</ref>
+|-
+|[[Kitkiöjärvi impact melt]]
+|Northern Scandinavia
+|Likely either northern Sweden or northern Finland (impact melt rock found in glacial deposits in gravel pit)
+|Unknown
+|658.9 ± 6.9<ref name="AlwmarkOthers2024a">{{Cite journal |last1=Alwmark |first1=C. |last2=Kenny |first2=G.G. |last3=Alwmark |first3=S. |last4=Minde |first4=P. |last5=Plado |first5=P. |last6=Hietala |first6=S. |last7=Whitehouse |first7=M.J. |date=2024 |title= Cryogenian impact structure lurking in the shadows of northern Sweden |journal=Meteoritics & Planetary Science |language=en |volume=59 |issue=12 |pages=3305–3321 |doi=10.1111/maps.14280 |bibcode= 2024M&PS...59.3305A|issn=1086-9379|doi-access=free }}</ref>
+|-
+|Unnamed
+|Northern Greenland
+|Denmark (impact melt rock found in glaciofluvial deposits in [[Inglefield Land]], Greenland)
+|Unknown
+|1039 ± 16<ref>{{Cite journal |last1=Hyde |first1=William R. |last2=Kenny |first2=Gavin G. |last3=Jaret |first3=Steven J. |last4=MacGregor |first4=Joseph A. |last5=Beck |first5=Pierre |last6=Whitehouse |first6=Martin J. |last7=Larsen |first7=Nicolaj K. |date=2024-07-01 |title=Evidence for ca. 1 Ga hypervelocity impact event found in northwest Greenland |journal=Geology |language=en |volume=52 |issue=7 |pages=517–521 |doi=10.1130/G51876.1 |bibcode=2024Geo....52..517H |issn=0091-7613|doi-access=free }}</ref>
+|-
+|[[Stac Fada Member]]
+|Scotland
+|Scotland (proximal ejecta layer found in Scotland)
+|Likely around 13–14
+|990 ± 20<ref>{{Cite journal |last1=Kirkland |first1=C.L. |last2=Erickson |first2=T.M. |last3=Johnson |first3=T.E. |last4=Prave |first4=T. |last5=Strachan |first5=R.A. |last6=Daggitt |first6=M.L. |last7=Hartnady |first7=M.I.H. |last8=Reddy |first8=S.M. |last9=Taylor |first9=R.J.M. |last10=Ribeiro |first10=B.V. |last11=Rankenburg |first11=K. |last12=Kirscher |first12=U. |last13=Fischer |first13=S. |date=2025-04-28 |title=A one-billion-year-old Scottish meteorite impact |url=https://pubs.geoscienceworld.org/geology/article/doi/10.1130/G53121.1/653703/A-one-billion-year-old-Scottish-meteorite-impact |journal=Geology |volume=53 |issue=8 |pages=621–625 |language=en |doi=10.1130/G53121.1 |bibcode=2025Geo....53..621K |issn=0091-7613}}</ref>
+|-
+|[[Paraburdoo-Reivilo spherule bed]]
+| rowspan="10" |Unknown
+|rowspan="3" |Unknown (spherule beds found in South Africa and Australia<ref name=":0">{{Cite journal |last1=Koeberl |first1=Christian |last2=Schulz |first2=Toni |last3=Huber |first3=Matthew S. |date=2024-09-01 |title=Precambrian impact structures and ejecta on earth: A review |journal=Precambrian Research |language=en |volume=411 |article-number=107511 |doi=10.1016/j.precamres.2024.107511|bibcode=2024PreR..41107511K |doi-access=free }}</ref><ref name="Glass2013a"/>)
+|rowspan="2" |Unknown 
+|~2570<ref name="Glass2013a">{{cite book |title=Distal Impact Ejecta Layers: A Record of Large Impacts in Sedimentary Deposits |publisher=Springer-Verlag |editor-last1=Glass |editor-first1=B.P. |editor-last2=Simonson |editor-first2=B.M. |year=2013 |location= Berlin Heidelberg, Germany |page=716 |isbn= 978-3-540-88261-9 | edition=1st }}</ref>
+|-
+|[[Monteville-Carawine-Jeerinah spherule bed]]
+|~2630<ref name="Glass2013a"/>
+|-
+|[[Barberton Greenstone Belt#Impact events|S1]]-Warrawoona spherule bed
+|Likely in the range of 400–1000<ref name=":1" />
+|~3472<ref name=":1" />
+|-
+|[[Barberton Greenstone Belt#Impact events|S2 spherule bed]]
+| rowspan="7" |Unknown (spherule beds found in South Africa)<ref name=":0"/>
+|Estimated to be around 500<ref>{{Cite web |date=2024-10-21 |title=S2 meteorite: What happened when a rock as big as London hit Earth? |url=https://www.bbc.co.uk/news/articles/c4g4g455p8lo |access-date=2024-11-10 |website=BBC News |language=en-GB}}</ref>
+|~3260<ref>{{Cite journal |last1=Drabon |first1=Nadja |last2=Knoll |first2=Andrew H. |last3=Lowe |first3=Donald R. |last4=Bernasconi |first4=Stefano M. |last5=Brenner |first5=Alec R. |last6=Mucciarone |first6=David A. |date=2024-10-29 |title=Effect of a giant meteorite impact on Paleoarchean surface environments and life |journal=Proceedings of the National Academy of Sciences |language=en |volume=121 |issue=44 |article-number=e2408721121 |doi=10.1073/pnas.2408721121 |issn=0027-8424 |pmc=11536127 |pmid=39432780}}</ref>
+|-
+|[[Barberton Greenstone Belt#Impact events|S3 spherule bed]]
+| rowspan="6" |Likely in the range of 400-1000<ref name=":1">{{Cite journal |last1=Lowe |first1=Donald R. |last2=Byerly |first2=Gary R. |date=April 2018 |title=The terrestrial record of Late Heavy Bombardment |journal=New Astronomy Reviews |language=en |volume=81 |pages=39–61 |doi=10.1016/j.newar.2018.03.002|bibcode=2018NewAR..81...39L |doi-access=free }}</ref>
+|~3243<ref>{{Cite journal |last1=Lowe |first1=Donald R. |last2=Byerly |first2=Gary R. |date=2024-09-11 |title=Geology of the Eastern Barberton Greenstone Belt, South Africa: Early Deformation and the Role of Large Meteor Impacts |url=https://ajsonline.org/article/122938-geology-of-the-eastern-barberton-greenstone-belt-south-africa-early-deformation-and-the-role-of-large-meteor-impacts |journal=American Journal of Science |language=en |volume=324 |page=12 |doi=10.2475/001c.122938 |bibcode=2024AmJSc.324...12L |issn=1945-452X|doi-access=free |url-access=subscription }}</ref>
+|-
+|[[Barberton Greenstone Belt#Impact events|S4 spherule bed]]
+|~3240<ref name=":2">{{Cite journal |last1=Ozdemir |first1=Seda |last2=Schulz |first2=Toni |last3=Koeberl |first3=Christian |last4=Reimold |first4=Wolf Uwe |last5=Mohr-Westheide |first5=Tanja |last6=Hoehnel |first6=Desiree |last7=Schmitt |first7=Ralf Thomas |date=December 2017 |title=Early Archean spherule layers from the Barberton Greenstone Belt, South Africa: Mineralogy and geochemistry of the spherule beds in the CT 3 drill core |journal=Meteoritics & Planetary Science |language=en |volume=52 |issue=12 |pages=2586–2631 |doi=10.1111/maps.12998 |bibcode=2017M&PS...52.2586O |issn=1086-9379|doi-access=free }}</ref>
+|-
+|[[Barberton Greenstone Belt#Impact events|S5 spherule bed]]
+|~3225<ref name=":2" />
+|-
+|[[Barberton Greenstone Belt#Impact events|S6 spherule bed]]
+|~3256<ref name=":2" />
+|-
+|[[Barberton Greenstone Belt#Impact events|S7 spherule bed]]
+|~3416<ref name=":2" /> 
+|-
+|[[Barberton Greenstone Belt#Impact events|S8 spherule bed]]
+|~3298<ref name=":2" />
+|}
+
+==Statistics of impact structures by continent==
+{{As of|2022}}, the [[Earth Impact Database]] (EID) contains 190 confirmed impact structures.<ref name=EID/> The table below is arranged by the [[Continent|continent's]] percentage of the Earth's land area, and where Asian and Russian structures are grouped together per EID convention. 
+
+The global distribution of known impact structures apparently shows a surprising asymmetry,<ref name="Prezzi">Prezzi, Claudia B.; Orgeira, María Julia; Acevedo, Rogelio D.; Ponce, Juan Federico; Martinez, Oscar; Rabassa, Jorge O.; Corbella, Hugo; Vásquez, Carlos; González-Guillot, Mauricio; Subías, Ignacio; (2011); [http://adsabs.harvard.edu/abs/2012PEPI..192...21P "Geophysical characterization of two circular structures at Bajada del Diablo (Patagonia, Argentina): Indication of impact origin"], ''Physics of the Earth and Planetary Interiors'', vol. 192, pp. 21–34</ref> with the small but well-funded [[Europe]]an continent having a ''large'' percentage of confirmed impact structures. As meteorites impacting Earth should impact evenly across the surface, it is suggested this situation is an artifact, highlighting the importance of intensifying research in less studied areas like [[Antarctica]], [[South America]] and elsewhere.<ref name="Prezzi" />
+
+{| class ="wikitable sortable" style="margin:auto;text-align:right"
+|-
+! Continent !!Continent's % <br />of Earth's<br /> land area!!Continent's % <br />of the 190<br />known impact structures!!Number <br /> of impact structures
+|-
+| [[List of impact craters in Asia and Russia|Asia and Russia]] || 30% || 16% || 31
+|-
+| [[List of impact craters in Africa|Africa]]  || 20%||11% || 20
+|-
+| [[List of impact craters in North America|North America]]  || 16%|| 32% ||60
+|-
+| [[List of impact craters in South America|South America]] ||  12% || 6% || 11
+|-
+| [[List of impact craters in Antarctica|Antarctica]]  || 9%|| 0% || 1
+|-
+| [[List of impact craters in Europe|Europe]] || 7%|| 22% || 41
+|-
+| [[List of impact craters in Australia|Australia]]  || 6%|| 14% || 27
+|-
+| Total  || 100% || 100%  || 190
+|-
+|}
+
+==See also==
+* {{annotated link|Bolide}}
+* {{annotated link|Earth Impact Database}}
+* {{annotated link|Extinction event}}
+* {{annotated link|Impact event}}
+* {{annotated link|Impact Field Studies Group}}
+* [[List of craters in the Solar System]]
+* [[List of largest craters in the Solar System]]
+* [[List of possible impact structures on Earth]]
+* {{annotated link|Traces of Catastrophe|''Traces of Catastrophe''}}
+* {{annotated link|Giant-impact hypothesis}}
+* {{annotated link|Deniliquin multiple-ring feature}} ({{convert|520|km|mi|adj=on}})-diameter strcture would be the largest one on Earth)
+
+==References==
+{{reflist}}
+
+==Further reading==
+* {{Cite book |editor1=Flamini, Enrico |editor2=Di Martino, Mario |editor3=Coletta, Alessandro| title=Encyclopedic Atlas of Terrestrial Impact Craters | publisher=Springer | year=2019 | location=Cham, Switzerland | isbn=978-3-030-05449-6}}
+* Grieve, Wood, Garvin, McLaughlin, McHone, Jr. (1988) [https://www.lpi.usra.edu/lpi/contribution_docs/TR/TR_8803.pdf  ''Astronaut's Guidebook to Terrestrial Impact Craters''] Technical Report 88-03 [[Lunar and Planetary Institute]]
+
+==External links==
+* [http://impacts.rajmon.cz Impact Database] (formerly Suspected Earth Impact Sites list) maintained by David Rajmon for [https://web.archive.org/web/20140816123552/http://web.eps.utk.edu/~faculty/ifsg.htm Impact Field Studies Group], US
+* [http://impact.scaredycatfilms.com/ Impact Meteor Crater Viewer] Google Maps Page with Locations of Meteor Craters around the world
+* [https://www.lpi.usra.edu/lunar/analogs/impactcraters/ Impact Craters] at [[Lunar and Planetary Institute]]
+
+{{Impact cratering on Earth|state=plain}}
+{{Portal bar|Physics|Astronomy|Stars|Spaceflight|Outer space|Solar System}}
+
+{{DEFAULTSORT:Impact craters on Earth}}
+[[Category:Lists of coordinates]]
