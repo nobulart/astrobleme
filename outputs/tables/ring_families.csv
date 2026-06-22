@@ -1,0 +1,27 @@
+family_id,member_count,member_candidate_ids,center_offset_km_median,radius_ratio_sequence,diameter_range_km,nested_geometry_score,possible_multi_ring_family,interpretation
+ring_family_0001,2,arc_0004;arc_0005,0.6115497639656777,[1.3711],207.165-284.048,0.8303813450696242,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0002,2,arc_0007;arc_0130,10.163883968239812,[1.2031],143.420-172.547,0.7624651576225852,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0003,2,arc_0052;arc_0147,109.922953636361,[1.7343],883.407-1532.120,0.7089026995811181,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0004,2,arc_0058;arc_0890,46.41601977000182,[2.8596],384.556-1099.673,0.712633093048231,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0005,2,arc_0150;arc_0148,58.990556509014844,[2.195],682.028-1497.044,0.7468404643476716,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0006,2,arc_0173;arc_0174,3.37615012942704,[1.352],27.375-37.011,0.7100054274902581,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0007,2,arc_0245;arc_0246,21.387468523274336,[1.365],314.749-429.636,0.7653824649153707,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0008,2,arc_0275;arc_0276,42.25239078684542,[1.3938],704.645-982.141,0.7733706320803931,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0009,2,arc_0339;arc_0332,1.452618300064436,[1.7737],12.764-22.639,0.7195275626822417,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0010,2,arc_0349;arc_1098,7.112968955461426,[5.1887],96.344-499.899,0.7595047025282204,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0011,2,arc_0361;arc_0360,1.3544445217350207,[2.0563],13.334-27.420,0.7317575218039166,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0012,3,arc_1241;arc_1242;arc_0419,46.36932732519011,"[1.7497, 1.2191]",865.762-1846.691,0.9464410390774556,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0013,2,arc_0489;arc_0781,133.59445003410957,[1.6502],1349.188-2226.450,0.7343148889552975,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0014,2,arc_0527;arc_0587,0.9993253140959278,[1.3913],106.796-148.589,0.8239760334536432,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0015,2,arc_0569;arc_0553,1.347331516749088,[1.2749],25.664-32.720,0.7808353982179539,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0016,2,arc_0591;arc_0592,3.4630444337378044,[1.4231],30.386-43.242,0.7193665568309231,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0017,2,arc_0621;arc_0623,11.552842064568871,[1.5695],645.320-1012.847,0.8154308321033832,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0018,2,arc_0647;arc_0648,22.188307496453774,[1.3454],720.924-969.945,0.8025557356060705,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0019,2,arc_0847;arc_0846,1.7197861370510157,[8.1204],22.462-182.403,0.7567697738371066,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0020,2,arc_0863;arc_0862,40.836448398915216,[1.2976],1585.736-2057.668,0.8075809771794698,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0021,2,arc_0946;arc_0947,1.1290018871661929,[1.5971],28.052-44.800,0.7930860625856989,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0022,3,arc_0957;arc_0958;arc_0959,10.420138838050935,"[1.3711, 1.381]",97.516-184.644,0.8931448529853001,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0023,2,arc_1000;arc_0999,2.269297002718814,[1.2292],43.420-53.374,0.7810694709713737,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0024,2,arc_1063;arc_1062,0.7947505406410798,[4.4757],7.265-32.516,0.7239369746284605,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0025,2,arc_1209;arc_1210,14.840148445384145,[1.3945],690.364-962.712,0.8118372138464776,True,candidate multi-ring geometry; requires geological discrimination
+ring_family_0026,2,arc_1306;arc_1307,2.995603461846758,[1.5121],168.175-254.304,0.8155209087999977,True,candidate multi-ring geometry; requires geological discrimination

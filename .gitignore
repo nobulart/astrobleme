@@ -14,14 +14,9 @@ ENV/
 .idea/
 .vscode/
 
-# Generated output files (analysis results)
-analysis_results.json
-fig_*.pdf
-fig_*.png
-table_*.tex
-outputs/
-output/
-geophysical_output/structure_output/
+# Generated analytical results are intentionally versioned when each file is
+# below GitHub's 100 MB hard limit. This keeps the manuscript, review layers,
+# diagnostics, figures and machine-readable summaries available with the code.
 
 # Large PDF outputs from manuscript compilation
 *.aux
@@ -29,6 +24,11 @@ geophysical_output/structure_output/
 *.fls
 *.log
 *.out
+
+# Reproducible local caches and temporary rendering products
+.pytest_cache/
+tmp/
+geophysical_cache/
 
 # Geospatial data (original large source files - use smaller processed versions)
 arcuate_geometries.geojson

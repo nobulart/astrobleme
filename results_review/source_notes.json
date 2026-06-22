@@ -1,0 +1,66 @@
+{
+  "authoritative_input": "/Users/craig/ECDO/papers/astrobleme/ranking_output/arc_ranking.csv",
+  "row_count": 1318,
+  "score_formula": "data_quality * (0.78 * topography_score_unweighted + 0.22 * geology_independence)",
+  "imagery_included": false,
+  "score_quantiles": {
+    "0.0": 0.0,
+    "0.25": 0.5220965684519296,
+    "0.5": 0.5824226963616549,
+    "0.75": 0.6744368079445369,
+    "0.9": 0.7292740032958662,
+    "0.95": 0.758616354248274,
+    "0.99": 0.8034052074410356,
+    "1.0": 0.8947487411290895
+  },
+  "threshold_counts": {
+    "0.7": 233,
+    "0.75": 82,
+    "0.8": 19,
+    "0.85": 3
+  },
+  "spearman_correlations": {
+    "Composite topography": 0.8542135873123412,
+    "Annular peak percentile": 0.7859160176645887,
+    "Radius agreement": 0.6594711082548518,
+    "Angular continuity": 0.645763793779214,
+    "Centre agreement": 0.41596495367558795,
+    "Data quality": 0.35608982319900806,
+    "Geology independence": 0.21586174506576508,
+    "Annular relief": 0.19168436846051148,
+    "Radial alignment": 0.14005628977171078
+  },
+  "chart_map": [
+    {
+      "section": "High-priority tail",
+      "family": "Distribution",
+      "type": "Histogram",
+      "asset": "charts/score_distribution.png"
+    },
+    {
+      "section": "Leaders",
+      "family": "Comparison & Ranking",
+      "type": "Ranked horizontal bars",
+      "asset": "charts/top_candidates.png"
+    },
+    {
+      "section": "Score construction",
+      "family": "Comparison & Ranking",
+      "type": "Horizontal bars",
+      "asset": "charts/score_drivers.png"
+    },
+    {
+      "section": "Resolution",
+      "family": "Distribution",
+      "type": "Box plot",
+      "asset": "charts/score_by_diameter.png"
+    }
+  ],
+  "known_limitations": [
+    "No empirical null distribution or FDR calibration",
+    "No imagery_score column in completed ranking",
+    "Topographic circularity is not impact specificity",
+    "Small candidates are resolution-limited",
+    "Spatially overlapping candidates have not been consolidated"
+  ]
+}

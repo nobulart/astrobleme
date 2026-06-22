@@ -1,0 +1,82 @@
+{
+  "seed": 20260621,
+  "replicates": 9999,
+  "longitude_rotation": {
+    "design": "Preserves latitude and candidate radius and matches GEBCO-TID land/ocean/mixed class; tests enrichment over same-latitude background.",
+    "results": {
+      "tid_artifact_risk": {
+        "statistic": "mean",
+        "candidate_count": 1285,
+        "observed": 0.11373522544954498,
+        "null_mean": 0.1219048610326358,
+        "null_025": 0.11741395779436392,
+        "null_975": 0.126566031186291,
+        "one_sided_enrichment_p": 0.9998
+      },
+      "gravity_bouguer_ring_score": {
+        "statistic": "median",
+        "candidate_count": 1225,
+        "observed": 0.3016556934712699,
+        "null_mean": 0.2706086259283941,
+        "null_025": 0.2663218189917073,
+        "null_975": 0.2747381096337211,
+        "one_sided_enrichment_p": 0.0001
+      },
+      "gravity_freeair_ring_score": {
+        "statistic": "median",
+        "candidate_count": 1225,
+        "observed": 0.3261884141960565,
+        "null_mean": 0.27917049291697016,
+        "null_025": 0.2745991589664746,
+        "null_975": 0.2839738591448574,
+        "one_sided_enrichment_p": 0.0001
+      },
+      "magnetic_ring_score": {
+        "statistic": "median",
+        "candidate_count": 1225,
+        "observed": 0.289739139724346,
+        "null_mean": 0.2865986323449021,
+        "null_025": 0.281212840743567,
+        "null_975": 0.2921601949294696,
+        "one_sided_enrichment_p": 0.1268
+      }
+    }
+  },
+  "stratified_cross_layer_permutation": {
+    "design": "Permutes each geophysical metric among candidates within land/ocean/mixed and log-diameter strata; tests concordance with morphology ranking beyond broad domain and scale.",
+    "results": {
+      "gravity_bouguer_ring_score": {
+        "candidate_count": 1256,
+        "observed_spearman_rho": 0.1726595687325788,
+        "null_mean": -0.027747800298536726,
+        "null_025": -0.06525378581875228,
+        "null_975": 0.009074995917700923,
+        "one_sided_positive_concordance_p": 0.0001,
+        "strata": "land/ocean/mixed x log-diameter decile"
+      },
+      "gravity_freeair_ring_score": {
+        "candidate_count": 1256,
+        "observed_spearman_rho": 0.15835490180031103,
+        "null_mean": -0.014228352981234411,
+        "null_025": -0.050068187059426485,
+        "null_975": 0.022240294453317492,
+        "one_sided_positive_concordance_p": 0.0001,
+        "strata": "land/ocean/mixed x log-diameter decile"
+      },
+      "magnetic_ring_score": {
+        "candidate_count": 1256,
+        "observed_spearman_rho": -0.01734697178893431,
+        "null_mean": -0.04462625361500313,
+        "null_025": -0.0810891603977276,
+        "null_975": -0.00811180330294625,
+        "one_sided_positive_concordance_p": 0.0717,
+        "strata": "land/ocean/mixed x log-diameter decile"
+      }
+    }
+  },
+  "limits": [
+    "The arcuate inventory was selected visually from GEBCO, so gravity enrichment can reflect genuine topographic-gravity coupling in endogenic landforms as well as impacts.",
+    "Nineteen rotations yield coarse candidate-level p-values (minimum 0.05); candidate p-values are screening diagnostics, not discovery claims.",
+    "Neither null controls detailed tectonic setting, survey-track geometry within a TID class, or spatial autocorrelation between nearby candidates."
+  ]
+}

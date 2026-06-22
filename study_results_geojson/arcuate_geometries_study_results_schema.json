@@ -1,0 +1,1325 @@
+{
+  "schema_version": "1.0.0",
+  "feature_count": 1318,
+  "field_count": 188,
+  "geometry_type": "MultiLineString",
+  "crs": "RFC 7946 WGS84 longitude/latitude",
+  "field_dictionary": [
+    {
+      "field": "schema_version",
+      "type": "string",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "record_grain",
+      "type": "string",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "candidate_id",
+      "type": "string",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "source_index",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "source_name",
+      "type": "string",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "source_description",
+      "type": "null",
+      "nullable": true,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "source_geometry_type_original",
+      "type": "string",
+      "nullable": true,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "score_interpretation",
+      "type": "string",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "geometry_interpretation",
+      "type": "string",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "geophysics_interpretation",
+      "type": "string",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "angular_continuity",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "annular_relief_normalized",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "best_radius_ratio",
+      "type": "number",
+      "nullable": true,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "centre_match",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "centre_shift_ratio",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "crust1_cell_lat",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "crust1_cell_lon",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "crust1_context_only",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "crust1_crust_thickness_km",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "crust1_lower_crust_density",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "crust1_lower_crust_vp",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "crust1_sediment_thickness_km",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "crust1_upper_crust_density",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "crust1_upper_crust_vp",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "crust1_water_thickness_km",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "data_quality",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "diameter_km",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "followup_score",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "geology_boundary_coincidence",
+      "type": "number",
+      "nullable": false,
+      "category": "geological_context",
+      "description": "Derived candidate-level geological context metric."
+    },
+    {
+      "field": "geology_boundary_crossings",
+      "type": "number",
+      "nullable": false,
+      "category": "geological_context",
+      "description": "Derived candidate-level geological context metric."
+    },
+    {
+      "field": "geology_independence",
+      "type": "number",
+      "nullable": false,
+      "category": "geological_context",
+      "description": "Derived candidate-level geological context metric."
+    },
+    {
+      "field": "geology_nearby_boundaries",
+      "type": "number",
+      "nullable": false,
+      "category": "geological_context",
+      "description": "Derived candidate-level geological context metric."
+    },
+    {
+      "field": "geology_nearby_types",
+      "type": "string",
+      "nullable": true,
+      "category": "geological_context",
+      "description": "Derived candidate-level geological context metric."
+    },
+    {
+      "field": "geometry_angular_coverage",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "geometry_relative_radial_mad",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "gravity_bouguer_angular_continuity",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_bouguer_annular_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_bouguer_annular_gradient_enrichment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_bouguer_central_annular_contrast",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_bouguer_central_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_bouguer_diameter_pixels",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_bouguer_radial_alignment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_bouguer_ring_score",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_bouguer_valid_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_disturbance_angular_continuity",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_disturbance_annular_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_disturbance_annular_gradient_enrichment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_disturbance_central_annular_contrast",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_disturbance_central_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_disturbance_diameter_pixels",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_disturbance_radial_alignment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_disturbance_ring_score",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_disturbance_valid_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_freeair_angular_continuity",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_freeair_annular_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_freeair_annular_gradient_enrichment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_freeair_central_annular_contrast",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_freeair_central_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_freeair_diameter_pixels",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_freeair_radial_alignment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_freeair_ring_score",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_freeair_valid_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_isostatic_angular_continuity",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_isostatic_annular_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_isostatic_annular_gradient_enrichment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_isostatic_central_annular_contrast",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_isostatic_central_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_isostatic_diameter_pixels",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_isostatic_radial_alignment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_isostatic_ring_score",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "gravity_isostatic_valid_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "hough_percentile",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "lat",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "lon",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "magnetic_angular_continuity",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "magnetic_annular_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "magnetic_annular_gradient_enrichment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "magnetic_central_annular_contrast",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "magnetic_central_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "magnetic_diameter_pixels",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "magnetic_radial_alignment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "magnetic_ring_score",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "magnetic_valid_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "name",
+      "type": "string",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "native_diameter_pixels",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "radial_alignment",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "radius_km",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "radius_match",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "rank",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "relief_score",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "sample_cols",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "sample_rows",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "sediment_angular_continuity",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "sediment_annular_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "sediment_annular_gradient_enrichment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "sediment_central_annular_contrast",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "sediment_central_anomaly_robust",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "sediment_diameter_pixels",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "sediment_radial_alignment",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "sediment_ring_score",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "sediment_valid_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "source_stride_x",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "source_stride_y",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "terrain_iqr_m",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "tid_annulus_transition_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_artifact_risk",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_background_transition_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_direct_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_dominant_flag",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_dominant_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_land_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_modelled_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_normalized_entropy",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_transition_angular_coverage",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_transition_enrichment",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_unique_flags",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "tid_valid_fraction",
+      "type": "number",
+      "nullable": false,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "topography_score",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "topography_score_unweighted",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "geophysical_review_rank",
+      "type": "number",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "review_tier",
+      "type": "string",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "domain",
+      "type": "string",
+      "nullable": false,
+      "category": "candidate_or_provenance",
+      "description": "Candidate-level result or source/provenance field."
+    },
+    {
+      "field": "gravity_consensus_percentile",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "magnetic_ring_score_stratified_percentile",
+      "type": "number",
+      "nullable": true,
+      "category": "geophysical_screening",
+      "description": "Derived candidate-level screening metric; see manuscript methods."
+    },
+    {
+      "field": "structure_id",
+      "type": "string",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_is_representative",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_structure_review_rank",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_representative_candidate_id",
+      "type": "string",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_representative_name",
+      "type": "string",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_lon",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_lat",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_radius_km",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_diameter_km",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_member_count",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_member_candidate_ids",
+      "type": "string",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_radius_min_km",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_radius_max_km",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_followup_score",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_review_tier",
+      "type": "string",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_domain",
+      "type": "string",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_geology_independence",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_geology_boundary_coincidence",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_geology_nearby_types",
+      "type": "string",
+      "nullable": true,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_tid_artifact_risk",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_active_fault_coverage",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_nearest_active_fault_km",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_nearest_active_fault_name",
+      "type": "string",
+      "nullable": true,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_nearest_active_fault_slip_type",
+      "type": "string",
+      "nullable": true,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_fault_length_within_radius_km",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_fault_intersects_candidate",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_fault_search_degrees",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_active_fault_proximity_ratio",
+      "type": "number",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "structure_fault_control_flag",
+      "type": "string",
+      "nullable": false,
+      "category": "structure_level",
+      "description": "Structure-level field repeated for each member candidate."
+    },
+    {
+      "field": "manual_capture_complete",
+      "type": "boolean",
+      "nullable": false,
+      "category": "manual_capture",
+      "description": "True only after the required manual review fields have been checked."
+    },
+    {
+      "field": "manual_review_status",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Pending, in_review, complete, deferred or rejected."
+    },
+    {
+      "field": "manual_interpreter",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Name or identifier of the person completing the review."
+    },
+    {
+      "field": "manual_review_date",
+      "type": "date",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Review date in ISO YYYY-MM-DD format."
+    },
+    {
+      "field": "manual_source_type",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Original evidence type, such as GEBCO, aerial imagery, geological map or publication."
+    },
+    {
+      "field": "manual_source_title",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Human-readable title of the source inspected."
+    },
+    {
+      "field": "manual_source_uri",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Stable URL, DOI, catalogue identifier or local source reference."
+    },
+    {
+      "field": "manual_source_accessed_date",
+      "type": "date",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Date the source was accessed, ISO YYYY-MM-DD."
+    },
+    {
+      "field": "manual_source_scale_or_resolution",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Map scale or raster/imagery spatial resolution."
+    },
+    {
+      "field": "manual_imagery_provider",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Aerial or satellite imagery provider."
+    },
+    {
+      "field": "manual_imagery_scene_id",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Scene, tile or acquisition identifier."
+    },
+    {
+      "field": "manual_imagery_acquisition_date",
+      "type": "date",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Imagery acquisition date, ISO YYYY-MM-DD where known."
+    },
+    {
+      "field": "manual_imagery_resolution_m",
+      "type": "number",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Imagery ground-sample distance in metres."
+    },
+    {
+      "field": "manual_original_trace_available",
+      "type": "boolean",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Whether the unbuffered/original observed trace is available."
+    },
+    {
+      "field": "manual_original_trace_reference",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "File, layer or feature identifier for the original trace."
+    },
+    {
+      "field": "manual_trace_confidence",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Interpreter confidence in the observed arcuate trace."
+    },
+    {
+      "field": "manual_angular_extent_degrees",
+      "type": "number",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Manually verified angular extent of the observed arc."
+    },
+    {
+      "field": "manual_feature_class",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Observed feature class, e.g. scarp, ridge, drainage, coastline, contact or artefact."
+    },
+    {
+      "field": "manual_geologic_unit",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Mapped geological unit at or around the candidate."
+    },
+    {
+      "field": "manual_lithology",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Dominant mapped or observed lithology."
+    },
+    {
+      "field": "manual_stratigraphic_age",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Mapped geological or stratigraphic age."
+    },
+    {
+      "field": "manual_structural_setting",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Tectonic, basin, volcanic, cratonic or other structural setting."
+    },
+    {
+      "field": "manual_geological_boundary_description",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Description of relevant contacts, faults or province boundaries."
+    },
+    {
+      "field": "manual_endogenic_alternative",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Best-supported non-impact explanation, if any."
+    },
+    {
+      "field": "manual_candidate_interpretation",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Current geological interpretation without implying confirmation."
+    },
+    {
+      "field": "manual_inclusion_reason",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Original or retrospective reason the geometry belongs in the inventory."
+    },
+    {
+      "field": "manual_exclusion_reason",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Reason for exclusion or deprioritisation, if applicable."
+    },
+    {
+      "field": "manual_outcrop_accessibility",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Accessibility of relevant outcrop, core or sampling locations."
+    },
+    {
+      "field": "manual_field_priority",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Manual field-follow-up priority, using a documented local vocabulary."
+    },
+    {
+      "field": "manual_field_checked",
+      "type": "boolean",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Whether field, core or archived-sample evidence has been checked."
+    },
+    {
+      "field": "manual_shock_evidence",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Observed diagnostic shock evidence, explicitly including negative or absent results."
+    },
+    {
+      "field": "manual_sample_or_core_reference",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Sample, borehole, core, thin-section or archive reference."
+    },
+    {
+      "field": "manual_citation",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Primary citation supporting the manual interpretation."
+    },
+    {
+      "field": "manual_validation_notes",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "QA notes, disagreements or uncertainty requiring resolution."
+    },
+    {
+      "field": "manual_notes",
+      "type": "string",
+      "nullable": true,
+      "category": "manual_capture",
+      "description": "Additional free-text notes."
+    }
+  ]
+}

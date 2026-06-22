@@ -1,0 +1,44 @@
+{
+  "candidate_id": "arc_0404",
+  "location": {
+    "longitude": -41.89770903396978,
+    "latitude": -11.177486899568022
+  },
+  "diameter_km": 115.8526080711042,
+  "radius_km": 57.9263040355521,
+  "domain": "land",
+  "gravity_first_review_score": 0.864526984239801,
+  "evidence_channels": {
+    "morphology": 0.8009896701927551,
+    "gravity": 0.8979591836734694,
+    "magnetics": 0.7142857142857143,
+    "TID/source artefact risk": 0.0,
+    "active-fault context": "no_mapped_active_fault_within_radius"
+  },
+  "negative_control": {
+    "class": "ring_complex",
+    "distance_km": 4887.177065214332,
+    "warning": false
+  },
+  "regional_family": "regional_family_0014",
+  "ring_family": null,
+  "preservation_state": "eroded_exposed",
+  "preservation_follow_up": "mapped structural transects plus archived sample and core search",
+  "most_likely_non_impact_alternatives": [
+    "tectonic or inherited structural fabric",
+    "intrusive/ring complex",
+    "erosional or sedimentary basin geometry"
+  ],
+  "impact_supporting_evidence_to_seek": [
+    "diagnostic shock metamorphism in geological context",
+    "impact melt or breccia with defensible field relations",
+    "meteoritic or projectile-derived geochemical signature"
+  ],
+  "falsification_tests": [
+    "Model plausible volcanic, intrusive, tectonic, and sedimentary alternatives against the same observations.",
+    "Reject an impact interpretation if mapped relationships establish an endogenic structure.",
+    "Require independently verified diagnostic shock or projectile-derived evidence for confirmation."
+  ],
+  "recommended_next_data_acquisition": "mapped structural transects plus archived sample and core search",
+  "confidence_caution_statement": "This is a screening candidate only. No impact origin is inferred without diagnostic shock, meteoritic, or geochemical evidence."
+}

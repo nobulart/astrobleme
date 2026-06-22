@@ -1,0 +1,26 @@
+candidate_id,nearest_negative_control_id,nearest_negative_control_class,nearest_negative_control_distance_km,overlapping_negative_control,control_similarity_score,control_similarity_channels_used,control_similarity_nearby,control_similarity_warning,known_volcanic_negative_control,control_interpretation
+arc_0371,anton_dohrn_arc_0370,volcanic_seamount,117.94843325766332,False,0.6626154730132376,1,True,False,False,requires endogenic modelling before impact interpretation
+arc_0674,control_pilanesberg,ring_complex,11347.769988679993,False,0.16581744782281216,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0687,anton_dohrn_arc_0370,volcanic_seamount,1899.630824478425,False,0.23669697703771855,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_1088,anton_dohrn_arc_0370,volcanic_seamount,5863.240381152128,False,0.4090254791198784,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_1105,control_richat,ring_complex,1882.074771088152,False,0.09981605277315381,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0795,control_pilanesberg,ring_complex,9932.543576369395,False,0.2867260269262369,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0437,anton_dohrn_arc_0370,volcanic_seamount,11349.820634908698,False,0.33023393637994103,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0697,anton_dohrn_arc_0370,volcanic_seamount,4537.269849022345,False,0.8135024367777366,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0605,anton_dohrn_arc_0370,volcanic_seamount,6138.407589665108,False,0.7457287028227231,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0899,control_jabal_arkanu,ring_complex,2438.173416934344,False,0.11259201844052502,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0892,control_jabal_arkanu,ring_complex,1926.0669446629868,False,0.09567987686681766,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0444,anton_dohrn_arc_0370,volcanic_seamount,11477.327106798486,False,0.23525817795918727,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_1214,control_pilanesberg,ring_complex,13938.98830717227,False,0.19405439640016675,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0404,control_richat,ring_complex,4887.177065214332,False,0.31111380838224284,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0370,anton_dohrn_arc_0370,volcanic_seamount,5.601959710791776e-14,True,1.0,1,True,True,True,requires endogenic modelling before impact interpretation
+arc_0896,control_jabal_arkanu,ring_complex,2418.104196872128,False,0.10954737295444224,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_1103,anton_dohrn_arc_0370,volcanic_seamount,696.3094012222708,False,0.7896731648871007,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0547,anton_dohrn_arc_0370,volcanic_seamount,6169.118195083517,False,0.8005750539491404,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0865,anton_dohrn_arc_0370,volcanic_seamount,7793.791002342826,False,0.21545091065224473,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0232,anton_dohrn_arc_0370,volcanic_seamount,7030.206706407853,False,0.2568540279538617,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0886,control_djebel_uweinat,ring_complex,3070.873178083373,False,0.03899521033869816,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0852,anton_dohrn_arc_0370,volcanic_seamount,4885.607365231145,False,0.32027692570442395,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0593,anton_dohrn_arc_0370,volcanic_seamount,6229.092044937294,False,0.7752985289207499,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0576,anton_dohrn_arc_0370,volcanic_seamount,6218.368244117806,False,0.30320179440042794,1,False,False,False,requires endogenic modelling before impact interpretation
+arc_0710,anton_dohrn_arc_0370,volcanic_seamount,3855.982083971639,False,0.7366104145947351,1,False,False,False,requires endogenic modelling before impact interpretation

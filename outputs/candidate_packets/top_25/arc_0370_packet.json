@@ -1,0 +1,45 @@
+{
+  "candidate_id": "arc_0370",
+  "location": {
+    "longitude": -11.11993802470171,
+    "latitude": 57.431545892668886
+  },
+  "diameter_km": 60.21127188585729,
+  "radius_km": 30.105635942928647,
+  "domain": "ocean",
+  "gravity_first_review_score": 0.8622478653593344,
+  "evidence_channels": {
+    "morphology": 0.8107907340327524,
+    "gravity": 0.9166666666666669,
+    "magnetics": 0.5833333333333334,
+    "TID/source artefact risk": 0.1510796495540423,
+    "active-fault context": "no_mapped_active_fault_within_radius"
+  },
+  "negative_control": {
+    "class": "volcanic_seamount",
+    "distance_km": 5.601959710791776e-14,
+    "warning": true
+  },
+  "regional_family": "regional_family_0001",
+  "ring_family": null,
+  "preservation_state": "buried_sedimentary",
+  "preservation_follow_up": "seismic and gravity modelling, then archived core or targeted drilling",
+  "most_likely_non_impact_alternatives": [
+    "analogue of nearby volcanic_seamount",
+    "tectonic or inherited structural fabric",
+    "volcanic seamount or intrusive complex",
+    "sedimentary or passive-margin structure"
+  ],
+  "impact_supporting_evidence_to_seek": [
+    "diagnostic shock metamorphism in geological context",
+    "impact melt or breccia with defensible field relations",
+    "meteoritic or projectile-derived geochemical signature"
+  ],
+  "falsification_tests": [
+    "Model plausible volcanic, intrusive, tectonic, and sedimentary alternatives against the same observations.",
+    "Reject an impact interpretation if mapped relationships establish an endogenic structure.",
+    "Require independently verified diagnostic shock or projectile-derived evidence for confirmation."
+  ],
+  "recommended_next_data_acquisition": "seismic and gravity modelling, then archived core or targeted drilling",
+  "confidence_caution_statement": "This is a screening candidate only. No impact origin is inferred without diagnostic shock, meteoritic, or geochemical evidence."
+}

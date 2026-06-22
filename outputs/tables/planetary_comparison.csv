@@ -1,0 +1,41 @@
+source,object,body,certainty,diameter_km,ring_ratios,comparison_interpretation
+lunar_multiring_basins.csv,Hertzsprung,Moon,probable,571,"[2.37037, 1.59375, 1.39951]",geometric comparison only; size similarity does not imply common origin
+lunar_multiring_basins.csv,Humboldtianum,Moon,possible,618,"[1.634518, 1.437888, 1.334773]",geometric comparison only; size similarity does not imply common origin
+lunar_multiring_basins.csv,Mendel-Rydberg,Moon,certain,650,"[1.600985, 1.492308, 1.340206]",geometric comparison only; size similarity does not imply common origin
+lunar_multiring_basins.csv,Coulomb-Sarton,Moon,possible,672,"[1.993671, 1.273016, 1.67581]",geometric comparison only; size similarity does not imply common origin
+lunar_multiring_basins.csv,Humorum,Moon,probable,816,"[1.369565, 1.290249, 1.434095]",geometric comparison only; size similarity does not imply common origin
+lunar_multiring_basins.csv,Smythii,Moon,possible,878,"[1.290667, 1.81405]",geometric comparison only; size similarity does not imply common origin
+lunar_multiring_basins.csv,Nectaris,Moon,certain,885,"[1.62963, 1.415909, 1.420546]",geometric comparison only; size similarity does not imply common origin
+lunar_multiring_basins.csv,Serenitatis,Moon,possible,923,"[1.588942, 1.396369]",geometric comparison only; size similarity does not imply common origin
+lunar_multiring_basins.csv,Orientale,Moon,certain,937,"[1.410557, 1.328482, 1.466354]",geometric comparison only; size similarity does not imply common origin
+lunar_multiring_basins.csv,Crisium,Moon,probable,1076,"[1.387363, 1.60198, 1.330037]",geometric comparison only; size similarity does not imply common origin
+lunar_multiring_basins.csv,Imbrium,Moon,probable,1321,"[1.497041, 1.305336]",geometric comparison only; size similarity does not imply common origin
+martian_basins.csv,Argyre,Mars,,1900,"[1.536585, 1.269841, 1.375, 1.236364, 1.397059]",geometric comparison only; size similarity does not imply common origin
+martian_basins.csv,Isidis,Mars,,3800,"[2.142857, 2.0, 1.266667]",geometric comparison only; size similarity does not imply common origin
+martian_basins.csv,Hellas,Mars,,5500,"[1.428571, 1.416667, 1.294118, 1.409091, 1.419355, 1.25]",geometric comparison only; size similarity does not imply common origin
+terrestrial_screening,ring_family_0001,Earth,screening geometry only,284.048,[1.3711],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0002,Earth,screening geometry only,172.547,[1.2031],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0003,Earth,screening geometry only,1532.120,[1.7343],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0004,Earth,screening geometry only,1099.673,[2.8596],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0005,Earth,screening geometry only,1497.044,[2.195],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0006,Earth,screening geometry only,37.011,[1.352],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0007,Earth,screening geometry only,429.636,[1.365],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0008,Earth,screening geometry only,982.141,[1.3938],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0009,Earth,screening geometry only,22.639,[1.7737],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0010,Earth,screening geometry only,499.899,[5.1887],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0011,Earth,screening geometry only,27.420,[2.0563],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0012,Earth,screening geometry only,1846.691,"[1.7497, 1.2191]",candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0013,Earth,screening geometry only,2226.450,[1.6502],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0014,Earth,screening geometry only,148.589,[1.3913],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0015,Earth,screening geometry only,32.720,[1.2749],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0016,Earth,screening geometry only,43.242,[1.4231],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0017,Earth,screening geometry only,1012.847,[1.5695],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0018,Earth,screening geometry only,969.945,[1.3454],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0019,Earth,screening geometry only,182.403,[8.1204],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0020,Earth,screening geometry only,2057.668,[1.2976],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0021,Earth,screening geometry only,44.800,[1.5971],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0022,Earth,screening geometry only,184.644,"[1.3711, 1.381]",candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0023,Earth,screening geometry only,53.374,[1.2292],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0024,Earth,screening geometry only,32.516,[4.4757],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0025,Earth,screening geometry only,962.712,[1.3945],candidate nested geometry; requires geological discrimination
+terrestrial_screening,ring_family_0026,Earth,screening geometry only,254.304,[1.5121],candidate nested geometry; requires geological discrimination

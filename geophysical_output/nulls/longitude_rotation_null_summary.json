@@ -1,0 +1,43 @@
+{
+  "null": "Longitude rotation preserving candidate latitude and radius; null locations are matched to land/ocean/mixed class using GEBCO TID land fraction.",
+  "seed": 20260621,
+  "nulls_per_candidate": 19,
+  "global_replicates": 9999,
+  "candidate_count": 1318,
+  "complete_candidate_count": 1285,
+  "results": {
+    "tid_artifact_risk": {
+      "candidate_count": 1285,
+      "observed_median": 0.0,
+      "null_median_mean": 0.0,
+      "null_median_025": 0.0,
+      "null_median_975": 0.0,
+      "one_sided_enrichment_p": 1.0
+    },
+    "gravity_bouguer_ring_score": {
+      "candidate_count": 1225,
+      "observed_median": 0.3016556934712699,
+      "null_median_mean": 0.27058190679568983,
+      "null_median_025": 0.26622393820474466,
+      "null_median_975": 0.2747558196397147,
+      "one_sided_enrichment_p": 0.0001
+    },
+    "gravity_freeair_ring_score": {
+      "candidate_count": 1225,
+      "observed_median": 0.3261884141960565,
+      "null_median_mean": 0.27909986962250505,
+      "null_median_025": 0.27464633579421455,
+      "null_median_975": 0.28390506853891256,
+      "one_sided_enrichment_p": 0.0001
+    },
+    "magnetic_ring_score": {
+      "candidate_count": 1225,
+      "observed_median": 0.28973913972434606,
+      "null_median_mean": 0.286588924066541,
+      "null_median_025": 0.28133001097622307,
+      "null_median_975": 0.29206199205882444,
+      "one_sided_enrichment_p": 0.1246
+    }
+  },
+  "interpretation": "One-sided tests assess enrichment relative to the spatial background. Candidate p-values are screening diagnostics and are not FDR-adjusted impact probabilities."
+}

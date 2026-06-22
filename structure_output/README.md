@@ -1,0 +1,3 @@
+# Structure-level review catalogue
+
+Arc picks are merged with score-ordered complete-link clustering when every pair has centre separation <= 0.25 times the smaller radius and radius ratio 0.67--1.50. This conservative rule avoids merging broad footprint overlaps and preserves different-scale nested rings. Strict and lenient sensitivity results are supplied. GEM harmonized active-fault metrics are independent geological controls and do not alter `followup_score`; absence of a mapped fault is not evidence of impact origin. Macrostrat enrichment is deferred until a reproducibly cached API response is available.

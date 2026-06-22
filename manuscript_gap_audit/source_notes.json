@@ -1,0 +1,36 @@
+{
+  "report": "manuscript_gap_audit/report.html",
+  "created": "2026-06-21",
+  "audience": "technical",
+  "scope": "Current manuscript cross-referenced against completed generated outputs and selected local primary/review literature.",
+  "manuscript": "astrobleme.tex",
+  "manuscript_changes_made": true,
+  "analytical_grains": {
+    "arc_records": 1318,
+    "structure_units": 1292,
+    "repaired_global_catalogue_units": 249
+  },
+  "quantitative_findings": {
+    "sub_10_km": {"n": 48, "median_followup_score": 0.1283, "median_data_quality": 0.2154, "approx_median_native_pixels": 14.9},
+    "score_threshold_counts": {"gte_0_70": 233, "gte_0_75": 82, "gte_0_80": 19, "gte_0_85": 3},
+    "score_driver_spearman": {"composite_topography": 0.8542, "annular_peak": 0.7859, "radius_agreement": 0.6591, "angular_continuity": 0.6458},
+    "tier_domain_counts": {"A": {"land": 13, "ocean": 13}, "B": {"mixed": 1, "ocean": 5}},
+    "valid_layer_counts": {"gravity_bouguer": 1256, "gravity_freeair": 1256, "gravity_disturbance": 1256, "gravity_isostatic": 1256, "magnetic": 1256, "sediment": 523},
+    "candidate_pvalue_floor": {"minimum": 0.05, "bouguer_at_floor": 172, "freeair_at_floor": 200, "magnetic_at_floor": 73, "tid_at_floor": 55},
+    "imagery_included": false
+  },
+  "literature_files": [
+    "/Users/craig/ECDO/RAG/CB-954.pdf",
+    "/Users/craig/ECDO/RAG/Impact structures in Africa.pdf",
+    "/Users/craig/ECDO/RAG/A possible impact origin for the Bangui magnetic anomaly.pdf",
+    "/Users/craig/ECDO/RAG/Subsurface structure of the proposed Sirente meteorite.pdf",
+    "/Users/craig/ECDO/RAG/Terra Nova - 2008 - Gasperini - Lake Cheko and the Tunguska Event  impact or non‐impact.pdf"
+  ],
+  "visuals": [
+    {"path": "results_review/charts/score_by_diameter.png", "reason": "Shows a material scale-dependent reliability limitation."},
+    {"path": "results_review/charts/score_drivers.png", "reason": "Clarifies that the score is mainly a topographic-circularity composite and that associations are partly mechanical."}
+  ],
+  "visual_omissions": "A new editorial priority chart was not created because the priority assessment is qualitative; an exact table is more transparent. Existing Seaborn analytical figures were reused.",
+  "superseded_material": "Pre-repair decision-report catalogue counts and the former scale multiplier are provenance only and must not be reused as final findings.",
+  "key_caveat": "This audit prioritizes manuscript changes; it does not establish new impact origins or candidate probabilities."
+}
