@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review of the arcuate-geometry ranking</title>
+<style>
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;margin:0;background:#faf8f5;color:#171411}
+main{max-width:980px;margin:0 auto;padding:42px 22px 72px}header,section{margin-bottom:36px}
+h1,h2{line-height:1.16;margin:0 0 14px}h1{font-size:2.25rem}h2{font-size:1.45rem}
+p,li{line-height:1.62}a{color:#2e4780}figure{margin:22px 0}figure img{width:100%;height:auto;border-radius:10px;background:white}
+figcaption,.small{color:#5f5750;font-size:.9rem}.summary{padding:22px 24px;background:#f1ece4;border:1px solid #ddd1c2;border-radius:18px}
+.summary ul{margin:0;padding-left:22px}.summary li+li{margin-top:10px}.callout{padding:17px 20px;background:#fff4c2;border-left:5px solid #b8a037;border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.88rem;background:white}th,td{padding:9px 8px;border-bottom:1px solid #e6e0d8;text-align:right}th{background:#f3efe9;position:sticky;top:0}th:nth-child(2),td:nth-child(2),th:nth-child(7),td:nth-child(7){text-align:left}
+.table-wrap{overflow-x:auto}code{background:#eee8e0;padding:.1rem .3rem;border-radius:4px}
+</style></head><body><main data-report-audience="product stakeholders">
+<header data-contract-section="title"><h1>Review of the arcuate-geometry ranking</h1><p class="small">Full GEBCO and geological-boundary run · 1,318 visually identified geometries · reviewed June 20, 2026</p></header>
+
+<section class="summary" data-contract-section="executive-summary"><h2>Executive Summary</h2><ul>
+<li><strong>The pipeline has produced a useful triage ranking, not a catalogue of impact structures.</strong> Nineteen candidates score at least 0.80, 82 at least 0.75, and 233 at least 0.70. These bands are convenient workload cut-offs; they are not calibrated probabilities or p-values.</li>
+<li><strong>The highest scores primarily identify coherent circular topography.</strong> The score correlates most strongly with the composite topography term (Spearman ρ=0.85), annular peak percentile (0.79), and radius agreement (0.66). Geological independence is a weaker discriminator (0.22).</li>
+<li><strong>At least one conspicuous high-ranking cluster has a known non-impact explanation.</strong> arc_0370 at 57.43°N, 11.12°W coincides with the circular volcanic Anton Dohrn Seamount; nearby leading candidates occupy the Rockall Trough seamount province. This is a valuable empirical false-positive control.</li>
+<li><strong>The next defensible step is calibration.</strong> Imagery has not yet contributed to any score, and randomized spatial nulls, labelled positive controls, false-discovery rates, and morphology-specific endogenic controls have not yet been run.</li>
+</ul></section>
+
+<section data-contract-section="key-findings"><h2>A manageable high-priority tail emerges</h2>
+<p>The distribution is broad but concentrated around a median of 0.582. The 95th percentile is 0.759 and the 99th percentile 0.803. Reviewing the 82 candidates above 0.75 is therefore a practical first-pass workload; narrowing directly to the 19 above 0.80 risks overinterpreting arbitrary score precision.</p>
+<figure><img src="charts/score_distribution.png" alt="Histogram of candidate scores"><figcaption>Scores are follow-up priorities. No null-derived significance threshold is currently available.</figcaption></figure>
+</section>
+
+<section><h2>The leaders are strong circular landforms—but not necessarily impacts</h2>
+<p>The top candidate, arc_0373, scores 0.895 at an inferred diameter of 67.2 km. arc_0370, also in the top ten, lies at the published centre of Anton Dohrn Seamount, described by the <a href="https://jncc.gov.uk/our-work/anton-dohrn-seamount-mpa/">JNCC</a> as an extinct volcano. The <a href="https://webapps.bgs.ac.uk/memoirs/docs/B06844.html">British Geological Survey</a> identifies multiple volcanic centres in this same Rockall Basin region. This demonstrates that the detector is successfully finding real circular geomorphology while also admitting predictable volcanic false positives.</p>
+<figure><img src="charts/top_candidates.png" alt="Ranked bars for the top candidates"><figcaption>Top 15 candidates by the corrected, authoritative CSV scoring pass.</figcaption></figure>
+<div class="table-wrap"><table><thead><tr><th>Rank</th><th>Candidate</th><th>Centre</th><th>Diameter km</th><th>Score</th><th>Topo.</th><th>Geology</th></tr></thead><tbody><tr><td>1</td><td>arc_0373</td><td>59.227, -10.048</td><td>67.2</td><td><strong>0.895</strong></td><td>0.865</td><td>independent</td></tr>
+<tr><td>2</td><td>arc_0306</td><td>18.773, 8.713</td><td>28.6</td><td><strong>0.865</strong></td><td>0.827</td><td>independent</td></tr>
+<tr><td>3</td><td>arc_0992</td><td>-46.317, -69.455</td><td>20.0</td><td><strong>0.850</strong></td><td>0.808</td><td>independent</td></tr>
+<tr><td>4</td><td>arc_0593</td><td>64.935, -163.216</td><td>77.7</td><td><strong>0.838</strong></td><td>0.793</td><td>independent</td></tr>
+<tr><td>5</td><td>arc_1007</td><td>-43.044, -69.453</td><td>27.4</td><td><strong>0.818</strong></td><td>0.767</td><td>independent</td></tr>
+<tr><td>6</td><td>arc_0371</td><td>56.471, -10.301</td><td>39.9</td><td><strong>0.815</strong></td><td>0.763</td><td>independent</td></tr>
+<tr><td>7</td><td>arc_0341</td><td>57.223, -2.746</td><td>17.4</td><td><strong>0.815</strong></td><td>0.763</td><td>independent</td></tr>
+<tr><td>8</td><td>arc_0424</td><td>39.120, 10.944</td><td>31.7</td><td><strong>0.814</strong></td><td>0.761</td><td>independent</td></tr>
+<tr><td>9</td><td>arc_0370</td><td>57.432, -11.120</td><td>60.2</td><td><strong>0.811</strong></td><td>0.757</td><td>independent</td></tr>
+<tr><td>10</td><td>arc_1103</td><td>56.104, -22.261</td><td>76.2</td><td><strong>0.809</strong></td><td>0.809</td><td>0.19 overlap</td></tr>
+<tr><td>11</td><td>arc_1250</td><td>17.368, -80.145</td><td>126.1</td><td><strong>0.809</strong></td><td>0.755</td><td>independent</td></tr>
+<tr><td>12</td><td>arc_0235</td><td>43.252, -121.506</td><td>36.3</td><td><strong>0.807</strong></td><td>0.809</td><td>0.20 overlap</td></tr>
+<tr><td>13</td><td>arc_1214</td><td>-22.033, 178.524</td><td>134.7</td><td><strong>0.804</strong></td><td>0.749</td><td>independent</td></tr>
+<tr><td>14</td><td>arc_0522</td><td>64.891, 172.534</td><td>285.4</td><td><strong>0.804</strong></td><td>0.760</td><td>0.04 overlap</td></tr>
+<tr><td>15</td><td>arc_0037</td><td>-25.611, 23.276</td><td>76.8</td><td><strong>0.802</strong></td><td>0.747</td><td>independent</td></tr>
+<tr><td>16</td><td>arc_0308</td><td>18.930, 9.099</td><td>20.0</td><td><strong>0.802</strong></td><td>0.746</td><td>independent</td></tr>
+<tr><td>17</td><td>arc_1031</td><td>-37.241, -65.345</td><td>24.6</td><td><strong>0.802</strong></td><td>0.746</td><td>independent</td></tr>
+<tr><td>18</td><td>arc_0404</td><td>-11.177, -41.898</td><td>115.9</td><td><strong>0.801</strong></td><td>0.745</td><td>independent</td></tr>
+<tr><td>19</td><td>arc_0752</td><td>22.643, 160.913</td><td>373.2</td><td><strong>0.800</strong></td><td>0.744</td><td>independent</td></tr>
+<tr><td>20</td><td>arc_0605</td><td>64.200, -153.361</td><td>44.9</td><td><strong>0.800</strong></td><td>0.743</td><td>independent</td></tr></tbody></table></div>
+</section>
+
+<section><h2>The score is dominated by circularity evidence and resolution</h2>
+<p>The ranking formula uses 78% topographic evidence and 22% geological independence, then multiplies the result by data quality. Within the topographic term, annular peak location, angular continuity, radius agreement, centre agreement, radial alignment, and relief are combined. Consequently, correlations with the final score are descriptive of score construction—not independent scientific validation.</p>
+<figure><img src="charts/score_drivers.png" alt="Bar chart of score component correlations"><figcaption>Spearman correlations across all 1,318 candidates; these inputs are not statistically independent.</figcaption></figure>
+<p>Geology has a modest effect: 643 candidates intersect mapped province boundaries, compared with 675 that do not. Their median scores are 0.560 and 0.603 respectively. 17 of the top 20 have zero mapped boundary coincidence, partly because full independence receives the complete 22% geology contribution.</p>
+</section>
+
+<section><h2>Sub-10 km candidates cannot be judged fairly from this run</h2>
+<p>The 48 candidates below 10 km diameter have a median score of only 0.128, versus roughly 0.59–0.61 in the larger size bands. This is mainly a resolution and quality-gating effect, not evidence that small structures are intrinsically less plausible. In total, 95 candidates have data quality below one and eight are driven to zero.</p>
+<figure><img src="charts/score_by_diameter.png" alt="Box plots of scores by diameter"><figcaption>Scores grouped by inferred candidate diameter. Small-crater evaluation needs higher-resolution elevation data.</figcaption></figure>
+</section>
+
+<section data-contract-section="recommended-next-steps"><h2>Recommended Next Steps</h2><ol>
+<li><strong>Deduplicate spatially before field prioritisation.</strong> Thirteen overlapping pairs occur within the top 100, including near-identical candidate pairs. Consolidate these into structure-level clusters so one landform cannot consume several review slots.</li>
+<li><strong>Run empirical nulls before interpreting the upper tail.</strong> Randomly translate/rotate each arc within matched latitude, relief and land/ocean strata; use circularly shifted annuli and radius-scrambled controls; then report empirical p-values and false-discovery-rate adjusted q-values.</li>
+<li><strong>Create labelled control sets.</strong> Include confirmed impacts as positives and volcanoes, calderas, seamounts, salt structures, tectonic basins, coastal embayments and bathymetric acquisition artefacts as explicit negatives. Anton Dohrn and the Rockall Trough seamounts should be mandatory controls.</li>
+<li><strong>Add imagery and independent geophysics.</strong> Score cloud-controlled optical composites where meaningful, but use gravity, magnetics and higher-resolution DEM/bathymetry as stronger discriminants. Refit weights only after blinded labels exist.</li>
+<li><strong>Review the top 82 in two stages.</strong> First eliminate known endogenic structures and data artefacts; then subject the surviving topography-independent candidates to detailed geological review.</li>
+</ol></section>
+
+<section data-contract-section="further-questions"><h2>Further Questions</h2><ul>
+<li>How many of the visually identified arcs were intentionally drawn around known impacts, volcanoes or other controls?</li>
+<li>Should very large candidates (hundreds to thousands of kilometres) be analysed separately from crater-scale structures?</li>
+<li>Are geological province boundaries the correct negative evidence, or should faults, lithological contacts and circular intrusions be represented independently?</li>
+<li>What minimum posterior evidence would justify inclusion in the manuscript: morphology alone, or morphology plus an independent geophysical anomaly?</li>
+</ul></section>
+
+<section data-contract-section="caveats-and-assumptions"><h2>Caveats and Assumptions</h2><div class="callout">
+<p><strong>The ranking is provisional.</strong> It lacks imagery measurements, empirical null distributions and calibrated labels. The score’s decimals should not be read as measurement precision. GEBCO’s heterogeneous source coverage can also imprint survey artefacts, especially offshore. The current geological term rewards distance from broad province boundaries but does not test detailed local stratigraphy or structure. Finally, the visual-source geometries nearly all have complete angular coverage, so the run evaluates preselected near-circles rather than testing whether arbitrary natural linework is circular.</p>
+</div></section>
+</main></body></html>

@@ -1,0 +1,76 @@
+{
+  "seed": 20260619,
+  "features": {
+    "arc_geometries": 1318,
+    "arc_unique_names": 1290,
+    "african_geometries": 251,
+    "african_named_structures": 80,
+    "african_confirmed": 19,
+    "african_proposed": 40,
+    "african_discarded": 21,
+    "astrobleme_entries": 249,
+    "astrobleme_eid_matches": 82
+  },
+  "arcs": {
+    "diameter_median_km": 126.00846995607128,
+    "diameter_q025_km": 7.479057369865542,
+    "diameter_q975_km": 1723.0550212871096,
+    "diameter_max_km": 7262.416809641028,
+    "relative_radial_mad_median": 0.007452269144574742
+  },
+  "power_law_tails": {
+    "arcs": {
+      "xmin": 1080.4386359667287,
+      "alpha_pdf": 3.272565920142769,
+      "alpha_cumulative": -2.272565920142769,
+      "n": 89,
+      "ks": 0.029776471254323034
+    },
+    "all_astroblemes": {
+      "xmin": 22.0,
+      "alpha_pdf": 1.926186378792825,
+      "alpha_cumulative": -0.9261863787928251,
+      "n": 97,
+      "ks": 0.053808043021874336
+    },
+    "eid_matches": {
+      "xmin": 20.0,
+      "alpha_pdf": 2.419676675789283,
+      "alpha_cumulative": -1.4196766757892831,
+      "n": 43,
+      "ks": 0.0776404402837586
+    }
+  },
+  "shifted_size_comparison": {
+    "best_scale": 9.09544217326807,
+    "ks": 0.05103265870766831,
+    "permutation_p_difference": 0.145,
+    "interpretation": "Upper-tail permutation p for a difference in distributional shape after fitting a multiplicative scale."
+  },
+  "spatial_nulls": {
+    "n": 9999,
+    "observed_count_100km": 16,
+    "observed_median_km": 241.2904074173191,
+    "longitude_null_count_median": 6.0,
+    "longitude_null_count_q025": 1.0,
+    "longitude_null_count_q975": 13.0,
+    "longitude_null_median_median": 379.0061444163222,
+    "longitude_null_median_q025": 279.1298291738804,
+    "longitude_null_median_q975": 539.952477415858,
+    "longitude_p_count": 0.0147,
+    "longitude_p_median": 0.0049,
+    "label_null_count_median": 12.0,
+    "label_null_count_q025": 7.0,
+    "label_null_count_q975": 18.0,
+    "label_null_median_median": 259.0865679052364,
+    "label_null_median_q025": 214.19211091978715,
+    "label_null_median_q975": 295.9202301664127,
+    "label_p_count": 0.1275,
+    "label_p_median": 0.2623
+  },
+  "inputs": {
+    "arcs": "arcuate_geometries.geojson",
+    "africa": "african_impact_structures.geojson",
+    "astroblemes": "catalog_repair/astroblemes_analysis.geojson"
+  }
+}

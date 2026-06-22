@@ -1,0 +1,77 @@
+{
+  "purpose": "planetary geometry comparison only; terrestrial origin must not be inferred from scale or ring-ratio similarity",
+  "outputs": {
+    "lunar_multiring_basins.csv": 11,
+    "martian_basins.csv": 3,
+    "lunar_large_craters.csv": 61,
+    "venus_craters.csv": 967
+  },
+  "source_files": [
+    {
+      "path": "data/1500852_sm.pdf",
+      "bytes": 4814726,
+      "sha256": "a2babca5e654175b5e6ff855f5064d15250eef7ce52089af1aea72d83259e6b7"
+    },
+    {
+      "path": "data/BF00054060.pdf",
+      "bytes": 8636008,
+      "sha256": "80df48b0785ac008051a09ec92d0eff0819aea59db70fb7920ffdb8471dab9c5"
+    },
+    {
+      "path": "data/Journal of Geophysical Research  Planets - 2012 - Robbins - A new global database of Mars impact craters  1 km  1  Database.pdf",
+      "bytes": 3192535,
+      "sha256": "c6aafd2dd4c83731027344eb04d579c4dc0bc1eb49ea6ab9a2c254f1dd80622b"
+    },
+    {
+      "path": "data/bundle_moon_lro.kaguya_multi_craterdatabase_robbins_2018.xml",
+      "bytes": 5975,
+      "sha256": "27464a89a7bc8272557ce800b79d86cf25839503d979b533e2bda8b7d91cc502"
+    },
+    {
+      "path": "data/collection_data_inventory.csv",
+      "bytes": 94,
+      "sha256": "92194674d9688077ee073c4c6f8257b19ae525c246b6bf7eef1e56f7bf45a478"
+    },
+    {
+      "path": "data/collection_data_inventory.xml",
+      "bytes": 2522,
+      "sha256": "1e1d2d7bb12302568d6b6cb01c0723330d83fe1185c81394eff06aae279260cb"
+    },
+    {
+      "path": "data/controls.geojson",
+      "bytes": 22832,
+      "sha256": "f870f810de470ec69498e6de67fd3acb5477e8bee5fa1c6f8866592de0cd120e"
+    },
+    {
+      "path": "data/controls.qmd",
+      "bytes": 680,
+      "sha256": "3a82f0c39e7e64c1263301d4370d4b5dd978ca5190d59039b646f3d2d512c00a"
+    },
+    {
+      "path": "data/lunar_crater_database_robbins_2018.csv",
+      "bytes": 238483500,
+      "sha256": "39a419e0ca627b792be1a9f761c3fa1372094cdc5bc0db88afd365c07af8ad62"
+    },
+    {
+      "path": "data/lunar_crater_database_robbins_2018.xml",
+      "bytes": 12768,
+      "sha256": "244427518da42ba8be0386afcfa83a1b3e067dd49a57d47a31a2492fa80e66cd"
+    },
+    {
+      "path": "data/sciadv.1500852.pdf",
+      "bytes": 1960502,
+      "sha256": "83bf8dc8f2f276515d8d33638d9da4617b19562e51e9c16f61008cc1150b9758"
+    },
+    {
+      "path": "data/venus-craters.csv",
+      "bytes": 55062,
+      "sha256": "bfbec38a50f5972746d5ec5dff78d40f2cc1c2b1b70a326c73a96dde1e0df6e3"
+    }
+  ],
+  "limitations": [
+    "Mars global crater catalogue data were not present; the downloaded PDF is its methods paper.",
+    "Martian ring rows are a deliberately small historical comparison subset.",
+    "Robbins lunar large-crater rows are not automatically multiring basins.",
+    "GRAIL possible/probable/certain classifications are preserved and must not be collapsed."
+  ]
+}

@@ -1,0 +1,36 @@
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+env/
+venv/
+ENV/
+
+# IDE files
+.DS_Store
+.idea/
+.vscode/
+
+# Generated output files (analysis results)
+analysis_results.json
+fig_*.pdf
+fig_*.png
+table_*.tex
+outputs/
+output/
+geophysical_output/structure_output/
+
+# Large PDF outputs from manuscript compilation
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+
+# Geospatial data (original large source files - use smaller processed versions)
+arcuate_geometries.geojson
+african_impact_structures.geojson
+astroblemes.geojson

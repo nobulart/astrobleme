@@ -1,0 +1,12 @@
+{
+  "case_definition": "review tiers A and B",
+  "case_count": 32,
+  "matching": "domain x radius quintile x absolute-latitude quartile; documented relaxation if sparse",
+  "iterations": 9999,
+  "observed_fault_intersection_fraction": 0.15625,
+  "null_mean_fault_intersection_fraction": 0.16454770477047706,
+  "fault_intersection_enrichment_p": 0.6388,
+  "observed_median_log1p_fault_proximity_ratio": 1.8571805869913738,
+  "null_mean_median_log1p_fault_proximity_ratio": 1.9718323597092473,
+  "closer_fault_proximity_p": 0.2936
+}

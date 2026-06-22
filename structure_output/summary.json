@@ -1,0 +1,49 @@
+{
+  "input_candidates": 1318,
+  "default_structures": 1292,
+  "multi_pick_structures": 25,
+  "candidates_consolidated": 26,
+  "fault_intersections": 222,
+  "source_fault_features": 13696,
+  "fault_matched_null": {
+    "case_definition": "review tiers A and B",
+    "case_count": 32,
+    "matching": "domain x radius quintile x absolute-latitude quartile; documented relaxation if sparse",
+    "iterations": 9999,
+    "observed_fault_intersection_fraction": 0.15625,
+    "null_mean_fault_intersection_fraction": 0.16454770477047706,
+    "fault_intersection_enrichment_p": 0.6388,
+    "observed_median_log1p_fault_proximity_ratio": 1.8571805869913738,
+    "null_mean_median_log1p_fault_proximity_ratio": 1.9718323597092473,
+    "closer_fault_proximity_p": 0.2936
+  },
+  "sensitivity": [
+    {
+      "setting": "strict",
+      "centre_fraction": 0.15,
+      "radius_ratio_low": 0.8,
+      "radius_ratio_high": 1.25,
+      "structure_count": 1309,
+      "multi_pick_structures": 9,
+      "candidates_consolidated": 9
+    },
+    {
+      "setting": "default",
+      "centre_fraction": 0.25,
+      "radius_ratio_low": 0.67,
+      "radius_ratio_high": 1.5,
+      "structure_count": 1292,
+      "multi_pick_structures": 25,
+      "candidates_consolidated": 26
+    },
+    {
+      "setting": "lenient",
+      "centre_fraction": 0.35,
+      "radius_ratio_low": 0.5,
+      "radius_ratio_high": 2.0,
+      "structure_count": 1279,
+      "multi_pick_structures": 37,
+      "candidates_consolidated": 39
+    }
+  ]
+}

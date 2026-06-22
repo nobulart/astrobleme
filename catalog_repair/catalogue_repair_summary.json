@@ -1,0 +1,35 @@
+{
+  "original_records": 253,
+  "repaired_records": 253,
+  "analytical_unique_records": 249,
+  "diameters_changed": 40,
+  "changed_diameters_verified_against_2026_wikipedia": 40,
+  "display_names_changed": 70,
+  "coordinates_verified_within_5_km": 179,
+  "coordinates_verified_by_alias_within_5_km": 5,
+  "wikipedia_coordinates_requiring_review": 0,
+  "duplicate_records_excluded": 4,
+  "policy": "Original catalogue is unchanged. Row-preserving repaired and deduplicated analytical catalogues are separate outputs.",
+  "source_fingerprints": [
+    {
+      "path": "/Users/craig/ECDO/papers/astrobleme/astroblemes.geojson",
+      "bytes": 2202985,
+      "sha256": "5427bdaf8f3d78de4e268b413c30d6b2264b27a22e542b3330badcad3f7fd040"
+    },
+    {
+      "path": "/Users/craig/ECDO/papers/astrobleme/catalog_repair/sources/wikipedia_confirmed_2026-06-21.wiki",
+      "bytes": 50982,
+      "sha256": "89be4cb81c61a27e4d031ceb89770009204903c362a80f5746a93475540f68e2"
+    },
+    {
+      "path": "/Users/craig/ECDO/papers/astrobleme/catalog_repair/sources/wikipedia_possible_2026-06-21.wiki",
+      "bytes": 129405,
+      "sha256": "f75341aac55fac759284ef93080e4f003e4a2e27431a6dd1f17f5efa8ad48e7b"
+    },
+    {
+      "path": "/Users/craig/ECDO/RAG/Impact structures in Africa.pdf",
+      "bytes": 45614425,
+      "sha256": "61d65e96a9f79d515dcf2378acfb12d6210d2093b121439b33ffb581ba4994a0"
+    }
+  ]
+}
