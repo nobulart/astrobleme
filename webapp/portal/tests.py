@@ -163,7 +163,10 @@ class PortalViewTests(TestCase):
         self.assertContains(self.client.get(reverse("help")), "data quality ×")
         self.assertEqual(self.client.get(reverse("globe")).status_code, 302)
         self.client.force_login(self.user)
-        self.assertContains(self.client.get(reverse("globe")), "WGM2012 Bouguer gravity")
+        response = self.client.get(reverse("globe"))
+        self.assertContains(response, "WGM2012 Bouguer gravity")
+        self.assertContains(response, "View mode")
+        self.assertContains(response, "Columbus")
 
     def test_staff_review_is_audited(self):
         staff = User.objects.create_user("staff", "staff@example.org", "long-test-password", is_staff=True)
