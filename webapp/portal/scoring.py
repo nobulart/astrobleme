@@ -31,17 +31,20 @@ def study_centres():
     return centres
 
 
-def closest_study_candidate(longitude, latitude, diameter_km):
+def closest_study_candidate(longitude, latitude, diameter_km, *, distance_fraction=0.25, min_distance_km=5.0):
     closest = None
     for candidate_id, lon, lat, diameter in study_centres():
         distance = haversine_km(longitude, latitude, lon, lat)
-        threshold = max(5.0, 0.25 * min(diameter_km, diameter))
+        threshold = max(min_distance_km, distance_fraction * min(diameter_km, diameter))
         if distance <= threshold and (closest is None or distance < closest[1]):
             closest = (candidate_id, distance)
     return closest
 
 
 def evaluate_submission(data):
+    from .models import PortalConfiguration
+
+    config = PortalConfiguration.current()
     evidence = set(data.get("independent_evidence") or []) & INDEPENDENT_EVIDENCE_TYPES
     description = (data.get("description") or "").strip()
     alternative = (data.get("endogenic_alternative") or "").strip()
@@ -52,16 +55,22 @@ def evaluate_submission(data):
     latitude = float(data.get("latitude") or 0)
     geometry = data.get("geometry")
 
-    duplicate = closest_study_candidate(longitude, latitude, diameter) if diameter > 0 else None
+    duplicate = closest_study_candidate(
+        longitude,
+        latitude,
+        diameter,
+        distance_fraction=config.duplicate_distance_fraction,
+        min_distance_km=config.duplicate_min_distance_km,
+    ) if diameter > 0 else None
     checks = {
         "valid_location": -180 <= longitude <= 180 and -90 <= latitude <= 90,
-        "reviewable_scale": 10 <= diameter <= 5000,
-        "description_complete": len(description) >= 80,
-        "source_identified": len(source_title) >= 8,
-        "feature_identified": len(observed_feature) >= 8,
-        "alternative_considered": len(alternative) >= 20,
-        "terms_confirmed": bool(data.get("terms_confirmed")),
-        "not_duplicate_of_study_candidate": duplicate is None,
+        "reviewable_scale": config.min_diameter_km <= diameter <= config.max_diameter_km,
+        "description_complete": len(description) >= config.min_description_chars,
+        "source_identified": len(source_title) >= config.min_source_title_chars,
+        "feature_identified": len(observed_feature) >= config.min_observed_feature_chars,
+        "alternative_considered": len(alternative) >= config.min_endogenic_alternative_chars,
+        "terms_confirmed": not config.require_terms_confirmed or bool(data.get("terms_confirmed")),
+        "not_duplicate_of_study_candidate": not config.require_unique_study_candidate or duplicate is None,
     }
     if duplicate:
         checks["possible_duplicate"] = {"candidate_id": duplicate[0], "distance_km": round(duplicate[1], 2)}
@@ -78,7 +87,20 @@ def evaluate_submission(data):
     score = round(score, 3)
 
     required = [value for key, value in checks.items() if key != "possible_duplicate"]
-    passed = all(value is True for value in required) and score >= 0.55
-    checks["intake_threshold"] = score >= 0.55
+    passed = all(value is True for value in required) and score >= config.baseline_score_threshold
+    checks["intake_threshold"] = score >= config.baseline_score_threshold
+    checks["configuration"] = {
+        "baseline_score_threshold": config.baseline_score_threshold,
+        "min_description_chars": config.min_description_chars,
+        "min_endogenic_alternative_chars": config.min_endogenic_alternative_chars,
+        "min_source_title_chars": config.min_source_title_chars,
+        "min_observed_feature_chars": config.min_observed_feature_chars,
+        "min_diameter_km": config.min_diameter_km,
+        "max_diameter_km": config.max_diameter_km,
+        "duplicate_distance_fraction": config.duplicate_distance_fraction,
+        "duplicate_min_distance_km": config.duplicate_min_distance_km,
+        "require_terms_confirmed": config.require_terms_confirmed,
+        "require_unique_study_candidate": config.require_unique_study_candidate,
+    }
     checks["scientific_note"] = "Intake score measures submission completeness and reviewability; it is not the study follow-up score or an impact probability."
     return score, passed, checks

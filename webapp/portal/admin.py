@@ -2,7 +2,7 @@ from django.contrib import admin, messages
 from django.utils import timezone
 
 from .analysis_queue import enqueue_candidate_analysis
-from .models import CandidateAnalysisArtifact, CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission
+from .models import CandidateAnalysisArtifact, CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission, PortalConfiguration
 
 
 def _change_status(request, queryset, status):
@@ -38,6 +38,39 @@ def queue_analysis(modeladmin, request, queryset):
         if job:
             queued += 1
     modeladmin.message_user(request, f"Queued {queued} candidate(s) for automated analysis.", messages.SUCCESS)
+
+
+@admin.register(PortalConfiguration)
+class PortalConfigurationAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ("Baseline pass rules", {
+            "fields": (
+                "baseline_score_threshold",
+                "min_description_chars",
+                "min_endogenic_alternative_chars",
+                "min_source_title_chars",
+                "min_observed_feature_chars",
+                "require_terms_confirmed",
+            ),
+        }),
+        ("Scale and duplicate screening", {
+            "fields": (
+                "min_diameter_km",
+                "max_diameter_km",
+                "require_unique_study_candidate",
+                "duplicate_distance_fraction",
+                "duplicate_min_distance_km",
+            ),
+        }),
+        ("Metadata", {"fields": ("updated_at",)}),
+    )
+    readonly_fields = ("updated_at",)
+
+    def has_add_permission(self, request):
+        return not PortalConfiguration.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(CandidateSubmission)

@@ -5,6 +5,33 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
+class PortalConfiguration(models.Model):
+    baseline_score_threshold = models.FloatField(default=0.55, validators=[MinValueValidator(0), MaxValueValidator(1)])
+    min_description_chars = models.PositiveSmallIntegerField(default=80, validators=[MinValueValidator(0)])
+    min_endogenic_alternative_chars = models.PositiveSmallIntegerField(default=20, validators=[MinValueValidator(0)])
+    min_source_title_chars = models.PositiveSmallIntegerField(default=8, validators=[MinValueValidator(0)])
+    min_observed_feature_chars = models.PositiveSmallIntegerField(default=8, validators=[MinValueValidator(0)])
+    min_diameter_km = models.FloatField(default=10, validators=[MinValueValidator(0.1), MaxValueValidator(10000)])
+    max_diameter_km = models.FloatField(default=5000, validators=[MinValueValidator(0.1), MaxValueValidator(10000)])
+    duplicate_distance_fraction = models.FloatField(default=0.25, validators=[MinValueValidator(0), MaxValueValidator(1)])
+    duplicate_min_distance_km = models.FloatField(default=5, validators=[MinValueValidator(0)])
+    require_terms_confirmed = models.BooleanField(default=True)
+    require_unique_study_candidate = models.BooleanField(default=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Review configuration"
+        verbose_name_plural = "Review configuration"
+
+    def __str__(self):
+        return "Review configuration"
+
+    @classmethod
+    def current(cls):
+        config, _ = cls.objects.get_or_create(pk=1)
+        return config
+
+
 class CandidateSubmission(models.Model):
     class FollowupStatus(models.TextChoices):
         NOT_SCORED = "not_scored", "Not scored"

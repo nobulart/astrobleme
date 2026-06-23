@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from unittest.mock import Mock, patch
 
 from .followup import circle_geometry
-from .models import CandidateAnalysisArtifact, CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission, UserMapPreference
+from .models import CandidateAnalysisArtifact, CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission, PortalConfiguration, UserMapPreference
 from .scoring import evaluate_submission
 
 
@@ -43,6 +43,30 @@ class IntakeScoringTests(TestCase):
         self.assertTrue(passed)
         self.assertGreaterEqual(score, 0.55)
         self.assertIn("scientific_note", checks)
+
+    @override_settings(PROJECT_ROOT="/path/that/does/not/exist", GEBCO_GRID_PATH="/missing/gebco.nc", GEOLOGY_INDEX_PATH="/missing/geology.kml")
+    def test_configurable_baseline_threshold_can_block_submission(self):
+        PortalConfiguration.objects.create(pk=1, baseline_score_threshold=0.9)
+        score, passed, checks = evaluate_submission(VALID)
+        self.assertEqual(score, 0.85)
+        self.assertFalse(passed)
+        self.assertFalse(checks["intake_threshold"])
+        self.assertEqual(checks["configuration"]["baseline_score_threshold"], 0.9)
+
+    @override_settings(PROJECT_ROOT="/path/that/does/not/exist", GEBCO_GRID_PATH="/missing/gebco.nc", GEOLOGY_INDEX_PATH="/missing/geology.kml")
+    def test_configurable_text_lengths_can_relax_baseline_gates(self):
+        PortalConfiguration.objects.create(
+            pk=1,
+            baseline_score_threshold=0.5,
+            min_description_chars=1,
+            min_endogenic_alternative_chars=1,
+        )
+        data = VALID | {"description": "x", "endogenic_alternative": "x"}
+        score, passed, checks = evaluate_submission(data)
+        self.assertEqual(score, 0.85)
+        self.assertTrue(passed)
+        self.assertTrue(checks["description_complete"])
+        self.assertTrue(checks["alternative_considered"])
 
     @override_settings(PROJECT_ROOT="/path/that/does/not/exist")
     def test_short_undocumented_submission_fails(self):
@@ -148,6 +172,14 @@ class PortalViewTests(TestCase):
         response = self.client.get(reverse("home"))
         self.assertContains(response, "Analysis status")
         self.assertContains(response, reverse("analysis_status"))
+
+    def test_admin_exposes_review_configuration(self):
+        staff = User.objects.create_superuser("staff", "staff@example.org", "long-test-password")
+        self.client.force_login(staff)
+        response = self.client.get(reverse("admin:portal_portalconfiguration_add"))
+        self.assertContains(response, "Baseline score threshold")
+        self.assertContains(response, "Min description chars")
+        self.assertContains(response, "Duplicate distance fraction")
 
     def test_analysis_status_endpoint_reports_personal_progress(self):
         candidate = CandidateSubmission.objects.create(
