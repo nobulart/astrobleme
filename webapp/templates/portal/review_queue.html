@@ -9,6 +9,7 @@
       <p class="eyebrow">Staff workspace</p>
       <h1>Candidate review queue</h1>
       <p>Compare the intake record, worker analysis, and moderation history before changing catalogue status.</p>
+      <p class="review-method-note">Review status is the catalogue decision. Analysis status is worker processing, and follow-up score is a prioritisation signal; queueing analysis retries scoring but does not accept or reject the candidate.</p>
     </div>
     <a class="button secondary dark" href="/admin/portal/candidatesubmission/">Open Django admin</a>
   </section>
@@ -94,7 +95,7 @@
               </select>
             </label>
             <label>Review note
-              <textarea name="note" rows="3" placeholder="Reason for the status change or next check">{{ item.moderator_notes }}</textarea>
+              <textarea name="note" rows="3" placeholder="Record the reason for the status change, key alternative considered, and next evidence required.">{{ item.moderator_notes }}</textarea>
             </label>
             <button class="button" type="submit">Record review</button>
           </form>

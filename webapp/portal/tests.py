@@ -116,6 +116,9 @@ class PortalViewTests(TestCase):
         self.assertContains(response, 'value="140.0"')
         self.assertContains(response, "Candidate near -28.13, 24.75")
         self.assertContains(response, "Esri World Imagery")
+        self.assertContains(response, "Estimated centre longitude")
+        self.assertContains(response, "This is not a final or transient crater diameter")
+        self.assertContains(response, "Best non-impact alternative")
 
     def test_community_api_excludes_failed_records(self):
         CandidateSubmission.objects.create(
@@ -251,6 +254,7 @@ class PortalViewTests(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse("submit_candidate"))
         self.assertContains(response, "Current baseline")
+        self.assertContains(response, "What makes a useful submission")
         self.assertContains(response, "rationale ≥12 chars")
         self.assertContains(response, "intake score ≥0.40")
 
@@ -299,6 +303,8 @@ class PortalViewTests(TestCase):
         self.assertNotContains(response, "Accepted basin")
         self.assertContains(response, "Queue analysis")
         self.assertContains(response, "Analysis diagnostics")
+        self.assertContains(response, "Review status is the catalogue decision")
+        self.assertContains(response, "key alternative considered")
 
     def test_review_queue_can_force_queue_analysis(self):
         staff = User.objects.create_user("staff", "staff@example.org", "long-test-password", is_staff=True)
@@ -547,6 +553,7 @@ class RasterProxyTests(TestCase):
         self.assertContains(response, "Mark a candidate on the map")
         self.assertContains(response, "My candidate library")
         self.assertContains(response, "Other reviewers' candidates")
+        self.assertContains(response, "Capture an observed arcuate trace")
 
     def test_metadata_exposes_no_upstream_proxy_urls(self):
         self.client.force_login(self.user)

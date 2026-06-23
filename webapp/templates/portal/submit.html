@@ -7,6 +7,7 @@
     <p class="eyebrow">{% if editing %}Pending candidate{% else %}Community candidate intake{% endif %}</p>
     <h1>{% if editing %}Refine {{ candidate.title }}.{% else %}Describe something worth reviewing.{% endif %}</h1>
     <p>Click the map to set a centre, then document the observed feature, source, scale, and strongest non-impact explanation. Baseline-passing records appear publicly as unreviewed submissions and enter the automated analysis queue.</p>
+    <div class="notice"><strong>What makes a useful submission</strong><br>Anchor the record in a visible trace or mapped anomaly, cite the source that supports it, estimate the scale conservatively, and name the best endogenic alternative. The goal is to prioritise review, not to prove impact from circularity.</div>
     <div class="notice"><strong>Current baseline</strong><br>{{ review_config.min_diameter_km|floatformat:"0" }}–{{ review_config.max_diameter_km|floatformat:"0" }} km diameter; source title ≥{{ review_config.min_source_title_chars }} chars; observed feature ≥{{ review_config.min_observed_feature_chars }} chars; rationale ≥{{ review_config.min_description_chars }} chars; endogenic alternative ≥{{ review_config.min_endogenic_alternative_chars }} chars; intake score ≥{{ review_config.baseline_score_threshold|floatformat:2 }}. Staff can tune these rules in Review configuration.</div>
     <div id="submit-map"></div>
   </section>

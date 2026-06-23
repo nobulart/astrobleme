@@ -21,6 +21,13 @@
   line-height: 1.55;
 }
 
+.review-method-note {
+  border-left: 3px solid var(--gold);
+  background: #fbf8ef;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
 .review-summary {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
