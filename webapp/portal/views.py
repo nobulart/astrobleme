@@ -17,7 +17,7 @@ from django.views.decorators.http import require_GET, require_POST
 from .analysis_queue import enqueue_candidate_analysis
 from .forms import CandidateForm, RegistrationForm
 from .followup import circle_geometry, score_candidate
-from .models import CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission, UserMapPreference
+from .models import CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission, PortalConfiguration, UserMapPreference
 from .scoring import evaluate_submission
 
 LAYERS = {
@@ -105,7 +105,7 @@ def submit_candidate(request):
         else:
             messages.warning(request, "Submission saved, but it needs revision before entering the public review queue.")
         return redirect("my_submissions")
-    return render(request, "portal/submit.html", {"form": form})
+    return render(request, "portal/submit.html", {"form": form, "review_config": PortalConfiguration.current()})
 
 
 @login_required
@@ -125,7 +125,7 @@ def edit_candidate(request, candidate_id):
         else:
             messages.warning(request, "Candidate updated and rescored, but it still needs revision before public review.")
         return redirect("my_submissions")
-    return render(request, "portal/submit.html", {"form": form, "editing": True, "candidate": candidate})
+    return render(request, "portal/submit.html", {"form": form, "editing": True, "candidate": candidate, "review_config": PortalConfiguration.current()})
 
 
 def _evaluate_and_save(candidate, form):
@@ -224,7 +224,7 @@ def _candidate_collection(queryset, download=False):
 
 
 def help_page(request):
-    return render(request, "portal/help.html")
+    return render(request, "portal/help.html", {"review_config": PortalConfiguration.current()})
 
 
 @login_required
@@ -384,6 +384,7 @@ def review_queue(request):
         "status_choices": [choice for choice in CandidateSubmission.Status.choices if choice[0] != CandidateSubmission.Status.BASELINE_FAILED],
         "followup_choices": CandidateSubmission.FollowupStatus.choices,
         "filters": {"status": status_filter, "followup": followup_filter, "q": search},
+        "review_config": PortalConfiguration.current(),
     }
     return render(request, "portal/review_queue.html", context)
 

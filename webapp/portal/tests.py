@@ -234,13 +234,25 @@ class PortalViewTests(TestCase):
         self.assertEqual(len(public["features"]), 1)
 
     def test_help_and_authenticated_globe_are_available(self):
-        self.assertContains(self.client.get(reverse("help")), "data quality ×")
+        help_response = self.client.get(reverse("help"))
+        self.assertContains(help_response, "data quality ×")
+        self.assertContains(help_response, "Review configuration")
+        self.assertContains(help_response, "Automated analysis")
+        self.assertContains(help_response, "Intake score threshold: 0.55")
         self.assertEqual(self.client.get(reverse("globe")).status_code, 302)
         self.client.force_login(self.user)
         response = self.client.get(reverse("globe"))
         self.assertContains(response, "WGM2012 Bouguer gravity")
         self.assertContains(response, "View mode")
         self.assertContains(response, "Columbus")
+
+    def test_submission_page_documents_current_review_configuration(self):
+        PortalConfiguration.objects.create(pk=1, baseline_score_threshold=0.4, min_description_chars=12)
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("submit_candidate"))
+        self.assertContains(response, "Current baseline")
+        self.assertContains(response, "rationale ≥12 chars")
+        self.assertContains(response, "intake score ≥0.40")
 
     def test_staff_review_is_audited(self):
         staff = User.objects.create_user("staff", "staff@example.org", "long-test-password", is_staff=True)

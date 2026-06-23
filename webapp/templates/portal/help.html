@@ -2,17 +2,59 @@
 {% block title %}Help and method · Astrobleme Review Atlas{% endblock %}
 {% block content %}
 <main class="content-page prose-page">
-  <p class="eyebrow">Integrated guide</p><h1>Using the review atlas</h1>
+  <p class="eyebrow">Integrated guide</p>
+  <h1>Using the review atlas</h1>
   <p>The atlas is an exploratory screening and peer-review tool. Its rankings prioritize follow-up; they are neither impact probabilities nor confirmations of impact origin.</p>
+
+  <h2>What the atlas does</h2>
+  <p>The main map brings together the manuscript study candidates, repaired impact catalogues, African review structures, endogenic controls, active faults, and community submissions. Use the layer controls to compare candidate geometry against known structures and controls before drawing or reviewing a new record.</p>
+  <p>Authenticated reviewers also get private candidate layers, source-quality/elevation/magnetic overlays, point gravity inspection, drawing tools, saved map preferences, and a live analysis status panel. Staff users additionally see all worker queue counts in that status panel.</p>
+
+  <h2>Map and evidence layers</h2>
+  <p>Study candidates are the original arcuate geometries. Structure fields are repeated across member arcs, so use consolidated structure ranks for review decisions. Community candidate layers show submitted records by review state: provisional records use dashed outlines, and accepted/rejected states are visible in popups and downloads.</p>
+  <p>Remote basemaps are streamed through an allowlisted proxy and are not stored on the server. The 2D map exposes point gravity samples because WGM2012 tiles use a geographic tiling scheme that is not directly compatible with Leaflet Web Mercator. The 3D globe displays native Bouguer and isostatic gravity grids correctly, and Cesium World Terrain is enabled when the deployment supplies <code>CESIUM_ION_TOKEN</code>.</p>
+
+  <h2>Submitting a candidate</h2>
+  <ol>
+    <li>Log in and choose a drawing method on the Atlas: centre-to-rim drag, opposite rim points, or typed diameter from a centre point.</li>
+    <li>Open the submission form from the draft marker and review the pre-filled location, diameter, and source fields.</li>
+    <li>Describe the observed feature, cite the source, include scale/resolution when available, and state the strongest non-impact or endogenic alternative.</li>
+    <li>Confirm the interpretation guardrail: morphology and scores do not confirm an impact origin.</li>
+    <li>Submit. Passing records appear in your library, may appear in community layers, and are queued for automated follow-up analysis.</li>
+  </ol>
+
+  <h2>Current baseline rules</h2>
+  <p>The intake baseline is configurable in Django Admin under <strong>Portal → Review configuration</strong>. Current values are:</p>
+  <ul>
+    <li>Diameter: {{ review_config.min_diameter_km|floatformat:"0" }}–{{ review_config.max_diameter_km|floatformat:"0" }} km.</li>
+    <li>Minimum text: source title {{ review_config.min_source_title_chars }} chars, observed feature {{ review_config.min_observed_feature_chars }} chars, description {{ review_config.min_description_chars }} chars, endogenic alternative {{ review_config.min_endogenic_alternative_chars }} chars.</li>
+    <li>Intake score threshold: {{ review_config.baseline_score_threshold|floatformat:2 }}.</li>
+    <li>Duplicate screening: {% if review_config.require_unique_study_candidate %}required{% else %}not required{% endif %}; match distance uses max({{ review_config.duplicate_min_distance_km|floatformat:"0" }} km, {{ review_config.duplicate_distance_fraction|floatformat:2 }} × smaller candidate diameter).</li>
+    <li>Terms confirmation: {% if review_config.require_terms_confirmed %}required{% else %}not required{% endif %}.</li>
+  </ul>
+  <p>The intake score measures documentation completeness and reviewability. It does not alter or imitate the study follow-up score.</p>
+
+  <h2>Automated analysis</h2>
+  <p>Baseline-passing submissions and staff-requested retries create <code>CandidateAnalysisJob</code> records. A trusted local worker polls <code>/api/analysis/jobs</code>, claims queued jobs with the shared <code>ANALYSIS_WORKER_TOKEN</code>, computes the study follow-up score using local scientific data, and posts results back to the deployment.</p>
+  <p>Exact scoring requires the numerical GEBCO 2026 grid and the study geological-province index. If either source is unavailable to the worker, the candidate remains stored and marked “scientific source data unavailable”; no visual-tile surrogate is substituted.</p>
+  <p>The live sidebar analysis panel shows personal progress for authenticated reviewers: queued, claimed, running, scored, failed, source-unavailable, and recent candidate results. Staff users also see global worker queue counts.</p>
+
   <h2>Follow-up score</h2>
   <p>New candidates use the same no-imagery method as the manuscript: <code>data quality × (0.78 × topography score + 0.22 × geology independence)</code>. The topography score combines radial alignment (0.24), annular peak percentile (0.22), angular continuity (0.18), radius match (0.14), centre match (0.12), and annular relief (0.10).</p>
-  <p>Exact calculation requires the numerical GEBCO 2026 grid and the study geological-province index. If either is not mounted, the candidate remains safely stored and visibly marked “scientific source data unavailable”; no visual-tile surrogate is substituted.</p>
-  <h2>Candidate workflow</h2>
-  <ol><li>Log in and choose a drawing method on the Atlas.</li><li>Mark a centre and radius, or two opposite rim points.</li><li>Review the pre-populated form, document the source and endogenic alternatives, then submit.</li><li>Your candidate appears in “My candidate library”; qualifying submissions may be shown in the optional community layer.</li><li>You may edit and automatically rescore your own candidate while it is awaiting review. Editing locks once scientific review begins or a decision is recorded.</li></ol>
-  <h2>Review and accounts</h2>
-  <p>Registration creates a normal reviewer account. Staff and superuser privileges are assigned only in Django Admin under Users. Staff use the Review queue to move submissions through baseline passed, under review, accepted, rejected, or needs revision. Every change made in the queue or bulk admin actions creates an immutable review-history entry recording reviewer, transition, note, and time.</p>
-  <h2>Gravity and 3D data</h2>
-  <p>The 2D map offers point samples because WGM2012’s published tiles use a geographic tiling scheme that cannot be placed correctly in Leaflet’s Web Mercator map without reprojection. The 3D evidence globe displays the native Bouguer and isostatic grids correctly. Cesium World Terrain is enabled when a deployment supplies <code>CESIUM_ION_TOKEN</code>; the token is optional.</p>
+  <p>The result is a prioritization score for scientific follow-up. It is uncalibrated as an impact probability and must be interpreted alongside mapped geology, gravity/magnetic context, known controls, and source quality.</p>
+
+  <h2>Review queue workflow</h2>
+  <p>Staff use the <a href="{% url 'review_queue' %}">Review queue</a> as the main operating surface. It provides summary counts, search, review-status filters, analysis-status filters, follow-up scores, intake scores, evidence fields, baseline checks, diagnostics, and review history.</p>
+  <p>Use <strong>Record review</strong> to move a candidate through baseline passed, under review, accepted, or rejected. Every status transition writes a <code>CandidateReview</code> audit record with reviewer, previous state, new state, note, and timestamp. Use <strong>Queue analysis</strong> when a staff decision should force or retry automated scoring, including records that did not pass the public intake gate.</p>
+
+  <h2>Status meanings</h2>
+  <p><strong>Needs revision</strong> means the candidate failed the intake baseline and remains private/editable by its owner. <strong>Baseline passed - unreviewed</strong> means the record is public but not scientifically reviewed. <strong>Under review</strong> means staff assessment has started and owner editing is locked. <strong>Accepted</strong> means the candidate is retained in the review catalogue. <strong>Rejected</strong> means staff does not retain it for catalogue review.</p>
+  <p>Analysis states are separate from review states. <strong>Not scored</strong>, <strong>queued</strong>, <strong>claimed</strong>, and <strong>running</strong> are processing states. <strong>Scored with study method</strong> means the worker posted a successful follow-up result. <strong>Scientific source data unavailable</strong> and <strong>Scoring failed</strong> require staff attention or a retry.</p>
+
+  <h2>Admin configuration</h2>
+  <p>Superusers configure accounts, review rules, and data records in Django Admin. The key model is <strong>Review configuration</strong>, which controls baseline thresholds and duplicate screening without a code deploy. Candidate submissions, analysis jobs, analysis runs, artifacts, and review audit records are also visible there for inspection.</p>
+  <p>Changing Review configuration affects future submissions and edits. Existing candidates keep their stored baseline checks until they are edited, re-evaluated, or explicitly handled by staff.</p>
+
   <h2>Sources and publication</h2>
   <p><a href="https://github.com/nobulart/astrobleme" target="_blank" rel="noopener">Source repository ↗</a> · <a href="https://www.academia.edu/169033486" target="_blank" rel="noopener">Published draft ↗</a></p>
 </main>
