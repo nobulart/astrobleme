@@ -1,3 +1,4 @@
+import base64
 import json
 
 from django.contrib.auth.models import User
@@ -483,12 +484,10 @@ class AnalysisApiTests(TestCase):
                 "diagnostics": {"summary": "Strong annular signal in merged diagnostics."},
                 "source_fingerprints": {"ranking_output": "sha256:abc"},
                 "artifacts": [{
-                    "kind": "diagnostic_png",
-                    "title": "Ranking diagnostic plot",
-                    "mime_type": "image/png",
-                    "url_or_path": "https://astro.nobulart.com/media/diagnostics/example.png",
-                    "sha256": "a" * 64,
-                    "size_bytes": 12345,
+                    "kind": "elevation_diagnostic",
+                    "title": "Elevation analysis diagnostic",
+                    "mime_type": "image/webp",
+                    "content_base64": base64.b64encode(b"RIFFtestWEBP").decode("ascii"),
                 }],
             }),
             content_type="application/json",
@@ -504,9 +503,19 @@ class AnalysisApiTests(TestCase):
         self.assertEqual(self.candidate.followup_score, 0.812345)
         self.assertEqual(self.candidate.followup_method_version, "arc-ranker-local-2026.06")
         self.assertEqual(self.candidate.followup_metrics["score_percentile"], 96.5)
+        self.assertIn("/api/analysis/artifacts/", self.candidate.followup_metrics["diagnostic_figure_url"])
         self.assertEqual(self.candidate.followup_metrics["diagnostics"]["summary"], "Strong annular signal in merged diagnostics.")
         self.assertEqual(run.worker_id, "local-ranker-1")
-        self.assertEqual(artifact.kind, "diagnostic_png")
+        self.assertEqual(artifact.kind, "elevation_diagnostic")
+        self.assertEqual(artifact.storage_backend, "database")
+        artifact_response = self.client.get(artifact.url_or_path)
+        self.assertEqual(artifact_response.status_code, 200)
+        self.assertEqual(artifact_response["Content-Type"], "image/webp")
+        self.assertEqual(artifact_response.content, b"RIFFtestWEBP")
+        self.client.force_login(self.user)
+        feature = self.client.get(reverse("my_candidates_geojson")).json()["features"][0]
+        self.assertIn("/api/analysis/artifacts/", feature["properties"]["diagnostic_figure_url"])
+        self.assertIn("score_breakdown", feature["properties"])
 
 
 class RasterProxyTests(TestCase):

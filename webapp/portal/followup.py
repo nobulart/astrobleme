@@ -29,20 +29,21 @@ def _pipeline_imports():
     root = str(Path(settings.PROJECT_ROOT))
     if root not in sys.path:
         sys.path.insert(0, root)
+    from arc_ranker.diagnostics import save_elevation_analysis_figure
     from arc_ranker.filters import score_terrain
     from arc_ranker.gebco import GEBCOGrid
     from arc_ranker.geology import GeologyIndex
     from arc_ranker.geometry import spherical_candidate
-    return score_terrain, GEBCOGrid, GeologyIndex, spherical_candidate
+    return save_elevation_analysis_figure, score_terrain, GEBCOGrid, GeologyIndex, spherical_candidate
 
 
 @lru_cache(maxsize=2)
 def _geology_index(path: str):
-    _, _, GeologyIndex, _ = _pipeline_imports()
+    _, _, _, GeologyIndex, _ = _pipeline_imports()
     return GeologyIndex(path)
 
 
-def score_candidate(candidate) -> dict:
+def score_candidate(candidate, diagnostic_path: str | Path | None = None) -> dict:
     """Return the paper's no-imagery follow-up score and component metrics."""
     grid_path = Path(settings.GEBCO_GRID_PATH)
     geology_path = Path(settings.GEOLOGY_INDEX_PATH)
@@ -55,10 +56,10 @@ def score_candidate(candidate) -> dict:
     if geometry.get("type") == "Polygon":
         geometry = {"type": "LineString", "coordinates": geometry["coordinates"][0]}
     feature = {"type": "Feature", "properties": {"Name": candidate.title}, "geometry": geometry}
-    score_terrain, GEBCOGrid, _, spherical_candidate = _pipeline_imports()
+    save_elevation_analysis_figure, score_terrain, GEBCOGrid, _, spherical_candidate = _pipeline_imports()
     fitted = spherical_candidate(feature, 0)
     with GEBCOGrid(grid_path) as grid:
-        terrain, _ = score_terrain(fitted, grid.read_candidate(fitted))
+        terrain, diagnostic = score_terrain(fitted, grid.read_candidate(fitted))
     geology = _geology_index(str(geology_path)).score(fitted)
     followup = terrain["data_quality"] * (
         0.78 * terrain["topography_score_unweighted"] + 0.22 * geology["geology_independence"]
@@ -71,7 +72,11 @@ def score_candidate(candidate) -> dict:
         "fitted_diameter_km": round(fitted.diameter_km, 3),
         "formula": "data_quality × (0.78 × topography_score_unweighted + 0.22 × geology_independence)",
     }
-    return {"score": round(float(followup), 6), "metrics": metrics, "method_version": METHOD_VERSION, "geometry": geometry}
+    score = round(float(followup), 6)
+    metrics["followup_score"] = score
+    if diagnostic_path:
+        save_elevation_analysis_figure(str(candidate.id), candidate.title, metrics, diagnostic, diagnostic_path)
+    return {"score": score, "metrics": metrics, "method_version": METHOD_VERSION, "geometry": geometry}
 
 
 def _json_number(value):

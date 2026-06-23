@@ -106,7 +106,7 @@ export GEOLOGY_INDEX_PATH="/Users/craig/ECDO/data/global_gprv.kml"
 python3 scripts/analysis_worker.py --once
 ```
 
-For continuous operation, omit `--once`. The worker intentionally uses the same `portal.followup.score_candidate()` path as the web app, so method versions and metrics remain comparable. If a local analysis run has public diagnostic images or JSON, pass `--artifact-root` and `--artifact-base-url`; matching files whose names contain the candidate UUID are attached to the analysis run as external artifacts.
+For continuous operation, omit `--once`. The worker intentionally uses the same `portal.followup.score_candidate()` path as the web app, so method versions and metrics remain comparable. Each successful run now generates a WebP elevation-analysis diagnostic and uploads it with the result; Railway stores it as a database-backed `CandidateAnalysisArtifact` and exposes it in the candidate map popup. If a local analysis run also has public diagnostic images or JSON, pass `--artifact-root` and `--artifact-base-url`; matching files whose names contain the candidate UUID are attached to the analysis run as external artifacts.
 
 This first worker is headless and suitable for launchd, tmux, systemd, or a future Textual/ncurses monitor. The web admin includes analysis jobs/runs/artifacts, and staff can queue selected candidates for retry from the `CandidateSubmission` admin action.
 

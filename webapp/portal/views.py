@@ -1,5 +1,6 @@
 import json
 from collections import Counter
+from functools import lru_cache
 from pathlib import Path
 
 from django.conf import settings
@@ -8,8 +9,9 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db import connection, transaction
 from django.db.models import Prefetch, Q
-from django.http import FileResponse, Http404, JsonResponse
+from django.http import FileResponse, Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.templatetags.static import static
 from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_GET, require_POST
@@ -17,7 +19,7 @@ from django.views.decorators.http import require_GET, require_POST
 from .analysis_queue import enqueue_candidate_analysis
 from .forms import CandidateForm, RegistrationForm
 from .followup import circle_geometry, score_candidate
-from .models import CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission, PortalConfiguration, UserMapPreference
+from .models import CandidateAnalysisArtifact, CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission, PortalConfiguration, UserMapPreference
 from .scoring import evaluate_submission
 
 LAYERS = {
@@ -167,6 +169,8 @@ def layer_geojson(request, slug):
     path = (settings.PROJECT_ROOT / relative).resolve()
     if settings.PROJECT_ROOT.resolve() not in path.parents or not path.exists():
         raise Http404
+    if slug == "study-candidates":
+        return _study_candidate_collection(path, request.GET.get("download") == "1")
     response = FileResponse(path.open("rb"), content_type="application/geo+json")
     if request.GET.get("download") == "1":
         response["Content-Disposition"] = f'attachment; filename="{slug}.geojson"'
@@ -176,25 +180,51 @@ def layer_geojson(request, slug):
 @require_GET
 def community_geojson(request):
     queryset = CandidateSubmission.objects.filter(status__in=PUBLIC_CANDIDATE_STATUSES).select_related("created_by")
-    return _candidate_collection(queryset, request.GET.get("download") == "1")
+    return _candidate_collection(queryset, request, request.GET.get("download") == "1")
 
 
 @login_required
 @require_GET
 def my_candidates_geojson(request):
-    return _candidate_collection(CandidateSubmission.objects.filter(created_by=request.user).select_related("created_by"), request.GET.get("download") == "1")
+    return _candidate_collection(CandidateSubmission.objects.filter(created_by=request.user).select_related("created_by"), request, request.GET.get("download") == "1")
 
 
 @login_required
 @require_GET
 def other_candidates_geojson(request):
     queryset = CandidateSubmission.objects.filter(status__in=PUBLIC_CANDIDATE_STATUSES).exclude(created_by=request.user).select_related("created_by")
-    return _candidate_collection(queryset, request.GET.get("download") == "1")
+    return _candidate_collection(queryset, request, request.GET.get("download") == "1")
 
 
-def _candidate_collection(queryset, download=False):
+@lru_cache(maxsize=1)
+def _ranking_diagnostic_ids():
+    static_root = settings.BASE_DIR / "static" / "portal" / "diagnostics" / "study"
+    return frozenset(path.stem for path in static_root.glob("*.webp"))
+
+
+def _study_candidate_collection(path, download=False):
+    data = json.loads(path.read_text(encoding="utf-8"))
+    diagnostic_ids = _ranking_diagnostic_ids()
+    for feature in data.get("features", []):
+        properties = feature.setdefault("properties", {})
+        candidate_id = properties.get("candidate_id")
+        if candidate_id in diagnostic_ids:
+            properties["diagnostic_figure_url"] = static(f"portal/diagnostics/study/{candidate_id}.webp")
+            properties["diagnostic_figure_title"] = "Elevation analysis diagnostic"
+        properties["score_breakdown"] = _score_breakdown(properties)
+    response = JsonResponse(data)
+    response["Content-Type"] = "application/geo+json"
+    if download:
+        response["Content-Disposition"] = 'attachment; filename="study-candidates.geojson"'
+    return response
+
+
+def _candidate_collection(queryset, request, download=False):
     features = []
+    queryset = queryset.prefetch_related("analysis_runs__artifacts")
     for candidate in queryset:
+        metrics = candidate.followup_metrics or {}
+        artifact_url = metrics.get("diagnostic_figure_url") or _candidate_diagnostic_url(candidate)
         geometry = candidate.geometry or {"type": "Point", "coordinates": [candidate.longitude, candidate.latitude]}
         features.append({
             "type": "Feature",
@@ -209,6 +239,12 @@ def _candidate_collection(queryset, download=False):
                 "followup_score": candidate.followup_score,
                 "followup_status": candidate.followup_status,
                 "data_quality": candidate.followup_metrics.get("data_quality"),
+                "score_percentile": metrics.get("score_percentile"),
+                "review_tier": metrics.get("review_tier"),
+                "score_breakdown": _score_breakdown(metrics),
+                "diagnostic_figure_url": artifact_url,
+                "diagnostic_figure_title": "Elevation analysis diagnostic" if artifact_url else "",
+                "diagnostic_summary": (metrics.get("diagnostics") or {}).get("summary") if isinstance(metrics.get("diagnostics"), dict) else metrics.get("reason", ""),
                 "review_status": candidate.status,
                 "score_interpretation": "submission completeness and reviewability; not impact probability",
                 "status": candidate.get_status_display(),
@@ -220,6 +256,58 @@ def _candidate_collection(queryset, download=False):
         })
     response = JsonResponse({"type": "FeatureCollection", "features": features})
     response["Content-Disposition"] = f'{"attachment" if download else "inline"}; filename="candidates.geojson"'
+    return response
+
+
+def _candidate_diagnostic_url(candidate):
+    runs = sorted(candidate.analysis_runs.all(), key=lambda run: run.created_at, reverse=True)
+    for run in runs:
+        artifacts = sorted(run.artifacts.all(), key=lambda artifact: artifact.created_at, reverse=True)
+        for artifact in artifacts:
+            if artifact.kind in {"elevation_diagnostic", "diagnostic_png", "diagnostic_figure"}:
+                return artifact.url_or_path
+    return ""
+
+
+def _score_breakdown(metrics):
+    fields = [
+        ("followup_score", "Follow-up score"),
+        ("data_quality", "Data quality"),
+        ("topography_score_unweighted", "Topography"),
+        ("radial_alignment", "Radial alignment"),
+        ("hough_percentile", "Annular peak"),
+        ("angular_continuity", "Angular continuity"),
+        ("radius_match", "Radius match"),
+        ("centre_match", "Centre match"),
+        ("relief_score", "Relief"),
+        ("geology_independence", "Geology independence"),
+        ("gravity_consensus_percentile", "Gravity percentile"),
+        ("magnetic_ring_score_stratified_percentile", "Magnetic percentile"),
+    ]
+    breakdown = []
+    for key, label in fields:
+        value = metrics.get(key)
+        if value is not None and value != "":
+            breakdown.append({"key": key, "label": label, "value": value})
+    return breakdown
+
+
+@require_GET
+def analysis_artifact(request, artifact_id):
+    artifact = get_object_or_404(CandidateAnalysisArtifact.objects.select_related("analysis_run__candidate"), pk=artifact_id)
+    candidate = artifact.analysis_run.candidate
+    public = candidate.status in PUBLIC_CANDIDATE_STATUSES
+    owner = request.user.is_authenticated and candidate.created_by_id == request.user.id
+    if not public and not owner and not request.user.is_staff:
+        raise Http404
+    if not artifact.content:
+        if artifact.url_or_path.startswith(("http://", "https://", "/")):
+            return redirect(artifact.url_or_path)
+        raise Http404
+    response = HttpResponse(bytes(artifact.content), content_type=artifact.mime_type or "application/octet-stream")
+    response["Cache-Control"] = "public, max-age=86400"
+    if artifact.size_bytes:
+        response["Content-Length"] = str(artifact.size_bytes)
     return response
 
 

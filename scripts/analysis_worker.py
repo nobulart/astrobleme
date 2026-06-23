@@ -9,9 +9,13 @@ sources mounted, then communicate with the deployed app through the analysis API
 from __future__ import annotations
 
 import argparse
+import base64
+import hashlib
 import json
+import mimetypes
 import os
 import sys
+import tempfile
 import time
 from pathlib import Path
 from types import SimpleNamespace
@@ -86,7 +90,22 @@ def collect_artifacts(artifact_root: Path | None, artifact_base_url: str, candid
     return artifacts
 
 
-def build_success_payload(result: dict[str, Any], job: dict[str, Any], args: argparse.Namespace, elapsed: float) -> dict[str, Any]:
+def embedded_artifact(path: Path, kind: str, title: str) -> dict[str, Any]:
+    content = path.read_bytes()
+    mime_type = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+    return {
+        "kind": kind,
+        "title": title,
+        "mime_type": mime_type,
+        "storage_backend": "database",
+        "url_or_path": "",
+        "sha256": hashlib.sha256(content).hexdigest(),
+        "size_bytes": len(content),
+        "content_base64": base64.b64encode(content).decode("ascii"),
+    }
+
+
+def build_success_payload(result: dict[str, Any], job: dict[str, Any], args: argparse.Namespace, elapsed: float, generated_artifacts: list[dict[str, Any]]) -> dict[str, Any]:
     candidate = job["candidate"]
     metrics = result.get("metrics", {})
     return {
@@ -113,7 +132,7 @@ def build_success_payload(result: dict[str, Any], job: dict[str, Any], args: arg
             "gebco_grid_path": os.environ.get("GEBCO_GRID_PATH", ""),
             "geology_index_path": os.environ.get("GEOLOGY_INDEX_PATH", ""),
         },
-        "artifacts": collect_artifacts(args.artifact_root, args.artifact_base_url, candidate["id"]),
+        "artifacts": generated_artifacts + collect_artifacts(args.artifact_root, args.artifact_base_url, candidate["id"]),
     }
 
 
@@ -137,8 +156,13 @@ def process_job(job: dict[str, Any], args: argparse.Namespace) -> None:
     started = time.monotonic()
     candidate = candidate_object(claimed["candidate"])
     try:
-        result = score_candidate(candidate)
-        payload = build_success_payload(result, claimed, args, time.monotonic() - started)
+        args.artifact_output_dir.mkdir(parents=True, exist_ok=True)
+        diagnostic_path = args.artifact_output_dir / f"{candidate.id}_elevation_diagnostic.webp"
+        result = score_candidate(candidate, diagnostic_path=diagnostic_path)
+        generated_artifacts = []
+        if diagnostic_path.exists():
+            generated_artifacts.append(embedded_artifact(diagnostic_path, "elevation_diagnostic", "Elevation analysis diagnostic"))
+        payload = build_success_payload(result, claimed, args, time.monotonic() - started, generated_artifacts)
     except FileNotFoundError as exc:
         payload = {
             "status": "source_unavailable",
@@ -190,6 +214,7 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--token", default=os.environ.get("ANALYSIS_WORKER_TOKEN", ""), help="Bearer token matching Railway ANALYSIS_WORKER_TOKEN.")
     p.add_argument("--worker-id", default=os.environ.get("ASTROBLEME_WORKER_ID", os.uname().nodename), help="Stable worker name recorded on jobs.")
     p.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[1], help="Repository root containing webapp/ and arc_ranker/.")
+    p.add_argument("--artifact-output-dir", type=Path, default=Path(os.environ.get("ASTROBLEME_ARTIFACT_OUTPUT_DIR", Path(tempfile.gettempdir()) / "astrobleme-analysis-artifacts")), help="Local scratch directory for generated diagnostic figures.")
     p.add_argument("--artifact-root", type=Path, default=None, help="Optional local directory of pre-rendered diagnostic artifacts to expose by URL.")
     p.add_argument("--artifact-base-url", default=os.environ.get("ASTROBLEME_ARTIFACT_BASE_URL", ""), help="Public base URL corresponding to --artifact-root.")
     p.add_argument("--limit", type=int, default=5, help="Maximum jobs to fetch per poll.")

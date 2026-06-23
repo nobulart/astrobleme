@@ -7,9 +7,9 @@ import math
 import time
 from pathlib import Path
 
-import matplotlib.pyplot as plt
 import numpy as np
 
+from .diagnostics import save_elevation_analysis_figure
 from .filters import score_terrain
 from .gebco import GEBCOGrid
 from .geology import GeologyIndex
@@ -55,23 +55,7 @@ def json_clean(value):
 
 def save_diagnostic(candidate, metrics, diagnostic, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
-    fig, axes = plt.subplots(1, 3, figsize=(11, 3.8))
-    extent = [diagnostic["lon"][0], diagnostic["lon"][-1], diagnostic["lat"][0], diagnostic["lat"][-1]]
-    axes[0].imshow(diagnostic["elevation"], origin="lower", extent=extent, cmap="terrain")
-    axes[0].set_title("GEBCO elevation")
-    axes[1].imshow(diagnostic["residual"], origin="lower", extent=extent, cmap="RdBu_r")
-    axes[1].contour(diagnostic["rho"], levels=[1.0], colors="black", linewidths=0.8, origin="lower", extent=extent)
-    axes[1].set_title("Detrended terrain + candidate")
-    axes[2].imshow(np.abs(diagnostic["radial_gradient"]), origin="lower", extent=extent, cmap="magma")
-    axes[2].contour(diagnostic["rho"], levels=[0.85, 1.15], colors="cyan", linewidths=0.6, origin="lower", extent=extent)
-    axes[2].set_title("Radial-gradient evidence")
-    for ax in axes:
-        ax.set_xlabel("Longitude")
-        ax.set_ylabel("Latitude")
-    fig.suptitle(f"{candidate.candidate_id} {candidate.name} | score={metrics['followup_score']:.3f}")
-    fig.tight_layout()
-    fig.savefig(output_dir / f"{candidate.candidate_id}.png", dpi=150)
-    plt.close(fig)
+    save_elevation_analysis_figure(candidate.candidate_id, candidate.name, metrics, diagnostic, output_dir / f"{candidate.candidate_id}.png")
     np.savez_compressed(
         output_dir / f"{candidate.candidate_id}.npz",
         elevation=diagnostic["elevation"],

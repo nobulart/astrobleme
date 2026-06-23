@@ -1,15 +1,22 @@
+import base64
+import binascii
+import hashlib
 import json
 from datetime import timedelta
 
 from django.conf import settings
 from django.db import transaction
 from django.http import JsonResponse
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.crypto import constant_time_compare
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 
 from .models import CandidateAnalysisArtifact, CandidateAnalysisJob, CandidateAnalysisRun, CandidateSubmission
+
+MAX_EMBEDDED_ARTIFACT_BYTES = 5 * 1024 * 1024
+EMBEDDED_ARTIFACT_MIME_TYPES = {"image/png", "image/jpeg", "image/webp"}
 
 
 def _unauthorized(message="Analysis worker token is missing or invalid."):
@@ -98,6 +105,22 @@ def _claimable_filter(queryset):
     )
 
 
+def _embedded_artifact_content(artifact):
+    encoded = artifact.get("content_base64")
+    if not encoded:
+        return b"", ""
+    mime_type = str(artifact.get("mime_type", "")).strip().lower()
+    if mime_type not in EMBEDDED_ARTIFACT_MIME_TYPES:
+        raise ValueError("embedded artifact mime_type must be image/png, image/jpeg, or image/webp")
+    try:
+        content = base64.b64decode(encoded, validate=True)
+    except (binascii.Error, ValueError) as exc:
+        raise ValueError("embedded artifact content_base64 is not valid base64") from exc
+    if len(content) > MAX_EMBEDDED_ARTIFACT_BYTES:
+        raise ValueError("embedded artifact is larger than 5 MB")
+    return content, hashlib.sha256(content).hexdigest()
+
+
 @require_GET
 @worker_token_required
 def list_jobs(request):
@@ -169,6 +192,19 @@ def submit_result(request, job_id):
     metrics = payload.get("metrics") if isinstance(payload.get("metrics"), dict) else {}
     diagnostics = payload.get("diagnostics") if isinstance(payload.get("diagnostics"), dict) else {}
     source_fingerprints = payload.get("source_fingerprints") if isinstance(payload.get("source_fingerprints"), dict) else {}
+    artifacts = payload.get("artifacts") if isinstance(payload.get("artifacts"), list) else []
+    prepared_artifacts = []
+    for artifact in artifacts[:25]:
+        if not isinstance(artifact, dict):
+            continue
+        try:
+            content, content_sha256 = _embedded_artifact_content(artifact)
+        except ValueError as exc:
+            return JsonResponse({"error": str(exc)}, status=400)
+        url_or_path = str(artifact.get("url_or_path", ""))[:1000]
+        if not url_or_path and not content:
+            continue
+        prepared_artifacts.append((artifact, content, content_sha256, url_or_path))
     with transaction.atomic():
         job = CandidateAnalysisJob.objects.select_for_update().select_related("candidate").filter(pk=job_id).first()
         if not job:
@@ -191,20 +227,27 @@ def submit_result(request, job_id):
             source_fingerprints=source_fingerprints,
             runtime_seconds=payload.get("runtime_seconds"),
         )
-        artifacts = payload.get("artifacts") if isinstance(payload.get("artifacts"), list) else []
-        for artifact in artifacts[:25]:
-            if not isinstance(artifact, dict) or not artifact.get("url_or_path"):
-                continue
-            CandidateAnalysisArtifact.objects.create(
+        diagnostic_figure_url = ""
+        for artifact, content, content_sha256, url_or_path in prepared_artifacts:
+            storage_backend = str(artifact.get("storage_backend", "external"))[:40]
+            if content:
+                storage_backend = "database"
+            stored = CandidateAnalysisArtifact.objects.create(
                 analysis_run=run,
                 kind=str(artifact.get("kind", "diagnostic"))[:80],
                 title=str(artifact.get("title", artifact.get("kind", "Diagnostic artifact")))[:200],
                 mime_type=str(artifact.get("mime_type", ""))[:120],
-                storage_backend=str(artifact.get("storage_backend", "external"))[:40],
-                url_or_path=str(artifact["url_or_path"])[:1000],
-                sha256=str(artifact.get("sha256", ""))[:64],
-                size_bytes=artifact.get("size_bytes"),
+                storage_backend=storage_backend,
+                url_or_path=url_or_path,
+                content=content or None,
+                sha256=(content_sha256 or str(artifact.get("sha256", "")))[:64],
+                size_bytes=len(content) if content else artifact.get("size_bytes"),
             )
+            if content:
+                stored.url_or_path = reverse("analysis_artifact", args=[stored.id])
+                stored.save(update_fields=["url_or_path"])
+            if stored.kind in {"elevation_diagnostic", "diagnostic_png", "diagnostic_figure"} and not diagnostic_figure_url:
+                diagnostic_figure_url = stored.url_or_path
         if status == CandidateAnalysisRun.Status.SUCCEEDED:
             job.status = CandidateAnalysisJob.Status.SUCCEEDED
             candidate.followup_status = CandidateSubmission.FollowupStatus.SCORED
@@ -216,6 +259,7 @@ def submit_result(request, job_id):
                 "diagnostics": diagnostics,
                 "source_fingerprints": source_fingerprints,
                 "analysis_run_id": str(run.id),
+                "diagnostic_figure_url": diagnostic_figure_url,
             }
         elif status == CandidateAnalysisRun.Status.SOURCE_UNAVAILABLE:
             job.status = CandidateAnalysisJob.Status.FAILED

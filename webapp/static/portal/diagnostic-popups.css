@@ -1,0 +1,53 @@
+.map-popup {
+  max-width: min(520px, 78vw);
+}
+
+.map-popup .popup-breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 10px;
+  margin: 10px 0;
+  padding-top: 8px;
+  border-top: 1px solid #d7d2c4;
+}
+
+.map-popup .popup-breakdown div {
+  min-width: 0;
+}
+
+.map-popup .popup-breakdown dt {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: #71807b;
+  font-weight: 800;
+}
+
+.map-popup .popup-breakdown dd {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #182525;
+}
+
+.popup-diagnostic {
+  margin: 10px 0 0;
+}
+
+.popup-diagnostic img {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border: 1px solid #d7d2c4;
+  background: #f4f0e5;
+}
+
+.popup-diagnostic figcaption {
+  margin-top: 4px;
+  font-size: 10px;
+  color: #71807b;
+}
+
+.leaflet-popup-content {
+  min-width: 280px;
+}

@@ -131,10 +131,14 @@ class CandidateAnalysisRunAdmin(admin.ModelAdmin):
 
 @admin.register(CandidateAnalysisArtifact)
 class CandidateAnalysisArtifactAdmin(admin.ModelAdmin):
-    list_display = ("title", "kind", "analysis_run", "mime_type", "storage_backend", "created_at")
+    list_display = ("title", "kind", "analysis_run", "mime_type", "storage_backend", "has_embedded_content", "created_at")
     list_filter = ("kind", "storage_backend", "created_at")
     search_fields = ("title", "url_or_path", "analysis_run__candidate__title")
-    readonly_fields = ("analysis_run", "kind", "title", "mime_type", "storage_backend", "url_or_path", "sha256", "size_bytes", "created_at")
+    readonly_fields = ("analysis_run", "kind", "title", "mime_type", "storage_backend", "url_or_path", "sha256", "size_bytes", "has_embedded_content", "created_at")
+
+    @admin.display(boolean=True, description="Embedded")
+    def has_embedded_content(self, obj):
+        return bool(obj.content)
 
     def has_add_permission(self, request):
         return False

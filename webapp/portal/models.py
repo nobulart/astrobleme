@@ -192,6 +192,7 @@ class CandidateAnalysisArtifact(models.Model):
     mime_type = models.CharField(max_length=120, blank=True)
     storage_backend = models.CharField(max_length=40, default="external")
     url_or_path = models.CharField(max_length=1000)
+    content = models.BinaryField(null=True, blank=True)
     sha256 = models.CharField(max_length=64, blank=True)
     size_bytes = models.PositiveBigIntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
