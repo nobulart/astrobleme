@@ -29,6 +29,7 @@ DEFAULT_MAP_PREFERENCES = {
     "zoom": 2,
     "layers": ["study-candidates", "my-candidates"],
     "basemap": "aerial",
+    "labels": True,
     "rasters": [],
     "rasterOpacity": 68,
     "satelliteDate": "",
@@ -38,7 +39,7 @@ DEFAULT_MAP_PREFERENCES = {
     "drawingMethod": "center-radius",
 }
 PREFERENCE_LAYERS = {*LAYERS, "my-candidates", "other-candidates", "community"}
-PREFERENCE_BASEMAPS = {"street", "aerial", "satellite"}
+PREFERENCE_BASEMAPS = {"street", "aerial", "satellite", "dark"}
 PREFERENCE_RASTERS = {"gebco-elevation", "gebco-tid", "magnetic"}
 PREFERENCE_SCORE_FIELDS = {"followup_score", "structure_followup_score", "gravity_consensus_percentile", "magnetic_ring_score_stratified_percentile", "data_quality", "intake_score", "diameter_km"}
 PREFERENCE_PALETTES = {"turbo", "viridis", "plasma", "inferno", "magma", "cividis", "rdbu"}
@@ -285,6 +286,7 @@ def _clean_map_preferences(payload):
     basemap = payload.get("basemap", "street")
     if basemap not in PREFERENCE_BASEMAPS:
         basemap = DEFAULT_MAP_PREFERENCES["basemap"]
+    labels = bool(payload.get("labels", DEFAULT_MAP_PREFERENCES["labels"]))
     satellite_date = str(payload.get("satelliteDate", ""))[:10]
     score_field = payload.get("scoreField", DEFAULT_MAP_PREFERENCES["scoreField"])
     palette = payload.get("palette", DEFAULT_MAP_PREFERENCES["palette"])
@@ -309,6 +311,7 @@ def _clean_map_preferences(payload):
         "zoom": zoom,
         "layers": list(dict.fromkeys(layers)),
         "basemap": basemap,
+        "labels": labels,
         "rasters": list(dict.fromkeys(rasters)),
         "rasterOpacity": opacity,
         "satelliteDate": satellite_date,

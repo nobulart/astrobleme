@@ -62,6 +62,8 @@ class PortalViewTests(TestCase):
         home = self.client.get(reverse("home"))
         self.assertEqual(home.status_code, 200)
         self.assertContains(home, "Esri aerial imagery")
+        self.assertContains(home, "Dark map")
+        self.assertContains(home, "Labels and roads overlay")
         self.assertContains(home, "NASA MODIS satellite")
         self.assertContains(home, "Registered reviewers can compare live elevation")
         self.assertNotContains(home, "GEBCO source identifier")
@@ -125,13 +127,15 @@ class PortalViewTests(TestCase):
         self.client.force_login(self.user)
         payload = {
             "center": [-25.2, 28.1], "zoom": 7,
-            "layers": ["my-candidates", "other-candidates"], "basemap": "aerial",
+            "layers": ["my-candidates", "other-candidates"], "basemap": "dark", "labels": False,
             "rasters": ["magnetic"], "rasterOpacity": 54, "satelliteDate": "2026-06-20",
             "candidateDraft": {"latitude": -25.1, "longitude": 28.2, "diameterKm": 80},
         }
         saved = self.client.post(reverse("map_preferences"), json.dumps(payload), content_type="application/json")
         self.assertEqual(saved.status_code, 200)
-        self.assertEqual(UserMapPreference.objects.get(user=self.user).settings["basemap"], "aerial")
+        settings = UserMapPreference.objects.get(user=self.user).settings
+        self.assertEqual(settings["basemap"], "dark")
+        self.assertFalse(settings["labels"])
         home = self.client.get(reverse("home"))
         self.assertContains(home, '"diameterKm": 80.0')
         reset = self.client.post(reverse("map_preferences"), json.dumps({"reset": True}), content_type="application/json")
@@ -231,6 +235,20 @@ class RasterProxyTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(fetch_image.call_args.args[0].startswith("https://server.arcgisonline.com/"))
 
+    @patch("portal.raster._fetch_image")
+    def test_public_dark_basemap_tile_uses_allowlisted_carto_url(self, fetch_image):
+        fetch_image.return_value = HttpResponse(b"png", content_type="image/png")
+        response = self.client.get(reverse("raster_tile", args=["dark", 2, 1, 1]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(fetch_image.call_args.args[0].startswith("https://a.basemaps.cartocdn.com/"))
+
+    @patch("portal.raster._fetch_image")
+    def test_public_labels_overlay_uses_allowlisted_carto_url(self, fetch_image):
+        fetch_image.return_value = HttpResponse(b"png", content_type="image/png")
+        response = self.client.get(reverse("raster_tile", args=["labels", 2, 1, 1]))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("/light_only_labels/", fetch_image.call_args.args[0])
+
     def test_study_context_tiles_still_require_registration(self):
         response = self.client.get(reverse("raster_tile", args=["magnetic", 2, 1, 1]))
         self.assertEqual(response.status_code, 403)
@@ -239,6 +257,7 @@ class RasterProxyTests(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse("home"))
         self.assertContains(response, "Esri aerial imagery")
+        self.assertContains(response, "Dark map")
         self.assertContains(response, "GEBCO source identifier")
         self.assertContains(response, "Inspect WGM2012 gravity")
         self.assertContains(response, "Mark a candidate on the map")

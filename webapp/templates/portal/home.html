@@ -23,18 +23,20 @@
       {% endif %}
     </div></details>
     <details class="control-section" open><summary>Scientific styling</summary><div class="style-grid"><label>Colour rings by<select id="score-field"><option value="followup_score">Follow-up score</option><option value="structure_followup_score">Structure follow-up score</option><option value="gravity_consensus_percentile">Gravity percentile</option><option value="magnetic_ring_score_stratified_percentile">Magnetic percentile</option><option value="data_quality">Data quality</option><option value="intake_score">Intake completeness</option><option value="diameter_km">Diameter</option></select></label><label>Palette<select id="map-palette"><option value="turbo">Turbo</option><option value="viridis">Viridis</option><option value="plasma">Plasma</option><option value="inferno">Inferno</option><option value="magma">Magma</option><option value="cividis">Cividis</option><option value="rdbu">RdBu</option></select></label></div><div id="score-legend" class="score-legend"><span>no numeric values loaded</span></div><small>Colour encodes the selected number. Dashed outlines encode provisional review state.</small></details>
-    <details class="control-section" open><summary>Remote Earth data</summary>
+    <details class="control-section" open><summary>Basemap & Earth data</summary>
     <div class="remote-tools">
-      <fieldset>
+      <fieldset class="control-subgroup basemap-options">
         <legend>Basemap</legend>
         <label><input type="radio" name="basemap" data-basemap="aerial" checked> Esri aerial imagery</label>
+        <label><input type="radio" name="basemap" data-basemap="dark"> Dark map</label>
         <label><input type="radio" name="basemap" data-basemap="street"> Street map</label>
         <label><input type="radio" name="basemap" data-basemap="satellite"> NASA MODIS satellite</label>
+        <label class="wide-option"><input type="checkbox" id="label-overlay" checked> Labels and roads overlay</label>
       </fieldset>
-      <label class="date-control"><span>Satellite date</span><input id="satellite-date" type="date" min="2000-02-24"></label>
+      <label class="date-control satellite-date-control"><span>Satellite date</span><input id="satellite-date" type="date" min="2000-02-24"></label>
       <div id="remote-source" class="remote-source">Remote basemaps are streamed through an allowlisted proxy and are not stored on the server.</div>
       {% if user.is_authenticated %}
-      <fieldset>
+      <fieldset class="control-subgroup">
         <legend>Study context overlays</legend>
         <label><input type="checkbox" data-raster="gebco-elevation"> GEBCO elevation</label>
         <label><input type="checkbox" data-raster="gebco-tid"> GEBCO source identifier</label>

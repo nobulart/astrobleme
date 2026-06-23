@@ -1,6 +1,6 @@
 const defaultPreferences = {
   center: [5, 15], zoom: 2, layers: ["study-candidates", "my-candidates"],
-  basemap: "aerial", rasters: [], rasterOpacity: 68, satelliteDate: "", candidateDraft: null,
+  basemap: "aerial", labels: true, rasters: [], rasterOpacity: 68, satelliteDate: "", candidateDraft: null,
   scoreField: "followup_score", palette: "turbo", drawingMethod: "center-radius"
 };
 const savedPreferences = JSON.parse(document.getElementById("map-preferences")?.textContent || "{}");
@@ -22,7 +22,7 @@ const palette = {
 const loaded = {}, groups = {};
 const status = document.getElementById("map-status");
 const resetCallbacks = [];
-let saveTimer, suspendPersistence = true, activeBasemapSlug = "street", activeRasterSlugs = new Set();
+let saveTimer, suspendPersistence = true, activeBasemapSlug = "street", activeRasterSlugs = new Set(), labelsActive = preferences.labels !== false;
 let candidateDraft = preferences.candidateDraft;
 const scientificPalettes = {
   turbo: ["#30123b", "#4666e8", "#1bcfd4", "#65fe62", "#d6e935", "#f99217", "#7a0403"],
@@ -101,7 +101,7 @@ function currentPreferences() {
   return {
     center: [center.lat, center.lng], zoom: map.getZoom(),
     layers: Array.from(document.querySelectorAll("[data-layer]:checked"), input => input.dataset.layer),
-    basemap: activeBasemapSlug, rasters: [...activeRasterSlugs],
+    basemap: activeBasemapSlug, labels: labelsActive, rasters: [...activeRasterSlugs],
     rasterOpacity: Number(document.getElementById("raster-opacity")?.value || 68),
     satelliteDate: document.getElementById("satellite-date")?.value || "",
     candidateDraft, scoreField: preferences.scoreField, palette: preferences.palette, drawingMethod: preferences.drawingMethod
@@ -140,6 +140,8 @@ if (paletteSelect) { paletteSelect.value = preferences.palette; paletteSelect.ad
 if (document.getElementById("satellite-date")) {
   const sourcePanel = document.getElementById("remote-source");
   const dateInput = document.getElementById("satellite-date");
+  const dateControl = document.querySelector(".satellite-date-control");
+  const labelOverlayInput = document.getElementById("label-overlay");
   const opacityInput = document.getElementById("raster-opacity");
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   dateInput.value = preferences.satelliteDate || yesterday;
@@ -149,12 +151,16 @@ if (document.getElementById("satellite-date")) {
   const sourceInfo = {
     street: ["OpenStreetMap", "https://www.openstreetmap.org/copyright"],
     aerial: ["Esri World Imagery", "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9"],
+    dark: ["CARTO Dark Matter basemap", "https://carto.com/basemaps/"],
+    labels: ["CARTO labels and roads overlay", "https://carto.com/basemaps/"],
     satellite: ["NASA EOSDIS GIBS MODIS Terra", "https://nasa-gibs.github.io/gibs-api-docs/"],
     "gebco-elevation": ["GEBCO latest elevation/bathymetry", "https://www.gebco.net/data-products/gebco-web-services/web-map-service"],
     "gebco-tid": ["GEBCO Type Identifier grid", "https://www.gebco.net/data-products/gebco-web-services/web-map-service"],
     magnetic: ["NOAA NCEI EMAG2v3", "https://www.ncei.noaa.gov/products/earth-magnetic-model-anomaly-grid-2"]
   };
   const aerialLayer = L.tileLayer("/api/raster/tiles/aerial/{z}/{x}/{y}", {maxZoom: 18, attribution: "Esri, Maxar, Earthstar Geographics and contributors"});
+  const darkLayer = L.tileLayer("/api/raster/tiles/dark/{z}/{x}/{y}", {maxZoom: 18, attribution: "© OpenStreetMap contributors, © CARTO"});
+  const labelsLayer = L.tileLayer("/api/raster/tiles/labels/{z}/{x}/{y}", {maxZoom: 18, attribution: "© OpenStreetMap contributors, © CARTO"});
   let satelliteLayer = L.tileLayer(`/api/raster/tiles/satellite/{z}/{x}/{y}?date=${dateInput.value}`, {maxZoom: 9, attribution: "NASA EOSDIS GIBS"});
   const rasterLayers = {
     "gebco-elevation": L.tileLayer.wms("/api/raster/wms/gebco-elevation", {layers: "gebco_latest", format: "image/png", transparent: true, version: "1.1.1", attribution: "GEBCO Compilation Group"}),
@@ -163,9 +169,13 @@ if (document.getElementById("satellite-date")) {
   };
   let activeBasemap = streetLayer;
 
+  const basemapSlugs = new Set(["street", "aerial", "dark", "satellite"]);
   function showSource(slug) {
     const info = sourceInfo[slug];
-    if (info) sourcePanel.innerHTML = `<strong>${esc(info[0])}</strong><br><a href="${info[1]}" target="_blank" rel="noopener">Provider documentation ↗</a><br>Streamed through the atlas allowlist; no server-side raster cache.`;
+    if (info) {
+      const prefix = basemapSlugs.has(slug) ? "Current basemap" : "Current layer";
+      sourcePanel.innerHTML = `<strong>${prefix}: ${esc(info[0])}</strong><br><a href="${info[1]}" target="_blank" rel="noopener">Provider documentation ↗</a><br>${labelsActive && basemapSlugs.has(slug) ? "Labels/roads overlay enabled. " : ""}Streamed through the atlas allowlist; no server-side raster cache.`;
+    }
   }
   function attachRasterErrors(layer, slug) {
     layer.on("tileerror", () => { status.textContent = `${sourceInfo[slug]?.[0] || slug} is temporarily unavailable.`; status.classList.remove("quiet"); });
@@ -174,12 +184,27 @@ if (document.getElementById("satellite-date")) {
   function chooseBasemap(slug) {
     map.removeLayer(activeBasemap);
     activeBasemapSlug = slug;
-    activeBasemap = slug === "aerial" ? aerialLayer : slug === "satellite" ? satelliteLayer : streetLayer;
+    activeBasemap = slug === "aerial" ? aerialLayer : slug === "dark" ? darkLayer : slug === "satellite" ? satelliteLayer : streetLayer;
     activeBasemap.addTo(map).bringToBack();
-    if (slug !== "street") showSource(slug);
+    map.getContainer().classList.toggle("dark-basemap", slug === "dark");
+    if (dateControl) dateControl.hidden = slug !== "satellite";
+    updateLabelOverlay();
+    restyleScientificLayers();
+    showSource(slug);
   }
-  attachRasterErrors(aerialLayer, "aerial"); attachRasterErrors(satelliteLayer, "satellite");
+  function updateLabelOverlay() {
+    if (labelsActive && activeBasemapSlug !== "street") {
+      labelsLayer.addTo(map);
+      labelsLayer.bringToFront();
+      Object.values(groups).forEach(group => group.bringToFront?.());
+    } else map.removeLayer(labelsLayer);
+  }
+  attachRasterErrors(aerialLayer, "aerial"); attachRasterErrors(darkLayer, "dark"); attachRasterErrors(labelsLayer, "labels"); attachRasterErrors(satelliteLayer, "satellite");
   Object.entries(rasterLayers).forEach(([slug, layer]) => attachRasterErrors(layer, slug));
+  if (labelOverlayInput) {
+    labelOverlayInput.checked = labelsActive;
+    labelOverlayInput.addEventListener("change", () => { labelsActive = labelOverlayInput.checked; updateLabelOverlay(); showSource(activeBasemapSlug); persistPreferences(); });
+  }
 
   document.querySelectorAll("[data-basemap]").forEach(input => {
     input.checked = input.dataset.basemap === preferences.basemap;
@@ -193,7 +218,7 @@ if (document.getElementById("satellite-date")) {
     if (input.checked) { rasterLayers[slug].setOpacity(preferences.rasterOpacity / 100).addTo(map); activeRasterSlugs.add(slug); }
     input.addEventListener("change", () => {
       const layer = rasterLayers[slug];
-      if (input.checked) { layer.setOpacity(Number(document.getElementById("raster-opacity").value) / 100).addTo(map); activeRasterSlugs.add(slug); showSource(slug); }
+      if (input.checked) { layer.setOpacity(Number(document.getElementById("raster-opacity").value) / 100).addTo(map); activeRasterSlugs.add(slug); layer.bringToFront?.(); Object.values(groups).forEach(group => group.bringToFront?.()); showSource(slug); }
       else { map.removeLayer(layer); activeRasterSlugs.delete(slug); }
       persistPreferences();
     });
@@ -301,6 +326,7 @@ if (document.getElementById("satellite-date")) {
     clearCandidateDraft();
     opacityInput.value = defaultPreferences.rasterOpacity;
     dateInput.value = yesterday;
+    labelsActive = defaultPreferences.labels; labelOverlayInput.checked = labelsActive;
     document.querySelector(`[data-basemap="${defaultPreferences.basemap}"]`).checked = true; chooseBasemap(defaultPreferences.basemap);
     document.querySelectorAll("[data-raster]").forEach(input => { input.checked = false; map.removeLayer(rasterLayers[input.dataset.raster]); });
     activeRasterSlugs.clear(); setGravityMode(false);

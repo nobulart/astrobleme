@@ -24,6 +24,22 @@ TILE_SOURCES = {
         "attribution": "Esri, Maxar, Earthstar Geographics and contributors",
         "source_url": "https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9",
     },
+    "dark": {
+        "label": "CARTO Dark Matter basemap",
+        "kind": "basemap",
+        "url": "https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+        "max_zoom": 18,
+        "attribution": "© OpenStreetMap contributors, © CARTO",
+        "source_url": "https://carto.com/basemaps/",
+    },
+    "labels": {
+        "label": "CARTO labels and roads overlay",
+        "kind": "basemap-overlay",
+        "url": "https://a.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
+        "max_zoom": 18,
+        "attribution": "© OpenStreetMap contributors, © CARTO",
+        "source_url": "https://carto.com/basemaps/",
+    },
     "magnetic": {
         "label": "NOAA EMAG2v3 magnetic anomaly",
         "kind": "geophysics",
@@ -111,7 +127,7 @@ def tile(request, slug: str, z: int, x: int, y: int):
     source = TILE_SOURCES.get(slug)
     if not source or not _tile_coordinates(z, x, y, source["max_zoom"]):
         raise Http404
-    if slug not in {"aerial", "satellite"} and not request.user.is_authenticated:
+    if slug not in {"aerial", "satellite", "dark", "labels"} and not request.user.is_authenticated:
         return JsonResponse({"error": "Authentication is required for study context overlays."}, status=403)
     values = {"z": z, "x": x, "y": y}
     if source.get("dated"):
