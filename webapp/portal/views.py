@@ -28,7 +28,7 @@ DEFAULT_MAP_PREFERENCES = {
     "center": [5, 15],
     "zoom": 2,
     "layers": ["study-candidates", "my-candidates"],
-    "basemap": "street",
+    "basemap": "aerial",
     "rasters": [],
     "rasterOpacity": 68,
     "satelliteDate": "",
@@ -284,7 +284,7 @@ def _clean_map_preferences(payload):
     rasters = [item for item in payload.get("rasters", []) if item in PREFERENCE_RASTERS]
     basemap = payload.get("basemap", "street")
     if basemap not in PREFERENCE_BASEMAPS:
-        basemap = "street"
+        basemap = DEFAULT_MAP_PREFERENCES["basemap"]
     satellite_date = str(payload.get("satelliteDate", ""))[:10]
     score_field = payload.get("scoreField", DEFAULT_MAP_PREFERENCES["scoreField"])
     palette = payload.get("palette", DEFAULT_MAP_PREFERENCES["palette"])

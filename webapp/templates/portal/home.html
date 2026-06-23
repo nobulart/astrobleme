@@ -24,15 +24,16 @@
     </div></details>
     <details class="control-section" open><summary>Scientific styling</summary><div class="style-grid"><label>Colour rings by<select id="score-field"><option value="followup_score">Follow-up score</option><option value="structure_followup_score">Structure follow-up score</option><option value="gravity_consensus_percentile">Gravity percentile</option><option value="magnetic_ring_score_stratified_percentile">Magnetic percentile</option><option value="data_quality">Data quality</option><option value="intake_score">Intake completeness</option><option value="diameter_km">Diameter</option></select></label><label>Palette<select id="map-palette"><option value="turbo">Turbo</option><option value="viridis">Viridis</option><option value="plasma">Plasma</option><option value="inferno">Inferno</option><option value="magma">Magma</option><option value="cividis">Cividis</option><option value="rdbu">RdBu</option></select></label></div><div id="score-legend" class="score-legend"><span>no numeric values loaded</span></div><small>Colour encodes the selected number. Dashed outlines encode provisional review state.</small></details>
     <details class="control-section" open><summary>Remote Earth data</summary>
-    {% if user.is_authenticated %}
     <div class="remote-tools">
       <fieldset>
         <legend>Basemap</legend>
-        <label><input type="radio" name="basemap" data-basemap="street" checked> Street map</label>
-        <label><input type="radio" name="basemap" data-basemap="aerial"> Esri aerial imagery</label>
+        <label><input type="radio" name="basemap" data-basemap="aerial" checked> Esri aerial imagery</label>
+        <label><input type="radio" name="basemap" data-basemap="street"> Street map</label>
         <label><input type="radio" name="basemap" data-basemap="satellite"> NASA MODIS satellite</label>
       </fieldset>
       <label class="date-control"><span>Satellite date</span><input id="satellite-date" type="date" min="2000-02-24"></label>
+      <div id="remote-source" class="remote-source">Remote basemaps are streamed through an allowlisted proxy and are not stored on the server.</div>
+      {% if user.is_authenticated %}
       <fieldset>
         <legend>Study context overlays</legend>
         <label><input type="checkbox" data-raster="gebco-elevation"> GEBCO elevation</label>
@@ -41,7 +42,6 @@
       </fieldset>
       <label class="opacity-control"><span>Overlay opacity</span><input id="raster-opacity" type="range" min="10" max="100" value="68"></label>
       <button id="gravity-inspector" class="tool-button" type="button">Inspect WGM2012 gravity at a point</button>
-      <div id="remote-source" class="remote-source">Remote rasters are streamed through an allowlisted proxy and are not stored on the server.</div>
       <section class="candidate-finder" aria-labelledby="candidate-finder-title">
         <h2 id="candidate-finder-title">Identify a candidate</h2>
         <p>Mark a centre and radius, two opposite rim points, or a point with a typed diameter.</p>
@@ -57,10 +57,11 @@
       <a class="button secondary" href="{% url 'globe' %}">Open 3D gravity globe</a>
       <button id="reset-map" class="text-button reset-map" type="button">Reset map to defaults</button>
       <form id="map-preference-token" hidden>{% csrf_token %}</form>
+      {% else %}
+      <div class="remote-locked">Registered reviewers can compare live elevation, source-quality, magnetic and gravity overlays and identify candidates. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a>.</div>
+      {% endif %}
     </div>
-    {% else %}
-    <div class="remote-locked">Registered reviewers can compare live aerial, satellite, elevation, source-quality, magnetic and gravity data. <a href="{% url 'login' %}">Log in</a> or <a href="{% url 'register' %}">register</a>.</div>
-    {% endif %}</details>
+    </details>
     <div class="panel-actions">
       {% if not user.is_authenticated %}<a class="button" href="{% url 'login' %}?next={% url 'home' %}">Log in to identify a candidate</a>{% endif %}
       <a class="button secondary" href="{% url 'help' %}">Help, method and review guide</a>

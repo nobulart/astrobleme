@@ -106,12 +106,13 @@ def _tile_coordinates(z: int, x: int, y: int, max_zoom: int) -> bool:
     return 0 <= z <= max_zoom and 0 <= x < 2**z and 0 <= y < 2**z
 
 
-@login_required
 @require_GET
 def tile(request, slug: str, z: int, x: int, y: int):
     source = TILE_SOURCES.get(slug)
     if not source or not _tile_coordinates(z, x, y, source["max_zoom"]):
         raise Http404
+    if slug not in {"aerial", "satellite"} and not request.user.is_authenticated:
+        return JsonResponse({"error": "Authentication is required for study context overlays."}, status=403)
     values = {"z": z, "x": x, "y": y}
     if source.get("dated"):
         raw_date = request.GET.get("date", "")

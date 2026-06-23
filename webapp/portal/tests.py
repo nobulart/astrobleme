@@ -61,7 +61,11 @@ class PortalViewTests(TestCase):
     def test_home_and_health_are_public(self):
         home = self.client.get(reverse("home"))
         self.assertEqual(home.status_code, 200)
-        self.assertContains(home, "Registered reviewers can compare live aerial")
+        self.assertContains(home, "Esri aerial imagery")
+        self.assertContains(home, "NASA MODIS satellite")
+        self.assertContains(home, "Registered reviewers can compare live elevation")
+        self.assertNotContains(home, "GEBCO source identifier")
+        self.assertNotContains(home, "Inspect WGM2012 gravity")
         self.assertEqual(self.client.get(reverse("health")).json(), {"status": "ok", "database": "ok"})
 
     @override_settings(DEBUG=False, SECURE_SSL_REDIRECT=True)
@@ -219,6 +223,17 @@ class RasterProxyTests(TestCase):
         response = self.client.get(reverse("raster_metadata"))
         self.assertEqual(response.status_code, 302)
         self.assertIn("/accounts/login/", response["Location"])
+
+    @patch("portal.raster._fetch_image")
+    def test_public_aerial_basemap_tile_uses_allowlisted_esri_url(self, fetch_image):
+        fetch_image.return_value = HttpResponse(b"jpg", content_type="image/jpeg")
+        response = self.client.get(reverse("raster_tile", args=["aerial", 2, 1, 1]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(fetch_image.call_args.args[0].startswith("https://server.arcgisonline.com/"))
+
+    def test_study_context_tiles_still_require_registration(self):
+        response = self.client.get(reverse("raster_tile", args=["magnetic", 2, 1, 1]))
+        self.assertEqual(response.status_code, 403)
 
     def test_registered_home_includes_remote_mapping_controls(self):
         self.client.force_login(self.user)

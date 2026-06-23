@@ -1,6 +1,6 @@
 const defaultPreferences = {
   center: [5, 15], zoom: 2, layers: ["study-candidates", "my-candidates"],
-  basemap: "street", rasters: [], rasterOpacity: 68, satelliteDate: "", candidateDraft: null,
+  basemap: "aerial", rasters: [], rasterOpacity: 68, satelliteDate: "", candidateDraft: null,
   scoreField: "followup_score", palette: "turbo", drawingMethod: "center-radius"
 };
 const savedPreferences = JSON.parse(document.getElementById("map-preferences")?.textContent || "{}");
@@ -137,13 +137,14 @@ const scoreField = document.getElementById("score-field"), paletteSelect = docum
 if (scoreField) { scoreField.value = preferences.scoreField; scoreField.addEventListener("change", () => { preferences.scoreField = scoreField.value; restyleScientificLayers(); persistPreferences(); }); }
 if (paletteSelect) { paletteSelect.value = preferences.palette; paletteSelect.addEventListener("change", () => { preferences.palette = paletteSelect.value; restyleScientificLayers(); persistPreferences(); }); }
 
-if (window.ASTROBLEME_RASTER_ACCESS) {
+if (document.getElementById("satellite-date")) {
   const sourcePanel = document.getElementById("remote-source");
   const dateInput = document.getElementById("satellite-date");
+  const opacityInput = document.getElementById("raster-opacity");
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   dateInput.value = preferences.satelliteDate || yesterday;
   dateInput.max = new Date().toISOString().slice(0, 10);
-  document.getElementById("raster-opacity").value = preferences.rasterOpacity;
+  if (opacityInput) opacityInput.value = preferences.rasterOpacity;
 
   const sourceInfo = {
     street: ["OpenStreetMap", "https://www.openstreetmap.org/copyright"],
@@ -197,7 +198,7 @@ if (window.ASTROBLEME_RASTER_ACCESS) {
       persistPreferences();
     });
   });
-  document.getElementById("raster-opacity").addEventListener("input", event => {
+  opacityInput?.addEventListener("input", event => {
     const opacity = Number(event.target.value) / 100;
     activeRasterSlugs.forEach(slug => rasterLayers[slug].setOpacity(opacity)); persistPreferences();
   });
@@ -209,6 +210,7 @@ if (window.ASTROBLEME_RASTER_ACCESS) {
     showSource("satellite"); persistPreferences();
   });
 
+  if (window.ASTROBLEME_RASTER_ACCESS) {
   const gravityButton = document.getElementById("gravity-inspector");
   const markerButton = document.getElementById("candidate-marker");
   const diameterInput = document.getElementById("candidate-diameter");
@@ -297,14 +299,15 @@ if (window.ASTROBLEME_RASTER_ACCESS) {
   if (candidateDraft) drawCandidateDraft();
   resetCallbacks.push(() => {
     clearCandidateDraft();
-    document.getElementById("raster-opacity").value = defaultPreferences.rasterOpacity;
+    opacityInput.value = defaultPreferences.rasterOpacity;
     dateInput.value = yesterday;
-    document.querySelector('[data-basemap="street"]').checked = true; chooseBasemap("street");
+    document.querySelector(`[data-basemap="${defaultPreferences.basemap}"]`).checked = true; chooseBasemap(defaultPreferences.basemap);
     document.querySelectorAll("[data-raster]").forEach(input => { input.checked = false; map.removeLayer(rasterLayers[input.dataset.raster]); });
     activeRasterSlugs.clear(); setGravityMode(false);
     preferences.scoreField = defaultPreferences.scoreField; preferences.palette = defaultPreferences.palette; preferences.drawingMethod = defaultPreferences.drawingMethod;
     scoreField.value = preferences.scoreField; paletteSelect.value = preferences.palette; drawingMethod.value = preferences.drawingMethod; restyleScientificLayers();
   });
+  }
 }
 
 document.getElementById("reset-map")?.addEventListener("click", async () => {
