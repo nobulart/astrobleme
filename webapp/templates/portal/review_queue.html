@@ -1,4 +1,158 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Review queue · Astrobleme Review Atlas{% endblock %}
-{% block content %}<main class="content-page"><p class="eyebrow">Staff workspace</p><h1>Candidate review queue</h1><p>Each status transition is recorded in the audit history.</p><div class="submission-grid">
-{% for item in submissions %}<article class="submission-card review-card"><div class="score">{% if item.followup_score != None %}{{ item.followup_score|floatformat:3 }}{% else %}—{% endif %}</div><div><h2>{{ item.title }}</h2><p>{{ item.get_status_display }} · {{ item.get_followup_status_display }}</p><small>{{ item.created_by.username }} · {{ item.latitude|floatformat:3 }}, {{ item.longitude|floatformat:3 }} · {{ item.diameter_km|floatformat:1 }} km</small></div><form method="post" action="{% url 'review_candidate' item.id %}">{% csrf_token %}<label>Status <select name="status">{% for value,label in status_choices %}<option value="{{ value }}" {% if value == item.status %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label><label>Review note <textarea name="note" rows="2">{{ item.moderator_notes }}</textarea></label><button class="button" type="submit">Record review</button></form>{% if item.reviews.all %}<details><summary>Review history</summary><ul>{% for review in item.reviews.all %}<li>{{ review.created_at|date:"j M Y H:i" }} · {{ review.reviewer.username }} · {{ review.get_from_status_display }} → {{ review.get_to_status_display }}{% if review.note %}: {{ review.note }}{% endif %}</li>{% endfor %}</ul></details>{% endif %}</article>{% empty %}<p>No candidates are awaiting review.</p>{% endfor %}</div></main>{% endblock %}
+{% block head %}<link rel="stylesheet" href="{% static 'portal/review_queue.css' %}">{% endblock %}
+{% block content %}
+<main class="content-page review-page">
+  <section class="review-header">
+    <div>
+      <p class="eyebrow">Staff workspace</p>
+      <h1>Candidate review queue</h1>
+      <p>Compare the intake record, worker analysis, and moderation history before changing catalogue status.</p>
+    </div>
+    <a class="button secondary dark" href="/admin/portal/candidatesubmission/">Open Django admin</a>
+  </section>
+
+  <section class="review-summary" aria-label="Review queue summary">
+    <div><strong>{{ summary.showing }}</strong><span>Showing</span></div>
+    <div><strong>{{ summary.unreviewed }}</strong><span>Unreviewed</span></div>
+    <div><strong>{{ summary.under_review }}</strong><span>Under review</span></div>
+    <div><strong>{{ summary.accepted }}</strong><span>Accepted</span></div>
+    <div><strong>{{ summary.scored }}</strong><span>Scored</span></div>
+    <div><strong>{{ summary.active_jobs }}</strong><span>Active jobs</span></div>
+    <div class="{% if summary.attention or summary.failed_jobs %}needs-attention{% endif %}">
+      <strong>{{ summary.attention|add:summary.failed_jobs }}</strong><span>Attention</span>
+    </div>
+  </section>
+
+  <form class="review-filters" method="get">
+    <label>Search
+      <input type="search" name="q" value="{{ filters.q }}" placeholder="Title, source, feature, reviewer">
+    </label>
+    <label>Review status
+      <select name="status">
+        <option value="">All statuses</option>
+        {% for value,label in status_choices %}
+        <option value="{{ value }}" {% if value == filters.status %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Analysis status
+      <select name="followup">
+        <option value="">All analysis states</option>
+        {% for value,label in followup_choices %}
+        <option value="{{ value }}" {% if value == filters.followup %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <div class="review-filter-actions">
+      <button class="button" type="submit">Apply filters</button>
+      <a href="{% url 'review_queue' %}">Clear</a>
+    </div>
+  </form>
+
+  <section class="review-list" aria-label="Candidate submissions">
+    {% for item in submissions %}
+    <article class="review-row">
+      <aside class="review-score">
+        <span>Follow-up</span>
+        <strong>{% if item.followup_score != None %}{{ item.followup_score|floatformat:3 }}{% else %}—{% endif %}</strong>
+        <small>Intake {{ item.intake_score|floatformat:3 }}</small>
+      </aside>
+
+      <div class="review-main">
+        <div class="review-title-row">
+          <div>
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.created_by.username }} · {{ item.latitude|floatformat:3 }}, {{ item.longitude|floatformat:3 }} · {{ item.diameter_km|floatformat:1 }} km</p>
+          </div>
+          <div class="review-badges">
+            <span class="badge status-{{ item.status }}">{{ item.get_status_display }}</span>
+            <span class="badge followup-{{ item.followup_status }}">{{ item.get_followup_status_display }}</span>
+            {% if item.latest_job %}<span class="badge job-{{ item.latest_job.status }}">Job {{ item.latest_job.get_status_display }}</span>{% endif %}
+          </div>
+        </div>
+
+        <dl class="review-evidence">
+          <div><dt>Observed feature</dt><dd>{{ item.observed_feature }}</dd></div>
+          <div><dt>Source</dt><dd>{% if item.source_uri %}<a href="{{ item.source_uri }}">{{ item.source_title }}</a>{% else %}{{ item.source_title }}{% endif %}</dd></div>
+          <div><dt>Endogenic alternative</dt><dd>{{ item.endogenic_alternative }}</dd></div>
+          <div><dt>Evidence tags</dt><dd>{% if item.independent_evidence %}{{ item.independent_evidence|join:", " }}{% else %}None recorded{% endif %}</dd></div>
+        </dl>
+
+        <p class="review-description">{{ item.description }}</p>
+
+        <div class="review-operations">
+          <form class="review-status-form" method="post" action="{% url 'review_candidate' item.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <label>Status
+              <select name="status">
+                {% for value,label in status_choices %}
+                <option value="{{ value }}" {% if value == item.status %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+            </label>
+            <label>Review note
+              <textarea name="note" rows="3" placeholder="Reason for the status change or next check">{{ item.moderator_notes }}</textarea>
+            </label>
+            <button class="button" type="submit">Record review</button>
+          </form>
+
+          <div class="review-side-actions">
+            <form method="post" action="{% url 'review_candidate' item.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              <input type="hidden" name="action" value="queue_analysis">
+              <button class="button secondary dark" type="submit">Queue analysis</button>
+            </form>
+            <a class="button secondary dark" href="/admin/portal/candidatesubmission/{{ item.id }}/change/">Edit full record</a>
+          </div>
+        </div>
+
+        <div class="review-details">
+          <details>
+            <summary>Baseline checks</summary>
+            <dl>
+              {% for key,value in item.baseline_checks.items %}
+              <div><dt>{{ key }}</dt><dd>{{ value }}</dd></div>
+              {% empty %}
+              <div><dt>Checks</dt><dd>No baseline checks recorded.</dd></div>
+              {% endfor %}
+            </dl>
+          </details>
+          <details>
+            <summary>Analysis diagnostics</summary>
+            <dl>
+              {% if item.latest_run %}
+              <div><dt>Latest run</dt><dd>{{ item.latest_run.get_status_display }} · {{ item.latest_run.created_at|date:"j M Y H:i" }} · {{ item.latest_run.worker_id|default:"worker unknown" }}</dd></div>
+              {% endif %}
+              {% for key,value in item.followup_metrics.items %}
+              <div><dt>{{ key }}</dt><dd>{{ value }}</dd></div>
+              {% empty %}
+              <div><dt>Metrics</dt><dd>No analysis metrics recorded.</dd></div>
+              {% endfor %}
+            </dl>
+          </details>
+          <details>
+            <summary>Review history</summary>
+            <ul>
+              {% for review in item.reviews.all %}
+              <li>{{ review.created_at|date:"j M Y H:i" }} · {{ review.reviewer.username }} · {{ review.get_from_status_display }} → {{ review.get_to_status_display }}{% if review.note %}: {{ review.note }}{% endif %}</li>
+              {% empty %}
+              <li>No review transitions recorded yet.</li>
+              {% endfor %}
+            </ul>
+          </details>
+        </div>
+      </div>
+    </article>
+    {% empty %}
+    <section class="empty-review-state">
+      <h2>No candidates match this queue view.</h2>
+      <p>Clear the filters or return after new baseline-passing submissions arrive.</p>
+    </section>
+    {% endfor %}
+  </section>
+</main>
+{% endblock %}

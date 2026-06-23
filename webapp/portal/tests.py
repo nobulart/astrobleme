@@ -252,6 +252,67 @@ class PortalViewTests(TestCase):
         self.assertEqual(item.status, CandidateSubmission.Status.UNDER_REVIEW)
         self.assertEqual(CandidateReview.objects.get(candidate=item).note, "Worth checking")
 
+    def test_review_queue_filters_and_searches_candidates(self):
+        staff = User.objects.create_user("staff", "staff@example.org", "long-test-password", is_staff=True)
+        CandidateSubmission.objects.create(
+            created_by=self.user,
+            title="Visible arc",
+            description="x",
+            longitude=1,
+            latitude=1,
+            diameter_km=20,
+            source_title="Regional mosaic",
+            observed_feature="Annular ridge",
+            endogenic_alternative="x",
+            status=CandidateSubmission.Status.UNDER_REVIEW,
+            followup_status=CandidateSubmission.FollowupStatus.SCORED,
+            followup_score=0.62,
+        )
+        CandidateSubmission.objects.create(
+            created_by=self.user,
+            title="Accepted basin",
+            description="x",
+            longitude=2,
+            latitude=2,
+            diameter_km=40,
+            source_title="Another mosaic",
+            observed_feature="Gravity dome",
+            endogenic_alternative="x",
+            status=CandidateSubmission.Status.ACCEPTED,
+            followup_status=CandidateSubmission.FollowupStatus.SOURCE_UNAVAILABLE,
+        )
+        self.client.force_login(staff)
+        response = self.client.get(reverse("review_queue"), {"status": CandidateSubmission.Status.UNDER_REVIEW, "q": "arc"})
+        self.assertContains(response, "Visible arc")
+        self.assertNotContains(response, "Accepted basin")
+        self.assertContains(response, "Queue analysis")
+        self.assertContains(response, "Analysis diagnostics")
+
+    def test_review_queue_can_force_queue_analysis(self):
+        staff = User.objects.create_user("staff", "staff@example.org", "long-test-password", is_staff=True)
+        item = CandidateSubmission.objects.create(
+            created_by=self.user,
+            title="Needs worker",
+            description="x",
+            longitude=1,
+            latitude=1,
+            diameter_km=20,
+            source_title="Regional mosaic",
+            observed_feature="Annular ridge",
+            endogenic_alternative="x",
+            baseline_passed=False,
+            status=CandidateSubmission.Status.ACCEPTED,
+        )
+        self.client.force_login(staff)
+        response = self.client.post(reverse("review_candidate", args=[item.id]), {
+            "action": "queue_analysis",
+            "next": reverse("review_queue") + "?status=accepted",
+        })
+        self.assertRedirects(response, reverse("review_queue") + "?status=accepted", fetch_redirect_response=False)
+        job = CandidateAnalysisJob.objects.get(candidate=item)
+        self.assertEqual(job.status, CandidateAnalysisJob.Status.QUEUED)
+        self.assertEqual(job.requested_reason, CandidateAnalysisJob.Reason.REVIEWER_RETRY)
+
     def test_staff_admin_action_force_queues_baseline_failed_candidate(self):
         staff = User.objects.create_superuser("staff", "staff@example.org", "long-test-password")
         item = CandidateSubmission.objects.create(

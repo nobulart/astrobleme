@@ -7,9 +7,11 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db import connection, transaction
+from django.db.models import Prefetch, Q
 from django.http import FileResponse, Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_GET, require_POST
 
 from .analysis_queue import enqueue_candidate_analysis
@@ -322,18 +324,85 @@ def globe(request):
 
 @user_passes_test(lambda user: user.is_staff)
 def review_queue(request):
-    submissions = CandidateSubmission.objects.exclude(status=CandidateSubmission.Status.BASELINE_FAILED).select_related("created_by", "moderated_by").prefetch_related("reviews")
-    return render(request, "portal/review_queue.html", {"submissions": submissions, "status_choices": CandidateSubmission.Status.choices})
+    base = CandidateSubmission.objects.exclude(status=CandidateSubmission.Status.BASELINE_FAILED)
+    status_filter = request.GET.get("status", "").strip()
+    followup_filter = request.GET.get("followup", "").strip()
+    search = request.GET.get("q", "").strip()
+    active_statuses = {
+        CandidateAnalysisJob.Status.QUEUED,
+        CandidateAnalysisJob.Status.CLAIMED,
+        CandidateAnalysisJob.Status.RUNNING,
+    }
+
+    submissions = base
+    if status_filter in {value for value, _ in CandidateSubmission.Status.choices}:
+        submissions = submissions.filter(status=status_filter)
+    else:
+        status_filter = ""
+    if followup_filter in {value for value, _ in CandidateSubmission.FollowupStatus.choices}:
+        submissions = submissions.filter(followup_status=followup_filter)
+    else:
+        followup_filter = ""
+    if search:
+        submissions = submissions.filter(
+            Q(title__icontains=search)
+            | Q(description__icontains=search)
+            | Q(source_title__icontains=search)
+            | Q(observed_feature__icontains=search)
+            | Q(created_by__username__icontains=search)
+        )
+
+    submissions = list(submissions.select_related("created_by", "moderated_by").prefetch_related(
+        "reviews",
+        Prefetch("analysis_jobs", queryset=CandidateAnalysisJob.objects.order_by("-updated_at")),
+        Prefetch("analysis_runs", queryset=CandidateAnalysisRun.objects.order_by("-created_at")),
+    ))
+    for item in submissions:
+        analysis_jobs = list(item.analysis_jobs.all())
+        analysis_runs = list(item.analysis_runs.all())
+        item.latest_job = analysis_jobs[0] if analysis_jobs else None
+        item.latest_run = analysis_runs[0] if analysis_runs else None
+
+    status_counts = Counter(base.values_list("status", flat=True))
+    followup_counts = Counter(base.values_list("followup_status", flat=True))
+    job_counts = Counter(CandidateAnalysisJob.objects.values_list("status", flat=True))
+    summary = {
+        "total": base.count(),
+        "showing": len(submissions),
+        "unreviewed": status_counts[CandidateSubmission.Status.BASELINE_PASSED],
+        "under_review": status_counts[CandidateSubmission.Status.UNDER_REVIEW],
+        "accepted": status_counts[CandidateSubmission.Status.ACCEPTED],
+        "rejected": status_counts[CandidateSubmission.Status.REJECTED],
+        "scored": followup_counts[CandidateSubmission.FollowupStatus.SCORED],
+        "attention": followup_counts[CandidateSubmission.FollowupStatus.FAILED] + followup_counts[CandidateSubmission.FollowupStatus.SOURCE_UNAVAILABLE],
+        "active_jobs": sum(job_counts[status] for status in active_statuses),
+        "failed_jobs": job_counts[CandidateAnalysisJob.Status.FAILED],
+    }
+    context = {
+        "submissions": submissions,
+        "summary": summary,
+        "status_choices": [choice for choice in CandidateSubmission.Status.choices if choice[0] != CandidateSubmission.Status.BASELINE_FAILED],
+        "followup_choices": CandidateSubmission.FollowupStatus.choices,
+        "filters": {"status": status_filter, "followup": followup_filter, "q": search},
+    }
+    return render(request, "portal/review_queue.html", context)
 
 
 @user_passes_test(lambda user: user.is_staff)
 @require_POST
 def review_candidate(request, candidate_id):
+    if request.POST.get("action") == "queue_analysis":
+        with transaction.atomic():
+            candidate = CandidateSubmission.objects.select_for_update().get(pk=candidate_id)
+            enqueue_candidate_analysis(candidate, CandidateAnalysisJob.Reason.REVIEWER_RETRY, force=True)
+        messages.success(request, f"Queued automated analysis for {candidate.title}.")
+        return _review_queue_redirect(request)
+
     allowed = {value for value, _ in CandidateSubmission.Status.choices}
     target = request.POST.get("status")
     if target not in allowed:
         messages.error(request, "Choose a valid review status.")
-        return redirect("review_queue")
+        return _review_queue_redirect(request)
     with transaction.atomic():
         candidate = get_object_or_404(CandidateSubmission.objects.select_for_update(), pk=candidate_id)
         previous = candidate.status
@@ -344,6 +413,13 @@ def review_candidate(request, candidate_id):
         candidate.save()
         CandidateReview.objects.create(candidate=candidate, reviewer=request.user, from_status=previous, to_status=target, note=candidate.moderator_notes)
     messages.success(request, f"Review status updated for {candidate.title}.")
+    return _review_queue_redirect(request)
+
+
+def _review_queue_redirect(request):
+    next_url = request.POST.get("next", "")
+    if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
+        return redirect(next_url)
     return redirect("review_queue")
 
 
