@@ -118,14 +118,17 @@ def _fetch_image(url: str, params: dict | None = None) -> HttpResponse:
         return JsonResponse({"error": "Remote map service is temporarily unavailable."}, status=502)
 
 
-def _tile_coordinates(z: int, x: int, y: int, max_zoom: int) -> bool:
-    return 0 <= z <= max_zoom and 0 <= x < 2**z and 0 <= y < 2**z
+def _tile_coordinates(z: int, x: int, y: int, source: dict) -> bool:
+    if not 0 <= z <= source["max_zoom"]:
+        return False
+    width = 2 ** (z + 1) if source.get("kind") == "geophysics-geographic-tiles" else 2**z
+    return 0 <= x < width and 0 <= y < 2**z
 
 
 @require_GET
 def tile(request, slug: str, z: int, x: int, y: int):
     source = TILE_SOURCES.get(slug)
-    if not source or not _tile_coordinates(z, x, y, source["max_zoom"]):
+    if not source or not _tile_coordinates(z, x, y, source):
         raise Http404
     if slug not in {"aerial", "satellite", "dark", "labels"} and not request.user.is_authenticated:
         return JsonResponse({"error": "Authentication is required for study context overlays."}, status=403)

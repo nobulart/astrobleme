@@ -294,6 +294,14 @@ class RasterProxyTests(TestCase):
         self.assertIn("portal.gplates.org/get_tile/", fetch_image.call_args.args[0])
 
     @patch("portal.raster._fetch_image")
+    def test_gravity_tiles_accept_geographic_eastern_hemisphere_x_range(self, fetch_image):
+        fetch_image.return_value = HttpResponse(b"png", content_type="image/png")
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("raster_tile", args=["gravity-bouguer", 2, 5, 1]))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("x=5", fetch_image.call_args.args[0])
+
+    @patch("portal.raster._fetch_image")
     def test_wms_overrides_user_layers_and_rejects_large_images(self, fetch_image):
         fetch_image.return_value = HttpResponse(b"png", content_type="image/png")
         self.client.force_login(self.user)
