@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.utils import timezone
 
 from .analysis_queue import enqueue_candidate_analysis
@@ -32,8 +32,12 @@ def mark_rejected(modeladmin, request, queryset):
 
 @admin.action(description="Queue selected candidates for automated analysis")
 def queue_analysis(modeladmin, request, queryset):
+    queued = 0
     for candidate in queryset:
-        enqueue_candidate_analysis(candidate, CandidateAnalysisJob.Reason.REVIEWER_RETRY)
+        job = enqueue_candidate_analysis(candidate, CandidateAnalysisJob.Reason.REVIEWER_RETRY, force=True)
+        if job:
+            queued += 1
+    modeladmin.message_user(request, f"Queued {queued} candidate(s) for automated analysis.", messages.SUCCESS)
 
 
 @admin.register(CandidateSubmission)

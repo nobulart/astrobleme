@@ -220,6 +220,31 @@ class PortalViewTests(TestCase):
         self.assertEqual(item.status, CandidateSubmission.Status.UNDER_REVIEW)
         self.assertEqual(CandidateReview.objects.get(candidate=item).note, "Worth checking")
 
+    def test_staff_admin_action_force_queues_baseline_failed_candidate(self):
+        staff = User.objects.create_superuser("staff", "staff@example.org", "long-test-password")
+        item = CandidateSubmission.objects.create(
+            created_by=self.user,
+            title="Accepted but short",
+            description="x",
+            longitude=1,
+            latitude=1,
+            diameter_km=20,
+            source_title="x",
+            observed_feature="x",
+            endogenic_alternative="x",
+            baseline_passed=False,
+            status=CandidateSubmission.Status.ACCEPTED,
+        )
+        self.client.force_login(staff)
+        response = self.client.post(reverse("admin:portal_candidatesubmission_changelist"), {
+            "action": "queue_analysis",
+            "_selected_action": [str(item.id)],
+        }, follow=True)
+        self.assertContains(response, "Queued 1 candidate(s) for automated analysis.")
+        job = CandidateAnalysisJob.objects.get(candidate=item)
+        self.assertEqual(job.status, CandidateAnalysisJob.Status.QUEUED)
+        self.assertEqual(job.requested_reason, CandidateAnalysisJob.Reason.REVIEWER_RETRY)
+
     def test_geojson_download_sets_attachment_header(self):
         response = self.client.get(reverse("layer_geojson", args=["negative-controls"]), {"download": "1"})
         self.assertIn("attachment", response["Content-Disposition"])
