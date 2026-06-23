@@ -83,3 +83,94 @@ class CandidateReview(models.Model):
 
     def __str__(self):
         return f"{self.candidate} → {self.get_to_status_display()}"
+
+
+class CandidateAnalysisJob(models.Model):
+    class Status(models.TextChoices):
+        QUEUED = "queued", "Queued"
+        CLAIMED = "claimed", "Claimed by worker"
+        RUNNING = "running", "Running"
+        SUCCEEDED = "succeeded", "Succeeded"
+        FAILED = "failed", "Failed"
+        CANCELLED = "cancelled", "Cancelled"
+
+    class Reason(models.TextChoices):
+        NEW_SUBMISSION = "new_submission", "New submission"
+        USER_EDIT = "user_edit", "User edit"
+        REVIEWER_RETRY = "reviewer_retry", "Reviewer retry"
+        METHOD_UPGRADE = "method_upgrade", "Method upgrade"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    candidate = models.ForeignKey(CandidateSubmission, on_delete=models.CASCADE, related_name="analysis_jobs")
+    status = models.CharField(max_length=24, choices=Status.choices, default=Status.QUEUED)
+    requested_reason = models.CharField(max_length=32, choices=Reason.choices, default=Reason.NEW_SUBMISSION)
+    priority = models.PositiveSmallIntegerField(default=50)
+    claimed_by = models.CharField(max_length=120, blank=True)
+    claimed_at = models.DateTimeField(null=True, blank=True)
+    lease_expires_at = models.DateTimeField(null=True, blank=True)
+    attempt_count = models.PositiveIntegerField(default=0)
+    last_error = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-priority", "created_at"]
+        indexes = [
+            models.Index(fields=["status", "-priority", "created_at"], name="portal_job_queue_2bd42c_idx"),
+            models.Index(fields=["lease_expires_at"], name="portal_job_lease_b8f6ac_idx"),
+        ]
+
+    def __str__(self):
+        return f"{self.candidate.title} analysis job ({self.status})"
+
+
+class CandidateAnalysisRun(models.Model):
+    class Status(models.TextChoices):
+        SUCCEEDED = "succeeded", "Succeeded"
+        FAILED = "failed", "Failed"
+        SOURCE_UNAVAILABLE = "source_unavailable", "Source unavailable"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    candidate = models.ForeignKey(CandidateSubmission, on_delete=models.CASCADE, related_name="analysis_runs")
+    job = models.ForeignKey(CandidateAnalysisJob, null=True, blank=True, on_delete=models.SET_NULL, related_name="runs")
+    status = models.CharField(max_length=32, choices=Status.choices)
+    score = models.FloatField(null=True, blank=True)
+    score_percentile = models.FloatField(null=True, blank=True)
+    review_tier = models.CharField(max_length=80, blank=True)
+    method_version = models.CharField(max_length=120, blank=True)
+    worker_id = models.CharField(max_length=120, blank=True)
+    worker_version = models.CharField(max_length=120, blank=True)
+    metrics = models.JSONField(default=dict, blank=True)
+    diagnostics = models.JSONField(default=dict, blank=True)
+    source_fingerprints = models.JSONField(default=dict, blank=True)
+    runtime_seconds = models.FloatField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["candidate", "-created_at"], name="p_run_cand_5fd2f7_idx"),
+            models.Index(fields=["status", "-created_at"], name="p_run_status_2d96ab_idx"),
+        ]
+
+    def __str__(self):
+        return f"{self.candidate.title} analysis run ({self.status})"
+
+
+class CandidateAnalysisArtifact(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    analysis_run = models.ForeignKey(CandidateAnalysisRun, on_delete=models.CASCADE, related_name="artifacts")
+    kind = models.CharField(max_length=80)
+    title = models.CharField(max_length=200)
+    mime_type = models.CharField(max_length=120, blank=True)
+    storage_backend = models.CharField(max_length=40, default="external")
+    url_or_path = models.CharField(max_length=1000)
+    sha256 = models.CharField(max_length=64, blank=True)
+    size_bytes = models.PositiveBigIntegerField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["kind", "title"]
+
+    def __str__(self):
+        return f"{self.title} ({self.kind})"

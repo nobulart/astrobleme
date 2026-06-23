@@ -11,9 +11,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.decorators.http import require_GET, require_POST
 
+from .analysis_queue import enqueue_candidate_analysis
 from .forms import CandidateForm, RegistrationForm
 from .followup import circle_geometry, score_candidate
-from .models import CandidateReview, CandidateSubmission, UserMapPreference
+from .models import CandidateAnalysisJob, CandidateReview, CandidateSubmission, UserMapPreference
 from .scoring import evaluate_submission
 
 LAYERS = {
@@ -91,6 +92,7 @@ def submit_candidate(request):
         candidate = form.save(commit=False)
         candidate.created_by = request.user
         passed = _evaluate_and_save(candidate, form)
+        enqueue_candidate_analysis(candidate, CandidateAnalysisJob.Reason.NEW_SUBMISSION)
         preference = UserMapPreference.objects.filter(user=request.user).first()
         if preference and preference.settings.get("candidateDraft"):
             preference.settings = {**preference.settings, "candidateDraft": None}
@@ -114,6 +116,7 @@ def edit_candidate(request, candidate_id):
     if request.method == "POST" and form.is_valid():
         candidate = form.save(commit=False)
         passed = _evaluate_and_save(candidate, form)
+        enqueue_candidate_analysis(candidate, CandidateAnalysisJob.Reason.USER_EDIT)
         if passed:
             messages.success(request, "Candidate updated, rescored, and retained in the unreviewed queue.")
         else:

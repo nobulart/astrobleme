@@ -77,10 +77,38 @@ Optional variables:
 | `GEBCO_GRID_PATH` | `/data/GEBCO_2026_sub_ice.nc` | Numerical terrain grid required for exact follow-up scoring |
 | `GEOLOGY_INDEX_PATH` | `/data/global_gprv.kml` | Geological-province index required for exact follow-up scoring |
 | `CESIUM_ION_TOKEN` | empty | Optional Cesium World Terrain; WGM2012 gravity and the ellipsoid globe work without it |
+| `ANALYSIS_WORKER_TOKEN` | empty | Shared bearer token for trusted local analysis workers that claim and update queued candidate jobs |
+| `ANALYSIS_JOB_LEASE_SECONDS` | `1800` | Worker job lease duration before another worker may reclaim stale work |
 
 Required variables are `SECRET_KEY` and `DATABASE_URL`. `PORT` and `RAILWAY_PUBLIC_DOMAIN` are supplied by Railway.
 
 If Cloudflare proxies `astro.nobulart.com`, Railway currently requires Cloudflare SSL/TLS mode **Full**. Use the exact CNAME and TXT records shown in Railway and wait for domain verification before testing HTTPS.
+
+## Automated local analysis worker
+
+Baseline-passing submissions now create a queued analysis job in PostgreSQL. The deployed app exposes a narrow token-authenticated API for a trusted local worker:
+
+- `GET /api/analysis/jobs` lists queued or stale jobs.
+- `POST /api/analysis/jobs/<job_id>/claim` leases a job to a worker.
+- `POST /api/analysis/jobs/<job_id>/heartbeat` extends the lease and marks it running.
+- `POST /api/analysis/jobs/<job_id>/result` records the run, updates the candidate follow-up score/status, and stores diagnostic artifact metadata.
+
+Set `ANALYSIS_WORKER_TOKEN` to the same long random value in Railway and in the local worker environment. Then run from a checkout that has the full study code plus local scientific data:
+
+```bash
+python3 -m venv .venv-worker
+source .venv-worker/bin/activate
+pip install -r webapp/requirements.txt
+export ANALYSIS_WORKER_TOKEN="the-same-token-as-railway"
+export ASTROBLEME_API_BASE_URL="https://astro.nobulart.com"
+export GEBCO_GRID_PATH="/Users/craig/ECDO/data/GEBCO_2026_sub_ice.nc"
+export GEOLOGY_INDEX_PATH="/Users/craig/ECDO/data/global_gprv.kml"
+python3 scripts/analysis_worker.py --once
+```
+
+For continuous operation, omit `--once`. The worker intentionally uses the same `portal.followup.score_candidate()` path as the web app, so method versions and metrics remain comparable. If a local analysis run has public diagnostic images or JSON, pass `--artifact-root` and `--artifact-base-url`; matching files whose names contain the candidate UUID are attached to the analysis run as external artifacts.
+
+This first worker is headless and suitable for launchd, tmux, systemd, or a future Textual/ncurses monitor. The web admin includes analysis jobs/runs/artifacts, and staff can queue selected candidates for retry from the `CandidateSubmission` admin action.
 
 ## Data lifecycle
 

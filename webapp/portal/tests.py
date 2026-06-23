@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from unittest.mock import Mock, patch
 
 from .followup import circle_geometry
-from .models import CandidateReview, CandidateSubmission, UserMapPreference
+from .models import CandidateAnalysisArtifact, CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission, UserMapPreference
 from .scoring import evaluate_submission
 
 
@@ -155,6 +155,9 @@ class PortalViewTests(TestCase):
         self.assertEqual(item.status, CandidateSubmission.Status.BASELINE_PASSED)
         self.assertEqual(item.followup_status, CandidateSubmission.FollowupStatus.SOURCE_UNAVAILABLE)
         self.assertEqual(item.geometry["type"], "LineString")
+        job = CandidateAnalysisJob.objects.get(candidate=item)
+        self.assertEqual(job.status, CandidateAnalysisJob.Status.QUEUED)
+        self.assertEqual(job.requested_reason, CandidateAnalysisJob.Reason.NEW_SUBMISSION)
         self.assertIsNone(UserMapPreference.objects.get(user=self.user).settings["candidateDraft"])
         public = self.client.get(reverse("community_geojson")).json()
         self.assertEqual(len(public["features"]), 1)
@@ -199,6 +202,8 @@ class PortalViewTests(TestCase):
         self.assertTrue(item.baseline_passed)
         self.assertEqual(item.status, CandidateSubmission.Status.BASELINE_PASSED)
         self.assertEqual(item.followup_status, CandidateSubmission.FollowupStatus.SOURCE_UNAVAILABLE)
+        job = CandidateAnalysisJob.objects.get(candidate=item)
+        self.assertEqual(job.requested_reason, CandidateAnalysisJob.Reason.USER_EDIT)
 
     def test_other_users_cannot_edit_candidate(self):
         other = User.objects.create_user("candidate_owner", "owner@example.org", "long-test-password")
@@ -220,6 +225,113 @@ class PortalViewTests(TestCase):
         response = self.client.get(reverse("edit_candidate", args=[item.id]))
         self.assertRedirects(response, reverse("my_submissions"))
         self.assertEqual(CandidateSubmission.objects.get(pk=item.id).title, "Locked candidate")
+
+
+class AnalysisApiTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("candidate_owner", "owner@example.org", "long-test-password")
+        self.candidate = CandidateSubmission.objects.create(
+            created_by=self.user,
+            title="Worker target",
+            description=VALID["description"],
+            longitude=VALID["longitude"],
+            latitude=VALID["latitude"],
+            diameter_km=VALID["diameter_km"],
+            geometry=circle_geometry(VALID["longitude"], VALID["latitude"], VALID["diameter_km"]),
+            source_title=VALID["source_title"],
+            source_uri=VALID["source_uri"],
+            source_resolution=VALID["source_resolution"],
+            observed_feature=VALID["observed_feature"],
+            endogenic_alternative=VALID["endogenic_alternative"],
+            independent_evidence=VALID["independent_evidence"],
+            original_trace_available=False,
+            terms_confirmed=True,
+            intake_score=0.92,
+            baseline_passed=True,
+            status=CandidateSubmission.Status.BASELINE_PASSED,
+        )
+        self.job = CandidateAnalysisJob.objects.create(candidate=self.candidate)
+
+    def _auth(self):
+        return {"HTTP_AUTHORIZATION": "Bearer worker-secret"}
+
+    @override_settings(ANALYSIS_WORKER_TOKEN="worker-secret")
+    def test_worker_can_list_and_claim_jobs(self):
+        blocked = self.client.get(reverse("analysis_jobs"))
+        self.assertEqual(blocked.status_code, 403)
+        listed = self.client.get(reverse("analysis_jobs"), **self._auth())
+        self.assertEqual(listed.status_code, 200)
+        self.assertEqual(listed.json()["jobs"][0]["candidate"]["id"], str(self.candidate.id))
+        claimed = self.client.post(
+            reverse("analysis_job_claim", args=[self.job.id]),
+            json.dumps({"worker_id": "local-ranker-1"}),
+            content_type="application/json",
+            **self._auth(),
+        )
+        self.assertEqual(claimed.status_code, 200)
+        self.job.refresh_from_db()
+        self.assertEqual(self.job.status, CandidateAnalysisJob.Status.CLAIMED)
+        self.assertEqual(self.job.claimed_by, "local-ranker-1")
+        self.assertEqual(self.job.attempt_count, 1)
+        self.assertIsNotNone(self.job.lease_expires_at)
+
+    @override_settings(ANALYSIS_WORKER_TOKEN="worker-secret")
+    def test_worker_heartbeat_marks_job_running(self):
+        self.job.status = CandidateAnalysisJob.Status.CLAIMED
+        self.job.claimed_by = "local-ranker-1"
+        self.job.save()
+        response = self.client.post(
+            reverse("analysis_job_heartbeat", args=[self.job.id]),
+            json.dumps({"worker_id": "local-ranker-1"}),
+            content_type="application/json",
+            **self._auth(),
+        )
+        self.assertEqual(response.status_code, 200)
+        self.job.refresh_from_db()
+        self.assertEqual(self.job.status, CandidateAnalysisJob.Status.RUNNING)
+        self.assertIsNotNone(self.job.lease_expires_at)
+
+    @override_settings(ANALYSIS_WORKER_TOKEN="worker-secret")
+    def test_worker_result_updates_candidate_and_records_artifacts(self):
+        response = self.client.post(
+            reverse("analysis_job_result", args=[self.job.id]),
+            json.dumps({
+                "status": "succeeded",
+                "score": 0.812345,
+                "score_percentile": 96.5,
+                "review_tier": "high-priority",
+                "method_version": "arc-ranker-local-2026.06",
+                "worker_id": "local-ranker-1",
+                "worker_version": "0.1.0",
+                "runtime_seconds": 42.7,
+                "metrics": {"data_quality": 0.89, "gravity_consensus_percentile": 93.2},
+                "diagnostics": {"summary": "Strong annular signal in merged diagnostics."},
+                "source_fingerprints": {"ranking_output": "sha256:abc"},
+                "artifacts": [{
+                    "kind": "diagnostic_png",
+                    "title": "Ranking diagnostic plot",
+                    "mime_type": "image/png",
+                    "url_or_path": "https://astro.nobulart.com/media/diagnostics/example.png",
+                    "sha256": "a" * 64,
+                    "size_bytes": 12345,
+                }],
+            }),
+            content_type="application/json",
+            **self._auth(),
+        )
+        self.assertEqual(response.status_code, 200)
+        self.job.refresh_from_db()
+        self.candidate.refresh_from_db()
+        run = CandidateAnalysisRun.objects.get(candidate=self.candidate)
+        artifact = CandidateAnalysisArtifact.objects.get(analysis_run=run)
+        self.assertEqual(self.job.status, CandidateAnalysisJob.Status.SUCCEEDED)
+        self.assertEqual(self.candidate.followup_status, CandidateSubmission.FollowupStatus.SCORED)
+        self.assertEqual(self.candidate.followup_score, 0.812345)
+        self.assertEqual(self.candidate.followup_method_version, "arc-ranker-local-2026.06")
+        self.assertEqual(self.candidate.followup_metrics["score_percentile"], 96.5)
+        self.assertEqual(self.candidate.followup_metrics["diagnostics"]["summary"], "Strong annular signal in merged diagnostics.")
+        self.assertEqual(run.worker_id, "local-ranker-1")
+        self.assertEqual(artifact.kind, "diagnostic_png")
 
 
 class RasterProxyTests(TestCase):

@@ -8,6 +8,8 @@ PROJECT_ROOT = Path(os.environ.get("ASTROBLEME_DATA_ROOT", BASE_DIR.parent))
 GEBCO_GRID_PATH = os.environ.get("GEBCO_GRID_PATH", "/data/GEBCO_2026_sub_ice.nc")
 GEOLOGY_INDEX_PATH = os.environ.get("GEOLOGY_INDEX_PATH", "/data/global_gprv.kml")
 CESIUM_ION_TOKEN = os.environ.get("CESIUM_ION_TOKEN", "")
+ANALYSIS_WORKER_TOKEN = os.environ.get("ANALYSIS_WORKER_TOKEN", "")
+ANALYSIS_JOB_LEASE_SECONDS = int(os.environ.get("ANALYSIS_JOB_LEASE_SECONDS", "1800"))
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "development-only-change-me")
 DEBUG = os.environ.get("DEBUG", "false").lower() == "true"
