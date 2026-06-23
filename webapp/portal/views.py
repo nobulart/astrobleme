@@ -1,4 +1,5 @@
 import json
+from collections import Counter
 from pathlib import Path
 
 from django.conf import settings
@@ -14,7 +15,7 @@ from django.views.decorators.http import require_GET, require_POST
 from .analysis_queue import enqueue_candidate_analysis
 from .forms import CandidateForm, RegistrationForm
 from .followup import circle_geometry, score_candidate
-from .models import CandidateAnalysisJob, CandidateReview, CandidateSubmission, UserMapPreference
+from .models import CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission, UserMapPreference
 from .scoring import evaluate_submission
 
 LAYERS = {
@@ -222,6 +223,96 @@ def _candidate_collection(queryset, download=False):
 
 def help_page(request):
     return render(request, "portal/help.html")
+
+
+@login_required
+@require_GET
+def analysis_status(request):
+    candidates = CandidateSubmission.objects.filter(created_by=request.user)
+    jobs = CandidateAnalysisJob.objects.filter(candidate__created_by=request.user)
+    runs = CandidateAnalysisRun.objects.filter(candidate__created_by=request.user)
+    followup_counts = Counter(candidates.values_list("followup_status", flat=True))
+    job_counts = Counter(jobs.values_list("status", flat=True))
+    run_counts = Counter(runs.values_list("status", flat=True))
+    baseline_total = candidates.filter(baseline_passed=True).count()
+    finished_total = sum(followup_counts[status] for status in [
+        CandidateSubmission.FollowupStatus.SCORED,
+        CandidateSubmission.FollowupStatus.SOURCE_UNAVAILABLE,
+        CandidateSubmission.FollowupStatus.FAILED,
+    ])
+    active_statuses = {
+        CandidateAnalysisJob.Status.QUEUED,
+        CandidateAnalysisJob.Status.CLAIMED,
+        CandidateAnalysisJob.Status.RUNNING,
+    }
+
+    recent = []
+    for candidate in candidates.order_by("-updated_at")[:6]:
+        latest_job = candidate.analysis_jobs.order_by("-updated_at").first()
+        latest_run = candidate.analysis_runs.order_by("-created_at").first()
+        if latest_job and latest_job.status in active_statuses:
+            state = latest_job.status
+            state_label = latest_job.get_status_display()
+        else:
+            state = candidate.followup_status
+            state_label = candidate.get_followup_status_display()
+        metrics = candidate.followup_metrics or {}
+        diagnostics = metrics.get("diagnostics") if isinstance(metrics.get("diagnostics"), dict) else {}
+        recent.append({
+            "id": str(candidate.id),
+            "title": candidate.title,
+            "state": state,
+            "state_label": state_label,
+            "candidate_status": candidate.get_status_display(),
+            "job_status": latest_job.status if latest_job else None,
+            "job_status_label": latest_job.get_status_display() if latest_job else "",
+            "run_status": latest_run.status if latest_run else None,
+            "run_status_label": latest_run.get_status_display() if latest_run else "",
+            "score": candidate.followup_score,
+            "score_percentile": metrics.get("score_percentile"),
+            "data_quality": metrics.get("data_quality"),
+            "summary": diagnostics.get("summary") or metrics.get("reason") or "",
+            "updated_at": candidate.updated_at.isoformat(),
+        })
+
+    payload = {
+        "totals": {
+            "candidates": candidates.count(),
+            "baseline_passed": baseline_total,
+            "finished": finished_total,
+            "progress_percent": round((finished_total / baseline_total) * 100) if baseline_total else 0,
+        },
+        "followup": {
+            "scored": followup_counts[CandidateSubmission.FollowupStatus.SCORED],
+            "not_scored": followup_counts[CandidateSubmission.FollowupStatus.NOT_SCORED],
+            "source_unavailable": followup_counts[CandidateSubmission.FollowupStatus.SOURCE_UNAVAILABLE],
+            "failed": followup_counts[CandidateSubmission.FollowupStatus.FAILED],
+        },
+        "jobs": {
+            "queued": job_counts[CandidateAnalysisJob.Status.QUEUED],
+            "claimed": job_counts[CandidateAnalysisJob.Status.CLAIMED],
+            "running": job_counts[CandidateAnalysisJob.Status.RUNNING],
+            "succeeded": job_counts[CandidateAnalysisJob.Status.SUCCEEDED],
+            "failed": job_counts[CandidateAnalysisJob.Status.FAILED],
+            "cancelled": job_counts[CandidateAnalysisJob.Status.CANCELLED],
+        },
+        "runs": {
+            "succeeded": run_counts[CandidateAnalysisRun.Status.SUCCEEDED],
+            "source_unavailable": run_counts[CandidateAnalysisRun.Status.SOURCE_UNAVAILABLE],
+            "failed": run_counts[CandidateAnalysisRun.Status.FAILED],
+        },
+        "recent": recent,
+        "updated_at": timezone.now().isoformat(),
+    }
+    if request.user.is_staff:
+        all_jobs = Counter(CandidateAnalysisJob.objects.values_list("status", flat=True))
+        payload["staff_queue"] = {
+            "queued": all_jobs[CandidateAnalysisJob.Status.QUEUED],
+            "claimed": all_jobs[CandidateAnalysisJob.Status.CLAIMED],
+            "running": all_jobs[CandidateAnalysisJob.Status.RUNNING],
+            "failed": all_jobs[CandidateAnalysisJob.Status.FAILED],
+        }
+    return JsonResponse(payload)
 
 
 @login_required

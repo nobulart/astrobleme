@@ -66,6 +66,7 @@ class PortalViewTests(TestCase):
         self.assertContains(home, "Labels and roads overlay")
         self.assertContains(home, "NASA MODIS satellite")
         self.assertContains(home, "Registered reviewers can compare live elevation")
+        self.assertNotContains(home, "Analysis status")
         self.assertNotContains(home, "GEBCO source identifier")
         self.assertNotContains(home, "Inspect WGM2012 gravity")
         self.assertEqual(self.client.get(reverse("health")).json(), {"status": "ok", "database": "ok"})
@@ -141,6 +142,44 @@ class PortalViewTests(TestCase):
         reset = self.client.post(reverse("map_preferences"), json.dumps({"reset": True}), content_type="application/json")
         self.assertEqual(reset.status_code, 200)
         self.assertFalse(UserMapPreference.objects.filter(user=self.user).exists())
+
+    def test_authenticated_home_includes_analysis_status_sidebar(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("home"))
+        self.assertContains(response, "Analysis status")
+        self.assertContains(response, reverse("analysis_status"))
+
+    def test_analysis_status_endpoint_reports_personal_progress(self):
+        candidate = CandidateSubmission.objects.create(
+            created_by=self.user,
+            title="Progress candidate",
+            description=VALID["description"],
+            longitude=VALID["longitude"],
+            latitude=VALID["latitude"],
+            diameter_km=VALID["diameter_km"],
+            source_title=VALID["source_title"],
+            observed_feature=VALID["observed_feature"],
+            endogenic_alternative=VALID["endogenic_alternative"],
+            intake_score=0.88,
+            baseline_passed=True,
+            status=CandidateSubmission.Status.BASELINE_PASSED,
+            followup_status=CandidateSubmission.FollowupStatus.SCORED,
+            followup_score=0.8123,
+            followup_metrics={"score_percentile": 96.5, "data_quality": 0.89, "diagnostics": {"summary": "Strong annular signal."}},
+        )
+        CandidateAnalysisJob.objects.create(candidate=candidate, status=CandidateAnalysisJob.Status.SUCCEEDED)
+        CandidateAnalysisRun.objects.create(candidate=candidate, status=CandidateAnalysisRun.Status.SUCCEEDED, score=0.8123)
+        self.assertEqual(self.client.get(reverse("analysis_status")).status_code, 302)
+        self.client.force_login(self.user)
+        payload = self.client.get(reverse("analysis_status")).json()
+        self.assertEqual(payload["totals"]["baseline_passed"], 1)
+        self.assertEqual(payload["totals"]["finished"], 1)
+        self.assertEqual(payload["totals"]["progress_percent"], 100)
+        self.assertEqual(payload["followup"]["scored"], 1)
+        self.assertEqual(payload["jobs"]["succeeded"], 1)
+        self.assertEqual(payload["runs"]["succeeded"], 1)
+        self.assertEqual(payload["recent"][0]["title"], "Progress candidate")
+        self.assertEqual(payload["recent"][0]["state_label"], "Scored with study method")
 
     @override_settings(PROJECT_ROOT="/path/that/does/not/exist", GEBCO_GRID_PATH="/missing/gebco.nc", GEOLOGY_INDEX_PATH="/missing/geology.kml")
     def test_authenticated_submission_is_scored_and_published(self):

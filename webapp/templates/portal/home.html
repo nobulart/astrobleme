@@ -22,6 +22,14 @@
       <label><input type="checkbox" data-layer="community"> <span>Community candidates</span><small data-count="community">not loaded</small></label>
       {% endif %}
     </div></details>
+    {% if user.is_authenticated %}
+    <details class="control-section analysis-status-section" open>
+      <summary>Analysis status</summary>
+      <div id="analysis-status-panel" class="analysis-status-panel" aria-live="polite">
+        <div class="analysis-status-placeholder">Loading analysis status…</div>
+      </div>
+    </details>
+    {% endif %}
     <details class="control-section" open><summary>Scientific styling</summary><div class="style-grid"><label>Colour rings by<select id="score-field"><option value="followup_score">Follow-up score</option><option value="structure_followup_score">Structure follow-up score</option><option value="gravity_consensus_percentile">Gravity percentile</option><option value="magnetic_ring_score_stratified_percentile">Magnetic percentile</option><option value="data_quality">Data quality</option><option value="intake_score">Intake completeness</option><option value="diameter_km">Diameter</option></select></label><label>Palette<select id="map-palette"><option value="turbo">Turbo</option><option value="viridis">Viridis</option><option value="plasma">Plasma</option><option value="inferno">Inferno</option><option value="magma">Magma</option><option value="cividis">Cividis</option><option value="rdbu">RdBu</option></select></label></div><div id="score-legend" class="score-legend"><span>no numeric values loaded</span></div><small>Colour encodes the selected number. Dashed outlines encode provisional review state.</small></details>
     <details class="control-section" open><summary>Basemap & Earth data</summary>
     <div class="remote-tools">
@@ -88,5 +96,6 @@
 <script>window.ASTROBLEME_RASTER_ACCESS = {{ user.is_authenticated|yesno:"true,false" }};</script>
 {{ map_preferences|json_script:"map-preferences" }}
 <script>window.ASTROBLEME_PREFERENCE_URL = "{% if user.is_authenticated %}{% url 'map_preferences' %}{% endif %}";</script>
+<script>window.ASTROBLEME_ANALYSIS_STATUS_URL = "{% if user.is_authenticated %}{% url 'analysis_status' %}{% endif %}";</script>
 <script src="{% static 'portal/map.js' %}"></script>
 {% endblock %}

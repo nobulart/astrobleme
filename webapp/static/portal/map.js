@@ -137,6 +137,56 @@ const scoreField = document.getElementById("score-field"), paletteSelect = docum
 if (scoreField) { scoreField.value = preferences.scoreField; scoreField.addEventListener("change", () => { preferences.scoreField = scoreField.value; restyleScientificLayers(); persistPreferences(); }); }
 if (paletteSelect) { paletteSelect.value = preferences.palette; paletteSelect.addEventListener("change", () => { preferences.palette = paletteSelect.value; restyleScientificLayers(); persistPreferences(); }); }
 
+const analysisStatusPanel = document.getElementById("analysis-status-panel");
+function numberLabel(value, digits = 0) {
+  return value === null || value === undefined || Number.isNaN(Number(value)) ? "—" : Number(value).toFixed(digits);
+}
+function statusClass(value) {
+  return String(value || "").replace(/_/g, "-");
+}
+function renderAnalysisStatus(data) {
+  if (!analysisStatusPanel) return;
+  const totals = data.totals || {}, followup = data.followup || {}, jobs = data.jobs || {}, runs = data.runs || {};
+  const recent = Array.isArray(data.recent) ? data.recent : [];
+  const active = (jobs.queued || 0) + (jobs.claimed || 0) + (jobs.running || 0);
+  const attention = (followup.failed || 0) + (followup.source_unavailable || 0) + (jobs.failed || 0);
+  const progress = Math.max(0, Math.min(100, Number(totals.progress_percent || 0)));
+  const recentHtml = recent.length ? recent.map(item => {
+    const score = item.score === null || item.score === undefined ? "" : `<span>Score ${numberLabel(item.score, 3)}</span>`;
+    const percentile = item.score_percentile === null || item.score_percentile === undefined ? "" : `<span>Pctl ${numberLabel(item.score_percentile, 1)}</span>`;
+    const quality = item.data_quality === null || item.data_quality === undefined ? "" : `<span>Quality ${numberLabel(item.data_quality, 2)}</span>`;
+    const summary = item.summary ? `<small>${esc(item.summary)}</small>` : "";
+    return `<article class="analysis-item analysis-${statusClass(item.state)}"><strong>${esc(item.title)}</strong><div><span>${esc(item.state_label)}</span>${score}${percentile}${quality}</div>${summary}</article>`;
+  }).join("") : `<div class="analysis-empty">No submitted candidates yet.</div>`;
+  const staff = data.staff_queue ? `<div class="analysis-staff"><strong>All worker jobs</strong><span>${Number(data.staff_queue.queued || 0).toLocaleString()} queued</span><span>${Number(data.staff_queue.running || 0).toLocaleString()} running</span><span>${Number(data.staff_queue.failed || 0).toLocaleString()} failed</span></div>` : "";
+  analysisStatusPanel.innerHTML = `
+    <div class="analysis-progress-row">
+      <div><strong>${progress}%</strong><span>${Number(totals.finished || 0).toLocaleString()} of ${Number(totals.baseline_passed || 0).toLocaleString()} complete</span></div>
+      <div class="analysis-progress" aria-label="Analysis progress"><i style="width:${progress}%"></i></div>
+    </div>
+    <div class="analysis-metrics">
+      <div><strong>${Number(active).toLocaleString()}</strong><span>Active</span></div>
+      <div><strong>${Number(followup.scored || 0).toLocaleString()}</strong><span>Scored</span></div>
+      <div><strong>${Number(attention).toLocaleString()}</strong><span>Attention</span></div>
+    </div>
+    <div class="analysis-breakdown"><span>${Number(jobs.queued || 0).toLocaleString()} queued</span><span>${Number(jobs.claimed || 0).toLocaleString()} claimed</span><span>${Number(jobs.running || 0).toLocaleString()} running</span><span>${Number(runs.succeeded || 0).toLocaleString()} runs ok</span></div>
+    ${staff}
+    <div class="analysis-list">${recentHtml}</div>
+    <div class="analysis-updated">Updated ${new Date(data.updated_at || Date.now()).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"})}</div>`;
+}
+async function refreshAnalysisStatus() {
+  if (!analysisStatusPanel || !window.ASTROBLEME_ANALYSIS_STATUS_URL) return;
+  try {
+    const response = await fetch(window.ASTROBLEME_ANALYSIS_STATUS_URL, {headers: {"Accept": "application/json"}});
+    if (!response.ok) throw new Error("Analysis status unavailable");
+    renderAnalysisStatus(await response.json());
+  } catch (_error) {
+    analysisStatusPanel.innerHTML = `<div class="analysis-empty">Analysis status is temporarily unavailable.</div>`;
+  }
+}
+refreshAnalysisStatus();
+if (analysisStatusPanel) setInterval(refreshAnalysisStatus, 15000);
+
 if (document.getElementById("satellite-date")) {
   const sourcePanel = document.getElementById("remote-source");
   const dateInput = document.getElementById("satellite-date");

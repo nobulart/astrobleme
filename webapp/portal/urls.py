@@ -17,6 +17,7 @@ urlpatterns = [
     path("api/my-candidates.geojson", views.my_candidates_geojson, name="my_candidates_geojson"),
     path("api/other-candidates.geojson", views.other_candidates_geojson, name="other_candidates_geojson"),
     path("api/map-preferences", views.map_preferences, name="map_preferences"),
+    path("api/analysis/status", views.analysis_status, name="analysis_status"),
     path("api/analysis/jobs", analysis_api.list_jobs, name="analysis_jobs"),
     path("api/analysis/jobs/<uuid:job_id>/claim", analysis_api.claim_job, name="analysis_job_claim"),
     path("api/analysis/jobs/<uuid:job_id>/heartbeat", analysis_api.heartbeat_job, name="analysis_job_heartbeat"),
