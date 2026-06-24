@@ -126,5 +126,5 @@
 {{ map_preferences|json_script:"map-preferences" }}
 <script>window.ASTROBLEME_PREFERENCE_URL = "{% if user.is_authenticated %}{% url 'map_preferences' %}{% endif %}";</script>
 <script>window.ASTROBLEME_ANALYSIS_STATUS_URL = "{% if user.is_authenticated %}{% url 'analysis_status' %}{% endif %}";</script>
-<script src="{% static 'portal/map.js' %}"></script>
+<script src="{% static 'portal/map.js' %}?v=gmrt-basemaps-20260624"></script>
 {% endblock %}
