@@ -6,23 +6,28 @@
   <aside class="atlas-panel">
     <p class="eyebrow">Exploratory screening catalogue</p>
     <h1>Review the evidence, not just the circles.</h1>
-    <p class="lede">Explore the study catalogue alongside repaired impact records, African review structures, endogenic controls, mapped active faults, and community submissions.</p>
+    <p class="lede">Explore the study catalogue alongside global impact records, African review structures, endogenic controls, mapped active faults, and community submissions.</p>
     <div class="notice"><strong>Interpretation guardrail</strong><br>Scores prioritize follow-up. They are not impact probabilities, and circular morphology is not diagnostic.</div>
     <label class="search-label" for="map-search">Find a candidate or structure</label>
     <input id="map-search" type="search" placeholder="e.g. arc_0373 or Vredefort">
+    <fieldset class="control-subgroup detail-mode-options">
+      <legend>Feature details</legend>
+      <label><input type="radio" name="detail-mode" data-detail-mode="popup" checked> Popup</label>
+      <label><input type="radio" name="detail-mode" data-detail-mode="sidebar"> Right sidebar</label>
+    </fieldset>
     <details class="control-section" open><summary>Map layers</summary>
     <div id="layer-list" class="layer-list">
       {% for slug, layer in layers.items %}
-      <label><input type="checkbox" data-layer="{{ slug }}" {% if slug == 'study-candidates' %}checked{% endif %}> <span>{{ layer.1 }}</span><small data-count="{{ slug }}">not loaded</small><a class="layer-download" href="{% url 'layer_geojson' slug %}?download=1" title="Download GeoJSON">↓</a></label>
+      <label><input type="checkbox" data-layer="{{ slug }}" {% if slug in map_preferences.layers %}checked{% endif %}> <span>{{ layer.1 }}</span><small data-count="{{ slug }}">not loaded</small><a class="layer-download" href="{% url 'layer_geojson' slug %}?download=1" title="Download GeoJSON">↓</a></label>
       {% endfor %}
       {% if user.is_authenticated %}
-      <label><input type="checkbox" data-layer="my-candidates" checked> <span>My candidate library</span><small data-count="my-candidates">not loaded</small><a class="layer-download" href="{% url 'my_candidates_geojson' %}?download=1" title="Download GeoJSON">↓</a></label>
-      <label><input type="checkbox" data-layer="other-candidates"> <span>Other reviewers' candidates</span><small data-count="other-candidates">not loaded</small><a class="layer-download" href="{% url 'other_candidates_geojson' %}?download=1" title="Download GeoJSON">↓</a></label>
+      <label><input type="checkbox" data-layer="my-candidates" {% if 'my-candidates' in map_preferences.layers %}checked{% endif %}> <span>My candidate library</span><small data-count="my-candidates">not loaded</small><a class="layer-download" href="{% url 'my_candidates_geojson' %}?download=1" title="Download GeoJSON">↓</a></label>
+      <label><input type="checkbox" data-layer="other-candidates" {% if 'other-candidates' in map_preferences.layers %}checked{% endif %}> <span>Other reviewers' candidates</span><small data-count="other-candidates">not loaded</small><a class="layer-download" href="{% url 'other_candidates_geojson' %}?download=1" title="Download GeoJSON">↓</a></label>
       {% else %}
-      <label><input type="checkbox" data-layer="community"> <span>Community candidates</span><small data-count="community">not loaded</small></label>
+      <label><input type="checkbox" data-layer="community" {% if 'community' in map_preferences.layers %}checked{% endif %}> <span>Community candidates</span><small data-count="community">not loaded</small></label>
       {% endif %}
     </div></details>
-    <details class="control-section"><summary>Layer appearance</summary>
+    <details class="control-section" open><summary>Layer appearance</summary>
       <div class="layer-style-list">
         {% for slug, layer in layers.items %}
         <div class="layer-style-row"><span>{{ layer.1 }}</span><select data-layer-line-style="{{ slug }}" aria-label="{{ layer.1 }} line style"><option value="solid">Solid</option><option value="dashed">Dashed</option><option value="dotted">Dotted</option></select><input data-layer-line-width="{{ slug }}" aria-label="{{ layer.1 }} line width" type="number" min="1" max="8" step="0.5"></div>
@@ -94,7 +99,18 @@
   </aside>
   <section class="map-region">
     <div id="map" aria-label="Interactive global candidate map"></div>
+    <div class="map-toolbar" aria-label="Map display controls">
+      <button id="toggle-atlas-panel" class="map-icon-button" type="button" aria-label="Hide layer sidebar" aria-pressed="false">☰</button>
+      <button id="fullscreen-map" class="map-icon-button" type="button" aria-label="Enter fullscreen">⛶</button>
+    </div>
     <div id="map-status" class="map-status">Loading study candidates…</div>
+    <aside id="feature-sidebar" class="feature-sidebar" aria-live="polite" hidden>
+      <header>
+        <span>Feature details</span>
+        <button id="feature-sidebar-close" type="button" aria-label="Close feature details">×</button>
+      </header>
+      <div id="feature-sidebar-content"></div>
+    </aside>
   </section>
 </main>
 {% endblock %}

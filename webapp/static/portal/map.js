@@ -1,13 +1,24 @@
+const defaultLayerStyles = {
+  "study-candidates": {lineStyle: "dotted", lineWidth: 1.5},
+  "repaired-catalogue": {lineStyle: "dotted", lineWidth: 1.5},
+  "african-structures": {lineStyle: "dotted", lineWidth: 1.5},
+  "negative-controls": {lineStyle: "solid", lineWidth: 1.5},
+  "active-faults": {lineStyle: "solid", lineWidth: 1.5},
+  "my-candidates": {lineStyle: "solid", lineWidth: 1.5},
+  "other-candidates": {lineStyle: "dashed", lineWidth: 1.5},
+  community: {lineStyle: "solid", lineWidth: 1.5}
+};
 const defaultPreferences = {
-  center: [5, 15], zoom: 2, layers: ["study-candidates", "my-candidates"],
+  center: [5, 15], zoom: 2, layers: ["study-candidates", "repaired-catalogue", "african-structures", "my-candidates"],
   basemap: "aerial", labels: true, rasters: [], rasterOpacity: 68, satelliteDate: "", candidateDraft: null,
-  scoreField: "followup_score", palette: "turbo", drawingMethod: "center-radius", layerStyles: {}
+  scoreField: "followup_score", palette: "turbo", drawingMethod: "center-radius", detailMode: "popup", layerStyles: defaultLayerStyles
 };
 const savedPreferences = JSON.parse(document.getElementById("map-preferences")?.textContent || "{}");
 let preferences = {...defaultPreferences, ...savedPreferences};
-preferences.layerStyles = preferences.layerStyles || {};
+preferences.layerStyles = {...defaultLayerStyles, ...(savedPreferences.layerStyles || {})};
 const map = L.map("map", {worldCopyJump: true, zoomControl: false}).setView(preferences.center, preferences.zoom);
 L.control.zoom({position: "bottomright"}).addTo(map);
+L.control.scale({position: "bottomleft", metric: true, imperial: false, maxWidth: 160}).addTo(map);
 const streetLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 18, attribution: "© OpenStreetMap contributors"}).addTo(map);
 
 const palette = {
@@ -22,9 +33,13 @@ const palette = {
 };
 const loaded = {}, groups = {};
 const status = document.getElementById("map-status");
+const mapRegion = document.querySelector(".map-region");
+const featureSidebar = document.getElementById("feature-sidebar");
+const featureSidebarContent = document.getElementById("feature-sidebar-content");
+const atlasShell = document.querySelector(".atlas-shell");
 const resetCallbacks = [];
 let saveTimer, suspendPersistence = true, activeBasemapSlug = "street", activeRasterSlugs = new Set(), labelsActive = preferences.labels !== false;
-let candidateDraft = preferences.candidateDraft;
+let candidateDraft = preferences.candidateDraft, activeFeatureLayer = null;
 const scientificPalettes = {
   turbo: ["#30123b", "#4666e8", "#1bcfd4", "#65fe62", "#d6e935", "#f99217", "#7a0403"],
   viridis: ["#440154", "#3b528b", "#21918c", "#5ec962", "#fde725"],
@@ -35,9 +50,14 @@ const scientificPalettes = {
   rdbu: ["#67001f", "#d6604d", "#f7f7f7", "#4393c3", "#053061"]
 };
 const lineDashes = {solid: null, dashed: "7 5", dotted: "1 5"};
+const centerMarkerLayers = new Set(["study-candidates", "my-candidates", "other-candidates", "community"]);
 
 function esc(value) { const d = document.createElement("div"); d.textContent = value ?? "—"; return d.innerHTML; }
 function csrfToken() { return document.querySelector("#map-preference-token input")?.value || ""; }
+function refreshMapSize() { setTimeout(() => map.invalidateSize(), 220); }
+function centerMarkerIcon(selected = false) {
+  return L.divIcon({className: `candidate-center-marker${selected ? " selected" : ""}`, html: "+", iconSize: [20, 20], iconAnchor: [10, 10]});
+}
 function layerAppearance(slug) {
   const base = palette[slug] || {};
   const saved = preferences.layerStyles?.[slug] || {};
@@ -49,6 +69,41 @@ function styledLayerOptions(slug, colour) {
   const appearance = layerAppearance(slug);
   const dashArray = lineDashes[appearance.lineStyle];
   return {...(palette[slug] || {}), color: colour || palette[slug]?.color, weight: appearance.lineWidth, dashArray};
+}
+function selectedLayerOptions(layer) {
+  const base = layer._baseStyle || styledLayerOptions(layer._layerSlug);
+  return {...base, color: "#fff7a8", weight: Math.max((base.weight || 2) + 2.5, 4), opacity: 1, fillOpacity: base.fillOpacity ?? .22};
+}
+function setCenterMarkerSelected(layer, selected) {
+  layer?._centerMarker?.setIcon(centerMarkerIcon(selected));
+}
+function clearFeatureSelection() {
+  if (!activeFeatureLayer) return;
+  if (activeFeatureLayer.setStyle) activeFeatureLayer.setStyle(activeFeatureLayer._baseStyle || styledLayerOptions(activeFeatureLayer._layerSlug));
+  setCenterMarkerSelected(activeFeatureLayer, false);
+  activeFeatureLayer = null;
+}
+function selectFeatureLayer(layer) {
+  if (activeFeatureLayer && activeFeatureLayer !== layer) clearFeatureSelection();
+  activeFeatureLayer = layer;
+  if (layer?.setStyle) layer.setStyle(selectedLayerOptions(layer));
+  setCenterMarkerSelected(layer, true);
+  layer?.bringToFront?.();
+  layer?._centerMarker?.bringToFront?.();
+}
+function layerCenter(layer) {
+  if (layer.getLatLng) return layer.getLatLng();
+  const bounds = layer.getBounds?.();
+  return bounds?.isValid?.() ? bounds.getCenter() : null;
+}
+function addCandidateCenterMarker(slug, layer, group) {
+  if (!centerMarkerLayers.has(slug)) return;
+  const center = layerCenter(layer);
+  if (!center) return;
+  const marker = L.marker(center, {icon: centerMarkerIcon(false), keyboard: false, zIndexOffset: 300});
+  marker.on("click", () => showFeatureDetail(layer));
+  layer._centerMarker = marker;
+  group.addLayer(marker);
 }
 function propsFor(feature) {
   const p = feature.properties || {};
@@ -93,17 +148,26 @@ function popupActions(p) {
   const del = actions.delete_url ? `<button class="popup-delete-button" type="button" data-delete-url="${esc(actions.delete_url)}">Delete</button>` : "";
   return `<div class="popup-actions">${edit}${status}${del}</div>`;
 }
-function popup(feature) {
+function featureDetail(feature, mode = "popup") {
   const p = propsFor(feature);
   const geophysicalKeys = new Set(["gravity_consensus_percentile", "magnetic_ring_score_stratified_percentile"]);
   const normalScores = p.scoreBreakdown.filter(item => !geophysicalKeys.has(item.key));
   const geophysicalScores = p.scoreBreakdown.filter(item => geophysicalKeys.has(item.key));
   const scoreItems = items => items.map(item => `<div><dt>${esc(item.label)}</dt><dd>${metricLabel(item.value)}</dd></div>`).join("");
-  const breakdown = normalScores.length ? `<dl class="popup-breakdown">${scoreItems(normalScores)}</dl>` : "";
-  const geophysics = geophysicalScores.length ? `<dl class="popup-breakdown popup-geophysics">${scoreItems(geophysicalScores)}</dl>` : "";
+  const breakdown = normalScores.length ? `<section class="popup-section"><h3>Screening metrics</h3><dl class="popup-breakdown">${scoreItems(normalScores)}</dl></section>` : "";
+  const geophysics = geophysicalScores.length ? `<section class="popup-section popup-geophysics"><h3>Geophysical context</h3><dl class="popup-breakdown">${scoreItems(geophysicalScores)}</dl></section>` : "";
   const figure = p.diagnosticFigureUrl ? `<figure class="popup-diagnostic"><img src="${esc(p.diagnosticFigureUrl)}" alt="${esc(p.diagnosticFigureTitle)} for ${esc(p.title)}" loading="lazy"><figcaption>${esc(p.diagnosticFigureTitle)}</figcaption></figure>` : "";
   const summary = p.diagnosticSummary ? `<p>${esc(p.diagnosticSummary)}</p>` : "";
-  return `<div class="map-popup"><strong>${esc(p.title)}</strong>${p.scoreLabel ? `<span>${p.scoreLabel}: ${Number(p.score).toFixed(3)}</span>` : ""}${p.diameter ? `<span>Diameter: ${Number(p.diameter).toFixed(1)} km</span>` : ""}${p.status ? `<span>Status/tier: ${esc(p.status)}</span>` : ""}${p.note ? `<p>${esc(p.note)}</p>` : ""}${summary}${breakdown}${geophysics}${figure}${popupActions(p)}</div>`;
+  const score = p.scoreLabel && Number.isFinite(Number(p.score)) ? `<div><dt>${esc(p.scoreLabel)}</dt><dd>${Number(p.score).toFixed(3)}</dd></div>` : "";
+  const diameter = p.diameter ? `<div><dt>Diameter</dt><dd>${Number(p.diameter).toFixed(1)} km</dd></div>` : "";
+  const reviewStatus = p.status ? `<div><dt>Status/tier</dt><dd>${esc(p.status)}</dd></div>` : "";
+  const meta = score || diameter || reviewStatus ? `<dl class="feature-meta">${score}${diameter}${reviewStatus}</dl>` : "";
+  const notes = p.note || summary ? `<section class="feature-summary">${p.note ? `<p>${esc(p.note)}</p>` : ""}${summary}</section>` : "";
+  const contentClass = figure ? "feature-detail-body has-diagnostic" : "feature-detail-body";
+  return `<article class="map-popup feature-detail feature-detail-${mode}"><header><strong>${esc(p.title)}</strong>${meta}</header>${notes}<div class="${contentClass}"><div>${breakdown}${geophysics}</div>${figure}</div>${popupActions(p)}</article>`;
+}
+function popup(feature) {
+  return featureDetail(feature, "popup");
 }
 function mixColour(a, b, t) { const n = i => parseInt(i, 16), c = (x, y) => Math.round(x + (y - x) * t).toString(16).padStart(2, "0"); return `#${c(n(a.slice(1,3)),n(b.slice(1,3)))}${c(n(a.slice(3,5)),n(b.slice(3,5)))}${c(n(a.slice(5,7)),n(b.slice(5,7)))}`; }
 function paletteColour(t) { const colours = scientificPalettes[preferences.palette] || scientificPalettes.turbo, scaled = Math.max(0, Math.min(.999999, t)) * (colours.length - 1), i = Math.floor(scaled); return mixColour(colours[i], colours[i + 1], scaled - i); }
@@ -120,12 +184,74 @@ function restyleScientificLayers() {
     const sourceValue = layer.feature?.properties?.[preferences.scoreField];
     const raw = sourceValue === null || sourceValue === "" || sourceValue === undefined ? NaN : Number(sourceValue);
     const colour = Number.isFinite(raw) && values.length ? paletteColour(max === min ? .5 : (raw - min) / (max - min)) : palette[slug]?.color;
-    layer.setStyle({...styledLayerOptions(slug, colour), fillOpacity: palette[slug]?.fillOpacity ?? .22});
+    layer._baseStyle = {...styledLayerOptions(slug, colour), fillOpacity: palette[slug]?.fillOpacity ?? .22};
+    layer.setStyle(layer === activeFeatureLayer ? selectedLayerOptions(layer) : layer._baseStyle);
   }));
   const legend = document.getElementById("score-legend");
   const fieldLabel = document.querySelector(`#score-field option[value="${preferences.scoreField}"]`)?.textContent || preferences.scoreField;
   const digits = preferences.scoreField === "diameter_km" ? 1 : 3;
   if (legend) legend.innerHTML = values.length ? `<strong>${esc(fieldLabel)}</strong><span>${esc(min.toFixed(digits))}</span><i style="background:linear-gradient(90deg,${scientificPalettes[preferences.palette].join(",")})"></i><span>${esc(max.toFixed(digits))}</span><small>${values.length.toLocaleString()} displayed values · exact data range</small>` : `<strong>${esc(fieldLabel)}</strong><small>No numeric values in displayed layers</small>`;
+}
+function closeFeatureSidebar() {
+  if (featureSidebar) featureSidebar.hidden = true;
+  mapRegion?.classList.remove("sidebar-open");
+}
+function bindFeatureActions(root, layer, sourceMode = "popup") {
+  if (!root || !layer) return;
+  root.querySelector(".popup-status-form")?.addEventListener("submit", async formEvent => {
+    formEvent.preventDefault();
+    const form = formEvent.currentTarget;
+    try {
+      const response = await fetch(form.dataset.statusUrl, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {"Content-Type": "application/json", "X-CSRFToken": csrfToken(), "Accept": "application/json"},
+        body: JSON.stringify({status: form.elements.status.value, note: form.elements.note.value})
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Status update failed");
+      layer.feature.properties = data.properties;
+      layer.setPopupContent?.(popup(layer.feature));
+      if (sourceMode === "sidebar") openFeatureSidebar(layer);
+      else { map.closePopup(); openFeaturePopup(layer); }
+      restyleScientificLayers();
+      status.textContent = "Candidate status updated"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 900);
+    } catch (error) { status.textContent = error.message; status.classList.remove("quiet"); }
+  });
+  root.querySelector(".popup-delete-button")?.addEventListener("click", async buttonEvent => {
+    const button = buttonEvent.currentTarget;
+    if (!confirm("Delete this candidate?")) return;
+    try {
+      const response = await fetch(button.dataset.deleteUrl, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {"Content-Type": "application/json", "X-CSRFToken": csrfToken(), "Accept": "application/json"},
+        body: "{}"
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Delete failed");
+      map.closePopup(); closeFeatureSidebar(); clearFeatureSelection(); removeFeatureLayer(layer);
+      status.textContent = "Candidate deleted"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 900);
+    } catch (error) { status.textContent = error.message; status.classList.remove("quiet"); }
+  });
+}
+function openFeaturePopup(layer) {
+  closeFeatureSidebar();
+  selectFeatureLayer(layer);
+  layer.bindPopup(popup(layer.feature), {className: "feature-popup", maxWidth: 760, minWidth: 380, autoPanPadding: [24, 24]}).openPopup();
+}
+function openFeatureSidebar(layer) {
+  if (!featureSidebar || !featureSidebarContent) return openFeaturePopup(layer);
+  selectFeatureLayer(layer);
+  map.closePopup();
+  featureSidebarContent.innerHTML = featureDetail(layer.feature, "sidebar");
+  featureSidebar.hidden = false;
+  mapRegion?.classList.add("sidebar-open");
+  bindFeatureActions(featureSidebarContent, layer, "sidebar");
+}
+function showFeatureDetail(layer) {
+  if (preferences.detailMode === "sidebar") openFeatureSidebar(layer);
+  else openFeaturePopup(layer);
 }
 async function loadLayer(slug) {
   if (loaded[slug]) return groups[slug];
@@ -134,10 +260,20 @@ async function loadLayer(slug) {
   if (!response.ok) throw new Error(`Layer failed: ${slug}`);
   const data = await response.json();
   const style = styledLayerOptions(slug);
-  const group = L.geoJSON(data, {
+  const group = L.featureGroup();
+  const geoJson = L.geoJSON(data, {
     style: () => styledLayerOptions(slug),
     pointToLayer: (_feature, latlng) => L.circleMarker(latlng, style),
-    onEachFeature: (feature, layer) => { layer.bindPopup(popup(feature)); layer._searchText = propsFor(feature).searchable; }
+    onEachFeature: (feature, layer) => {
+      layer._layerSlug = slug;
+      layer._baseStyle = styledLayerOptions(slug);
+      layer._searchText = propsFor(feature).searchable;
+      layer.on("click", () => showFeatureDetail(layer));
+    }
+  });
+  geoJson.eachLayer(layer => {
+    group.addLayer(layer);
+    addCandidateCenterMarker(slug, layer, group);
   });
   loaded[slug] = true; groups[slug] = group;
   document.querySelector(`[data-count="${slug}"]`).textContent = `${data.features.length.toLocaleString()} features`;
@@ -145,7 +281,16 @@ async function loadLayer(slug) {
   return group;
 }
 async function setLayer(slug, enabled) {
-  try { const group = await loadLayer(slug); enabled ? group.addTo(map) : map.removeLayer(group); restyleScientificLayers(); }
+  try {
+    const group = await loadLayer(slug);
+    if (!enabled && activeFeatureLayer && group.hasLayer?.(activeFeatureLayer)) {
+      map.closePopup();
+      closeFeatureSidebar();
+      clearFeatureSelection();
+    }
+    enabled ? group.addTo(map) : map.removeLayer(group);
+    restyleScientificLayers();
+  }
   catch (error) { status.textContent = error.message; status.classList.remove("quiet"); }
 }
 function currentPreferences() {
@@ -156,7 +301,7 @@ function currentPreferences() {
     basemap: activeBasemapSlug, labels: labelsActive, rasters: [...activeRasterSlugs],
     rasterOpacity: Number(document.getElementById("raster-opacity")?.value || 68),
     satelliteDate: document.getElementById("satellite-date")?.value || "",
-    candidateDraft, scoreField: preferences.scoreField, palette: preferences.palette, drawingMethod: preferences.drawingMethod,
+    candidateDraft, scoreField: preferences.scoreField, palette: preferences.palette, drawingMethod: preferences.drawingMethod, detailMode: preferences.detailMode,
     layerStyles: preferences.layerStyles || {}
   };
 }
@@ -174,6 +319,32 @@ function persistPreferences() {
   }, 350);
 }
 
+document.getElementById("toggle-atlas-panel")?.addEventListener("click", event => {
+  const button = event.currentTarget;
+  const collapsed = !atlasShell?.classList.contains("sidebar-collapsed");
+  atlasShell?.classList.toggle("sidebar-collapsed", collapsed);
+  button.setAttribute("aria-pressed", String(collapsed));
+  button.setAttribute("aria-label", collapsed ? "Show layer sidebar" : "Hide layer sidebar");
+  refreshMapSize();
+});
+document.getElementById("fullscreen-map")?.addEventListener("click", async event => {
+  const button = event.currentTarget;
+  try {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await (mapRegion || document.documentElement).requestFullscreen();
+  } catch (_error) {
+    status.textContent = "Fullscreen is not available in this browser.";
+    status.classList.remove("quiet");
+  }
+  button.setAttribute("aria-label", document.fullscreenElement ? "Exit fullscreen" : "Enter fullscreen");
+  refreshMapSize();
+});
+document.addEventListener("fullscreenchange", () => {
+  const button = document.getElementById("fullscreen-map");
+  button?.setAttribute("aria-label", document.fullscreenElement ? "Exit fullscreen" : "Enter fullscreen");
+  refreshMapSize();
+});
+
 document.querySelectorAll("[data-layer]").forEach(input => {
   input.checked = preferences.layers.includes(input.dataset.layer);
   input.addEventListener("change", () => { setLayer(input.dataset.layer, input.checked); persistPreferences(); });
@@ -183,12 +354,23 @@ map.on("moveend", persistPreferences);
 document.getElementById("map-search").addEventListener("input", event => {
   const q = event.target.value.trim().toLowerCase(); if (q.length < 3) return;
   for (const group of Object.values(groups)) for (const layer of group.getLayers()) {
-    if (layer._searchText?.includes(q)) { map.fitBounds(layer.getBounds ? layer.getBounds().pad(.6) : L.latLngBounds([layer.getLatLng()])); layer.openPopup(); return; }
+    if (layer._searchText?.includes(q)) { map.fitBounds(layer.getBounds ? layer.getBounds().pad(.6) : L.latLngBounds([layer.getLatLng()])); showFeatureDetail(layer); return; }
   }
 });
 const scoreField = document.getElementById("score-field"), paletteSelect = document.getElementById("map-palette");
 if (scoreField) { scoreField.value = preferences.scoreField; scoreField.addEventListener("change", () => { preferences.scoreField = scoreField.value; restyleScientificLayers(); persistPreferences(); }); }
 if (paletteSelect) { paletteSelect.value = preferences.palette; paletteSelect.addEventListener("change", () => { preferences.palette = paletteSelect.value; restyleScientificLayers(); persistPreferences(); }); }
+document.getElementById("feature-sidebar-close")?.addEventListener("click", () => { closeFeatureSidebar(); clearFeatureSelection(); });
+document.querySelectorAll("[data-detail-mode]").forEach(input => {
+  input.checked = input.dataset.detailMode === preferences.detailMode;
+  input.addEventListener("change", () => {
+    if (!input.checked) return;
+    preferences.detailMode = input.dataset.detailMode;
+    if (preferences.detailMode === "popup") { closeFeatureSidebar(); clearFeatureSelection(); }
+    else map.closePopup();
+    persistPreferences();
+  });
+});
 document.querySelectorAll("[data-layer-line-style]").forEach(select => {
   const slug = select.dataset.layerLineStyle, current = layerAppearance(slug);
   select.value = current.lineStyle;
@@ -208,46 +390,15 @@ document.querySelectorAll("[data-layer-line-width]").forEach(input => {
 });
 
 function removeFeatureLayer(layer) {
-  Object.values(groups).forEach(group => { if (group.hasLayer?.(layer)) group.removeLayer(layer); });
+  Object.values(groups).forEach(group => {
+    if (group.hasLayer?.(layer)) group.removeLayer(layer);
+    if (layer._centerMarker && group.hasLayer?.(layer._centerMarker)) group.removeLayer(layer._centerMarker);
+  });
   restyleScientificLayers();
 }
-map.on("popupopen", event => {
-  const root = event.popup.getElement(), layer = event.popup._source;
-  root?.querySelector(".popup-status-form")?.addEventListener("submit", async formEvent => {
-    formEvent.preventDefault();
-    const form = formEvent.currentTarget;
-    try {
-      const response = await fetch(form.dataset.statusUrl, {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {"Content-Type": "application/json", "X-CSRFToken": csrfToken(), "Accept": "application/json"},
-        body: JSON.stringify({status: form.elements.status.value, note: form.elements.note.value})
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Status update failed");
-      layer.feature.properties = data.properties;
-      layer.setPopupContent(popup(layer.feature));
-      map.closePopup(); layer.openPopup();
-      restyleScientificLayers();
-      status.textContent = "Candidate status updated"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 900);
-    } catch (error) { status.textContent = error.message; status.classList.remove("quiet"); }
-  });
-  root?.querySelector(".popup-delete-button")?.addEventListener("click", async buttonEvent => {
-    const button = buttonEvent.currentTarget;
-    if (!confirm("Delete this candidate?")) return;
-    try {
-      const response = await fetch(button.dataset.deleteUrl, {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {"Content-Type": "application/json", "X-CSRFToken": csrfToken(), "Accept": "application/json"},
-        body: "{}"
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Delete failed");
-      map.closePopup(); removeFeatureLayer(layer);
-      status.textContent = "Candidate deleted"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 900);
-    } catch (error) { status.textContent = error.message; status.classList.remove("quiet"); }
-  });
+map.on("popupopen", event => bindFeatureActions(event.popup.getElement(), event.popup._source, "popup"));
+map.on("popupclose", event => {
+  if (preferences.detailMode !== "sidebar" && event.popup._source === activeFeatureLayer) clearFeatureSelection();
 });
 
 const analysisStatusPanel = document.getElementById("analysis-status-panel");
@@ -321,6 +472,24 @@ if (document.getElementById("satellite-date")) {
     "gebco-tid": ["GEBCO Type Identifier grid", "https://www.gebco.net/data-products/gebco-web-services/web-map-service"],
     magnetic: ["NOAA NCEI EMAG2v3", "https://www.ncei.noaa.gov/products/earth-magnetic-model-anomaly-grid-2"]
   };
+  function truncateText(value, limit) {
+    const text = String(value || "");
+    return text.length > limit ? `${text.slice(0, Math.max(0, limit - 3))}...` : text;
+  }
+  function selectedSubmissionSource() {
+    const basemap = sourceInfo[activeBasemapSlug] || sourceInfo.aerial;
+    const overlays = [...activeRasterSlugs].map(slug => sourceInfo[slug]).filter(Boolean);
+    const overlayNames = overlays.map(item => item[0]);
+    const title = truncateText([basemap[0], ...overlayNames].join(" + "), 240);
+    const resolutionParts = [`Basemap: ${basemap[0]}`];
+    if (overlayNames.length) resolutionParts.push(`Study overlays: ${overlayNames.join(", ")}`);
+    else resolutionParts.push("Study overlays: none selected");
+    return {
+      title,
+      uri: basemap[1],
+      resolution: truncateText(resolutionParts.join("; "), 120)
+    };
+  }
   const aerialLayer = L.tileLayer("/api/raster/tiles/aerial/{z}/{x}/{y}", {maxZoom: 18, attribution: "Esri, Maxar, Earthstar Geographics and contributors"});
   const darkLayer = L.tileLayer("/api/raster/tiles/dark/{z}/{x}/{y}", {maxZoom: 18, attribution: "© OpenStreetMap contributors, © CARTO"});
   const labelsLayer = L.tileLayer("/api/raster/tiles/labels/{z}/{x}/{y}", {maxZoom: 18, attribution: "© OpenStreetMap contributors, © CARTO"});
@@ -418,7 +587,7 @@ if (document.getElementById("satellite-date")) {
     if (!candidateDraft) return;
     const latlng = L.latLng(candidateDraft.latitude, candidateDraft.longitude);
     if (!draftMarker) {
-      draftMarker = L.marker(latlng, {draggable: true}).addTo(map).on("dragend", event => {
+      draftMarker = L.marker(latlng, {draggable: true, icon: centerMarkerIcon(true)}).addTo(map).on("dragend", event => {
         const point = event.target.getLatLng(); candidateDraft.latitude = point.lat; candidateDraft.longitude = point.lng; drawCandidateDraft(); persistPreferences();
       });
     } else draftMarker.setLatLng(latlng);
@@ -442,11 +611,11 @@ if (document.getElementById("satellite-date")) {
   document.getElementById("clear-candidate").addEventListener("click", clearCandidateDraft);
   document.getElementById("review-candidate").addEventListener("click", () => {
     if (!candidateDraft) return;
-    const source = sourceInfo[activeBasemapSlug] || ["Interactive atlas map", ""];
+    const source = selectedSubmissionSource();
     const params = new URLSearchParams({
       latitude: candidateDraft.latitude.toFixed(6), longitude: candidateDraft.longitude.toFixed(6),
       diameter_km: candidateDraft.diameterKm, title: `Candidate near ${candidateDraft.latitude.toFixed(2)}, ${candidateDraft.longitude.toFixed(2)}`,
-      source_title: source[0], source_uri: source[1]
+      source_title: source.title, source_uri: source.uri, source_resolution: source.resolution
     });
     window.location.assign(`/submit/?${params}`);
   });
@@ -493,10 +662,12 @@ if (document.getElementById("satellite-date")) {
     document.querySelector(`[data-basemap="${defaultPreferences.basemap}"]`).checked = true; chooseBasemap(defaultPreferences.basemap);
     document.querySelectorAll("[data-raster]").forEach(input => { input.checked = false; map.removeLayer(rasterLayers[input.dataset.raster]); });
     activeRasterSlugs.clear(); setGravityMode(false);
-    preferences.scoreField = defaultPreferences.scoreField; preferences.palette = defaultPreferences.palette; preferences.drawingMethod = defaultPreferences.drawingMethod; preferences.layerStyles = {};
+    preferences.scoreField = defaultPreferences.scoreField; preferences.palette = defaultPreferences.palette; preferences.drawingMethod = defaultPreferences.drawingMethod; preferences.detailMode = defaultPreferences.detailMode; preferences.layerStyles = {...defaultLayerStyles};
     scoreField.value = preferences.scoreField; paletteSelect.value = preferences.palette; drawingMethod.value = preferences.drawingMethod; restyleScientificLayers();
+    document.querySelectorAll("[data-detail-mode]").forEach(input => { input.checked = input.dataset.detailMode === preferences.detailMode; });
     document.querySelectorAll("[data-layer-line-style]").forEach(select => { select.value = layerAppearance(select.dataset.layerLineStyle).lineStyle; });
     document.querySelectorAll("[data-layer-line-width]").forEach(input => { input.value = layerAppearance(input.dataset.layerLineWidth).lineWidth; });
+    closeFeatureSidebar();
   });
   }
 }
@@ -513,7 +684,7 @@ document.getElementById("reset-map")?.addEventListener("click", async () => {
     const csrf = document.querySelector("#map-preference-token input")?.value;
     await fetch(window.ASTROBLEME_PREFERENCE_URL, {method: "POST", headers: {"Content-Type": "application/json", "X-CSRFToken": csrf}, body: JSON.stringify({reset: true})});
   }
-  preferences = {...defaultPreferences}; suspendPersistence = false;
+  preferences = {...defaultPreferences, layerStyles: {...defaultLayerStyles}}; suspendPersistence = false;
   status.textContent = "Map reset to defaults"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 1200);
 });
 suspendPersistence = false;

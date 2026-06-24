@@ -25,16 +25,27 @@ from .scoring import evaluate_submission
 
 LAYERS = {
     "study-candidates": ("study_results_geojson/arcuate_geometries_study_results.geojson", "Study candidates", "candidate"),
-    "repaired-catalogue": ("catalog_repair/astroblemes_analysis.geojson", "Repaired global catalogue", "catalogue"),
+    "repaired-catalogue": ("catalog_repair/astroblemes_analysis.geojson", "Global catalogue", "catalogue"),
     "african-structures": ("african_impact_structures.geojson", "African structures", "africa"),
     "negative-controls": ("data/controls.geojson", "Endogenic controls", "control"),
     "active-faults": ("geology_sources/gem-global-active-faults/geojson/gem_active_faults_harmonized.geojson", "GEM active faults", "fault"),
 }
 
+DEFAULT_LAYER_STYLES = {
+    "study-candidates": {"lineStyle": "dotted", "lineWidth": 1.5},
+    "repaired-catalogue": {"lineStyle": "dotted", "lineWidth": 1.5},
+    "african-structures": {"lineStyle": "dotted", "lineWidth": 1.5},
+    "negative-controls": {"lineStyle": "solid", "lineWidth": 1.5},
+    "active-faults": {"lineStyle": "solid", "lineWidth": 1.5},
+    "my-candidates": {"lineStyle": "solid", "lineWidth": 1.5},
+    "other-candidates": {"lineStyle": "dashed", "lineWidth": 1.5},
+    "community": {"lineStyle": "solid", "lineWidth": 1.5},
+}
+
 DEFAULT_MAP_PREFERENCES = {
     "center": [5, 15],
     "zoom": 2,
-    "layers": ["study-candidates", "my-candidates"],
+    "layers": ["study-candidates", "repaired-catalogue", "african-structures", "my-candidates"],
     "basemap": "aerial",
     "labels": True,
     "rasters": [],
@@ -44,7 +55,8 @@ DEFAULT_MAP_PREFERENCES = {
     "scoreField": "followup_score",
     "palette": "turbo",
     "drawingMethod": "center-radius",
-    "layerStyles": {},
+    "detailMode": "popup",
+    "layerStyles": DEFAULT_LAYER_STYLES,
 }
 PREFERENCE_LAYERS = {*LAYERS, "my-candidates", "other-candidates", "community"}
 PREFERENCE_BASEMAPS = {"street", "aerial", "satellite", "dark"}
@@ -52,6 +64,7 @@ PREFERENCE_RASTERS = {"gebco-elevation", "gebco-tid", "magnetic"}
 PREFERENCE_SCORE_FIELDS = {"followup_score", "structure_followup_score", "gravity_consensus_percentile", "magnetic_ring_score_stratified_percentile", "data_quality", "intake_score", "diameter_km"}
 PREFERENCE_PALETTES = {"turbo", "viridis", "plasma", "inferno", "magma", "cividis", "rdbu"}
 PREFERENCE_DRAWING_METHODS = {"center-radius", "rim-to-rim", "point-diameter"}
+PREFERENCE_DETAIL_MODES = {"popup", "sidebar"}
 PREFERENCE_LAYER_LINE_STYLES = {"solid", "dashed", "dotted"}
 STYLE_METRIC_FIELDS = (
     "structure_followup_score",
@@ -661,7 +674,13 @@ def _clean_map_preferences(payload):
     score_field = payload.get("scoreField", DEFAULT_MAP_PREFERENCES["scoreField"])
     palette = payload.get("palette", DEFAULT_MAP_PREFERENCES["palette"])
     drawing_method = payload.get("drawingMethod", DEFAULT_MAP_PREFERENCES["drawingMethod"])
-    if score_field not in PREFERENCE_SCORE_FIELDS or palette not in PREFERENCE_PALETTES or drawing_method not in PREFERENCE_DRAWING_METHODS:
+    detail_mode = payload.get("detailMode", DEFAULT_MAP_PREFERENCES["detailMode"])
+    if (
+        score_field not in PREFERENCE_SCORE_FIELDS
+        or palette not in PREFERENCE_PALETTES
+        or drawing_method not in PREFERENCE_DRAWING_METHODS
+        or detail_mode not in PREFERENCE_DETAIL_MODES
+    ):
         raise ValueError
     layer_styles = {}
     for slug, style in (payload.get("layerStyles") or {}).items():
@@ -698,6 +717,7 @@ def _clean_map_preferences(payload):
         "scoreField": score_field,
         "palette": palette,
         "drawingMethod": drawing_method,
+        "detailMode": detail_mode,
         "layerStyles": layer_styles,
     }
 
