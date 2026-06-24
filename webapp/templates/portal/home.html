@@ -56,10 +56,10 @@
         <label><input type="radio" name="basemap" data-basemap="aerial" checked> Esri aerial imagery</label>
         <label><input type="radio" name="basemap" data-basemap="dark"> Dark map</label>
         <label><input type="radio" name="basemap" data-basemap="street"> Street map</label>
-        <label><input type="radio" name="basemap" data-basemap="satellite"> NASA MODIS satellite</label>
+        <label><input type="radio" name="basemap" data-basemap="gmrt"> GMRT topography</label>
+        <label class="wide-option"><input type="radio" name="basemap" data-basemap="gmrt-masked"> GMRT topography masked</label>
         <label class="wide-option"><input type="checkbox" id="label-overlay" checked> Labels and roads overlay</label>
       </fieldset>
-      <label class="date-control satellite-date-control"><span>Satellite date</span><input id="satellite-date" type="date" min="2000-02-24"></label>
       <div id="remote-source" class="remote-source">Remote basemaps are streamed through an allowlisted proxy and are not stored on the server.</div>
       {% if user.is_authenticated %}
       <fieldset class="control-subgroup">

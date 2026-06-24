@@ -143,7 +143,8 @@ class PortalViewTests(TestCase):
         self.assertContains(home, "Esri aerial imagery")
         self.assertContains(home, "Dark map")
         self.assertContains(home, "Labels and roads overlay")
-        self.assertContains(home, "NASA MODIS satellite")
+        self.assertContains(home, "GMRT topography")
+        self.assertNotContains(home, "NASA MODIS satellite")
         self.assertContains(home, "Global catalogue")
         self.assertNotContains(home, "Repaired global catalogue")
         self.assertContains(home, "Feature details")
@@ -221,7 +222,7 @@ class PortalViewTests(TestCase):
         payload = {
             "center": [-25.2, 28.1], "zoom": 7,
             "layers": ["my-candidates", "other-candidates"], "basemap": "dark", "labels": False,
-            "rasters": ["magnetic"], "rasterOpacity": 54, "satelliteDate": "2026-06-20",
+            "rasters": ["magnetic"], "rasterOpacity": 54,
             "candidateDraft": {"latitude": -25.1, "longitude": 28.2, "diameterKm": 80},
             "detailMode": "sidebar",
             "layerStyles": {"my-candidates": {"lineStyle": "dotted", "lineWidth": 3.5}},
@@ -696,6 +697,7 @@ class RasterProxyTests(TestCase):
         response = self.client.get(reverse("home"))
         self.assertContains(response, "Esri aerial imagery")
         self.assertContains(response, "Dark map")
+        self.assertContains(response, "GMRT topography")
         self.assertContains(response, "GEBCO source identifier")
         self.assertContains(response, "Inspect WGM2012 gravity")
         self.assertContains(response, "Mark a candidate on the map")
@@ -708,8 +710,33 @@ class RasterProxyTests(TestCase):
         payload = self.client.get(reverse("raster_metadata")).json()
         self.assertIn("magnetic", payload["tiles"])
         self.assertIn("gravity-bouguer", payload["tiles"])
+        self.assertIn("gmrt", payload["wms"])
+        self.assertIn("gmrt-masked", payload["wms"])
         self.assertNotIn("url", payload["tiles"]["magnetic"])
+        self.assertNotIn("url", payload["wms"]["gmrt"])
         self.assertIn("no server-side raster cache", payload["proxy_policy"])
+
+    @patch("portal.raster._fetch_image")
+    def test_public_gmrt_basemap_wms_uses_allowlisted_endpoint(self, fetch_image):
+        fetch_image.return_value = HttpResponse(b"png", content_type="image/png")
+        response = self.client.get(reverse("raster_wms", args=["gmrt"]), {
+            "bbox": "-1000000,-1000000,1000000,1000000", "width": "256", "height": "256",
+            "layers": "untrusted", "srs": "EPSG:3857",
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(fetch_image.call_args.args[0], "https://www.gmrt.org/services/mapserver/wms_merc")
+        self.assertEqual(fetch_image.call_args.kwargs["params"]["layers"], "topo")
+        self.assertEqual(fetch_image.call_args.kwargs["params"]["transparent"], "false")
+
+    @patch("portal.raster._fetch_image")
+    def test_public_gmrt_masked_basemap_wms_uses_masked_layer(self, fetch_image):
+        fetch_image.return_value = HttpResponse(b"png", content_type="image/png")
+        response = self.client.get(reverse("raster_wms", args=["gmrt-masked"]), {
+            "bbox": "-1000000,-1000000,1000000,1000000", "width": "256", "height": "256",
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(fetch_image.call_args.args[0], "https://www.gmrt.org/services/mapserver/wms_merc_mask")
+        self.assertEqual(fetch_image.call_args.kwargs["params"]["layers"], "topo-mask")
 
     @patch("portal.raster._fetch_image")
     def test_magnetic_tile_uses_allowlisted_noaa_url(self, fetch_image):
@@ -752,11 +779,8 @@ class RasterProxyTests(TestCase):
         })
         self.assertEqual(too_large.status_code, 400)
 
-    def test_invalid_or_future_satellite_dates_are_rejected(self):
-        self.client.force_login(self.user)
-        url = reverse("raster_tile", args=["satellite", 2, 1, 1])
-        self.assertEqual(self.client.get(url, {"date": "not-a-date"}).status_code, 400)
-        self.assertEqual(self.client.get(url, {"date": "2999-01-01"}).status_code, 400)
+    def test_removed_modis_satellite_tiles_are_not_allowlisted(self):
+        self.assertEqual(self.client.get(reverse("raster_tile", args=["satellite", 2, 1, 1])).status_code, 404)
 
     @patch("portal.raster.HTTP.get")
     def test_gravity_sample_returns_both_context_fields(self, requests_get):

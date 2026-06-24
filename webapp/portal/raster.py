@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import datetime as dt
 import math
 import re
 import requests
@@ -48,15 +47,6 @@ TILE_SOURCES = {
         "attribution": "NOAA National Centers for Environmental Information",
         "source_url": "https://www.ncei.noaa.gov/products/earth-magnetic-model-anomaly-grid-2",
     },
-    "satellite": {
-        "label": "NASA MODIS Terra corrected reflectance",
-        "kind": "imagery",
-        "url": "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/{date}/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg",
-        "max_zoom": 9,
-        "attribution": "NASA EOSDIS GIBS",
-        "source_url": "https://nasa-gibs.github.io/gibs-api-docs/",
-        "dated": True,
-    },
     "gravity-bouguer": {
         "label": "WGM2012 Bouguer gravity",
         "kind": "geophysics-geographic-tiles",
@@ -76,6 +66,26 @@ TILE_SOURCES = {
 }
 
 WMS_SOURCES = {
+    "gmrt": {
+        "label": "GMRT global multi-resolution topography",
+        "kind": "basemap",
+        "url": "https://www.gmrt.org/services/mapserver/wms_merc",
+        "layer": "topo",
+        "attribution": "GMRT, Lamont-Doherty Earth Observatory, Columbia University",
+        "source_url": "https://www.gmrt.org/services/index.php",
+        "public": True,
+        "transparent": False,
+    },
+    "gmrt-masked": {
+        "label": "GMRT global multi-resolution topography (masked)",
+        "kind": "basemap",
+        "url": "https://www.gmrt.org/services/mapserver/wms_merc_mask",
+        "layer": "topo-mask",
+        "attribution": "GMRT, Lamont-Doherty Earth Observatory, Columbia University",
+        "source_url": "https://www.gmrt.org/services/index.php",
+        "public": True,
+        "transparent": False,
+    },
     "gebco-elevation": {
         "label": "GEBCO latest shaded elevation/bathymetry",
         "url": "https://wms.gebco.net/mapserv",
@@ -130,18 +140,9 @@ def tile(request, slug: str, z: int, x: int, y: int):
     source = TILE_SOURCES.get(slug)
     if not source or not _tile_coordinates(z, x, y, source):
         raise Http404
-    if slug not in {"aerial", "satellite", "dark", "labels"} and not request.user.is_authenticated:
+    if slug not in {"aerial", "dark", "labels"} and not request.user.is_authenticated:
         return JsonResponse({"error": "Authentication is required for study context overlays."}, status=403)
     values = {"z": z, "x": x, "y": y}
-    if source.get("dated"):
-        raw_date = request.GET.get("date", "")
-        try:
-            selected = dt.date.fromisoformat(raw_date)
-        except ValueError:
-            return JsonResponse({"error": "A valid ISO imagery date is required."}, status=400)
-        if selected > dt.date.today() or selected < dt.date(2000, 2, 24):
-            return JsonResponse({"error": "Imagery date is outside the supported MODIS record."}, status=400)
-        values["date"] = selected.isoformat()
     return _fetch_image(source["url"].format(**values))
 
 
@@ -153,12 +154,13 @@ def _valid_bbox(value: str) -> bool:
     return len(coords) == 4 and all(math.isfinite(v) and abs(v) <= 30_000_000 for v in coords)
 
 
-@login_required
 @require_GET
 def wms(request, slug: str):
     source = WMS_SOURCES.get(slug)
     if not source:
         raise Http404
+    if not source.get("public") and not request.user.is_authenticated:
+        return JsonResponse({"error": "Authentication is required for study context overlays."}, status=403)
     bbox = request.GET.get("bbox", "")
     if not _valid_bbox(bbox):
         return JsonResponse({"error": "Invalid WMS bounding box."}, status=400)
@@ -174,7 +176,7 @@ def wms(request, slug: str):
     params = {
         "service": "WMS", "version": "1.1.1", "request": "GetMap",
         "layers": source["layer"], "styles": "", "format": "image/png",
-        "transparent": "true", "srs": crs.upper(), "bbox": bbox,
+        "transparent": "true" if source.get("transparent", True) else "false", "srs": crs.upper(), "bbox": bbox,
         "width": width, "height": height,
     }
     return _fetch_image(source["url"], params=params)
