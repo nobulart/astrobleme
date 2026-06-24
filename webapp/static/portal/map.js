@@ -69,10 +69,15 @@ function metricLabel(value) {
 }
 function popup(feature) {
   const p = propsFor(feature);
-  const breakdown = p.scoreBreakdown.length ? `<dl class="popup-breakdown">${p.scoreBreakdown.map(item => `<div><dt>${esc(item.label)}</dt><dd>${metricLabel(item.value)}</dd></div>`).join("")}</dl>` : "";
+  const geophysicalKeys = new Set(["gravity_consensus_percentile", "magnetic_ring_score_stratified_percentile"]);
+  const normalScores = p.scoreBreakdown.filter(item => !geophysicalKeys.has(item.key));
+  const geophysicalScores = p.scoreBreakdown.filter(item => geophysicalKeys.has(item.key));
+  const scoreItems = items => items.map(item => `<div><dt>${esc(item.label)}</dt><dd>${metricLabel(item.value)}</dd></div>`).join("");
+  const breakdown = normalScores.length ? `<dl class="popup-breakdown">${scoreItems(normalScores)}</dl>` : "";
+  const geophysics = geophysicalScores.length ? `<dl class="popup-breakdown popup-geophysics">${scoreItems(geophysicalScores)}</dl>` : "";
   const figure = p.diagnosticFigureUrl ? `<figure class="popup-diagnostic"><img src="${esc(p.diagnosticFigureUrl)}" alt="${esc(p.diagnosticFigureTitle)} for ${esc(p.title)}" loading="lazy"><figcaption>${esc(p.diagnosticFigureTitle)}</figcaption></figure>` : "";
   const summary = p.diagnosticSummary ? `<p>${esc(p.diagnosticSummary)}</p>` : "";
-  return `<div class="map-popup"><strong>${esc(p.title)}</strong>${p.scoreLabel ? `<span>${p.scoreLabel}: ${Number(p.score).toFixed(3)}</span>` : ""}${p.diameter ? `<span>Diameter: ${Number(p.diameter).toFixed(1)} km</span>` : ""}${p.status ? `<span>Status/tier: ${esc(p.status)}</span>` : ""}${p.note ? `<p>${esc(p.note)}</p>` : ""}${summary}${breakdown}${figure}</div>`;
+  return `<div class="map-popup"><strong>${esc(p.title)}</strong>${p.scoreLabel ? `<span>${p.scoreLabel}: ${Number(p.score).toFixed(3)}</span>` : ""}${p.diameter ? `<span>Diameter: ${Number(p.diameter).toFixed(1)} km</span>` : ""}${p.status ? `<span>Status/tier: ${esc(p.status)}</span>` : ""}${p.note ? `<p>${esc(p.note)}</p>` : ""}${summary}${breakdown}${geophysics}${figure}</div>`;
 }
 function mixColour(a, b, t) { const n = i => parseInt(i, 16), c = (x, y) => Math.round(x + (y - x) * t).toString(16).padStart(2, "0"); return `#${c(n(a.slice(1,3)),n(b.slice(1,3)))}${c(n(a.slice(3,5)),n(b.slice(3,5)))}${c(n(a.slice(5,7)),n(b.slice(5,7)))}`; }
 function paletteColour(t) { const colours = scientificPalettes[preferences.palette] || scientificPalettes.turbo, scaled = Math.max(0, Math.min(.999999, t)) * (colours.length - 1), i = Math.floor(scaled); return mixColour(colours[i], colours[i + 1], scaled - i); }

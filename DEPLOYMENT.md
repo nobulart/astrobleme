@@ -76,6 +76,10 @@ Optional variables:
 | `RAILWAY_PUBLIC_DOMAIN` | supplied by Railway | Automatically added to allowed hosts and trusted HTTPS origins |
 | `GEBCO_GRID_PATH` | `/data/GEBCO_2026_sub_ice.nc` | Numerical terrain grid required for exact follow-up scoring |
 | `GEOLOGY_INDEX_PATH` | `/data/global_gprv.kml` | Geological-province index required for exact follow-up scoring |
+| `GEBCO_TID_GRID_PATH` | local GEBCO TID path | GEBCO Type Identifier grid used by worker source-transition checks |
+| `WGM2012_GRID_DIR` | local WGM2012 directory | Directory containing WGM2012 Bouguer, free-air, isostatic and disturbance grids |
+| `EMAG2_CACHE_DIR` | `geophysical_cache/emag2` | Local EMAG2 numpy cache used by worker magnetic ring scoring |
+| `GEOPHYSICAL_REFERENCE_GEOJSON` | study results GeoJSON | Reference distribution used to percentile-rank new submissions against study candidates |
 | `CESIUM_ION_TOKEN` | empty | Optional Cesium World Terrain; WGM2012 gravity and the ellipsoid globe work without it |
 | `ANALYSIS_WORKER_TOKEN` | empty | Shared bearer token for trusted local analysis workers that claim and update queued candidate jobs |
 | `ANALYSIS_JOB_LEASE_SECONDS` | `1800` | Worker job lease duration before another worker may reclaim stale work |
@@ -103,6 +107,9 @@ export ANALYSIS_WORKER_TOKEN="the-same-token-as-railway"
 export ASTROBLEME_API_BASE_URL="https://astro.nobulart.com"
 export GEBCO_GRID_PATH="/Users/craig/ECDO/data/GEBCO_2026_sub_ice.nc"
 export GEOLOGY_INDEX_PATH="/Users/craig/ECDO/data/global_gprv.kml"
+export GEBCO_TID_GRID_PATH="/Users/craig/ECDO/GIS/gebco_2026_tid/GEBCO_2026_TID.nc"
+export WGM2012_GRID_DIR="/Users/craig/ECDO/GIS/WGM2012"
+export EMAG2_CACHE_DIR="/Users/craig/ECDO/papers/astrobleme/geophysical_cache/emag2"
 python3 scripts/analysis_worker.py --once
 ```
 

@@ -1,5 +1,7 @@
 import base64
 import json
+import tempfile
+from types import SimpleNamespace
 
 from django.contrib.auth.models import User
 from django.test import TestCase, override_settings
@@ -7,7 +9,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 from unittest.mock import Mock, patch
 
-from .followup import circle_geometry
+from .followup import circle_geometry, score_candidate
 from .models import CandidateAnalysisArtifact, CandidateAnalysisJob, CandidateAnalysisRun, CandidateReview, CandidateSubmission, PortalConfiguration, UserMapPreference
 from .scoring import evaluate_submission
 
@@ -77,6 +79,58 @@ class IntakeScoringTests(TestCase):
         score, passed, checks = evaluate_submission(data)
         self.assertFalse(passed)
         self.assertFalse(checks["description_complete"])
+
+    def test_followup_scoring_can_merge_worker_geophysics(self):
+        def fake_pipeline_imports():
+            def save_figure(*_args, **_kwargs):
+                return None
+
+            def score_terrain(_candidate, _window):
+                return {
+                    "data_quality": 1.0,
+                    "topography_score_unweighted": 0.5,
+                    "radial_alignment": 0.1,
+                    "hough_percentile": 0.2,
+                    "angular_continuity": 0.3,
+                    "radius_match": 0.4,
+                    "centre_match": 0.5,
+                    "relief_score": 0.6,
+                }, {}
+
+            class FakeGrid:
+                def __init__(self, *_args, **_kwargs):
+                    pass
+
+                def __enter__(self):
+                    return self
+
+                def __exit__(self, *_args):
+                    pass
+
+                def read_candidate(self, _candidate):
+                    return None
+
+            def spherical_candidate(_feature, _index):
+                return SimpleNamespace(lon=10, lat=10, diameter_km=65)
+
+            return save_figure, score_terrain, FakeGrid, None, spherical_candidate
+
+        candidate = SimpleNamespace(id="candidate-1", title="Worker candidate", longitude=10, latitude=10, diameter_km=65, geometry=None)
+        with tempfile.NamedTemporaryFile() as grid, tempfile.NamedTemporaryFile() as geology:
+            with override_settings(GEBCO_GRID_PATH=grid.name, GEOLOGY_INDEX_PATH=geology.name):
+                with patch("portal.followup._pipeline_imports", fake_pipeline_imports), patch("portal.followup._geology_index") as geology_index, patch("portal.geophysics.score_geophysics") as geophysics:
+                    geology_index.return_value.score.return_value = {"geology_independence": 1.0}
+                    geophysics.return_value = {
+                        "gravity_consensus_percentile": 0.91,
+                        "magnetic_ring_score_stratified_percentile": 0.82,
+                        "review_tier": "B_gravity_supported",
+                    }
+                    result = score_candidate(candidate, include_geophysics=True)
+        self.assertEqual(result["score"], 0.61)
+        self.assertEqual(result["metrics"]["gravity_consensus_percentile"], 0.91)
+        self.assertEqual(result["metrics"]["magnetic_ring_score_stratified_percentile"], 0.82)
+        self.assertEqual(result["metrics"]["review_tier"], "B_gravity_supported")
+        self.assertTrue(result["method_version"].endswith("+geophysics-v1"))
 
 
 class PortalViewTests(TestCase):

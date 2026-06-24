@@ -43,7 +43,7 @@ def _geology_index(path: str):
     return GeologyIndex(path)
 
 
-def score_candidate(candidate, diagnostic_path: str | Path | None = None) -> dict:
+def score_candidate(candidate, diagnostic_path: str | Path | None = None, include_geophysics: bool = False) -> dict:
     """Return the paper's no-imagery follow-up score and component metrics."""
     grid_path = Path(settings.GEBCO_GRID_PATH)
     geology_path = Path(settings.GEOLOGY_INDEX_PATH)
@@ -74,9 +74,29 @@ def score_candidate(candidate, diagnostic_path: str | Path | None = None) -> dic
     }
     score = round(float(followup), 6)
     metrics["followup_score"] = score
+    geophysical_sources_available = False
+    if include_geophysics:
+        try:
+            from .geophysics import score_geophysics
+
+            geophysical = score_geophysics(fitted, followup_score=score)
+            geophysical_sources_available = any(
+                geophysical.get(key) is not None
+                for key in (
+                    "gravity_bouguer_ring_score",
+                    "gravity_freeair_ring_score",
+                    "gravity_consensus_percentile",
+                    "magnetic_ring_score",
+                    "magnetic_ring_score_stratified_percentile",
+                )
+            )
+            metrics.update(geophysical)
+        except FileNotFoundError:
+            metrics["geophysical_reason"] = "Required geophysical screening grids are not mounted."
     if diagnostic_path:
         save_elevation_analysis_figure(str(candidate.id), candidate.title, metrics, diagnostic, diagnostic_path)
-    return {"score": score, "metrics": metrics, "method_version": METHOD_VERSION, "geometry": geometry}
+    method_version = f"{METHOD_VERSION}+geophysics-v1" if geophysical_sources_available else METHOD_VERSION
+    return {"score": score, "metrics": metrics, "method_version": method_version, "geometry": geometry}
 
 
 def _json_number(value):

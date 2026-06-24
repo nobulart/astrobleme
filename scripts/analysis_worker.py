@@ -131,6 +131,9 @@ def build_success_payload(result: dict[str, Any], job: dict[str, Any], args: arg
         "source_fingerprints": {
             "gebco_grid_path": os.environ.get("GEBCO_GRID_PATH", ""),
             "geology_index_path": os.environ.get("GEOLOGY_INDEX_PATH", ""),
+            "gebco_tid_grid_path": os.environ.get("GEBCO_TID_GRID_PATH", ""),
+            "wgm2012_grid_dir": os.environ.get("WGM2012_GRID_DIR", ""),
+            "emag2_cache_dir": os.environ.get("EMAG2_CACHE_DIR", ""),
         },
         "artifacts": generated_artifacts + collect_artifacts(args.artifact_root, args.artifact_base_url, candidate["id"]),
     }
@@ -158,7 +161,7 @@ def process_job(job: dict[str, Any], args: argparse.Namespace) -> None:
     try:
         args.artifact_output_dir.mkdir(parents=True, exist_ok=True)
         diagnostic_path = args.artifact_output_dir / f"{candidate.id}_elevation_diagnostic.webp"
-        result = score_candidate(candidate, diagnostic_path=diagnostic_path)
+        result = score_candidate(candidate, diagnostic_path=diagnostic_path, include_geophysics=True)
         generated_artifacts = []
         if diagnostic_path.exists():
             generated_artifacts.append(embedded_artifact(diagnostic_path, "elevation_diagnostic", "Elevation analysis diagnostic"))

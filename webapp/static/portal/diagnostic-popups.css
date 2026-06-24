@@ -11,6 +11,12 @@
   border-top: 1px solid #d7d2c4;
 }
 
+.map-popup .popup-geophysics {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 2px solid #8ea09b;
+}
+
 .map-popup .popup-breakdown div {
   min-width: 0;
 }
