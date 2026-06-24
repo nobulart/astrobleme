@@ -50,6 +50,12 @@ PREFERENCE_RASTERS = {"gebco-elevation", "gebco-tid", "magnetic"}
 PREFERENCE_SCORE_FIELDS = {"followup_score", "structure_followup_score", "gravity_consensus_percentile", "magnetic_ring_score_stratified_percentile", "data_quality", "intake_score", "diameter_km"}
 PREFERENCE_PALETTES = {"turbo", "viridis", "plasma", "inferno", "magma", "cividis", "rdbu"}
 PREFERENCE_DRAWING_METHODS = {"center-radius", "rim-to-rim", "point-diameter"}
+STYLE_METRIC_FIELDS = (
+    "structure_followup_score",
+    "gravity_consensus_percentile",
+    "magnetic_ring_score_stratified_percentile",
+    "data_quality",
+)
 PUBLIC_CANDIDATE_STATUSES = [
     CandidateSubmission.Status.BASELINE_PASSED,
     CandidateSubmission.Status.UNDER_REVIEW,
@@ -226,33 +232,34 @@ def _candidate_collection(queryset, request, download=False):
         metrics = candidate.followup_metrics or {}
         artifact_url = metrics.get("diagnostic_figure_url") or _candidate_diagnostic_url(candidate)
         geometry = candidate.geometry or {"type": "Point", "coordinates": [candidate.longitude, candidate.latitude]}
+        properties = {
+            "title": candidate.title,
+            "longitude": candidate.longitude,
+            "latitude": candidate.latitude,
+            "diameter_km": candidate.diameter_km,
+            "intake_score": candidate.intake_score,
+            "followup_score": candidate.followup_score,
+            "followup_status": candidate.followup_status,
+            "score_percentile": metrics.get("score_percentile"),
+            "review_tier": metrics.get("review_tier"),
+            "score_breakdown": _score_breakdown(metrics),
+            "diagnostic_figure_url": artifact_url,
+            "diagnostic_figure_title": "Elevation analysis diagnostic" if artifact_url else "",
+            "diagnostic_summary": (metrics.get("diagnostics") or {}).get("summary") if isinstance(metrics.get("diagnostics"), dict) else metrics.get("reason", ""),
+            "review_status": candidate.status,
+            "score_interpretation": "submission completeness and reviewability; not impact probability",
+            "status": candidate.get_status_display(),
+            "source_title": candidate.source_title,
+            "observed_feature": candidate.observed_feature,
+            "submitted_by": candidate.created_by.username,
+            "created_at": candidate.created_at.isoformat(),
+        }
+        properties.update(_style_metric_properties(metrics))
         features.append({
             "type": "Feature",
             "id": str(candidate.id),
             "geometry": geometry,
-            "properties": {
-                "title": candidate.title,
-                "longitude": candidate.longitude,
-                "latitude": candidate.latitude,
-                "diameter_km": candidate.diameter_km,
-                "intake_score": candidate.intake_score,
-                "followup_score": candidate.followup_score,
-                "followup_status": candidate.followup_status,
-                "data_quality": candidate.followup_metrics.get("data_quality"),
-                "score_percentile": metrics.get("score_percentile"),
-                "review_tier": metrics.get("review_tier"),
-                "score_breakdown": _score_breakdown(metrics),
-                "diagnostic_figure_url": artifact_url,
-                "diagnostic_figure_title": "Elevation analysis diagnostic" if artifact_url else "",
-                "diagnostic_summary": (metrics.get("diagnostics") or {}).get("summary") if isinstance(metrics.get("diagnostics"), dict) else metrics.get("reason", ""),
-                "review_status": candidate.status,
-                "score_interpretation": "submission completeness and reviewability; not impact probability",
-                "status": candidate.get_status_display(),
-                "source_title": candidate.source_title,
-                "observed_feature": candidate.observed_feature,
-                "submitted_by": candidate.created_by.username,
-                "created_at": candidate.created_at.isoformat(),
-            },
+            "properties": properties,
         })
     response = JsonResponse({"type": "FeatureCollection", "features": features})
     response["Content-Disposition"] = f'{"attachment" if download else "inline"}; filename="candidates.geojson"'
@@ -267,6 +274,14 @@ def _candidate_diagnostic_url(candidate):
             if artifact.kind in {"elevation_diagnostic", "diagnostic_png", "diagnostic_figure"}:
                 return artifact.url_or_path
     return ""
+
+
+def _style_metric_properties(metrics):
+    return {
+        field: metrics[field]
+        for field in STYLE_METRIC_FIELDS
+        if metrics.get(field) is not None and metrics.get(field) != ""
+    }
 
 
 def _score_breakdown(metrics):

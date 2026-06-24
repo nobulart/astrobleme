@@ -534,7 +534,11 @@ class AnalysisApiTests(TestCase):
                 "worker_id": "local-ranker-1",
                 "worker_version": "0.1.0",
                 "runtime_seconds": 42.7,
-                "metrics": {"data_quality": 0.89, "gravity_consensus_percentile": 93.2},
+                "metrics": {
+                    "data_quality": 0.89,
+                    "gravity_consensus_percentile": 93.2,
+                    "magnetic_ring_score_stratified_percentile": 81.4,
+                },
                 "diagnostics": {"summary": "Strong annular signal in merged diagnostics."},
                 "source_fingerprints": {"ranking_output": "sha256:abc"},
                 "artifacts": [{
@@ -570,6 +574,8 @@ class AnalysisApiTests(TestCase):
         feature = self.client.get(reverse("my_candidates_geojson")).json()["features"][0]
         self.assertIn("/api/analysis/artifacts/", feature["properties"]["diagnostic_figure_url"])
         self.assertIn("score_breakdown", feature["properties"])
+        self.assertEqual(feature["properties"]["gravity_consensus_percentile"], 93.2)
+        self.assertEqual(feature["properties"]["magnetic_ring_score_stratified_percentile"], 81.4)
 
 
 class RasterProxyTests(TestCase):
