@@ -45,9 +45,9 @@ function layerAppearance(slug) {
   const lineWidth = Number.isFinite(Number(saved.lineWidth)) ? Math.max(1, Math.min(8, Number(saved.lineWidth))) : (base.weight || 2);
   return {lineStyle, lineWidth};
 }
-function styledLayerOptions(slug, colour, provisional = false) {
+function styledLayerOptions(slug, colour) {
   const appearance = layerAppearance(slug);
-  const dashArray = appearance.lineStyle === "solid" && provisional ? "7 5" : lineDashes[appearance.lineStyle];
+  const dashArray = lineDashes[appearance.lineStyle];
   return {...(palette[slug] || {}), color: colour || palette[slug]?.color, weight: appearance.lineWidth, dashArray};
 }
 function propsFor(feature) {
@@ -119,10 +119,8 @@ function restyleScientificLayers() {
     if (!layer.setStyle) return;
     const sourceValue = layer.feature?.properties?.[preferences.scoreField];
     const raw = sourceValue === null || sourceValue === "" || sourceValue === undefined ? NaN : Number(sourceValue);
-    const state = layer.feature?.properties?.review_status || "";
-    const provisional = slug === "study-candidates" || ["baseline_passed", "under_review"].includes(state);
     const colour = Number.isFinite(raw) && values.length ? paletteColour(max === min ? .5 : (raw - min) / (max - min)) : palette[slug]?.color;
-    layer.setStyle({...styledLayerOptions(slug, colour, provisional), fillOpacity: provisional ? .08 : (palette[slug]?.fillOpacity ?? .22)});
+    layer.setStyle({...styledLayerOptions(slug, colour), fillOpacity: palette[slug]?.fillOpacity ?? .22});
   }));
   const legend = document.getElementById("score-legend");
   const fieldLabel = document.querySelector(`#score-field option[value="${preferences.scoreField}"]`)?.textContent || preferences.scoreField;
