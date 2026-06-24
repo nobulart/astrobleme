@@ -1,10 +1,11 @@
 const defaultPreferences = {
   center: [5, 15], zoom: 2, layers: ["study-candidates", "my-candidates"],
   basemap: "aerial", labels: true, rasters: [], rasterOpacity: 68, satelliteDate: "", candidateDraft: null,
-  scoreField: "followup_score", palette: "turbo", drawingMethod: "center-radius"
+  scoreField: "followup_score", palette: "turbo", drawingMethod: "center-radius", layerStyles: {}
 };
 const savedPreferences = JSON.parse(document.getElementById("map-preferences")?.textContent || "{}");
 let preferences = {...defaultPreferences, ...savedPreferences};
+preferences.layerStyles = preferences.layerStyles || {};
 const map = L.map("map", {worldCopyJump: true, zoomControl: false}).setView(preferences.center, preferences.zoom);
 L.control.zoom({position: "bottomright"}).addTo(map);
 const streetLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 18, attribution: "© OpenStreetMap contributors"}).addTo(map);
@@ -33,8 +34,22 @@ const scientificPalettes = {
   cividis: ["#00204c", "#414d6b", "#7d7c78", "#b9ac70", "#ffea46"],
   rdbu: ["#67001f", "#d6604d", "#f7f7f7", "#4393c3", "#053061"]
 };
+const lineDashes = {solid: null, dashed: "7 5", dotted: "1 5"};
 
 function esc(value) { const d = document.createElement("div"); d.textContent = value ?? "—"; return d.innerHTML; }
+function csrfToken() { return document.querySelector("#map-preference-token input")?.value || ""; }
+function layerAppearance(slug) {
+  const base = palette[slug] || {};
+  const saved = preferences.layerStyles?.[slug] || {};
+  const lineStyle = lineDashes.hasOwnProperty(saved.lineStyle) ? saved.lineStyle : "solid";
+  const lineWidth = Number.isFinite(Number(saved.lineWidth)) ? Math.max(1, Math.min(8, Number(saved.lineWidth))) : (base.weight || 2);
+  return {lineStyle, lineWidth};
+}
+function styledLayerOptions(slug, colour, provisional = false) {
+  const appearance = layerAppearance(slug);
+  const dashArray = appearance.lineStyle === "solid" && provisional ? "7 5" : lineDashes[appearance.lineStyle];
+  return {...(palette[slug] || {}), color: colour || palette[slug]?.color, weight: appearance.lineWidth, dashArray};
+}
 function propsFor(feature) {
   const p = feature.properties || {};
   return {
@@ -48,6 +63,8 @@ function propsFor(feature) {
     diagnosticFigureUrl: p.diagnostic_figure_url,
     diagnosticFigureTitle: p.diagnostic_figure_title || "Elevation analysis diagnostic",
     scoreBreakdown: Array.isArray(p.score_breakdown) ? p.score_breakdown : scoreBreakdownFromProperties(p),
+    actions: p.actions || {},
+    reviewStatus: p.review_status,
     searchable: JSON.stringify(p).toLowerCase()
   };
 }
@@ -67,6 +84,15 @@ function metricLabel(value) {
   if (Math.abs(number) >= 100) return number.toFixed(1);
   return number.toFixed(3);
 }
+function popupActions(p) {
+  const actions = p.actions || {};
+  if (!actions.edit_url && !actions.status_url && !actions.delete_url) return "";
+  const edit = actions.edit_url ? `<a class="popup-action-button" href="${esc(actions.edit_url)}">Edit</a>` : "";
+  const choices = Array.isArray(actions.status_choices) ? actions.status_choices : [];
+  const status = actions.status_url ? `<form class="popup-status-form" data-status-url="${esc(actions.status_url)}"><label>Status<select name="status">${choices.map(choice => `<option value="${esc(choice.value)}" ${choice.value === p.reviewStatus ? "selected" : ""}>${esc(choice.label)}</option>`).join("")}</select></label><textarea name="note" rows="2" placeholder="Review note"></textarea><button type="submit">Save</button></form>` : "";
+  const del = actions.delete_url ? `<button class="popup-delete-button" type="button" data-delete-url="${esc(actions.delete_url)}">Delete</button>` : "";
+  return `<div class="popup-actions">${edit}${status}${del}</div>`;
+}
 function popup(feature) {
   const p = propsFor(feature);
   const geophysicalKeys = new Set(["gravity_consensus_percentile", "magnetic_ring_score_stratified_percentile"]);
@@ -77,7 +103,7 @@ function popup(feature) {
   const geophysics = geophysicalScores.length ? `<dl class="popup-breakdown popup-geophysics">${scoreItems(geophysicalScores)}</dl>` : "";
   const figure = p.diagnosticFigureUrl ? `<figure class="popup-diagnostic"><img src="${esc(p.diagnosticFigureUrl)}" alt="${esc(p.diagnosticFigureTitle)} for ${esc(p.title)}" loading="lazy"><figcaption>${esc(p.diagnosticFigureTitle)}</figcaption></figure>` : "";
   const summary = p.diagnosticSummary ? `<p>${esc(p.diagnosticSummary)}</p>` : "";
-  return `<div class="map-popup"><strong>${esc(p.title)}</strong>${p.scoreLabel ? `<span>${p.scoreLabel}: ${Number(p.score).toFixed(3)}</span>` : ""}${p.diameter ? `<span>Diameter: ${Number(p.diameter).toFixed(1)} km</span>` : ""}${p.status ? `<span>Status/tier: ${esc(p.status)}</span>` : ""}${p.note ? `<p>${esc(p.note)}</p>` : ""}${summary}${breakdown}${geophysics}${figure}</div>`;
+  return `<div class="map-popup"><strong>${esc(p.title)}</strong>${p.scoreLabel ? `<span>${p.scoreLabel}: ${Number(p.score).toFixed(3)}</span>` : ""}${p.diameter ? `<span>Diameter: ${Number(p.diameter).toFixed(1)} km</span>` : ""}${p.status ? `<span>Status/tier: ${esc(p.status)}</span>` : ""}${p.note ? `<p>${esc(p.note)}</p>` : ""}${summary}${breakdown}${geophysics}${figure}${popupActions(p)}</div>`;
 }
 function mixColour(a, b, t) { const n = i => parseInt(i, 16), c = (x, y) => Math.round(x + (y - x) * t).toString(16).padStart(2, "0"); return `#${c(n(a.slice(1,3)),n(b.slice(1,3)))}${c(n(a.slice(3,5)),n(b.slice(3,5)))}${c(n(a.slice(5,7)),n(b.slice(5,7)))}`; }
 function paletteColour(t) { const colours = scientificPalettes[preferences.palette] || scientificPalettes.turbo, scaled = Math.max(0, Math.min(.999999, t)) * (colours.length - 1), i = Math.floor(scaled); return mixColour(colours[i], colours[i + 1], scaled - i); }
@@ -96,7 +122,7 @@ function restyleScientificLayers() {
     const state = layer.feature?.properties?.review_status || "";
     const provisional = slug === "study-candidates" || ["baseline_passed", "under_review"].includes(state);
     const colour = Number.isFinite(raw) && values.length ? paletteColour(max === min ? .5 : (raw - min) / (max - min)) : palette[slug]?.color;
-    layer.setStyle({...palette[slug], color: colour, dashArray: provisional ? "7 5" : null, fillOpacity: provisional ? .08 : (palette[slug]?.fillOpacity ?? .22)});
+    layer.setStyle({...styledLayerOptions(slug, colour, provisional), fillOpacity: provisional ? .08 : (palette[slug]?.fillOpacity ?? .22)});
   }));
   const legend = document.getElementById("score-legend");
   const fieldLabel = document.querySelector(`#score-field option[value="${preferences.scoreField}"]`)?.textContent || preferences.scoreField;
@@ -109,9 +135,9 @@ async function loadLayer(slug) {
   const response = await fetch(window.ASTROBLEME_LAYER_URLS[slug]);
   if (!response.ok) throw new Error(`Layer failed: ${slug}`);
   const data = await response.json();
-  const style = palette[slug];
+  const style = styledLayerOptions(slug);
   const group = L.geoJSON(data, {
-    style: () => style,
+    style: () => styledLayerOptions(slug),
     pointToLayer: (_feature, latlng) => L.circleMarker(latlng, style),
     onEachFeature: (feature, layer) => { layer.bindPopup(popup(feature)); layer._searchText = propsFor(feature).searchable; }
   });
@@ -132,7 +158,8 @@ function currentPreferences() {
     basemap: activeBasemapSlug, labels: labelsActive, rasters: [...activeRasterSlugs],
     rasterOpacity: Number(document.getElementById("raster-opacity")?.value || 68),
     satelliteDate: document.getElementById("satellite-date")?.value || "",
-    candidateDraft, scoreField: preferences.scoreField, palette: preferences.palette, drawingMethod: preferences.drawingMethod
+    candidateDraft, scoreField: preferences.scoreField, palette: preferences.palette, drawingMethod: preferences.drawingMethod,
+    layerStyles: preferences.layerStyles || {}
   };
 }
 function persistPreferences() {
@@ -164,6 +191,66 @@ document.getElementById("map-search").addEventListener("input", event => {
 const scoreField = document.getElementById("score-field"), paletteSelect = document.getElementById("map-palette");
 if (scoreField) { scoreField.value = preferences.scoreField; scoreField.addEventListener("change", () => { preferences.scoreField = scoreField.value; restyleScientificLayers(); persistPreferences(); }); }
 if (paletteSelect) { paletteSelect.value = preferences.palette; paletteSelect.addEventListener("change", () => { preferences.palette = paletteSelect.value; restyleScientificLayers(); persistPreferences(); }); }
+document.querySelectorAll("[data-layer-line-style]").forEach(select => {
+  const slug = select.dataset.layerLineStyle, current = layerAppearance(slug);
+  select.value = current.lineStyle;
+  select.addEventListener("change", () => {
+    preferences.layerStyles = {...(preferences.layerStyles || {}), [slug]: {...layerAppearance(slug), lineStyle: select.value}};
+    restyleScientificLayers(); persistPreferences();
+  });
+});
+document.querySelectorAll("[data-layer-line-width]").forEach(input => {
+  const slug = input.dataset.layerLineWidth, current = layerAppearance(slug);
+  input.value = current.lineWidth;
+  input.addEventListener("input", () => {
+    const value = Math.max(1, Math.min(8, Number(input.value) || current.lineWidth));
+    preferences.layerStyles = {...(preferences.layerStyles || {}), [slug]: {...layerAppearance(slug), lineWidth: value}};
+    restyleScientificLayers(); persistPreferences();
+  });
+});
+
+function removeFeatureLayer(layer) {
+  Object.values(groups).forEach(group => { if (group.hasLayer?.(layer)) group.removeLayer(layer); });
+  restyleScientificLayers();
+}
+map.on("popupopen", event => {
+  const root = event.popup.getElement(), layer = event.popup._source;
+  root?.querySelector(".popup-status-form")?.addEventListener("submit", async formEvent => {
+    formEvent.preventDefault();
+    const form = formEvent.currentTarget;
+    try {
+      const response = await fetch(form.dataset.statusUrl, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {"Content-Type": "application/json", "X-CSRFToken": csrfToken(), "Accept": "application/json"},
+        body: JSON.stringify({status: form.elements.status.value, note: form.elements.note.value})
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Status update failed");
+      layer.feature.properties = data.properties;
+      layer.setPopupContent(popup(layer.feature));
+      map.closePopup(); layer.openPopup();
+      restyleScientificLayers();
+      status.textContent = "Candidate status updated"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 900);
+    } catch (error) { status.textContent = error.message; status.classList.remove("quiet"); }
+  });
+  root?.querySelector(".popup-delete-button")?.addEventListener("click", async buttonEvent => {
+    const button = buttonEvent.currentTarget;
+    if (!confirm("Delete this candidate?")) return;
+    try {
+      const response = await fetch(button.dataset.deleteUrl, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {"Content-Type": "application/json", "X-CSRFToken": csrfToken(), "Accept": "application/json"},
+        body: "{}"
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Delete failed");
+      map.closePopup(); removeFeatureLayer(layer);
+      status.textContent = "Candidate deleted"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 900);
+    } catch (error) { status.textContent = error.message; status.classList.remove("quiet"); }
+  });
+});
 
 const analysisStatusPanel = document.getElementById("analysis-status-panel");
 function numberLabel(value, digits = 0) {
@@ -408,8 +495,10 @@ if (document.getElementById("satellite-date")) {
     document.querySelector(`[data-basemap="${defaultPreferences.basemap}"]`).checked = true; chooseBasemap(defaultPreferences.basemap);
     document.querySelectorAll("[data-raster]").forEach(input => { input.checked = false; map.removeLayer(rasterLayers[input.dataset.raster]); });
     activeRasterSlugs.clear(); setGravityMode(false);
-    preferences.scoreField = defaultPreferences.scoreField; preferences.palette = defaultPreferences.palette; preferences.drawingMethod = defaultPreferences.drawingMethod;
+    preferences.scoreField = defaultPreferences.scoreField; preferences.palette = defaultPreferences.palette; preferences.drawingMethod = defaultPreferences.drawingMethod; preferences.layerStyles = {};
     scoreField.value = preferences.scoreField; paletteSelect.value = preferences.palette; drawingMethod.value = preferences.drawingMethod; restyleScientificLayers();
+    document.querySelectorAll("[data-layer-line-style]").forEach(select => { select.value = layerAppearance(select.dataset.layerLineStyle).lineStyle; });
+    document.querySelectorAll("[data-layer-line-width]").forEach(input => { input.value = layerAppearance(input.dataset.layerLineWidth).lineWidth; });
   });
   }
 }

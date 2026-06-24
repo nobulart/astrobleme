@@ -3,7 +3,7 @@ import json
 import tempfile
 from types import SimpleNamespace
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Permission, User
 from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.http import HttpResponse
@@ -213,12 +213,14 @@ class PortalViewTests(TestCase):
             "layers": ["my-candidates", "other-candidates"], "basemap": "dark", "labels": False,
             "rasters": ["magnetic"], "rasterOpacity": 54, "satelliteDate": "2026-06-20",
             "candidateDraft": {"latitude": -25.1, "longitude": 28.2, "diameterKm": 80},
+            "layerStyles": {"my-candidates": {"lineStyle": "dotted", "lineWidth": 3.5}},
         }
         saved = self.client.post(reverse("map_preferences"), json.dumps(payload), content_type="application/json")
         self.assertEqual(saved.status_code, 200)
         settings = UserMapPreference.objects.get(user=self.user).settings
         self.assertEqual(settings["basemap"], "dark")
         self.assertFalse(settings["labels"])
+        self.assertEqual(settings["layerStyles"]["my-candidates"], {"lineStyle": "dotted", "lineWidth": 3.5})
         home = self.client.get(reverse("home"))
         self.assertContains(home, '"diameterKm": 80.0')
         reset = self.client.post(reverse("map_preferences"), json.dumps({"reset": True}), content_type="application/json")
@@ -322,6 +324,66 @@ class PortalViewTests(TestCase):
         item.refresh_from_db()
         self.assertEqual(item.status, CandidateSubmission.Status.UNDER_REVIEW)
         self.assertEqual(CandidateReview.objects.get(candidate=item).note, "Worth checking")
+
+    def test_staff_geojson_exposes_popup_candidate_actions(self):
+        staff = User.objects.create_user("staff", "staff@example.org", "long-test-password", is_staff=True)
+        item = CandidateSubmission.objects.create(
+            created_by=self.user, title="Popup controlled", description="x", longitude=1, latitude=1,
+            diameter_km=20, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.BASELINE_PASSED,
+        )
+        self.client.force_login(staff)
+        feature = self.client.get(reverse("other_candidates_geojson")).json()["features"][0]
+        actions = feature["properties"]["actions"]
+        self.assertEqual(feature["id"], str(item.id))
+        self.assertIn(reverse("edit_candidate", args=[item.id]), actions["edit_url"])
+        self.assertIn(reverse("candidate_status_api", args=[item.id]), actions["status_url"])
+        self.assertIn(reverse("candidate_delete_api", args=[item.id]), actions["delete_url"])
+        self.assertIn({"value": CandidateSubmission.Status.ACCEPTED, "label": "Accepted into review catalogue"}, actions["status_choices"])
+
+    def test_permissioned_user_can_change_status_from_popup_api(self):
+        reviewer = User.objects.create_user("status_editor", "status@example.org", "long-test-password")
+        reviewer.user_permissions.add(Permission.objects.get(codename="change_candidatesubmission"))
+        item = CandidateSubmission.objects.create(
+            created_by=self.user, title="Status target", description="x", longitude=1, latitude=1,
+            diameter_km=20, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.BASELINE_PASSED,
+        )
+        self.client.force_login(reviewer)
+        response = self.client.post(
+            reverse("candidate_status_api", args=[item.id]),
+            json.dumps({"status": CandidateSubmission.Status.ACCEPTED, "note": "Popup review"}),
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, 200)
+        item.refresh_from_db()
+        self.assertEqual(item.status, CandidateSubmission.Status.ACCEPTED)
+        self.assertEqual(item.moderator_notes, "Popup review")
+        self.assertEqual(CandidateReview.objects.get(candidate=item).reviewer, reviewer)
+        self.assertEqual(response.json()["properties"]["status"], "Accepted into review catalogue")
+
+    def test_delete_permission_can_delete_candidate_from_popup_api(self):
+        deleter = User.objects.create_user("candidate_deleter", "delete@example.org", "long-test-password")
+        deleter.user_permissions.add(Permission.objects.get(codename="delete_candidatesubmission"))
+        item = CandidateSubmission.objects.create(
+            created_by=self.user, title="Delete target", description="x", longitude=1, latitude=1,
+            diameter_km=20, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.BASELINE_PASSED,
+        )
+        self.client.force_login(deleter)
+        response = self.client.post(reverse("candidate_delete_api", args=[item.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(CandidateSubmission.objects.filter(pk=item.id).exists())
+
+    def test_unprivileged_user_cannot_use_popup_status_api(self):
+        item = CandidateSubmission.objects.create(
+            created_by=self.user, title="Protected", description="x", longitude=1, latitude=1,
+            diameter_km=20, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.BASELINE_PASSED,
+        )
+        self.client.force_login(self.user)
+        response = self.client.post(reverse("candidate_status_api", args=[item.id]), {"status": CandidateSubmission.Status.ACCEPTED})
+        self.assertEqual(response.status_code, 403)
 
     def test_review_queue_filters_and_searches_candidates(self):
         staff = User.objects.create_user("staff", "staff@example.org", "long-test-password", is_staff=True)

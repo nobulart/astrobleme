@@ -12,6 +12,7 @@ from django.db.models import Prefetch, Q
 from django.http import FileResponse, Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.templatetags.static import static
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_GET, require_POST
@@ -43,6 +44,7 @@ DEFAULT_MAP_PREFERENCES = {
     "scoreField": "followup_score",
     "palette": "turbo",
     "drawingMethod": "center-radius",
+    "layerStyles": {},
 }
 PREFERENCE_LAYERS = {*LAYERS, "my-candidates", "other-candidates", "community"}
 PREFERENCE_BASEMAPS = {"street", "aerial", "satellite", "dark"}
@@ -50,6 +52,7 @@ PREFERENCE_RASTERS = {"gebco-elevation", "gebco-tid", "magnetic"}
 PREFERENCE_SCORE_FIELDS = {"followup_score", "structure_followup_score", "gravity_consensus_percentile", "magnetic_ring_score_stratified_percentile", "data_quality", "intake_score", "diameter_km"}
 PREFERENCE_PALETTES = {"turbo", "viridis", "plasma", "inferno", "magma", "cividis", "rdbu"}
 PREFERENCE_DRAWING_METHODS = {"center-radius", "rim-to-rim", "point-diameter"}
+PREFERENCE_LAYER_LINE_STYLES = {"solid", "dashed", "dotted"}
 STYLE_METRIC_FIELDS = (
     "structure_followup_score",
     "gravity_consensus_percentile",
@@ -118,15 +121,30 @@ def submit_candidate(request):
 
 @login_required
 def edit_candidate(request, candidate_id):
-    candidate = get_object_or_404(CandidateSubmission, pk=candidate_id, created_by=request.user)
-    if not candidate.is_editable_by_owner:
+    candidate = get_object_or_404(CandidateSubmission, pk=candidate_id)
+    owner_can_edit = candidate.created_by_id == request.user.id and candidate.is_editable_by_owner
+    privileged_edit = _can_change_candidates(request.user)
+    if not (owner_can_edit or privileged_edit):
+        if candidate.created_by_id == request.user.id:
+            messages.warning(request, "This candidate is locked because scientific review has started or a decision has been recorded.")
+            return redirect("my_submissions")
+        raise Http404
+    if candidate.created_by_id == request.user.id and not candidate.is_editable_by_owner and not privileged_edit:
         messages.warning(request, "This candidate is locked because scientific review has started or a decision has been recorded.")
         return redirect("my_submissions")
     initial = {"geometry_text": json.dumps(candidate.geometry) if candidate.geometry else ""}
     form = CandidateForm(request.POST or None, instance=candidate, initial=initial)
     if request.method == "POST" and form.is_valid():
+        previous_status = candidate.status
+        previous_moderator = candidate.moderated_by
+        previous_moderated_at = candidate.moderated_at
         candidate = form.save(commit=False)
         passed = _evaluate_and_save(candidate, form)
+        if privileged_edit and previous_status not in {CandidateSubmission.Status.BASELINE_FAILED, CandidateSubmission.Status.BASELINE_PASSED}:
+            candidate.status = previous_status
+            candidate.moderated_by = previous_moderator
+            candidate.moderated_at = previous_moderated_at
+            candidate.save(update_fields=["status", "moderated_by", "moderated_at", "updated_at"])
         enqueue_candidate_analysis(candidate, CandidateAnalysisJob.Reason.USER_EDIT)
         if passed:
             messages.success(request, "Candidate updated, rescored, and retained in the unreviewed queue.")
@@ -229,37 +247,12 @@ def _candidate_collection(queryset, request, download=False):
     features = []
     queryset = queryset.prefetch_related("analysis_runs__artifacts")
     for candidate in queryset:
-        metrics = candidate.followup_metrics or {}
-        artifact_url = metrics.get("diagnostic_figure_url") or _candidate_diagnostic_url(candidate)
         geometry = candidate.geometry or {"type": "Point", "coordinates": [candidate.longitude, candidate.latitude]}
-        properties = {
-            "title": candidate.title,
-            "longitude": candidate.longitude,
-            "latitude": candidate.latitude,
-            "diameter_km": candidate.diameter_km,
-            "intake_score": candidate.intake_score,
-            "followup_score": candidate.followup_score,
-            "followup_status": candidate.followup_status,
-            "score_percentile": metrics.get("score_percentile"),
-            "review_tier": metrics.get("review_tier"),
-            "score_breakdown": _score_breakdown(metrics),
-            "diagnostic_figure_url": artifact_url,
-            "diagnostic_figure_title": "Elevation analysis diagnostic" if artifact_url else "",
-            "diagnostic_summary": (metrics.get("diagnostics") or {}).get("summary") if isinstance(metrics.get("diagnostics"), dict) else metrics.get("reason", ""),
-            "review_status": candidate.status,
-            "score_interpretation": "submission completeness and reviewability; not impact probability",
-            "status": candidate.get_status_display(),
-            "source_title": candidate.source_title,
-            "observed_feature": candidate.observed_feature,
-            "submitted_by": candidate.created_by.username,
-            "created_at": candidate.created_at.isoformat(),
-        }
-        properties.update(_style_metric_properties(metrics))
         features.append({
             "type": "Feature",
             "id": str(candidate.id),
             "geometry": geometry,
-            "properties": properties,
+            "properties": _candidate_properties(candidate, request),
         })
     response = JsonResponse({"type": "FeatureCollection", "features": features})
     response["Content-Disposition"] = f'{"attachment" if download else "inline"}; filename="candidates.geojson"'
@@ -274,6 +267,65 @@ def _candidate_diagnostic_url(candidate):
             if artifact.kind in {"elevation_diagnostic", "diagnostic_png", "diagnostic_figure"}:
                 return artifact.url_or_path
     return ""
+
+
+def _candidate_properties(candidate, request):
+    metrics = candidate.followup_metrics or {}
+    artifact_url = metrics.get("diagnostic_figure_url") or _candidate_diagnostic_url(candidate)
+    properties = {
+        "candidate_uuid": str(candidate.id),
+        "title": candidate.title,
+        "longitude": candidate.longitude,
+        "latitude": candidate.latitude,
+        "diameter_km": candidate.diameter_km,
+        "intake_score": candidate.intake_score,
+        "followup_score": candidate.followup_score,
+        "followup_status": candidate.followup_status,
+        "score_percentile": metrics.get("score_percentile"),
+        "review_tier": metrics.get("review_tier"),
+        "score_breakdown": _score_breakdown(metrics),
+        "diagnostic_figure_url": artifact_url,
+        "diagnostic_figure_title": "Elevation analysis diagnostic" if artifact_url else "",
+        "diagnostic_summary": (metrics.get("diagnostics") or {}).get("summary") if isinstance(metrics.get("diagnostics"), dict) else metrics.get("reason", ""),
+        "review_status": candidate.status,
+        "score_interpretation": "submission completeness and reviewability; not impact probability",
+        "status": candidate.get_status_display(),
+        "source_title": candidate.source_title,
+        "observed_feature": candidate.observed_feature,
+        "submitted_by": candidate.created_by.username,
+        "created_at": candidate.created_at.isoformat(),
+    }
+    properties.update(_style_metric_properties(metrics))
+    actions = _candidate_action_properties(candidate, request.user)
+    if actions:
+        properties["actions"] = actions
+    return properties
+
+
+def _candidate_action_properties(candidate, user):
+    if not user.is_authenticated:
+        return {}
+    actions = {}
+    if _can_edit_candidate(candidate, user):
+        actions["edit_url"] = reverse("edit_candidate", args=[candidate.id])
+    if _can_change_candidates(user):
+        actions["status_url"] = reverse("candidate_status_api", args=[candidate.id])
+        actions["status_choices"] = [{"value": value, "label": label} for value, label in CandidateSubmission.Status.choices]
+    if _can_delete_candidates(user):
+        actions["delete_url"] = reverse("candidate_delete_api", args=[candidate.id])
+    return actions
+
+
+def _can_change_candidates(user):
+    return bool(user.is_authenticated and (user.is_staff or user.has_perm("portal.change_candidatesubmission")))
+
+
+def _can_delete_candidates(user):
+    return bool(user.is_authenticated and (user.is_staff or user.has_perm("portal.delete_candidatesubmission")))
+
+
+def _can_edit_candidate(candidate, user):
+    return (candidate.created_by_id == user.id and candidate.is_editable_by_owner) or _can_change_candidates(user)
 
 
 def _style_metric_properties(metrics):
@@ -305,6 +357,50 @@ def _score_breakdown(metrics):
         if value is not None and value != "":
             breakdown.append({"key": key, "label": label, "value": value})
     return breakdown
+
+
+@login_required
+@require_POST
+def candidate_status_api(request, candidate_id):
+    if not _can_change_candidates(request.user):
+        return JsonResponse({"error": "You do not have permission to change candidate status."}, status=403)
+    payload = _request_payload(request)
+    allowed = {value for value, _ in CandidateSubmission.Status.choices}
+    target = str(payload.get("status", "")).strip()
+    if target not in allowed:
+        return JsonResponse({"error": "Choose a valid review status."}, status=400)
+    note = str(payload.get("note", "")).strip()
+    with transaction.atomic():
+        candidate = get_object_or_404(CandidateSubmission.objects.select_for_update().select_related("created_by"), pk=candidate_id)
+        previous = candidate.status
+        candidate.status = target
+        candidate.moderator_notes = note
+        candidate.moderated_by = request.user
+        candidate.moderated_at = timezone.now()
+        candidate.save(update_fields=["status", "moderator_notes", "moderated_by", "moderated_at", "updated_at"])
+        CandidateReview.objects.create(candidate=candidate, reviewer=request.user, from_status=previous, to_status=target, note=note)
+    return JsonResponse({"properties": _candidate_properties(candidate, request)})
+
+
+@login_required
+@require_POST
+def candidate_delete_api(request, candidate_id):
+    if not _can_delete_candidates(request.user):
+        return JsonResponse({"error": "You do not have permission to delete candidates."}, status=403)
+    candidate = get_object_or_404(CandidateSubmission, pk=candidate_id)
+    title = candidate.title
+    candidate.delete()
+    return JsonResponse({"deleted": True, "title": title, "id": str(candidate_id)})
+
+
+def _request_payload(request):
+    if request.content_type == "application/json":
+        try:
+            payload = json.loads(request.body or "{}")
+        except json.JSONDecodeError:
+            return {}
+        return payload if isinstance(payload, dict) else {}
+    return request.POST
 
 
 @require_GET
@@ -567,6 +663,15 @@ def _clean_map_preferences(payload):
     drawing_method = payload.get("drawingMethod", DEFAULT_MAP_PREFERENCES["drawingMethod"])
     if score_field not in PREFERENCE_SCORE_FIELDS or palette not in PREFERENCE_PALETTES or drawing_method not in PREFERENCE_DRAWING_METHODS:
         raise ValueError
+    layer_styles = {}
+    for slug, style in (payload.get("layerStyles") or {}).items():
+        if slug not in PREFERENCE_LAYERS or not isinstance(style, dict):
+            continue
+        line_style = style.get("lineStyle", "solid")
+        if line_style not in PREFERENCE_LAYER_LINE_STYLES:
+            line_style = "solid"
+        line_width = max(1, min(8, float(style.get("lineWidth", 2))))
+        layer_styles[slug] = {"lineStyle": line_style, "lineWidth": round(line_width, 1)}
     draft = payload.get("candidateDraft")
     clean_draft = None
     if draft:
@@ -593,6 +698,7 @@ def _clean_map_preferences(payload):
         "scoreField": score_field,
         "palette": palette,
         "drawingMethod": drawing_method,
+        "layerStyles": layer_styles,
     }
 
 

@@ -54,6 +54,58 @@
   color: #71807b;
 }
 
+.popup-actions {
+  display: grid;
+  gap: 7px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #d7d2c4;
+}
+
+.popup-actions a,
+.popup-actions button {
+  border: 1px solid #71807b;
+  border-radius: 4px;
+  background: #fff;
+  color: #182525;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  padding: 6px 8px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.popup-status-form {
+  display: grid;
+  gap: 6px;
+}
+
+.popup-status-form label {
+  display: grid;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #71807b;
+  text-transform: uppercase;
+}
+
+.popup-status-form select,
+.popup-status-form textarea {
+  border: 1px solid #b8beb8;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 11px;
+  padding: 6px;
+  text-transform: none;
+}
+
+.popup-actions .popup-delete-button {
+  border-color: #c65b4c;
+  color: #9f382d;
+}
+
 .leaflet-popup-content {
   min-width: 280px;
 }
