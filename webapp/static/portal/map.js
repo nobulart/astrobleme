@@ -56,7 +56,7 @@ function esc(value) { const d = document.createElement("div"); d.textContent = v
 function csrfToken() { return document.querySelector("#map-preference-token input")?.value || ""; }
 function refreshMapSize() { setTimeout(() => map.invalidateSize(), 220); }
 function centerMarkerIcon(selected = false) {
-  return L.divIcon({className: `candidate-center-marker${selected ? " selected" : ""}`, html: "+", iconSize: [16, 16], iconAnchor: [8, 8]});
+  return L.divIcon({className: `candidate-center-marker${selected ? " selected" : ""}`, html: "+", iconSize: [20, 20], iconAnchor: [10, 10]});
 }
 function layerAppearance(slug) {
   const base = palette[slug] || {};
