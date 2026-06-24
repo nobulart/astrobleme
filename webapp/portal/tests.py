@@ -146,6 +146,10 @@ class PortalViewTests(TestCase):
         self.assertContains(home, "NASA MODIS satellite")
         self.assertContains(home, "Global catalogue")
         self.assertNotContains(home, "Repaired global catalogue")
+        self.assertContains(home, "Feature details")
+        self.assertContains(home, "Right sidebar")
+        self.assertContains(home, "Hide layer sidebar")
+        self.assertContains(home, "Enter fullscreen")
         self.assertContains(home, "Registered reviewers can compare live elevation")
         self.assertNotContains(home, "Analysis status")
         self.assertNotContains(home, "GEBCO source identifier")
@@ -165,7 +169,9 @@ class PortalViewTests(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse("submit_candidate"), {
             "latitude": "-28.125", "longitude": "24.75", "diameter_km": "140",
-            "title": "Candidate near -28.13, 24.75", "source_title": "Esri World Imagery",
+            "title": "Candidate near -28.13, 24.75",
+            "source_title": "Esri World Imagery + GEBCO latest elevation/bathymetry + NOAA NCEI EMAG2v3",
+            "source_resolution": "Basemap: Esri World Imagery; Study overlays: GEBCO latest elevation/bathymetry, NOAA NCEI EMAG2v3",
         })
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'value="-28.125"')
@@ -173,6 +179,8 @@ class PortalViewTests(TestCase):
         self.assertContains(response, 'value="140.0"')
         self.assertContains(response, "Candidate near -28.13, 24.75")
         self.assertContains(response, "Esri World Imagery")
+        self.assertContains(response, "GEBCO latest elevation/bathymetry")
+        self.assertContains(response, "NOAA NCEI EMAG2v3")
         self.assertContains(response, "Estimated centre longitude")
         self.assertContains(response, "This is not a final or transient crater diameter")
         self.assertContains(response, "Best non-impact alternative")
@@ -215,6 +223,7 @@ class PortalViewTests(TestCase):
             "layers": ["my-candidates", "other-candidates"], "basemap": "dark", "labels": False,
             "rasters": ["magnetic"], "rasterOpacity": 54, "satelliteDate": "2026-06-20",
             "candidateDraft": {"latitude": -25.1, "longitude": 28.2, "diameterKm": 80},
+            "detailMode": "sidebar",
             "layerStyles": {"my-candidates": {"lineStyle": "dotted", "lineWidth": 3.5}},
         }
         saved = self.client.post(reverse("map_preferences"), json.dumps(payload), content_type="application/json")
@@ -222,6 +231,7 @@ class PortalViewTests(TestCase):
         settings = UserMapPreference.objects.get(user=self.user).settings
         self.assertEqual(settings["basemap"], "dark")
         self.assertFalse(settings["labels"])
+        self.assertEqual(settings["detailMode"], "sidebar")
         self.assertEqual(settings["layerStyles"]["my-candidates"], {"lineStyle": "dotted", "lineWidth": 3.5})
         home = self.client.get(reverse("home"))
         self.assertContains(home, '"diameterKm": 80.0')
@@ -229,6 +239,7 @@ class PortalViewTests(TestCase):
         self.assertEqual(reset.status_code, 200)
         reset_settings = reset.json()["settings"]
         self.assertEqual(reset_settings["layers"], ["study-candidates", "repaired-catalogue", "african-structures", "my-candidates"])
+        self.assertEqual(reset_settings["detailMode"], "popup")
         self.assertEqual(reset_settings["layerStyles"]["repaired-catalogue"], {"lineStyle": "dotted", "lineWidth": 1.5})
         self.assertEqual(reset_settings["layerStyles"]["other-candidates"], {"lineStyle": "dashed", "lineWidth": 1.5})
         self.assertFalse(UserMapPreference.objects.filter(user=self.user).exists())

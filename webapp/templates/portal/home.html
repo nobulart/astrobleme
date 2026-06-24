@@ -10,6 +10,11 @@
     <div class="notice"><strong>Interpretation guardrail</strong><br>Scores prioritize follow-up. They are not impact probabilities, and circular morphology is not diagnostic.</div>
     <label class="search-label" for="map-search">Find a candidate or structure</label>
     <input id="map-search" type="search" placeholder="e.g. arc_0373 or Vredefort">
+    <fieldset class="control-subgroup detail-mode-options">
+      <legend>Feature details</legend>
+      <label><input type="radio" name="detail-mode" data-detail-mode="popup" checked> Popup</label>
+      <label><input type="radio" name="detail-mode" data-detail-mode="sidebar"> Right sidebar</label>
+    </fieldset>
     <details class="control-section" open><summary>Map layers</summary>
     <div id="layer-list" class="layer-list">
       {% for slug, layer in layers.items %}
@@ -94,7 +99,18 @@
   </aside>
   <section class="map-region">
     <div id="map" aria-label="Interactive global candidate map"></div>
+    <div class="map-toolbar" aria-label="Map display controls">
+      <button id="toggle-atlas-panel" class="map-icon-button" type="button" aria-label="Hide layer sidebar" aria-pressed="false">☰</button>
+      <button id="fullscreen-map" class="map-icon-button" type="button" aria-label="Enter fullscreen">⛶</button>
+    </div>
     <div id="map-status" class="map-status">Loading study candidates…</div>
+    <aside id="feature-sidebar" class="feature-sidebar" aria-live="polite" hidden>
+      <header>
+        <span>Feature details</span>
+        <button id="feature-sidebar-close" type="button" aria-label="Close feature details">×</button>
+      </header>
+      <div id="feature-sidebar-content"></div>
+    </aside>
   </section>
 </main>
 {% endblock %}

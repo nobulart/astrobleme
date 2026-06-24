@@ -55,6 +55,7 @@ DEFAULT_MAP_PREFERENCES = {
     "scoreField": "followup_score",
     "palette": "turbo",
     "drawingMethod": "center-radius",
+    "detailMode": "popup",
     "layerStyles": DEFAULT_LAYER_STYLES,
 }
 PREFERENCE_LAYERS = {*LAYERS, "my-candidates", "other-candidates", "community"}
@@ -63,6 +64,7 @@ PREFERENCE_RASTERS = {"gebco-elevation", "gebco-tid", "magnetic"}
 PREFERENCE_SCORE_FIELDS = {"followup_score", "structure_followup_score", "gravity_consensus_percentile", "magnetic_ring_score_stratified_percentile", "data_quality", "intake_score", "diameter_km"}
 PREFERENCE_PALETTES = {"turbo", "viridis", "plasma", "inferno", "magma", "cividis", "rdbu"}
 PREFERENCE_DRAWING_METHODS = {"center-radius", "rim-to-rim", "point-diameter"}
+PREFERENCE_DETAIL_MODES = {"popup", "sidebar"}
 PREFERENCE_LAYER_LINE_STYLES = {"solid", "dashed", "dotted"}
 STYLE_METRIC_FIELDS = (
     "structure_followup_score",
@@ -672,7 +674,13 @@ def _clean_map_preferences(payload):
     score_field = payload.get("scoreField", DEFAULT_MAP_PREFERENCES["scoreField"])
     palette = payload.get("palette", DEFAULT_MAP_PREFERENCES["palette"])
     drawing_method = payload.get("drawingMethod", DEFAULT_MAP_PREFERENCES["drawingMethod"])
-    if score_field not in PREFERENCE_SCORE_FIELDS or palette not in PREFERENCE_PALETTES or drawing_method not in PREFERENCE_DRAWING_METHODS:
+    detail_mode = payload.get("detailMode", DEFAULT_MAP_PREFERENCES["detailMode"])
+    if (
+        score_field not in PREFERENCE_SCORE_FIELDS
+        or palette not in PREFERENCE_PALETTES
+        or drawing_method not in PREFERENCE_DRAWING_METHODS
+        or detail_mode not in PREFERENCE_DETAIL_MODES
+    ):
         raise ValueError
     layer_styles = {}
     for slug, style in (payload.get("layerStyles") or {}).items():
@@ -709,6 +717,7 @@ def _clean_map_preferences(payload):
         "scoreField": score_field,
         "palette": palette,
         "drawingMethod": drawing_method,
+        "detailMode": detail_mode,
         "layerStyles": layer_styles,
     }
 
