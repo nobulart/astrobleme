@@ -25,16 +25,27 @@ from .scoring import evaluate_submission
 
 LAYERS = {
     "study-candidates": ("study_results_geojson/arcuate_geometries_study_results.geojson", "Study candidates", "candidate"),
-    "repaired-catalogue": ("catalog_repair/astroblemes_analysis.geojson", "Repaired global catalogue", "catalogue"),
+    "repaired-catalogue": ("catalog_repair/astroblemes_analysis.geojson", "Global catalogue", "catalogue"),
     "african-structures": ("african_impact_structures.geojson", "African structures", "africa"),
     "negative-controls": ("data/controls.geojson", "Endogenic controls", "control"),
     "active-faults": ("geology_sources/gem-global-active-faults/geojson/gem_active_faults_harmonized.geojson", "GEM active faults", "fault"),
 }
 
+DEFAULT_LAYER_STYLES = {
+    "study-candidates": {"lineStyle": "dotted", "lineWidth": 1.5},
+    "repaired-catalogue": {"lineStyle": "dotted", "lineWidth": 1.5},
+    "african-structures": {"lineStyle": "dotted", "lineWidth": 1.5},
+    "negative-controls": {"lineStyle": "solid", "lineWidth": 1.5},
+    "active-faults": {"lineStyle": "solid", "lineWidth": 1.5},
+    "my-candidates": {"lineStyle": "solid", "lineWidth": 1.5},
+    "other-candidates": {"lineStyle": "dashed", "lineWidth": 1.5},
+    "community": {"lineStyle": "solid", "lineWidth": 1.5},
+}
+
 DEFAULT_MAP_PREFERENCES = {
     "center": [5, 15],
     "zoom": 2,
-    "layers": ["study-candidates", "my-candidates"],
+    "layers": ["study-candidates", "repaired-catalogue", "african-structures", "my-candidates"],
     "basemap": "aerial",
     "labels": True,
     "rasters": [],
@@ -44,7 +55,7 @@ DEFAULT_MAP_PREFERENCES = {
     "scoreField": "followup_score",
     "palette": "turbo",
     "drawingMethod": "center-radius",
-    "layerStyles": {},
+    "layerStyles": DEFAULT_LAYER_STYLES,
 }
 PREFERENCE_LAYERS = {*LAYERS, "my-candidates", "other-candidates", "community"}
 PREFERENCE_BASEMAPS = {"street", "aerial", "satellite", "dark"}

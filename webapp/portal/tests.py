@@ -144,6 +144,8 @@ class PortalViewTests(TestCase):
         self.assertContains(home, "Dark map")
         self.assertContains(home, "Labels and roads overlay")
         self.assertContains(home, "NASA MODIS satellite")
+        self.assertContains(home, "Global catalogue")
+        self.assertNotContains(home, "Repaired global catalogue")
         self.assertContains(home, "Registered reviewers can compare live elevation")
         self.assertNotContains(home, "Analysis status")
         self.assertNotContains(home, "GEBCO source identifier")
@@ -225,6 +227,10 @@ class PortalViewTests(TestCase):
         self.assertContains(home, '"diameterKm": 80.0')
         reset = self.client.post(reverse("map_preferences"), json.dumps({"reset": True}), content_type="application/json")
         self.assertEqual(reset.status_code, 200)
+        reset_settings = reset.json()["settings"]
+        self.assertEqual(reset_settings["layers"], ["study-candidates", "repaired-catalogue", "african-structures", "my-candidates"])
+        self.assertEqual(reset_settings["layerStyles"]["repaired-catalogue"], {"lineStyle": "dotted", "lineWidth": 1.5})
+        self.assertEqual(reset_settings["layerStyles"]["other-candidates"], {"lineStyle": "dashed", "lineWidth": 1.5})
         self.assertFalse(UserMapPreference.objects.filter(user=self.user).exists())
 
     def test_authenticated_home_includes_analysis_status_sidebar(self):

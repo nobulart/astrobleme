@@ -1,11 +1,21 @@
+const defaultLayerStyles = {
+  "study-candidates": {lineStyle: "dotted", lineWidth: 1.5},
+  "repaired-catalogue": {lineStyle: "dotted", lineWidth: 1.5},
+  "african-structures": {lineStyle: "dotted", lineWidth: 1.5},
+  "negative-controls": {lineStyle: "solid", lineWidth: 1.5},
+  "active-faults": {lineStyle: "solid", lineWidth: 1.5},
+  "my-candidates": {lineStyle: "solid", lineWidth: 1.5},
+  "other-candidates": {lineStyle: "dashed", lineWidth: 1.5},
+  community: {lineStyle: "solid", lineWidth: 1.5}
+};
 const defaultPreferences = {
-  center: [5, 15], zoom: 2, layers: ["study-candidates", "my-candidates"],
+  center: [5, 15], zoom: 2, layers: ["study-candidates", "repaired-catalogue", "african-structures", "my-candidates"],
   basemap: "aerial", labels: true, rasters: [], rasterOpacity: 68, satelliteDate: "", candidateDraft: null,
-  scoreField: "followup_score", palette: "turbo", drawingMethod: "center-radius", layerStyles: {}
+  scoreField: "followup_score", palette: "turbo", drawingMethod: "center-radius", layerStyles: defaultLayerStyles
 };
 const savedPreferences = JSON.parse(document.getElementById("map-preferences")?.textContent || "{}");
 let preferences = {...defaultPreferences, ...savedPreferences};
-preferences.layerStyles = preferences.layerStyles || {};
+preferences.layerStyles = {...defaultLayerStyles, ...(savedPreferences.layerStyles || {})};
 const map = L.map("map", {worldCopyJump: true, zoomControl: false}).setView(preferences.center, preferences.zoom);
 L.control.zoom({position: "bottomright"}).addTo(map);
 const streetLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 18, attribution: "© OpenStreetMap contributors"}).addTo(map);
@@ -493,7 +503,7 @@ if (document.getElementById("satellite-date")) {
     document.querySelector(`[data-basemap="${defaultPreferences.basemap}"]`).checked = true; chooseBasemap(defaultPreferences.basemap);
     document.querySelectorAll("[data-raster]").forEach(input => { input.checked = false; map.removeLayer(rasterLayers[input.dataset.raster]); });
     activeRasterSlugs.clear(); setGravityMode(false);
-    preferences.scoreField = defaultPreferences.scoreField; preferences.palette = defaultPreferences.palette; preferences.drawingMethod = defaultPreferences.drawingMethod; preferences.layerStyles = {};
+    preferences.scoreField = defaultPreferences.scoreField; preferences.palette = defaultPreferences.palette; preferences.drawingMethod = defaultPreferences.drawingMethod; preferences.layerStyles = {...defaultLayerStyles};
     scoreField.value = preferences.scoreField; paletteSelect.value = preferences.palette; drawingMethod.value = preferences.drawingMethod; restyleScientificLayers();
     document.querySelectorAll("[data-layer-line-style]").forEach(select => { select.value = layerAppearance(select.dataset.layerLineStyle).lineStyle; });
     document.querySelectorAll("[data-layer-line-width]").forEach(input => { input.value = layerAppearance(input.dataset.layerLineWidth).lineWidth; });
@@ -513,7 +523,7 @@ document.getElementById("reset-map")?.addEventListener("click", async () => {
     const csrf = document.querySelector("#map-preference-token input")?.value;
     await fetch(window.ASTROBLEME_PREFERENCE_URL, {method: "POST", headers: {"Content-Type": "application/json", "X-CSRFToken": csrf}, body: JSON.stringify({reset: true})});
   }
-  preferences = {...defaultPreferences}; suspendPersistence = false;
+  preferences = {...defaultPreferences, layerStyles: {...defaultLayerStyles}}; suspendPersistence = false;
   status.textContent = "Map reset to defaults"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 1200);
 });
 suspendPersistence = false;
