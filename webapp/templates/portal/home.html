@@ -1,5 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
+{% block meta %}{% if share_preview %}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Astrobleme Review Atlas">
+<meta property="og:title" content="{{ share_preview.title }}">
+<meta property="og:description" content="{{ share_preview.description }}">
+<meta property="og:url" content="{{ share_preview.url }}">
+{% if share_preview.image_url %}<meta property="og:image" content="{{ share_preview.image_url }}">
+<meta property="og:image:alt" content="3-figure topographic analysis diagnostic for {{ share_preview.title }}">
+<meta name="twitter:card" content="summary_large_image">{% else %}<meta name="twitter:card" content="summary">{% endif %}
+<meta name="twitter:title" content="{{ share_preview.title }}">
+<meta name="twitter:description" content="{{ share_preview.description }}">
+{% if share_preview.image_url %}<meta name="twitter:image" content="{{ share_preview.image_url }}">{% endif %}
+{% endif %}{% endblock %}
 {% block head %}<link rel="stylesheet" href="{% static 'portal/interactive-map.css' %}">{% endblock %}
 {% block content %}
 <main class="atlas-shell">
@@ -82,7 +95,7 @@
           <button id="clear-candidate" class="text-button" type="button">Clear marker</button>
         </div>
       </section>
-      <a class="button secondary" href="{% url 'globe' %}">Open 3D gravity globe</a>
+      <a class="button secondary" href="{% url 'globe' %}" data-view-sync="globe">Open 3D gravity globe</a>
       <button id="reset-map" class="text-button reset-map" type="button">Reset map to defaults</button>
       <form id="map-preference-token" hidden>{% csrf_token %}</form>
       {% else %}
@@ -126,5 +139,5 @@
 {{ map_preferences|json_script:"map-preferences" }}
 <script>window.ASTROBLEME_PREFERENCE_URL = "{% if user.is_authenticated %}{% url 'map_preferences' %}{% endif %}";</script>
 <script>window.ASTROBLEME_ANALYSIS_STATUS_URL = "{% if user.is_authenticated %}{% url 'analysis_status' %}{% endif %}";</script>
-<script src="{% static 'portal/map.js' %}?v=gmrt-basemaps-20260624"></script>
+<script src="{% static 'portal/map.js' %}?v=view-sync-20260629"></script>
 {% endblock %}

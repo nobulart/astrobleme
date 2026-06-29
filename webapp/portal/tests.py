@@ -157,6 +157,30 @@ class PortalViewTests(TestCase):
         self.assertNotContains(home, "Inspect WGM2012 gravity")
         self.assertEqual(self.client.get(reverse("health")).json(), {"status": "ok", "database": "ok"})
 
+    def test_shared_study_candidate_home_includes_preview_metadata(self):
+        response = self.client.get(reverse("home"), {"layer": "study-candidates", "feature": "arc_0000", "basemap": "gmrt"})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'property="og:title" content="arc_0000 · Astrobleme Review Atlas"')
+        self.assertContains(response, 'property="og:description"')
+        self.assertContains(response, "follow-up")
+        self.assertContains(response, "gravity")
+        self.assertContains(response, "magnetic")
+        self.assertContains(response, 'property="og:image"')
+        self.assertContains(response, "arc_0000.webp")
+
+    def test_shared_public_submission_home_includes_preview_metadata(self):
+        candidate = CandidateSubmission.objects.create(
+            created_by=self.user, title="Public shared candidate", description="x", longitude=1, latitude=1,
+            diameter_km=20, source_title="x", observed_feature="x", endogenic_alternative="x",
+            status=CandidateSubmission.Status.BASELINE_PASSED, followup_score=0.72,
+            followup_metrics={"gravity_consensus_percentile": 0.81, "magnetic_ring_score_stratified_percentile": 0.64},
+        )
+        response = self.client.get(reverse("home"), {"layer": "community", "feature": str(candidate.id)})
+        self.assertContains(response, 'property="og:title" content="Public shared candidate · Astrobleme Review Atlas"')
+        self.assertContains(response, "follow-up 0.720")
+        self.assertContains(response, "gravity 0.810")
+        self.assertContains(response, "magnetic 0.640")
+
     @override_settings(DEBUG=False, SECURE_SSL_REDIRECT=True)
     def test_health_is_not_redirected_to_https(self):
         response = self.client.get(reverse("health"))

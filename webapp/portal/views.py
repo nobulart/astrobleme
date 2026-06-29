@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.exceptions import ValidationError
 from django.db import connection, transaction
 from django.db.models import Prefetch, Q
 from django.http import FileResponse, Http404, HttpResponse, JsonResponse
@@ -84,7 +85,8 @@ def home(request):
         saved = UserMapPreference.objects.filter(user=request.user).values_list("settings", flat=True).first()
         if saved:
             preferences.update(saved)
-    return render(request, "portal/home.html", {"layers": LAYERS, "map_preferences": preferences})
+    share_preview = _atlas_share_preview(request)
+    return render(request, "portal/home.html", {"layers": LAYERS, "map_preferences": preferences, "share_preview": share_preview})
 
 
 def register(request):
@@ -240,19 +242,24 @@ def _ranking_diagnostic_ids():
 
 def _study_candidate_collection(path, download=False):
     data = json.loads(path.read_text(encoding="utf-8"))
-    diagnostic_ids = _ranking_diagnostic_ids()
     for feature in data.get("features", []):
-        properties = feature.setdefault("properties", {})
-        candidate_id = properties.get("candidate_id")
-        if candidate_id in diagnostic_ids:
-            properties["diagnostic_figure_url"] = static(f"portal/diagnostics/study/{candidate_id}.webp")
-            properties["diagnostic_figure_title"] = "Elevation analysis diagnostic"
-        properties["score_breakdown"] = _score_breakdown(properties)
+        _enrich_study_feature(feature)
     response = JsonResponse(data)
     response["Content-Type"] = "application/geo+json"
     if download:
         response["Content-Disposition"] = 'attachment; filename="study-candidates.geojson"'
     return response
+
+
+def _enrich_study_feature(feature):
+    diagnostic_ids = _ranking_diagnostic_ids()
+    properties = feature.setdefault("properties", {})
+    candidate_id = properties.get("candidate_id")
+    if candidate_id in diagnostic_ids:
+        properties["diagnostic_figure_url"] = static(f"portal/diagnostics/study/{candidate_id}.webp")
+        properties["diagnostic_figure_title"] = "3-figure topographic analysis diagnostic"
+    properties["score_breakdown"] = _score_breakdown(properties)
+    return feature
 
 
 def _candidate_collection(queryset, request, download=False):
@@ -312,6 +319,104 @@ def _candidate_properties(candidate, request):
     if actions:
         properties["actions"] = actions
     return properties
+
+
+def _atlas_share_preview(request):
+    layer = request.GET.get("layer", "").strip()
+    feature_id = request.GET.get("feature", "").strip()
+    if not layer or not feature_id:
+        return None
+    try:
+        feature = _shared_feature(layer, feature_id, request)
+    except (Http404, ValueError):
+        return None
+    if not feature:
+        return None
+    properties = feature.get("properties") or {}
+    title = properties.get("candidate_id") or properties.get("title") or properties.get("display_name") or properties.get("name") or "Candidate feature"
+    description = _share_description(properties)
+    image_url = _absolute_share_url(request, properties.get("diagnostic_figure_url"))
+    return {
+        "title": f"{title} · Astrobleme Review Atlas",
+        "description": description,
+        "image_url": image_url,
+        "url": request.build_absolute_uri(),
+    }
+
+
+def _shared_feature(layer, feature_id, request):
+    if layer == "study-candidates":
+        path = (settings.PROJECT_ROOT / LAYERS[layer][0]).resolve()
+        if settings.PROJECT_ROOT.resolve() not in path.parents or not path.exists():
+            raise Http404
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for feature in data.get("features", []):
+            properties = feature.get("properties") or {}
+            if feature.get("id") == feature_id or properties.get("candidate_id") == feature_id:
+                return _enrich_study_feature(feature)
+        return None
+    candidate = _shared_candidate(layer, feature_id, request)
+    if not candidate:
+        return None
+    return {
+        "type": "Feature",
+        "id": str(candidate.id),
+        "geometry": candidate.geometry or {"type": "Point", "coordinates": [candidate.longitude, candidate.latitude]},
+        "properties": _candidate_properties(candidate, request),
+    }
+
+
+def _shared_candidate(layer, feature_id, request):
+    if layer not in {"community", "other-candidates", "my-candidates"}:
+        raise Http404
+    queryset = CandidateSubmission.objects.select_related("created_by").prefetch_related("analysis_runs__artifacts")
+    if layer == "my-candidates":
+        if not request.user.is_authenticated:
+            raise Http404
+        queryset = queryset.filter(created_by=request.user)
+    elif layer == "other-candidates":
+        queryset = queryset.filter(status__in=PUBLIC_CANDIDATE_STATUSES)
+        if request.user.is_authenticated:
+            queryset = queryset.exclude(created_by=request.user)
+    else:
+        queryset = queryset.filter(status__in=PUBLIC_CANDIDATE_STATUSES)
+    try:
+        return queryset.get(pk=feature_id)
+    except (CandidateSubmission.DoesNotExist, ValidationError, ValueError):
+        return None
+
+
+def _share_description(properties):
+    fields = [
+        ("followup_score", "follow-up"),
+        ("gravity_consensus_percentile", "gravity"),
+        ("magnetic_ring_score_stratified_percentile", "magnetic"),
+    ]
+    parts = []
+    for key, label in fields:
+        value = properties.get(key)
+        if value is None or value == "":
+            continue
+        try:
+            parts.append(f"{label} {float(value):.3f}")
+        except (TypeError, ValueError):
+            parts.append(f"{label} {value}")
+    diameter = properties.get("diameter_km") or properties.get("structure_diameter_km")
+    if diameter not in (None, ""):
+        try:
+            parts.append(f"diameter {float(diameter):.1f} km")
+        except (TypeError, ValueError):
+            pass
+    summary = "; ".join(parts) if parts else "candidate score summary available in the atlas"
+    return f"Shared candidate feature with 3-figure topographic analysis and score summary: {summary}."
+
+
+def _absolute_share_url(request, url):
+    if not url:
+        return ""
+    if str(url).startswith(("http://", "https://")):
+        return url
+    return request.build_absolute_uri(url)
 
 
 def _candidate_action_properties(candidate, user):

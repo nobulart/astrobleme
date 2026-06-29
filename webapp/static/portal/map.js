@@ -16,6 +16,15 @@ const defaultPreferences = {
 const savedPreferences = JSON.parse(document.getElementById("map-preferences")?.textContent || "{}");
 let preferences = {...defaultPreferences, ...savedPreferences};
 preferences.layerStyles = {...defaultLayerStyles, ...(savedPreferences.layerStyles || {})};
+const syncedViewRequest = parseSyncedViewRequest();
+if (syncedViewRequest) preferences = {...preferences, ...syncedViewRequest};
+const sharedFeatureRequest = parseSharedFeatureRequest();
+if (sharedFeatureRequest) {
+  preferences = {...preferences, ...sharedFeatureRequest.preferences};
+  if (window.ASTROBLEME_LAYER_URLS?.[sharedFeatureRequest.layer] && !preferences.layers.includes(sharedFeatureRequest.layer)) {
+    preferences.layers = [...preferences.layers, sharedFeatureRequest.layer];
+  }
+}
 const map = L.map("map", {worldCopyJump: true, zoomControl: false}).setView(preferences.center, preferences.zoom);
 L.control.zoom({position: "bottomright"}).addTo(map);
 L.control.scale({position: "bottomleft", metric: true, imperial: false, maxWidth: 160}).addTo(map);
@@ -54,6 +63,33 @@ const centerMarkerLayers = new Set(["study-candidates", "my-candidates", "other-
 
 function esc(value) { const d = document.createElement("div"); d.textContent = value ?? "—"; return d.innerHTML; }
 function csrfToken() { return document.querySelector("#map-preference-token input")?.value || ""; }
+function parseSyncedViewRequest() {
+  const params = new URLSearchParams(window.location.search);
+  const lat = Number(params.get("lat")), lon = Number(params.get("lon")), zoom = Number(params.get("z"));
+  const parsed = {};
+  if (Number.isFinite(lat) && Number.isFinite(lon) && lat >= -90 && lat <= 90) parsed.center = [lat, ((lon + 180) % 360) - 180];
+  if (Number.isFinite(zoom)) parsed.zoom = Math.max(1, Math.min(18, Math.round(zoom)));
+  const basemap = params.get("basemap");
+  if (basemap) parsed.basemap = basemap;
+  if (params.has("labels")) parsed.labels = params.get("labels") !== "0";
+  if (params.has("rasters")) parsed.rasters = params.get("rasters").split(",").filter(Boolean);
+  return Object.keys(parsed).length ? parsed : null;
+}
+function parseSharedFeatureRequest() {
+  const params = new URLSearchParams(window.location.search);
+  const layer = params.get("layer"), feature = params.get("feature");
+  if (!layer || !feature) return null;
+  const parsed = {layer, feature, preferences: {}};
+  const basemap = params.get("basemap");
+  if (basemap) parsed.preferences.basemap = basemap;
+  if (params.has("labels")) parsed.preferences.labels = params.get("labels") !== "0";
+  if (params.has("rasters")) parsed.preferences.rasters = params.get("rasters").split(",").filter(Boolean);
+  if (params.has("rasterOpacity")) parsed.preferences.rasterOpacity = Number(params.get("rasterOpacity")) || preferences.rasterOpacity;
+  if (params.has("scoreField")) parsed.preferences.scoreField = params.get("scoreField");
+  if (params.has("palette")) parsed.preferences.palette = params.get("palette");
+  if (params.has("detail")) parsed.preferences.detailMode = params.get("detail");
+  return parsed;
+}
 function refreshMapSize() { setTimeout(() => map.invalidateSize(), 220); }
 function centerMarkerIcon(selected = false) {
   return L.divIcon({className: `candidate-center-marker${selected ? " selected" : ""}`, html: "+", iconSize: [20, 20], iconAnchor: [10, 10]});
@@ -141,12 +177,12 @@ function metricLabel(value) {
 }
 function popupActions(p) {
   const actions = p.actions || {};
-  if (!actions.edit_url && !actions.status_url && !actions.delete_url) return "";
+  const share = `<button class="popup-share-button" type="button">Copy share link</button>`;
   const edit = actions.edit_url ? `<a class="popup-action-button" href="${esc(actions.edit_url)}">Edit</a>` : "";
   const choices = Array.isArray(actions.status_choices) ? actions.status_choices : [];
   const status = actions.status_url ? `<form class="popup-status-form" data-status-url="${esc(actions.status_url)}"><label>Status<select name="status">${choices.map(choice => `<option value="${esc(choice.value)}" ${choice.value === p.reviewStatus ? "selected" : ""}>${esc(choice.label)}</option>`).join("")}</select></label><textarea name="note" rows="2" placeholder="Review note"></textarea><button type="submit">Save</button></form>` : "";
   const del = actions.delete_url ? `<button class="popup-delete-button" type="button" data-delete-url="${esc(actions.delete_url)}">Delete</button>` : "";
-  return `<div class="popup-actions">${edit}${status}${del}</div>`;
+  return `<div class="popup-actions">${share}${edit}${status}${del}</div>`;
 }
 function featureDetail(feature, mode = "popup") {
   const p = propsFor(feature);
@@ -198,6 +234,15 @@ function closeFeatureSidebar() {
 }
 function bindFeatureActions(root, layer, sourceMode = "popup") {
   if (!root || !layer) return;
+  root.querySelector(".popup-share-button")?.addEventListener("click", async () => {
+    const shareUrl = featureShareUrl(layer);
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      status.textContent = "Share link copied"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 1200);
+    } catch (_error) {
+      window.prompt("Copy share link", shareUrl);
+    }
+  });
   root.querySelector(".popup-status-form")?.addEventListener("submit", async formEvent => {
     formEvent.preventDefault();
     const form = formEvent.currentTarget;
@@ -234,6 +279,62 @@ function bindFeatureActions(root, layer, sourceMode = "popup") {
       status.textContent = "Candidate deleted"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 900);
     } catch (error) { status.textContent = error.message; status.classList.remove("quiet"); }
   });
+}
+function featureShareId(layer) {
+  const feature = layer?.feature || {};
+  const properties = feature.properties || {};
+  return properties.candidate_id || properties.candidate_uuid || feature.id || properties.title || "";
+}
+function featureShareUrl(layer) {
+  const params = new URLSearchParams();
+  params.set("layer", layer?._layerSlug || "study-candidates");
+  params.set("feature", featureShareId(layer));
+  params.set("basemap", activeBasemapSlug);
+  params.set("labels", labelsActive ? "1" : "0");
+  if (activeRasterSlugs.size) params.set("rasters", [...activeRasterSlugs].join(","));
+  params.set("rasterOpacity", String(Number(document.getElementById("raster-opacity")?.value || preferences.rasterOpacity || 68)));
+  params.set("scoreField", preferences.scoreField);
+  params.set("palette", preferences.palette);
+  params.set("detail", preferences.detailMode);
+  return `${window.location.origin}${window.location.pathname}?${params}`;
+}
+function featureMatchesShare(layer, request) {
+  const feature = layer?.feature;
+  if (!feature) return false;
+  const properties = feature.properties || {};
+  return [feature.id, properties.candidate_id, properties.candidate_uuid, properties.title, properties.name].filter(Boolean).some(value => String(value) === request.feature);
+}
+function fitSharedFeature(layer) {
+  const properties = layer.feature?.properties || {};
+  const bounds = layer.getBounds?.();
+  if (bounds?.isValid?.()) {
+    map.fitBounds(bounds.pad(.65), {maxZoom: 9});
+    return;
+  }
+  const center = layerCenter(layer);
+  if (!center) return;
+  const diameter = Number(properties.diameter_km || properties.structure_diameter_km || 0);
+  if (diameter > 0) map.fitBounds(L.circle(center, {radius: diameter * 650}).getBounds(), {maxZoom: 9});
+  else map.setView(center, Math.max(map.getZoom(), 8));
+}
+async function initializeSharedFeature() {
+  if (!sharedFeatureRequest || !window.ASTROBLEME_LAYER_URLS?.[sharedFeatureRequest.layer]) return;
+  const input = document.querySelector(`[data-layer="${sharedFeatureRequest.layer}"]`);
+  if (input) input.checked = true;
+  const group = await loadLayer(sharedFeatureRequest.layer);
+  group.addTo(map);
+  restyleScientificLayers();
+  const layer = group.getLayers().find(candidate => featureMatchesShare(candidate, sharedFeatureRequest));
+  if (!layer) {
+    status.textContent = "Shared feature was not found in the visible atlas layers.";
+    status.classList.remove("quiet");
+    return;
+  }
+  fitSharedFeature(layer);
+  showFeatureDetail(layer);
+  status.textContent = "Shared candidate loaded";
+  status.classList.remove("quiet");
+  setTimeout(() => status.classList.add("quiet"), 1200);
 }
 function openFeaturePopup(layer) {
   closeFeatureSidebar();
@@ -304,6 +405,29 @@ function currentPreferences() {
     layerStyles: preferences.layerStyles || {}
   };
 }
+function setSyncedLink(target, url, params) {
+  const link = document.querySelectorAll(`[data-view-sync="${target}"]`);
+  link.forEach(item => {
+    const next = new URL(url, window.location.origin);
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== null && value !== undefined && value !== "") next.searchParams.set(key, String(value));
+    });
+    item.href = `${next.pathname}${next.search}`;
+  });
+}
+function updateViewSyncLinks() {
+  const current = currentPreferences();
+  const params = {
+    lat: current.center[0].toFixed(5),
+    lon: current.center[1].toFixed(5),
+    z: current.zoom,
+    basemap: current.basemap,
+    labels: current.labels ? "1" : "0",
+    rasters: current.rasters.join(","),
+  };
+  setSyncedLink("globe", "/globe/", params);
+  setSyncedLink("atlas", "/", params);
+}
 function persistPreferences() {
   if (suspendPersistence || !window.ASTROBLEME_PREFERENCE_URL) return;
   clearTimeout(saveTimer);
@@ -350,6 +474,7 @@ document.querySelectorAll("[data-layer]").forEach(input => {
   if (input.checked) setLayer(input.dataset.layer, true);
 });
 map.on("moveend", persistPreferences);
+map.on("moveend", updateViewSyncLinks);
 document.getElementById("map-search").addEventListener("input", event => {
   const q = event.target.value.trim().toLowerCase(); if (q.length < 3) return;
   for (const group of Object.values(groups)) for (const layer of group.getLayers()) {
@@ -520,6 +645,7 @@ if (document.getElementById("remote-source")) {
     updateLabelOverlay();
     restyleScientificLayers();
     showSource(activeBasemapSlug);
+    updateViewSyncLinks();
   }
   function updateLabelOverlay() {
     if (labelsActive && activeBasemapSlug !== "street") {
@@ -532,7 +658,7 @@ if (document.getElementById("remote-source")) {
   Object.entries(rasterLayers).forEach(([slug, layer]) => attachRasterErrors(layer, slug));
   if (labelOverlayInput) {
     labelOverlayInput.checked = labelsActive;
-    labelOverlayInput.addEventListener("change", () => { labelsActive = labelOverlayInput.checked; updateLabelOverlay(); showSource(activeBasemapSlug); persistPreferences(); });
+    labelOverlayInput.addEventListener("change", () => { labelsActive = labelOverlayInput.checked; updateLabelOverlay(); showSource(activeBasemapSlug); updateViewSyncLinks(); persistPreferences(); });
   }
 
   document.querySelectorAll("[data-basemap]").forEach(input => {
@@ -549,12 +675,14 @@ if (document.getElementById("remote-source")) {
       const layer = rasterLayers[slug];
       if (input.checked) { layer.setOpacity(Number(document.getElementById("raster-opacity").value) / 100).addTo(map); activeRasterSlugs.add(slug); layer.bringToFront?.(); Object.values(groups).forEach(group => group.bringToFront?.()); showSource(slug); }
       else { map.removeLayer(layer); activeRasterSlugs.delete(slug); }
+      updateViewSyncLinks();
       persistPreferences();
     });
   });
   opacityInput?.addEventListener("input", event => {
     const opacity = Number(event.target.value) / 100;
     activeRasterSlugs.forEach(slug => rasterLayers[slug].setOpacity(opacity)); persistPreferences();
+    updateViewSyncLinks();
   });
   if (window.ASTROBLEME_RASTER_ACCESS) {
   const gravityButton = document.getElementById("gravity-inspector");
@@ -675,4 +803,4 @@ document.getElementById("reset-map")?.addEventListener("click", async () => {
   preferences = {...defaultPreferences, layerStyles: {...defaultLayerStyles}}; suspendPersistence = false;
   status.textContent = "Map reset to defaults"; status.classList.remove("quiet"); setTimeout(() => status.classList.add("quiet"), 1200);
 });
-suspendPersistence = false;
+initializeSharedFeature().finally(() => { updateViewSyncLinks(); suspendPersistence = false; });

@@ -184,6 +184,12 @@
   color: #9f382d;
 }
 
+.popup-actions .popup-share-button {
+  border-color: #2b8d7b;
+  background: #eefaf6;
+  color: #14594c;
+}
+
 .feature-sidebar {
   position: absolute;
   z-index: 720;
